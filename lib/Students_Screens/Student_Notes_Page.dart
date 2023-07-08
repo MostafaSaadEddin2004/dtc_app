@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../Components/Notes.dart';
 import '../Registering_Screens/SignUp_Screen.dart';
+import 'Student_Adding_Notes_Page.dart';
 import 'Student_Profile_Page.dart';
 
 class StudentNotesPage extends StatefulWidget {
@@ -67,16 +68,18 @@ class _StudentNotesPageState extends State<StudentNotesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: const CircleAvatar(
-          maxRadius: 25,
-          minRadius: 25,
-          backgroundColor: PrimaryColor,
-          child: Icon(
-            Icons.add,
-            size: 40,
-            color: WhiteColor,
-          ),
-        ),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: PrimaryColor,
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const StudentAddingNotesPage(),
+              ));
+            },
+            child: const Icon(
+              Icons.add,
+              size: 40,
+              color: WhiteColor,
+            )),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         appBar: AppBar(
           backgroundColor: PrimaryColor,

@@ -65,6 +65,7 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationDropDownSearch(
+                                  hint: '',
                                   items: ['ذكر', 'أنثى'],
                                   onChange: (data) {},
                                   validator: (data) {
@@ -83,6 +84,7 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationDropDownSearch(
+                                  hint: '',
                                   items: ['متزوج', 'مخطوب', 'أعزب'],
                                   onChange: (data) {},
                                   validator: (data) {
@@ -109,7 +111,6 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: fullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -135,7 +136,6 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: englishFullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -166,6 +166,7 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationDropDownSearch(
+                                  hint: '',
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
@@ -186,6 +187,7 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationDropDownSearch(
+                                  hint: '',
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
@@ -205,7 +207,6 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: phoneNumberController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -234,7 +235,6 @@ class _BrowserPersonalInformationState
                           height: 10,
                         ),
                         registrationInfoTextField(
-                          onChanged: (data) {},
                           controller: emailController,
                           keyboardType: TextInputType.streetAddress,
                           radius: 20,
@@ -264,7 +264,6 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: phoneNumberController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -292,7 +291,6 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: currentController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,

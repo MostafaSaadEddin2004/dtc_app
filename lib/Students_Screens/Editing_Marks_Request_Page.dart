@@ -48,7 +48,6 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               height: 10,
                             ),
                             registrationInfoTextField(
-                              onChanged: (data) {},
                               controller: fullNameController,
                               keyboardType: TextInputType.name,
                               radius: 20,
@@ -74,7 +73,6 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               height: 10,
                             ),
                             registrationInfoTextField(
-                              onChanged: (data) {},
                               controller: markController,
                               keyboardType: TextInputType.name,
                               radius: 20,
@@ -103,7 +101,6 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                         height: 10,
                       ),
                       registrationInfoTextField(
-                        onChanged: (data) {},
                         controller: markEditingRequestTextController,
                         keyboardType: TextInputType.name,
                         radius: 20,
@@ -127,7 +124,9 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            registrationDropDownSearch(items: [
+                            registrationDropDownSearch(
+                              hint: '',
+                              items: [
                               'تكنولوجيا المعلومات',
                               'الطبي',
                               'الهندسي',
@@ -144,7 +143,8 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            registrationDropDownSearch(
+                            registrationDropDownSearch(hint: '',
+
                                 items: [],
                                 onChange: (data) {},
                                 validator: (data) {})
@@ -165,7 +165,7 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            registrationDropDownSearch(
+                            registrationDropDownSearch(hint: '',
                                 items: [],
                                 onChange: (data) {},
                                 validator: (data) {})
@@ -180,6 +180,7 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               height: 10,
                             ),
                             registrationDropDownSearch(
+                              hint: '',
                                 items: [],
                                 onChange: (data) {},
                                 validator: (data) {})

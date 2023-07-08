@@ -7,6 +7,7 @@ Widget registrationDropDownSearch(
         {required void Function(String? data) onChange,
         required List<String> items,
         required String? Function(String? text) validator,
+        required String hint,
         // required TextEditingController controller
         }) =>
     Container(
@@ -30,7 +31,7 @@ Widget registrationDropDownSearch(
                 contentPadding: const EdgeInsets.all(8),
                 focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: PrimaryColor)),
-                hintText: 'إختر...',
+                hintText: '',
                 enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: GreyColor, width: 0.5),
                     borderRadius: BorderRadius.circular(2)),

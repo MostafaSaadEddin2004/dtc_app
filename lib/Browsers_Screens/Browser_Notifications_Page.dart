@@ -2,7 +2,7 @@ import 'package:dtc_app/Components/BottomNavBar.dart';
 import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notifications.dart';
-import '../Registering_Screens/Long_Courses/SignUp_Type.dart';
+import '../Registering_Screens/SignUp_Type.dart';
 import '../Registering_Screens/SignUp_Screen.dart';
 import 'Browser_Profile_Page.dart';
 

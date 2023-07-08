@@ -94,7 +94,6 @@ class _BrowserOtherInformationState extends State<BrowserOtherInformation> {
                               height: 10,
                             ),
                             registrationInfoTextField(
-                              onChanged: (data) {},
                               controller: educationPlaceController,
                               keyboardType: TextInputType.name,
                               radius: 20,

@@ -67,16 +67,14 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: const CircleAvatar(
-          maxRadius: 25,
-          minRadius: 25,
-          backgroundColor: PrimaryColor,
-          child: Icon(
-            Icons.add,
-            size: 40,
-            color: WhiteColor,
-          ),
-        ),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: PrimaryColor,
+            onPressed: () {},
+            child: const Icon(
+              Icons.add,
+              size: 40,
+              color: WhiteColor,
+            )),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         appBar: AppBar(
           backgroundColor: PrimaryColor,

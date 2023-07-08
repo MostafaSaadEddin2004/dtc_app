@@ -85,7 +85,9 @@ class _StudentCoursePageState extends State<StudentCoursePage> {
             postImage: posts[index]['Images'].toString(),
             postText: posts[index]['PostText'].toString(),
             onTap: () {
-              Navigator.of(context).pushNamed(StudentPersonalInformation.id);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const StudentPersonalInformation(),
+              ));
             }),
       ),
     );

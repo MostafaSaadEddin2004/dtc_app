@@ -3,12 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'Browsers_Screens/Browser_Course_Page.dart';
 import 'Browsers_Screens/Browser_Start_Page.dart';
 import 'Constents/Colors.dart';
-import 'Registering_Screens/Long_Courses/SignUp_Type.dart';
+import 'Registering_Screens/SignUp_Type.dart';
 import 'Registering_Screens/SignIn_Screen.dart';
 import 'Registering_Screens/SignUp_Screen.dart';
 import 'Start_App_Screens/Start_App_Screen.dart';
+import 'Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
 import 'Students_Screens/Student_Start_Page.dart';
 import 'Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
 import 'Teachers_Screens/Teacher_Start_Page.dart';
@@ -46,8 +48,10 @@ class Main extends StatelessWidget {
             const AcceptanceQualifications(),
         BrowserStartPage.id: (context) => const BrowserStartPage(),
         StudentStartPage.id: (context) => const StudentStartPage(),
-        TeacherAuthStartPage.id:(context) => const TeacherAuthStartPage(),
-        TeacherStartPage.id:(context) => const TeacherStartPage(),
+        TeacherAuthStartPage.id: (context) => const TeacherAuthStartPage(),
+        TeacherStartPage.id: (context) => const TeacherStartPage(),
+        StudentTabBar.id: (context) => const StudentTabBar(),
+        BrowserCoursePage.id: (context) => const BrowserCoursePage(),
       },
     );
   }

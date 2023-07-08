@@ -68,16 +68,14 @@ class _TeacherAuthProfileNotesPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: const CircleAvatar(
-          maxRadius: 25,
-          minRadius: 25,
-          backgroundColor: PrimaryColor,
-          child: Icon(
-            Icons.add,
-            size: 40,
-            color: WhiteColor,
-          ),
-        ),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: PrimaryColor,
+            onPressed: () {},
+            child: const Icon(
+              Icons.add,
+              size: 40,
+              color: WhiteColor,
+            )),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Container(
           margin: const EdgeInsets.only(top: 10),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Components/Posts.dart';
 import '../Constents/Colors.dart';
-import '../Registering_Screens/Long_Courses/SignUp_Type.dart';
+import '../Registering_Screens/SignUp_Type.dart';
 import '../Registering_Screens/Short_Courses/Browser_Personal_Information.dart';
 import '../Registering_Screens/SignUp_Screen.dart';
 import 'Browser_Profile_Page.dart';
@@ -274,7 +274,9 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
             postImage: posts[index]['Images'].toString(),
             postText: posts[index]['PostText'].toString(),
             onTap: () {
-              Navigator.of(context).pushNamed(BrowserPersonalInformation.id);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const BrowserPersonalInformation(),
+              ));
             },
           ),
         ),

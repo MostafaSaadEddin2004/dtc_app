@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Browsers_Screens/Browser_Course_Page.dart';
 import '../../Components/Buttons.dart';
 import '../../Components/CustomAppBar.dart';
+import '../../Components/Dialogs.dart';
 import '../../Components/Documents_card.dart';
 import '../../Components/Label.dart';
 import '../../Constents/Colors.dart';
@@ -44,7 +45,19 @@ class _BrowserRequiredDocumentsState extends State<BrowserRequiredDocuments> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            nextButton(text: 'إنهاء', onTap: () {}),
+            nextButton(
+                text: 'إنهاء',
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => CustomDialog(
+                        title: 'الإنتساب للدورة',
+                        onPressed: () {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              BrowserCoursePage.id, (route) => false);
+                        }),
+                  );
+                }),
           ],
         ),
         const SizedBox(

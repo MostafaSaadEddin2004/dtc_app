@@ -1,7 +1,6 @@
 import 'package:dtc_app/Components/Buttons.dart';
 import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
-
 import '../../Components/CustomAppBar.dart';
 import '../../Components/Label.dart';
 import '../../Components/TextField.dart';
@@ -38,7 +37,6 @@ class _PersonalInformationState extends State<PersonalInformation> {
           key: formState,
           child: SingleChildScrollView(
             child: Container(
-              height: height - 92,
               child: Column(
                 children: [
                   const SizedBox(
@@ -65,7 +63,6 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: fullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -91,7 +88,6 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: fatherNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -122,7 +118,6 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: motherNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -148,8 +143,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
-                                controller: birthDateController,
+                                controller: birthPlaceController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -211,19 +205,15 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                         color: Colors.transparent)),
                                 suffixIcon: IconButton(
                                   icon: const Icon(Icons.calendar_month),
-                                  onPressed: () {
-                                    showDatePicker(
-                                            context: context,
-                                            initialDate: DateTime.now(),
-                                            firstDate: DateTime(2000),
-                                            lastDate: DateTime(2024),
-                                            keyboardType:
-                                                TextInputType.datetime)
-                                        .then((value) {
-                                      setState(() {
-                                        dateTime = value;
-                                      });
-                                    });
+                                  onPressed: () async {
+                                    dateTime = await showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2024),
+                                        keyboardType: TextInputType.datetime);
+                                    birthDateController.text =
+                                        '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
                                   },
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(
@@ -251,7 +241,6 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: soliderController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -277,7 +266,6 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: englishFullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -311,7 +299,6 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: currentController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
@@ -337,7 +324,6 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: permanentController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
@@ -355,8 +341,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
                       ],
                     ),
                   ),
-                  const Spacer(
-                    flex: 1,
+                  const SizedBox(
+                    height: 15,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,

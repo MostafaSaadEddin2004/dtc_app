@@ -68,7 +68,7 @@ class _StudentPersonalInformationState
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(
+                              registrationDropDownSearch(hint: '',
                                   items: ['ذكر', 'أنثى'],
                                   onChange: (data) {
                                     gender = data!;
@@ -88,7 +88,7 @@ class _StudentPersonalInformationState
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(
+                              registrationDropDownSearch(hint: '',
                                   items: ['متزوج', 'مخطوب', 'أعزب'],
                                   onChange: (data) {
                                     situation = data!;
@@ -117,7 +117,6 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: fullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -143,7 +142,6 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: englishFullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -173,7 +171,7 @@ class _StudentPersonalInformationState
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(
+                              registrationDropDownSearch(hint: '',
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
@@ -193,7 +191,7 @@ class _StudentPersonalInformationState
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(
+                              registrationDropDownSearch(hint: '',
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
@@ -213,7 +211,6 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: phoneNumberController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -242,7 +239,6 @@ class _StudentPersonalInformationState
                           height: 10,
                         ),
                         registrationInfoTextField(
-                          onChanged: (data) {},
                           controller: emailController,
                           keyboardType: TextInputType.streetAddress,
                           radius: 20,
@@ -272,7 +268,6 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: phoneNumberController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -300,7 +295,6 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: currentController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,

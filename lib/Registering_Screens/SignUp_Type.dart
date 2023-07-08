@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../Browsers_Screens/Browser_Start_Page.dart';
+import '../Browsers_Screens/Browser_Start_Page.dart';
 
 class SignUpType extends StatefulWidget {
   const SignUpType({super.key});
@@ -18,8 +17,10 @@ class SignUpType extends StatefulWidget {
   State<SignUpType> createState() => _SignUpTypeState();
 }
 
-bool selectedb = false;
-bool selecteds = false;
+bool selectedBrowser = false;
+bool selectedStudent = false;
+bool selectedTeacherAuth = false;
+bool selectedTeacher = false;
 
 class _SignUpTypeState extends State<SignUpType> {
   @override
@@ -43,11 +44,13 @@ class _SignUpTypeState extends State<SignUpType> {
             ),
             GestureDetector(
               onTap: () {
-                selectedb = true;
-                selecteds = false;
+                selectedBrowser = true;
+                selectedStudent = false;
+                selectedTeacherAuth = false;
+                selectedTeacher = false;
                 setState(() {});
               },
-              child: selectedb == false
+              child: selectedBrowser == false
                   ? Container(
                       height: 60,
                       decoration: BoxDecoration(
@@ -111,11 +114,13 @@ class _SignUpTypeState extends State<SignUpType> {
             ),
             GestureDetector(
               onTap: () {
-                selecteds = true;
-                selectedb = false;
+                selectedBrowser = false;
+                selectedStudent = true;
+                selectedTeacherAuth = false;
+                selectedTeacher = false;
                 setState(() {});
               },
-              child: selecteds == false
+              child: selectedStudent == false
                   ? Container(
                       height: 60,
                       decoration: BoxDecoration(
@@ -175,6 +180,148 @@ class _SignUpTypeState extends State<SignUpType> {
                       ),
                     ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                selectedBrowser = false;
+                selectedStudent = false;
+                selectedTeacherAuth = true;
+                selectedTeacher = false;
+                setState(() {});
+              },
+              child: selectedTeacherAuth == false
+                  ? Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(color: GreyColor, width: 1),
+                      ),
+                      child: Row(
+                        children: const [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(
+                            Icons.edit_document,
+                            size: 25,
+                            color: GreyColor,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'تسجيل الدخول كأستاذ مسؤول',
+                            style: TextStyle(fontSize: 18, color: GreyColor),
+                          )
+                        ],
+                      ))
+                  : Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: PrimaryColor,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: GreyColor,
+                            blurRadius: 4,
+                            offset: Offset(4, 4), // Shadow position
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: const [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(
+                            Icons.edit_document,
+                            size: 25,
+                            color: WhiteColor,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'تسجيل الدخول كأستاذ مسؤول',
+                            style: TextStyle(fontSize: 18, color: WhiteColor),
+                          )
+                        ],
+                      ),
+                    ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                selectedBrowser = false;
+                selectedStudent = false;
+                selectedTeacherAuth = false;
+                selectedTeacher = true;
+                setState(() {});
+              },
+              child: selectedTeacher == false
+                  ? Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(color: GreyColor, width: 1),
+                      ),
+                      child: Row(
+                        children: const [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.scroll,
+                            size: 25,
+                            color: GreyColor,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'تسجيل الدخول كأستاذ',
+                            style: TextStyle(fontSize: 18, color: GreyColor),
+                          )
+                        ],
+                      ))
+                  : Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: PrimaryColor,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: GreyColor,
+                            blurRadius: 4,
+                            offset: Offset(4, 4), // Shadow position
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: const [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.scroll,
+                            size: 25,
+                            color: WhiteColor,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'تسجيل الدخول كأستاذ',
+                            style: TextStyle(fontSize: 18, color: WhiteColor),
+                          )
+                        ],
+                      ),
+                    ),
+            ),
             const Spacer(
               flex: 1,
             ),
@@ -184,15 +331,15 @@ class _SignUpTypeState extends State<SignUpType> {
                 nextButton(
                     text: 'التالي',
                     onTap: () {
-                      if (selectedb == true) {
-                        if (selecteds == false) {
+                      if (selectedBrowser == true) {
+                        if (selectedStudent == false) {
                           Navigator.of(context).pushNamedAndRemoveUntil(
                             BrowserStartPage.id,
                             (Route<dynamic> route) => false,
                           );
                         }
                       } else {
-                        if (selecteds == true) {
+                        if (selectedStudent == true) {
                           Navigator.of(context).pushNamedAndRemoveUntil(
                             AcceptanceQualifications.id,
                             (Route<dynamic> route) => false,

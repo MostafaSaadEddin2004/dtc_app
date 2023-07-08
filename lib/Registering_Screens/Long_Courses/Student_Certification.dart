@@ -115,15 +115,15 @@ class _StudentCertificationState extends State<StudentCertification> {
                               const BorderSide(color: Colors.transparent)),
                       suffixIcon: IconButton(
                         icon: const Icon(Icons.calendar_month),
-                        onPressed: () {
-                          showDatePicker(
+                        onPressed: () async {
+                          dateTime = await showDatePicker(
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime(2000),
                               lastDate: DateTime(2024),
                               keyboardType: TextInputType.datetime);
                           certificationDateController.text =
-                              '${dateTime!.day} / ${dateTime!.month} / ${dateTime!.year}';
+                              '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
                         },
                       ),
                       contentPadding: const EdgeInsets.symmetric(

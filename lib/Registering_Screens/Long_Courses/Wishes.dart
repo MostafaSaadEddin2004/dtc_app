@@ -3,9 +3,9 @@ import 'package:dtc_app/Registering_Screens/Long_Courses/Personal_Information.da
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../../Components/Buttons.dart';
 import '../../Components/CustomAppBar.dart';
+import '../../Components/CustomCheckBoxList.dart';
 import '../../Constents/Colors.dart';
 import 'Required_Documents.dart';
 
@@ -19,10 +19,9 @@ class WishesPage extends StatefulWidget {
 
 class _WishesPageState extends State<WishesPage> {
   bool isChecked = false;
+
   int checkedCount = 0;
-  void handleCheckbox(bool isChecked) {
-    setState(() {});
-  }
+  List<String> values = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,25 +33,21 @@ class _WishesPageState extends State<WishesPage> {
               itemCount: scientific.length,
               itemBuilder: (context, index) {
                 String key = scientific.keys.elementAt(index);
-                return CheckboxListTile(
-                    value: isChecked,
-                    title: Text(key),
-                    activeColor: PrimaryColor,
-                    onChanged: (value) {
-                      setState(() {
-                        if (isChecked) {
-                          if (checkedCount < 6) {
-                            checkedCount++;
-                            isChecked = value!;
-                          }
-                        } else {
-                          if (checkedCount > 6) {
-                            checkedCount--;
-                            isChecked = value!;
-                          }
-                        }
-                      });
-                    });
+                return CustomCheckBoxList(
+                  onChange: (value) {
+                    if (value) {
+                      checkedCount++;
+                      values.add(key);
+                    } else {
+                      checkedCount--;
+                      values.remove(key);
+                    }
+                    setState(() {});
+                    print(values);
+                  },
+                  textKey: key,
+                  canCheck: checkedCount <= 5,
+                );
               }),
         ),
         Row(

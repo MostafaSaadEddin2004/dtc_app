@@ -2,6 +2,7 @@ import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/Notes.dart';
+import 'Student_Adding_Notes_Page.dart';
 import 'Student_Profile_Page.dart';
 
 class StudentProfileNotesPage extends StatefulWidget {
@@ -67,16 +68,16 @@ class _StudentProfileNotesPageState extends State<StudentProfileNotesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: const CircleAvatar(
-          maxRadius: 25,
-          minRadius: 25,
-          backgroundColor: PrimaryColor,
-          child: Icon(
-            Icons.add,
-            size: 40,
-            color: WhiteColor,
-          ),
-        ),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: PrimaryColor,
+            onPressed: () {Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const StudentAddingNotesPage(),
+              ));},
+            child: const Icon(
+              Icons.add,
+              size: 40,
+              color: WhiteColor,
+            )),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Container(
           margin: const EdgeInsets.only(top: 10),

@@ -82,7 +82,7 @@ Widget registrationInfoTextField({
   required double radius,
   required TextInputType? keyboardType,
   IconData? prefix,
-  required void Function(String data) onChanged,
+  
 }) =>
     Container(
       // decoration: BoxDecoration(
@@ -97,7 +97,7 @@ Widget registrationInfoTextField({
       //   ],
       // ),
       child: TextFormField(
-          onChanged: onChanged,
+          
           controller: controller,
           validator: validator,
           keyboardType: keyboardType,

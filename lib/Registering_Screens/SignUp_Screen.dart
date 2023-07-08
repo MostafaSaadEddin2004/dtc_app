@@ -4,7 +4,7 @@ import 'package:dtc_app/Registering_Screens/SignIn_Screen.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/Buttons.dart';
-import 'Long_Courses/SignUp_Type.dart';
+import 'SignUp_Type.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

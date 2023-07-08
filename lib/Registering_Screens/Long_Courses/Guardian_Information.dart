@@ -61,7 +61,6 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: guardianNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -87,7 +86,6 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: guardianWorkController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -118,7 +116,6 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: guardianPhoneNumberController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -144,7 +141,6 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: motherPhoneNumberController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -175,7 +171,6 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: telephoneController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
@@ -201,7 +196,6 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                onChanged: (data) {},
                                 controller: studentPhoneNumberController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
