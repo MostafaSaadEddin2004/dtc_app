@@ -1,3 +1,4 @@
+import 'package:dtc_app/Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +11,7 @@ import 'Registering_Screens/SignUp_Screen.dart';
 import 'Start_App_Screens/Start_App_Screen.dart';
 import 'Students_Screens/Student_Start_Page.dart';
 import 'Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
+import 'Teachers_Screens/Teacher_Start_Page.dart';
 
 void main() {
   runApp(const Main());
@@ -44,6 +46,8 @@ class Main extends StatelessWidget {
             const AcceptanceQualifications(),
         BrowserStartPage.id: (context) => const BrowserStartPage(),
         StudentStartPage.id: (context) => const StudentStartPage(),
+        TeacherAuthStartPage.id:(context) => const TeacherAuthStartPage(),
+        TeacherStartPage.id:(context) => const TeacherStartPage(),
       },
     );
   }
