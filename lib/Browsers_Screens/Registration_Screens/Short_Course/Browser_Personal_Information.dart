@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
-import '../../Components/Buttons.dart';
-import '../../Components/CustomAppBar.dart';
-import '../../Components/DropDownSearch.dart';
-import '../../Components/Label.dart';
-import '../../Components/TextField.dart';
-import '../../Constents/Colors.dart';
-import '../../Constents/TextStyle.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/DropDownSearch.dart';
+import '../../../Components/Label.dart';
+import '../../../Components/TextField.dart';
+import '../../../Constents/Colors.dart';
+import '../../../Constents/TextStyle.dart';
 import 'Browser_Other_Information.dart';
 
 class BrowserPersonalInformation extends StatefulWidget {
@@ -207,7 +206,7 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: phoneNumberController,
+                                controller: nationalityController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {

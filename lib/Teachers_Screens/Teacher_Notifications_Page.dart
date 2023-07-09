@@ -2,7 +2,7 @@ import 'package:dtc_app/Components/BottomNavBar.dart';
 import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notifications.dart';
-import '../Registering_Screens/SignUp_Screen.dart';
+import '../SignUp_Type.dart';
 import 'Teacher_Profile_Page.dart';
 
 class TeacherNotificationsPage extends StatefulWidget {
@@ -32,7 +32,7 @@ class _TeacherNotificationsPageState extends State<TeacherNotificationsPage> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
-                'IT / IT',
+                'IT',
                 style: TextStyle(
                     color: WhiteColor,
                     fontWeight: FontWeight.bold,
@@ -151,7 +151,7 @@ class _TeacherNotificationsPageState extends State<TeacherNotificationsPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+                  Navigator.of(context).pushReplacementNamed(SignUpType.id);
                 },
                 child: Row(
                   children: const [

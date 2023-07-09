@@ -1,8 +1,7 @@
 import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
-
 import '../Components/Notes.dart';
-import '../Registering_Screens/SignUp_Screen.dart';
+import '../SignUp_Type.dart';
 import 'Student_Adding_Notes_Page.dart';
 import 'Student_Profile_Page.dart';
 
@@ -213,7 +212,8 @@ class _StudentNotesPageState extends State<StudentNotesPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+                  Navigator.of(context)
+                      .pushReplacementNamed(SignUpType.id);
                 },
                 child: Row(
                   children: const [

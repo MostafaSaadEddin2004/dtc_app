@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../Components/Posts.dart';
 import '../Constents/Colors.dart';
-import '../Registering_Screens/SignUp_Type.dart';
-import '../Registering_Screens/Short_Courses/Browser_Personal_Information.dart';
-import '../Registering_Screens/SignUp_Screen.dart';
+import '../SignUp_Type.dart';
 import 'Browser_Profile_Page.dart';
+import 'Registration_Screens/Short_Course/Browser_Personal_Information.dart';
 
 class BrowserCoursePage extends StatefulWidget {
   const BrowserCoursePage({super.key});
@@ -238,7 +237,7 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
             GestureDetector(
               onTap: () {
                 Navigator.of(context)
-                    .pushNamedAndRemoveUntil(SignUpScreen.id, (route) => false);
+                    .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
               },
               child: Row(
                 children: const [
@@ -268,7 +267,7 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
         color: Colors.transparent,
         child: ListView.builder(
           itemCount: posts.length,
-          itemBuilder: (context, index) => coursesPost(
+          itemBuilder: (context, index) => registerCoursesPost(
             time: posts[index]["Time"].toString(),
             poster: posts[index]["Poster"].toString(),
             postImage: posts[index]['Images'].toString(),

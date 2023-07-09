@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../Constents/Colors.dart';
-import '../Registering_Screens/Long_Courses/Comparison_Screen.dart';
+import '../Students_Screens/Registering_Screens/Long_Courses/Comparison_Screen.dart';
 
 class CustomCheckBoxList extends StatefulWidget {
   const CustomCheckBoxList(

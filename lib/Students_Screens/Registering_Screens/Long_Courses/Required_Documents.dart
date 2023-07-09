@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../Components/Buttons.dart';
-import '../../Components/CustomAppBar.dart';
-import '../../Components/Documents_card.dart';
-import '../../Components/Label.dart';
-import '../../Constents/Colors.dart';
-import '../../Students_Screens/Student_Start_Page.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/Documents_card.dart';
+import '../../../Components/Label.dart';
+import '../../../Constents/Colors.dart';
+import '../../Student_Start_Page.dart';
 
 class RequiredDocuments extends StatefulWidget {
   const RequiredDocuments({super.key});

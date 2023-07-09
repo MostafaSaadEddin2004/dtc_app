@@ -1,8 +1,8 @@
-import 'package:dtc_app/Registering_Screens/SignUp_Screen.dart';
 import 'package:dtc_app/main.dart';
 import 'package:flutter/material.dart';
 import '../Components/Buttons.dart';
 import '../Constents/Colors.dart';
+import '../SignUp_Type.dart';
 
 class StartAppScreen extends StatelessWidget {
   const StartAppScreen({super.key});
@@ -40,7 +40,7 @@ class StartAppScreen extends StatelessWidget {
           customButton(
             onTap: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                SignUpScreen.id,
+                SignUpType.id,
                 (Route<dynamic> route) => false,
               );
             },

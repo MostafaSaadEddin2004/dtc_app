@@ -1,21 +1,21 @@
-import 'package:dtc_app/Registering_Screens/SignUp_Screen.dart';
 import 'package:dtc_app/Students_Screens/Student_Home_Page.dart';
 import 'package:flutter/material.dart';
 
-import '../Components/Buttons.dart';
-import '../Components/TextField.dart';
-import '../Constents/Colors.dart';
+import '../../Components/Buttons.dart';
+import '../../Components/TextField.dart';
+import '../../Constents/Colors.dart';
+import 'Student_SignUp_Screen.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class StudentSignInScreen extends StatefulWidget {
+  const StudentSignInScreen({super.key});
 
-  static String id = 'SignInScreen';
+  static String id = 'StudentSignInScreen';
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<StudentSignInScreen> createState() => _StudentSignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _StudentSignInScreenState extends State<StudentSignInScreen> {
   bool secure = false;
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
@@ -161,7 +161,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        SignUpScreen.id,
+                        StudentSignUpScreen.id,
                         (Route<dynamic> route) => false,
                       );
                     },

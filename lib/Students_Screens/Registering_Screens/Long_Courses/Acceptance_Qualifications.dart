@@ -1,10 +1,10 @@
 import 'package:dtc_app/Constents/Colors.dart';
-import 'package:dtc_app/Registering_Screens/Long_Courses/Comparison_Screen.dart';
+import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Comparison_Screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../Components/Buttons.dart';
-import '../../Components/CustomAppBar.dart';
-import '../../Components/Label.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/Label.dart';
 
 class AcceptanceQualifications extends StatefulWidget {
   const AcceptanceQualifications({super.key});

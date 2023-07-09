@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../Constents/Colors.dart';
-import '../../Registering_Screens/SignUp_Screen.dart';
+import '../../SignUp_Type.dart';
 import '../Student_Profile_Page.dart';
 import 'Student_Course_Page.dart';
 import 'Students_Department_Posts_Page.dart';
@@ -22,7 +21,7 @@ class _StudentTabBarState extends State<StudentTabBar> {
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: PrimaryColor,
-            bottom: TabBar(
+            bottom: const TabBar(
               indicatorColor: WhiteColor,
               unselectedLabelStyle: TextStyle(fontSize: 16),
               labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -36,10 +35,11 @@ class _StudentTabBarState extends State<StudentTabBar> {
               ],
             ),
             actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
               Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 alignment: Alignment.center,
                 height: 30,
-                width: 60,
                 decoration: BoxDecoration(
                   color: PrimaryColor,
                   borderRadius: BorderRadius.circular(20),
@@ -52,7 +52,6 @@ class _StudentTabBarState extends State<StudentTabBar> {
                       fontSize: 20),
                 ),
               ),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.search))
             ],
           ),
           drawer: Drawer(
@@ -165,7 +164,7 @@ class _StudentTabBarState extends State<StudentTabBar> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+                    Navigator.of(context).pushReplacementNamed(SignUpType.id);
                   },
                   child: Row(
                     children: const [

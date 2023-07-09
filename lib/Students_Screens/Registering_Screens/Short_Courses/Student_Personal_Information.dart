@@ -1,12 +1,12 @@
 import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../Components/Buttons.dart';
-import '../../Components/CustomAppBar.dart';
-import '../../Components/DropDownSearch.dart';
-import '../../Components/Label.dart';
-import '../../Components/TextField.dart';
-import '../../Constents/TextStyle.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/DropDownSearch.dart';
+import '../../../Components/Label.dart';
+import '../../../Components/TextField.dart';
+import '../../../Constents/TextStyle.dart';
 import 'Student_Other_Information.dart';
 
 class StudentPersonalInformation extends StatefulWidget {
@@ -211,7 +211,7 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: phoneNumberController,
+                                controller: nationalityController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {

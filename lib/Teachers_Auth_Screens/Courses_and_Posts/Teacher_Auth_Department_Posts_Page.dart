@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Components/Posts.dart';
+import '../../Constents/Colors.dart';
 
 class TeacherAuthDepartmentPostsPage extends StatefulWidget {
   const TeacherAuthDepartmentPostsPage({super.key});
@@ -75,6 +76,14 @@ class _TeacherAuthDepartmentPostsPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: PrimaryColor,
+          onPressed: () {},
+          child: const Icon(
+            Icons.add,
+            size: 40,
+            color: WhiteColor,
+          )),
       body: Container(
         margin: EdgeInsets.only(top: 10),
         color: Colors.transparent,

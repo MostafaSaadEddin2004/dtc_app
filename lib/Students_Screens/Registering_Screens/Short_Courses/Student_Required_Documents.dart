@@ -1,13 +1,12 @@
 import 'package:dtc_app/Components/CustomAppBar.dart';
 import 'package:flutter/material.dart';
-
-import '../../Components/Buttons.dart';
-import '../../Components/Dialogs.dart';
-import '../../Components/Documents_card.dart';
-import '../../Components/Label.dart';
-import '../../Constents/Colors.dart';
-import '../../Students_Screens/Courses_and_Posts/Student_Course_Page.dart';
-import '../../Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/Dialogs.dart';
+import '../../../Components/Documents_card.dart';
+import '../../../Components/Label.dart';
+import '../../../Constents/Colors.dart';
+import '../../Courses_and_Posts/Student_Course_Page.dart';
+import '../../Courses_and_Posts/Student_TabBar_CADP.dart';
 
 class StudentRequiredDocuments extends StatefulWidget {
   const StudentRequiredDocuments({super.key});

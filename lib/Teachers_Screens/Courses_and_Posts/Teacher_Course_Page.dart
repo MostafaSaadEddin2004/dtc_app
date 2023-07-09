@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Components/Posts.dart';
-import '../../Registering_Screens/Short_Courses/Student_Personal_Information.dart';
+import '../../Students_Screens/Registering_Screens/Short_Courses/Student_Personal_Information.dart';
 
 class TeacherCoursePage extends StatefulWidget {
   const TeacherCoursePage({super.key});
@@ -83,10 +83,7 @@ class _TeacherCoursePageState extends State<TeacherCoursePage> {
             time: posts[index]["Time"].toString(),
             poster: posts[index]["Poster"].toString(),
             postImage: posts[index]['Images'].toString(),
-            postText: posts[index]['PostText'].toString(),
-            onTap: () {
-              Navigator.of(context).pushNamed(StudentPersonalInformation.id);
-            }),
+            postText: posts[index]['PostText'].toString()),
       ),
     );
   }

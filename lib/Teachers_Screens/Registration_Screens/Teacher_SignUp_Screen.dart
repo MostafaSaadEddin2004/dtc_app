@@ -1,21 +1,20 @@
 import 'package:dtc_app/Components/TextField.dart';
 import 'package:dtc_app/Constents/Colors.dart';
-import 'package:dtc_app/Registering_Screens/SignIn_Screen.dart';
 import 'package:flutter/material.dart';
+import '../../Components/Buttons.dart';
+import '../Teacher_Information_Page.dart';
+import 'Teacher_SignIn_Screen.dart';
 
-import '../Components/Buttons.dart';
-import 'SignUp_Type.dart';
+class TeacherSignUpScreen extends StatefulWidget {
+  const TeacherSignUpScreen({super.key});
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
-
-  static String id = 'SignUpScreen';
+  static String id = 'TeacherSignUpScreen';
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<TeacherSignUpScreen> createState() => _TeacherSignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
   bool secure = false;
   GlobalKey<FormState> formState = GlobalKey();
   TextEditingController usernameController = TextEditingController();
@@ -120,7 +119,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        SignUpType.id,
+                        TeacherInformationPage.id,
                         (Route<dynamic> route) => false,
                       );
                     }
@@ -166,7 +165,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        SignInScreen.id,
+                        TeacherSignInScreen.id,
                         (Route<dynamic> route) => false,
                       );
                     },

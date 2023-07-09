@@ -1,12 +1,12 @@
-import 'package:dtc_app/Registering_Screens/Long_Courses/Comparison_Screen.dart';
-import 'package:dtc_app/Registering_Screens/Long_Courses/Personal_Information.dart';
+import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Comparison_Screen.dart';
+import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Personal_Information.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import '../../Components/Buttons.dart';
-import '../../Components/CustomAppBar.dart';
-import '../../Components/CustomCheckBoxList.dart';
-import '../../Constents/Colors.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/CustomCheckBoxList.dart';
+import '../../../Constents/Colors.dart';
 import 'Required_Documents.dart';
 
 class WishesPage extends StatefulWidget {

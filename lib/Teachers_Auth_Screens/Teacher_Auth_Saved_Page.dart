@@ -36,10 +36,10 @@ class _TeacherAuthSavedPageState extends State<TeacherAuthSavedPage> {
         color: Colors.transparent,
         child: ListView.builder(
           itemCount: posts.length,
-          itemBuilder: (context, index) => Posts(
+          itemBuilder: (context, index) => DTCPosts(
               time: posts[index]["Time"].toString(),
-              Poster: posts[index]["Poster"].toString(),
-              PostImage: posts[index]['Images'].toString(),
+              poster: posts[index]["Poster"].toString(),
+              postImage: posts[index]['Images'].toString(),
               postText: posts[index]['PostText'].toString()),
         ),
       ),

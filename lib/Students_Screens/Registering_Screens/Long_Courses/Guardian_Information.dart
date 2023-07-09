@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../Components/Buttons.dart';
-import '../../Components/CustomAppBar.dart';
-import '../../Components/Label.dart';
-import '../../Components/TextField.dart';
-import '../../Constents/Colors.dart';
-import '../../Constents/TextStyle.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/Label.dart';
+import '../../../Components/TextField.dart';
+import '../../../Constents/Colors.dart';
+import '../../../Constents/TextStyle.dart';
 import 'Student_Certification.dart';
 
 class GuardianInformation extends StatefulWidget {

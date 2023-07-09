@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../Browsers_Screens/Browser_Course_Page.dart';
-import '../../Components/Buttons.dart';
-import '../../Components/CustomAppBar.dart';
-import '../../Components/Dialogs.dart';
-import '../../Components/Documents_card.dart';
-import '../../Components/Label.dart';
-import '../../Constents/Colors.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/Dialogs.dart';
+import '../../../Components/Documents_card.dart';
+import '../../../Components/Label.dart';
+import '../../Browser_Course_Page.dart';
+
 
 class BrowserRequiredDocuments extends StatefulWidget {
   const BrowserRequiredDocuments({super.key});

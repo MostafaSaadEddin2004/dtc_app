@@ -1,11 +1,11 @@
-import 'package:dtc_app/Registering_Screens/Long_Courses/Wishes.dart';
+import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Wishes.dart';
 import 'package:flutter/material.dart';
-import '../../Components/Buttons.dart';
-import '../../Components/CustomAppBar.dart';
-import '../../Components/Label.dart';
-import '../../Components/TextField.dart';
-import '../../Constents/Colors.dart';
-import '../../Constents/TextStyle.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/Label.dart';
+import '../../../Components/TextField.dart';
+import '../../../Constents/Colors.dart';
+import '../../../Constents/TextStyle.dart';
 import 'Required_Documents.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 

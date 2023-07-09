@@ -1,8 +1,7 @@
 import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
-
 import '../Components/Notes.dart';
-import '../Registering_Screens/SignUp_Screen.dart';
+import '../SignUp_Type.dart';
 import 'Teacher_Profile_Page.dart';
 
 class TeacherNotesPage extends StatefulWidget {
@@ -89,7 +88,7 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
-                'IT / IT',
+                'IT',
                 style: TextStyle(
                     color: WhiteColor,
                     fontWeight: FontWeight.bold,
@@ -208,7 +207,8 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+                  Navigator.of(context)
+                      .pushReplacementNamed(SignUpType.id);
                 },
                 child: Row(
                   children: const [

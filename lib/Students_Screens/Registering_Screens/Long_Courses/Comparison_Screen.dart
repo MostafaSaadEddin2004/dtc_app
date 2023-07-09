@@ -1,11 +1,11 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:dtc_app/Constents/Colors.dart';
-import 'package:dtc_app/Registering_Screens/Long_Courses/Personal_Information.dart';
+import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Personal_Information.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/data_table.dart';
-import '../../Components/Buttons.dart';
-import '../../Components/CustomAppBar.dart';
-import '../../Components/Label.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/Label.dart';
 import 'Wishes.dart';
 
 class ComparisonScreen extends StatefulWidget {

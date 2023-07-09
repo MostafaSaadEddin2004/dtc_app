@@ -1,23 +1,22 @@
-import 'package:dtc_app/Components/CustomAppBar.dart';
-import 'package:dtc_app/Constents/TextStyle.dart';
 import 'package:flutter/material.dart';
+import '../../../Components/Buttons.dart';
+import '../../../Components/CustomAppBar.dart';
+import '../../../Components/Label.dart';
+import '../../../Components/TextField.dart';
+import '../../../Constents/Colors.dart';
+import '../../../Constents/TextStyle.dart';
+import 'Browser_Required_Documents.dart';
 
-import '../../Components/Buttons.dart';
-import '../../Components/Label.dart';
-import '../../Components/TextField.dart';
-import '../../Constents/Colors.dart';
-import 'Student_Required_Documents.dart';
-
-class StudentOtherInformation extends StatefulWidget {
-  const StudentOtherInformation({super.key});
-  static String id = 'StudentOtherInformation';
+class BrowserOtherInformation extends StatefulWidget {
+  const BrowserOtherInformation({super.key});
+  static String id = 'BrowserOtherInformation';
 
   @override
-  State<StudentOtherInformation> createState() =>
-      _StudentOtherInformationState();
+  State<BrowserOtherInformation> createState() =>
+      _BrowserOtherInformationState();
 }
 
-class _StudentOtherInformationState extends State<StudentOtherInformation> {
+class _BrowserOtherInformationState extends State<BrowserOtherInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   TextEditingController educationPlaceController = TextEditingController();
   int educationSelectedIndex = 1;
@@ -184,7 +183,7 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
-                                const StudentRequiredDocuments(),
+                                const BrowserRequiredDocuments(),
                           ));
                         }),
                   ],

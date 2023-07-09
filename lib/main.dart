@@ -4,15 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'Browsers_Screens/Browser_Course_Page.dart';
+import 'Browsers_Screens/Browser_Information_Page.dart';
 import 'Browsers_Screens/Browser_Start_Page.dart';
+import 'Browsers_Screens/Registration_Screens/Browser_SignIn_Screen.dart';
+import 'Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
 import 'Constents/Colors.dart';
-import 'Registering_Screens/SignUp_Type.dart';
-import 'Registering_Screens/SignIn_Screen.dart';
-import 'Registering_Screens/SignUp_Screen.dart';
+import 'SignUp_Type.dart';
 import 'Start_App_Screens/Start_App_Screen.dart';
+import 'Students_Screens/Courses_and_Posts/Student_Course_Page.dart';
 import 'Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
+import 'Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
+import 'Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
+import 'Students_Screens/Registering_Screens/Student_SignUp_Screen.dart';
 import 'Students_Screens/Student_Start_Page.dart';
-import 'Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
+import 'Teachers_Auth_Screens/Adding_Posts.dart';
+import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignIn_Screen.dart';
+import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
+import 'Teachers_Auth_Screens/Teacher_Auth__Information_Page.dart';
+import 'Teachers_Screens/Registration_Screens/Teacher_SignIn_Screen.dart';
+import 'Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';
+import 'Teachers_Screens/Teacher_Information_Page.dart';
 import 'Teachers_Screens/Teacher_Start_Page.dart';
 
 void main() {
@@ -40,18 +51,29 @@ class Main extends StatelessWidget {
       ],
       home: const StartAppScreen(),
       routes: {
-        StartAppScreen.id: (context) => const StartAppScreen(),
-        SignUpScreen.id: (context) => const SignUpScreen(),
-        SignInScreen.id: (context) => const SignInScreen(),
         SignUpType.id: (context) => const SignUpType(),
+        BrowserSignInScreen.id: (context) => const BrowserSignInScreen(),
+        BrowserSignUpScreen.id: (context) => const BrowserSignUpScreen(),
+        BrowserInformationPage.id: (context) => const BrowserInformationPage(),
+        BrowserStartPage.id: (context) => const BrowserStartPage(),
+        BrowserCoursePage.id:(context) => const BrowserCoursePage(),
+        StudentSignUpScreen.id: (context) => const StudentSignUpScreen(),
+        StudentSignInScreen.id: (context) => const StudentSignInScreen(),
         AcceptanceQualifications.id: (context) =>
             const AcceptanceQualifications(),
-        BrowserStartPage.id: (context) => const BrowserStartPage(),
         StudentStartPage.id: (context) => const StudentStartPage(),
+        StudentCoursePage.id:(context) => const StudentCoursePage(),
+        TeacherAuthSignUpScreen.id: (context) =>
+            const TeacherAuthSignUpScreen(),
+        TeacherAuthSignInScreen.id: (context) =>
+            const TeacherAuthSignInScreen(),
+        TeacherAuthInformationPage.id: (context) =>
+            const TeacherAuthInformationPage(),
         TeacherAuthStartPage.id: (context) => const TeacherAuthStartPage(),
+        TeacherSignUpScreen.id: (context) => const TeacherSignUpScreen(),
+        TeacherSignInScreen.id: (context) => const TeacherSignInScreen(),
+        TeacherInformationPage.id: (context) => const TeacherInformationPage(),
         TeacherStartPage.id: (context) => const TeacherStartPage(),
-        StudentTabBar.id: (context) => const StudentTabBar(),
-        BrowserCoursePage.id: (context) => const BrowserCoursePage(),
       },
     );
   }

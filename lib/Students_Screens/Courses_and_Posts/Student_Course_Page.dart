@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Components/Posts.dart';
-import '../../Registering_Screens/Short_Courses/Student_Personal_Information.dart';
+import '../Registering_Screens/Short_Courses/Student_Personal_Information.dart';
 
 class StudentCoursePage extends StatefulWidget {
   const StudentCoursePage({super.key});
@@ -79,7 +79,7 @@ class _StudentCoursePageState extends State<StudentCoursePage> {
       color: Colors.transparent,
       child: ListView.builder(
         itemCount: posts.length,
-        itemBuilder: (context, index) => coursesPost(
+        itemBuilder: (context, index) => registerCoursesPost(
             time: posts[index]["Time"].toString(),
             poster: posts[index]["Poster"].toString(),
             postImage: posts[index]['Images'].toString(),

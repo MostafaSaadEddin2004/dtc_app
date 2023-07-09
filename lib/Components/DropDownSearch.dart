@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 import '../Constents/Colors.dart';
 
-Widget registrationDropDownSearch(
-        {required void Function(String? data) onChange,
-        required List<String> items,
-        required String? Function(String? text) validator,
-        required String hint,
-        // required TextEditingController controller
-        }) =>
+Widget registrationDropDownSearch({
+  required void Function(String? data) onChange,
+  required List<String> items,
+  required String? Function(String? text) validator,
+  required String hint,
+  // required TextEditingController controller
+}) =>
     Container(
       margin: const EdgeInsets.symmetric(horizontal: 15),
       // decoration: BoxDecoration(
@@ -28,6 +28,7 @@ Widget registrationDropDownSearch(
         onChanged: onChange,
         dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
+                label: Text('إختر...'),
                 contentPadding: const EdgeInsets.all(8),
                 focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: PrimaryColor)),

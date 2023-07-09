@@ -2,7 +2,7 @@ import 'package:dtc_app/Components/BottomNavBar.dart';
 import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notifications.dart';
-import '../Registering_Screens/SignUp_Screen.dart';
+import '../SignUp_Type.dart';
 import 'Teacher_Auth_Profile_Page.dart';
 
 class TeacherAuthNotificationsPage extends StatefulWidget {
@@ -152,7 +152,8 @@ class _TeacherAuthNotificationsPageState
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+                  Navigator.of(context)
+                      .pushReplacementNamed(SignUpType.id);
                 },
                 child: Row(
                   children: const [

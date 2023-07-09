@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Components/Posts.dart';
 import '../Constents/Colors.dart';
-import '../Registering_Screens/SignUp_Screen.dart';
+import '../SignUp_Type.dart';
 import 'Student_Profile_Page.dart';
 
 class StudentHomePage extends StatefulWidget {
@@ -79,10 +79,11 @@ class _StudentHomePageState extends State<StudentHomePage> {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             alignment: Alignment.center,
             height: 30,
-            width: 60,
             decoration: BoxDecoration(
               color: PrimaryColor,
               borderRadius: BorderRadius.circular(20),
@@ -93,7 +94,6 @@ class _StudentHomePageState extends State<StudentHomePage> {
                   color: WhiteColor, fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search))
         ],
       ),
       drawer: Drawer(
@@ -206,7 +206,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+                Navigator.of(context).pushReplacementNamed(SignUpType.id);
               },
               child: Row(
                 children: const [
@@ -236,10 +236,10 @@ class _StudentHomePageState extends State<StudentHomePage> {
         color: Colors.transparent,
         child: ListView.builder(
           itemCount: posts.length,
-          itemBuilder: (context, index) => Posts(
+          itemBuilder: (context, index) => DTCPosts(
               time: posts[index]["Time"].toString(),
-              Poster: posts[index]["Poster"].toString(),
-              PostImage: posts[index]['Images'].toString(),
+              poster: posts[index]["Poster"].toString(),
+              postImage: posts[index]['Images'].toString(),
               postText: posts[index]['PostText'].toString()),
         ),
       ),

@@ -3,14 +3,29 @@ import 'package:flutter/material.dart';
 
 import '../Constents/Colors.dart';
 
-Widget Posts({
-  required String time,
-  required String Poster,
-  required String PostImage,
-  required String postText,
-  final BuildContext? contextParameter,
-}) =>
-    Container(
+class DTCPosts extends StatefulWidget {
+  const DTCPosts(
+      {super.key,
+      required this.time,
+      required this.poster,
+      required this.postImage,
+      required this.postText});
+
+  final String time;
+  final String poster;
+  final String postImage;
+  final String postText;
+
+  @override
+  State<DTCPosts> createState() => _DTCPostsState();
+}
+
+class _DTCPostsState extends State<DTCPosts> {
+  bool? isFavorite;
+  bool? isSaved;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
         margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
         decoration: BoxDecoration(
           color: WhiteColor,
@@ -55,7 +70,7 @@ Widget Posts({
                       //   height: 5,
                       // ),
                       Text(
-                        Poster,
+                        widget.poster,
                         style: const TextStyle(fontSize: 16),
                       ),
                     ],
@@ -69,7 +84,7 @@ Widget Posts({
                         height: 30,
                       ),
                       Text(
-                        time,
+                        widget.time,
                         style: const TextStyle(fontSize: 12),
                       ),
                     ],
@@ -91,20 +106,20 @@ Widget Posts({
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(postText),
+              child: Text(widget.postText),
             ),
             const SizedBox(
               height: 5,
             ),
             GestureDetector(
               onTap: () {
-                print(PostImage);
+                print(widget.postImage);
               },
               child: Container(
                 width: double.infinity,
-                child: PostImage == ""
+                child: widget.postImage == ""
                     ? const SizedBox()
-                    : Image.asset(PostImage, fit: BoxFit.cover),
+                    : Image.asset(widget.postImage, fit: BoxFit.cover),
               ),
             ),
             Padding(
@@ -112,10 +127,18 @@ Widget Posts({
               child: Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        CupertinoIcons.heart,
-                      )),
+                      onPressed: () {
+                        isFavorite = !isFavorite!;
+                        setState(() {});
+                      },
+                      icon: isFavorite == false
+                          ? Icon(
+                              CupertinoIcons.heart,
+                            )
+                          : Icon(
+                              CupertinoIcons.heart,
+                              color: RedColor,
+                            )),
                   IconButton(
                       onPressed: () {},
                       icon: const Icon(
@@ -130,6 +153,8 @@ Widget Posts({
             )
           ],
         ));
+  }
+}
 
 Widget departmentPosts({
   required String time,
@@ -259,7 +284,7 @@ Widget departmentPosts({
           ],
         ));
 
-Widget coursesPost({
+Widget registerCoursesPost({
   required String time,
   required String poster,
   required String postImage,
@@ -421,5 +446,145 @@ Widget coursesPost({
                         fontSize: 16),
                   )),
             )
+          ],
+        ));
+
+Widget coursesPost({
+  required String time,
+  required String poster,
+  required String postImage,
+  required String postText,
+}) =>
+    Container(
+        margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+        decoration: BoxDecoration(
+          color: WhiteColor,
+          border: Border.all(color: GreyColor, width: 0.5),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [
+            BoxShadow(
+              color: GreyColor,
+              blurRadius: 2,
+              offset: Offset(2, 2), // Shadow position
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    minRadius: 25,
+                    maxRadius: 25,
+                    child: Icon(
+                      Icons.person,
+                      color: WhiteColor,
+                      size: 35,
+                    ),
+                    backgroundColor: PrimaryColor,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'إسم الدورة',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        poster,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text(
+                        'مجاني',
+                        style: TextStyle(fontSize: 12, color: RedColor),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        time,
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                color: BlackColor,
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(postText),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            GestureDetector(
+              onTap: () {
+                print(postImage);
+              },
+              child: Container(
+                width: double.infinity,
+                child: postImage == ""
+                    ? const SizedBox()
+                    : Image.asset(postImage, fit: BoxFit.cover),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10, left: 10),
+              child: Row(
+                children: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        CupertinoIcons.heart,
+                        fill: 1,
+                      )),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.bookmark_border,
+                      )),
+                  // TextButton(
+                  //   onPressed: () {},
+                  //   child: Text(
+                  //     'Register',
+                  //     style: TextStyle(color: PrimaryColor),
+                  //   ),
+                  // ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+                  const Text('610 تفاعل'),
+                ],
+              ),
+            ),
           ],
         ));

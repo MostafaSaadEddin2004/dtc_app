@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Components/Posts.dart';
 import '../Constents/Colors.dart';
-import '../Registering_Screens/SignUp_Type.dart';
-import '../Registering_Screens/SignUp_Screen.dart';
+import '../SignUp_Type.dart';
 import 'Browser_Profile_Page.dart';
 
 class BrowserHomePage extends StatefulWidget {
@@ -235,8 +234,8 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil(SignUpScreen.id, (route) => false);
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    SignUpType.id, (route) => false);
               },
               child: Row(
                 children: const [
@@ -266,10 +265,10 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
         color: Colors.transparent,
         child: ListView.builder(
           itemCount: posts.length,
-          itemBuilder: (context, index) => Posts(
+          itemBuilder: (context, index) => DTCPosts(
               time: posts[index]["Time"].toString(),
-              Poster: posts[index]["Poster"].toString(),
-              PostImage: posts[index]['Images'].toString(),
+              poster: posts[index]["Poster"].toString(),
+              postImage: posts[index]['Images'].toString(),
               postText: posts[index]['PostText'].toString()),
         ),
       ),
