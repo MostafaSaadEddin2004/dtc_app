@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Components/PrivacySettings.dart';
 import '../Constents/Colors.dart';
+import 'Browser_ChangePassword.dart';
 
 class BrowserPrivacyPage extends StatefulWidget {
   const BrowserPrivacyPage({super.key});
@@ -12,57 +13,6 @@ class BrowserPrivacyPage extends StatefulWidget {
 }
 
 class _BrowserPrivacyPageState extends State<BrowserPrivacyPage> {
-  List privacyValues = const [
-    {
-      'PrefixIcon': Icons.call,
-      'PrefixIconColor': BlackColor,
-      'SuffixIcon': Icons.edit,
-      'SuffixIconColor': BlackColor,
-      'SuffixIconSize': 20.0,
-      'IsValueTrue': true,
-      'Value': 'Phone Number',
-      'Label': 'Phone Number',
-      'LabelColor': BlackColor,
-      'Color': WhiteColor
-    },
-    {
-      'PrefixIcon': Icons.person,
-      'PrefixIconColor': BlackColor,
-      'SuffixIcon': Icons.edit,
-      'SuffixIconColor': BlackColor,
-      'SuffixIconSize': 20.0,
-      'IsValueTrue': true,
-      'Value': 'User Name',
-      'Label': 'User Name',
-      'LabelColor': BlackColor,
-      'Color': WhiteColor
-    },
-    {
-      'PrefixIcon': Icons.lock,
-      'PrefixIconColor': BlackColor,
-      'SuffixIcon': Icons.edit,
-      'SuffixIconColor': BlackColor,
-      'SuffixIconSize': 20.0,
-      'IsValueTrue': true,
-      'Value': 'Password',
-      'Label': 'Password',
-      'LabelColor': BlackColor,
-      'Color': WhiteColor
-    },
-    {
-      'PrefixIcon': Icons.location_on,
-      'PrefixIconColor': BlackColor,
-      'SuffixIcon': Icons.edit,
-      'SuffixIconColor': BlackColor,
-      'SuffixIconSize': 20.0,
-      'IsValueTrue': true,
-      'Value': 'Location',
-      'Label': 'Location',
-      'LabelColor': BlackColor,
-      'Color': WhiteColor
-    }
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +41,12 @@ class _BrowserPrivacyPageState extends State<BrowserPrivacyPage> {
                 privacyEditing(
                     icon: Icons.lock,
                     label: 'كلمة السر',
-                    onPressedIconButton: () {},
+                    onPressedIconButton: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            const BrowserChangePasswordEnterPassword(),
+                      ));
+                    },
                     value: 'كلمة السر'),
                 const SizedBox(
                   height: 15,

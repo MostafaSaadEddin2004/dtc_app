@@ -29,7 +29,7 @@ class _GuardianInformationState extends State<GuardianInformation> {
   Widget build(BuildContext context) {
     double hight = MediaQuery.of(context).size.height;
     return Scaffold(
-       appBar: CustomAppBar(title: 'طلب الانتساب'),
+        appBar: CustomAppBar(title: 'طلب الانتساب'),
         body: Form(
           key: formState,
           child: SingleChildScrollView(
@@ -66,9 +66,9 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -91,9 +91,9 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -120,11 +120,11 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'User Name is required';
-                                  } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
-                                  }
+                                 if (text!.isEmpty) {
+                      return 'رقم الجوال مطلوب';
+                    } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
+                      return 'الرجاء التأكد من رقم الجوال';
+                    } 
                                 },
                               )
                             ],
@@ -146,9 +146,9 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -176,9 +176,10 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
-                                  } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'هذا الحقل مطلوب';
+                                  } else if (!RegExp(r'^(\+?963|0)?11\d{7}$')
+                                      .hasMatch(text)) {
+                                    return 'الرجاء التأكد من رقم الهاتف';
                                   }
                                 },
                               )
@@ -201,10 +202,10 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
-                                  } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
-                                  }
+                      return 'رقم الجوال مطلوب';
+                    } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
+                      return 'الرجاء التأكد من رقم الجوال';
+                    } 
                                 },
                               ),
                             ],
@@ -222,10 +223,12 @@ class _GuardianInformationState extends State<GuardianInformation> {
                       nextButton(
                           text: 'التالي',
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const StudentCertification(),
-                            ));
+                            //if (formState.currentState!.validate()) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const StudentCertification(),
+                              ));
+                            //}
                           }),
                     ],
                   ),

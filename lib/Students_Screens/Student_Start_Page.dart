@@ -9,7 +9,6 @@ import 'Courses_and_Posts/Student_TabBar_CADP.dart';
 import 'Student_Home_Page.dart';
 import 'Student_Notes_Page.dart';
 import 'Student_Profile_Page.dart';
-import 'Student_Settings_Page.dart';
 import 'Student_Notifications_Page.dart';
 
 class StudentStartPage extends StatefulWidget {

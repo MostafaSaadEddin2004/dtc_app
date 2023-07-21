@@ -1,11 +1,10 @@
+import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
 import 'package:dtc_app/Components/TextField.dart';
 import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
-import '../Browser_Information_Page.dart';
+import '../../Constents/Controller.dart';
 import 'Browser_SignIn_Screen.dart';
-
-
 
 class BrowserSignUpScreen extends StatefulWidget {
   const BrowserSignUpScreen({super.key});
@@ -19,9 +18,7 @@ class BrowserSignUpScreen extends StatefulWidget {
 class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
   bool secure = false;
   GlobalKey<FormState> formState = GlobalKey();
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  
   bool CheckBoxValue = false;
 
   @override
@@ -47,28 +44,44 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
               ),
               customTextField(
                   onChanged: (data) {},
-                  hint: 'أدخل إسم المستخدم',
-                  controller: usernameController,
+                  hint: 'أدخل إسم الستخدم',
+                  controller: browserSignUpUsernameController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'إسم المستخدم مطلوب';
-                    } else if (text.length < 3) {
-                      return 'إسم المستخدم يجب أن يكون على الأقل 3 أحرف';
+                    }
+                    if (text.length < 3) {
+                      return 'إسم المسخدم يجب أن يكون 3 أحرف على الأقل';
                     }
                   },
-                  labelText: 'إسم المستخدم',
+                  labelText: 'إسم المسنخدم',
                   obscure: false,
                   prefix: Icons.person,
+                  keyboardType: TextInputType.name,
+                  radius: 20,
+                  padding: 15),
+              customTextField(
+                  onChanged: (data) {},
+                  hint: 'أدخل الإيميل',
+                  controller: browserEmailController,
+                  validator: (text) {
+                    if (text!.isEmpty) {
+                      return 'الإيميل مطلوب';
+                    }
+                    if (!RegExp(r'^\w+@gmail.com$').hasMatch(text)) {
+                      return 'يرجى التأكد من إدخال @gmail.com';
+                    }
+                  },
+                  labelText: 'الإيميل',
+                  obscure: false,
+                  prefix: Icons.email,
                   keyboardType: TextInputType.emailAddress,
                   radius: 20,
                   padding: 15),
-              const SizedBox(
-                height: 5,
-              ),
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل كلمة المرور',
-                  controller: passwordController,
+                  controller: browserSignUpPasswordController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'كلمة المرور مطلوبة';
@@ -92,36 +105,32 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                   keyboardType: TextInputType.visiblePassword,
                   radius: 20,
                   padding: 15),
-              const SizedBox(
-                height: 5,
-              ),
               customTextField(
                   onChanged: (data) {},
-                  hint: 'أدخل رقم الهاتف',
-                  controller: phoneController,
+                  //suffixText: '+963',
+                  hint: 'أدخل رقم الجوال',
+                  controller: browserSignUpPhoneController,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return 'رقم الهاتف مطلوب';
-                    } else if (text.length < 10) {
-                      return 'رقم الهاتف يجب أن يكون على الأقل 10 أرقام';
-                    } else if (text.length > 10) {
-                      return 'رقم الهاتف يجب أن يكون 10 أرقام';
+                      return 'رقم الجوال مطلوب';
+                    } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
+                      return 'الرجاء التأكد من رقم الجوال';
                     }
                   },
-                  labelText: 'رقم الهاتف',
+                  labelText: 'رقم الجوال',
                   obscure: false,
                   prefix: Icons.call,
                   keyboardType: TextInputType.number,
                   radius: 20,
                   padding: 15),
               const SizedBox(
-                height: 49,
+                height: 15,
               ),
               customButton(
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        BrowserInformationPage.id,
+                        BrowserStartPage.id,
                         (Route<dynamic> route) => false,
                       );
                     }

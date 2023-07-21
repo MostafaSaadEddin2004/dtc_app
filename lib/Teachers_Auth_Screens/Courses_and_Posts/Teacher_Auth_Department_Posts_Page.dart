@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Components/Posts.dart';
 import '../../Constents/Colors.dart';
+import '../Adding_Posts.dart';
 
 class TeacherAuthDepartmentPostsPage extends StatefulWidget {
   const TeacherAuthDepartmentPostsPage({super.key});
@@ -78,7 +79,11 @@ class _TeacherAuthDepartmentPostsPageState
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           backgroundColor: PrimaryColor,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const AddingPostPage(),
+            ));
+          },
           child: const Icon(
             Icons.add,
             size: 40,

@@ -181,10 +181,12 @@ class _BrowserOtherInformationState extends State<BrowserOtherInformation> {
                     nextButton(
                         text: 'التالي',
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                const BrowserRequiredDocuments(),
-                          ));
+                          if (formState.currentState!.validate()) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const BrowserRequiredDocuments(),
+                            ));
+                          }
                         }),
                   ],
                 ),

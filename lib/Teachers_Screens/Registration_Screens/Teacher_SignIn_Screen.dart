@@ -3,9 +3,8 @@ import 'package:dtc_app/Students_Screens/Student_Home_Page.dart';
 import 'package:flutter/material.dart';
 import '../../Components/TextField.dart';
 import '../../Constents/Colors.dart';
+import '../../Constents/Controller.dart';
 import 'Teacher_SignUp_Screen.dart';
-
-
 
 class TeacherSignInScreen extends StatefulWidget {
   const TeacherSignInScreen({super.key});
@@ -21,9 +20,7 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
-  TextEditingController usernameController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -45,18 +42,19 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 45,
+                height: 30,
               ),
               Container(
                 child: customTextField(
                     onChanged: (data) {},
-                    hint: 'أدخل إسم المستخدم',
-                    controller: usernameController,
+                    hint: 'أدخل الإيميل',
+                    controller: teacherSignInUsernameController,
                     validator: (text) {
                       if (text!.isEmpty) {
-                        return 'إسم المستخدم مطلوب';
-                      } else if (text.length < 3) {
-                        return 'إسم المستخدم يجب أن يكون على الأقل 3 أحرف';
+                        return 'الإيميل مطلوب';
+                      }
+                      if (!RegExp(r'^\w+@gmail.com$').hasMatch(text)) {
+                        return 'يرجى التأكد من إدخال @gmail.com';
                       }
                     },
                     labelText: 'إسم المستخدم',
@@ -73,7 +71,7 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أدخل كلمة المرور',
-                    controller: passwordController,
+                    controller: teacherSignInPasswordController,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'كلمة المرور مطلوبة';

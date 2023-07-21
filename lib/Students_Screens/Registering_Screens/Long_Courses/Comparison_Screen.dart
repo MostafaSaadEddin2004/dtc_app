@@ -16,6 +16,7 @@ class ComparisonScreen extends StatefulWidget {
   @override
   State<ComparisonScreen> createState() => _ComparisonScreenState();
 }
+ GlobalKey<FormState> formState = GlobalKey<FormState>();
 
 class _ComparisonScreenState extends State<ComparisonScreen> {
   @override
@@ -24,178 +25,182 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'طلب الانتساب'),
-      body: ListView(
-        children: [
-          Column(children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                labelStyle(text: 'المفاضلة'),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 25),
-              decoration: BoxDecoration(
-                color: WhiteColor,
-                borderRadius: BorderRadius.circular(2),
-                boxShadow: const [
-                  BoxShadow(
-                    color: GreyColor,
-                    blurRadius: 2,
-                    offset: Offset(2, 2), // Shadow position
-                  ),
+      body: Form(
+
+        key: formState,
+        child: ListView(
+          children: [
+            Column(children: [
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                children: [
+                  labelStyle(text: 'المفاضلة'),
                 ],
               ),
-              child: DropdownSearch<String>(
-                onChanged: (data) {
-                  Certificate = data;
-                },
-                dropdownDecoratorProps: DropDownDecoratorProps(
-                    dropdownSearchDecoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(15),
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: PrimaryColor)),
-                        hintText: 'اختر شهادتك',
-                        label: const Text('الشهادة'),
-                        border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: GreyColor),
-                            borderRadius: BorderRadius.circular(2)))),
-                dropdownButtonProps: const DropdownButtonProps(
-                    icon: Icon(
-                  Icons.arrow_drop_down_circle,
-                  color: PrimaryColor,
-                )),
-                items: const [
-                  "علمي",
-                  "أدبي",
-                  "فنون نسوية",
-                  "مهني",
-                  "صناعة معلوماتية",
-                  "صناعة إتصالات",
-                  "صناعة إلكترون",
-                  "صناعة ميكاترونيكس",
-                  "صناعة ميكانيك مركبات"
-                ],
-                popupProps: PopupPropsMultiSelection.menu(
-                  fit: FlexFit.loose,
-                  menuProps: MenuProps(
-                      shape: BeveledRectangleBorder(
-                          side: const BorderSide(
-                              color: PrimaryColor, style: BorderStyle.none),
-                          borderRadius: BorderRadius.circular(2))),
-                ),
+              const SizedBox(
+                height: 15,
               ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(children: [
-                DataTable(
-                  headingRowHeight: 60,
-                  headingTextStyle: const TextStyle(
-                      color: BlackColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                  dataRowHeight: 50,
-                  dataTextStyle:
-                      const TextStyle(color: BlackColor, fontSize: 12),
-                  border: TableBorder.all(
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 25),
+                decoration: BoxDecoration(
+                  color: WhiteColor,
+                  borderRadius: BorderRadius.circular(2),
+                  boxShadow: const [
+                    BoxShadow(
                       color: GreyColor,
-                      width: 1,
-                      borderRadius: BorderRadius.circular(10),
-                      style: BorderStyle.solid),
-                  decoration: BoxDecoration(
-                    color: WhiteColor,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: GreyColor,
-                        blurRadius: 2,
-                        offset: Offset(2, 2), // Shadow position
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  columns: const [
-                    DataColumn(
-                        label: Text(
-                      'الاختصاص',
-                      textAlign: TextAlign.start,
-                    )),
-                    DataColumn(
-                        label: Text('العلامة', textAlign: TextAlign.start))
+                      blurRadius: 2,
+                      offset: Offset(2, 2), // Shadow position
+                    ),
                   ],
-                  rows: scientific.entries.map((entry) {
-                    return DataRow(
-                      cells: [
-                        DataCell(Text(
-                          entry.key,
-                          textAlign: TextAlign.start,
-                        )),
-                        DataCell(Text(entry.value.toString(),
-                            textAlign: TextAlign.start)),
-                      ],
-                    );
-                  }).toList(),
                 ),
-              ]),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(left: 15, right: 15),
-                  child: Text(
-                    'ملاحظة :',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                child: DropdownSearch<String>(
+                  onChanged: (data) {
+                    Certificate = data;
+                  },
+                  dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownSearchDecoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(15),
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: PrimaryColor)),
+                          hintText: 'اختر شهادتك',
+                          label: const Text('الشهادة'),
+                          border: OutlineInputBorder(
+                              borderSide: const BorderSide(color: GreyColor),
+                              borderRadius: BorderRadius.circular(2)))),
+                  dropdownButtonProps: const DropdownButtonProps(
+                      icon: Icon(
+                    Icons.arrow_drop_down_circle,
+                    color: PrimaryColor,
+                  )),
+                  items: const [
+                    "علمي",
+                    "أدبي",
+                    "فنون نسوية",
+                    "مهني",
+                    "صناعة معلوماتية",
+                    "صناعة إتصالات",
+                    "صناعة إلكترون",
+                    "صناعة ميكاترونيكس",
+                    "صناعة ميكانيك مركبات"
+                  ],
+                  popupProps: PopupPropsMultiSelection.menu(
+                    fit: FlexFit.loose,
+                    menuProps: MenuProps(
+                        shape: BeveledRectangleBorder(
+                            side: const BorderSide(
+                                color: PrimaryColor, style: BorderStyle.none),
+                            borderRadius: BorderRadius.circular(2))),
                   ),
                 ),
-                Flexible(
-                  fit: FlexFit.tight,
-                  flex: 3,
-                  child: Padding(
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(children: [
+                  DataTable(
+                    headingRowHeight: 60,
+                    headingTextStyle: const TextStyle(
+                        color: BlackColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                    dataRowHeight: 50,
+                    dataTextStyle:
+                        const TextStyle(color: BlackColor, fontSize: 12),
+                    border: TableBorder.all(
+                        color: GreyColor,
+                        width: 1,
+                        borderRadius: BorderRadius.circular(10),
+                        style: BorderStyle.solid),
+                    decoration: BoxDecoration(
+                      color: WhiteColor,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: GreyColor,
+                          blurRadius: 2,
+                          offset: Offset(2, 2), // Shadow position
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    columns: const [
+                      DataColumn(
+                          label: Text(
+                        'الاختصاص',
+                        textAlign: TextAlign.start,
+                      )),
+                      DataColumn(
+                          label: Text('العلامة', textAlign: TextAlign.start))
+                    ],
+                    rows: scientific.entries.map((entry) {
+                      return DataRow(
+                        cells: [
+                          DataCell(Text(
+                            entry.key,
+                            textAlign: TextAlign.start,
+                          )),
+                          DataCell(Text(entry.value.toString(),
+                              textAlign: TextAlign.start)),
+                        ],
+                      );
+                    }).toList(),
+                  ),
+                ]),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Padding(
                     padding: EdgeInsets.only(left: 15, right: 15),
                     child: Text(
-                      """
-يخضع المتقدمون على دورتي التصميم الإعلاني والديكور لامتحان قبول عملي وذلك لتحديد مستوى قدراتهم الفنية.
-يرجى إحضار مايلي:
-1- الهوية الشخصية
-2- قلم رصاص، ممحاة، مسطرة، ألوان خشبية.
-""",
-                      style: TextStyle(fontSize: 18),
+                      'ملاحظة :',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                nextButton(
-                    text: 'التالي',
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const WishesPage()));
-                    }),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-          ]),
-        ],
+                  Flexible(
+                    fit: FlexFit.tight,
+                    flex: 3,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      child: Text(
+                        """
+      يخضع المتقدمون على دورتي التصميم الإعلاني والديكور لامتحان قبول عملي وذلك لتحديد مستوى قدراتهم الفنية.
+      يرجى إحضار مايلي:
+      1- الهوية الشخصية
+      2- قلم رصاص، ممحاة، مسطرة، ألوان خشبية.
+      """,
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  nextButton(
+                      text: 'التالي',
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const WishesPage()));
+                      }),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+            ]),
+          ],
+        ),
       ),
     );
   }

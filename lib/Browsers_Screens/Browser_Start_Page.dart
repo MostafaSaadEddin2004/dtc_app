@@ -6,7 +6,6 @@ import '../Constents/Colors.dart';
 import 'Browser_Course_Page.dart';
 import 'Browser_Home_Page.dart';
 import 'Browser_Profile_Page.dart';
-import 'Browser_Settings_Page.dart';
 import 'Browser_Notifications_Page.dart';
 
 class BrowserStartPage extends StatefulWidget {

@@ -1,11 +1,11 @@
 import 'package:dtc_app/Components/TextField.dart';
 import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import '../../Components/Buttons.dart';
+import '../../Constents/Controller.dart';
 import '../Teacher_Auth__Information_Page.dart';
 import 'Teacher_Auth_SignIn_Screen.dart';
-
-
 
 class TeacherAuthSignUpScreen extends StatefulWidget {
   const TeacherAuthSignUpScreen({super.key});
@@ -13,15 +13,13 @@ class TeacherAuthSignUpScreen extends StatefulWidget {
   static String id = 'TeacherAuthSignUpScreen';
 
   @override
-  State<TeacherAuthSignUpScreen> createState() => _TeacherAuthSignUpScreenState();
+  State<TeacherAuthSignUpScreen> createState() =>
+      _TeacherAuthSignUpScreenState();
 }
 
 class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
   bool secure = false;
   GlobalKey<FormState> formState = GlobalKey();
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
   bool CheckBoxValue = false;
 
   @override
@@ -44,18 +42,52 @@ class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
               const Text(
                 'مرحباً بكم!',
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              ),
-              customTextField(
+              ), customTextField(
                   onChanged: (data) {},
-                  hint: 'أدخل إسم المستخدم',
-                  controller: usernameController,
+                  hint: 'أدخل إسم الستخدم',
+                  controller: teacherAuthSignUpUsernameController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'إسم المستخدم مطلوب';
-                    } else if (text.length < 3) {
-                      return 'إسم المستخدم يجب أن يكون على الأقل 3 أحرف';
+                    }
+                    if (text.length < 3) {
+                      return 'إسم المسخدم يجب أن يكون 3 أحرف على الأقل';
                     }
                   },
+                  labelText: 'إسم المسنخدم',
+                  obscure: false,
+                  prefix: Icons.person,
+                  keyboardType: TextInputType.name,
+                  radius: 20,
+                  padding: 15),
+              customTextField(
+                  onChanged: (data) {},
+                  hint: 'أدخل الإيميل',
+                  controller: teacherAuthEmailController,
+                  validator: (text) {
+                    if (text!.isEmpty) {
+                      return 'الإيميل مطلوب';
+                    }
+                    if (!RegExp(r'^\w+@gmail.com$').hasMatch(text)) {
+                      return 'يرجى التأكد من إدخال @gmail.com';
+                    }
+                  },
+                  //   validator: MultiValidator([
+                  //                  RequiredValidator(
+
+                  //                     errorText: 'إسم المستخدم مطلوب'),
+                  //                      PatternValidator(r'(?=.*?[#?!@teacherAuth$%^&*-])', errorText: 'الرجاء التحقق من هذا الحقل'),
+                  //                 MinLengthValidator(8,
+                  //                     errorText:
+                  //                         ' الايميل يجب ان لا يقل عن 8 محرف'),
+                  //               ]),
+                  // validator: (text) {
+                  //   if (text!.isEmpty) {
+                  //     return 'إسم المستخدم مطلوب';
+                  //   } else if (text=='@teacherAuth.com') {
+                  //     return 'إسم المستخدم يجب أن يكون على الأقل 3 أحرف';
+                  //   }
+                  // },
                   labelText: 'إسم المستخدم',
                   obscure: false,
                   prefix: Icons.person,
@@ -68,7 +100,7 @@ class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل كلمة المرور',
-                  controller: passwordController,
+                  controller: teacherAuthSignUpPasswordController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'كلمة المرور مطلوبة';
@@ -97,25 +129,24 @@ class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
               ),
               customTextField(
                   onChanged: (data) {},
-                  hint: 'أدخل رقم الهاتف',
-                  controller: phoneController,
+                  //suffixText: '+963',
+                  hint: 'أدخل رقم الجوال',
+                  controller: teacherAuthSignUpPhoneController,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return 'رقم الهاتف مطلوب';
-                    } else if (text.length < 10) {
-                      return 'رقم الهاتف يجب أن يكون على الأقل 10 أرقام';
-                    } else if (text.length > 10) {
-                      return 'رقم الهاتف يجب أن يكون 10 أرقام';
+                      return 'رقم الجوال مطلوب';
+                    } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
+                      return 'الرجاء التأكد من رقم الجوال';
                     }
                   },
-                  labelText: 'رقم الهاتف',
+                  labelText: 'رقم الجوال',
                   obscure: false,
                   prefix: Icons.call,
                   keyboardType: TextInputType.number,
                   radius: 20,
                   padding: 15),
               const SizedBox(
-                height: 49,
+                height: 15,
               ),
               customButton(
                   onTap: () {

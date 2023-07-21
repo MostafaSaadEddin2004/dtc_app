@@ -2,6 +2,7 @@ import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notes.dart';
 import '../SignUp_Type.dart';
+import 'Teacher_Adding_Notes.dart';
 import 'Teacher_Profile_Page.dart';
 
 class TeacherNotesPage extends StatefulWidget {
@@ -68,7 +69,11 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             backgroundColor: PrimaryColor,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const TeacherAddingNotes(),
+              ));
+            },
             child: const Icon(
               Icons.add,
               size: 40,
@@ -207,8 +212,7 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(SignUpType.id);
+                  Navigator.of(context).pushReplacementNamed(SignUpType.id);
                 },
                 child: Row(
                   children: const [

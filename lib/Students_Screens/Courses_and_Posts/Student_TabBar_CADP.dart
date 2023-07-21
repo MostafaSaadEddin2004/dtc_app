@@ -189,7 +189,7 @@ class _StudentTabBarState extends State<StudentTabBar> {
               ]),
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [StudentCoursePage(), StudentsDepartmentPostsPage()],
           )),
     );

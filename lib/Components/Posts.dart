@@ -1,7 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../Constents/Colors.dart';
+import '../Students_Screens/Student_Home_Page.dart';
+
+class Change {
+  bool isFavorite;
+  bool isSaved;
+  int count;
+
+  Change(
+      {required this.isFavorite, required this.isSaved, required this.count});
+}
+
+List<Change> changes = posts
+    .map((e) => Change(isFavorite: false, isSaved: false, count: 0))
+    .toList();
 
 class DTCPosts extends StatefulWidget {
   const DTCPosts(
@@ -9,20 +22,37 @@ class DTCPosts extends StatefulWidget {
       required this.time,
       required this.poster,
       required this.postImage,
-      required this.postText});
+      required this.postText,
+      this.isFavorite = false,
+      this.isSaved = false,
+      this.onChange,
+      this.count = 0});
 
   final String time;
   final String poster;
   final String postImage;
   final String postText;
+  final bool isFavorite;
+  final bool isSaved;
+  final int count;
+  final Function(bool isFavorite, bool isSaved, int count)? onChange;
 
   @override
   State<DTCPosts> createState() => _DTCPostsState();
 }
 
 class _DTCPostsState extends State<DTCPosts> {
-  bool? isFavorite;
-  bool? isSaved;
+  late bool isFavorite = widget.isFavorite;
+  late bool isSaved = widget.isSaved;
+  late int count = widget.count;
+  @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   bool isF = isFavorite;
+  //   bool isS = isSaved;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -128,7 +158,15 @@ class _DTCPostsState extends State<DTCPosts> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        isFavorite = !isFavorite!;
+                        isFavorite = !isFavorite;
+                        if (isFavorite) {
+                          count++;
+                        } else {
+                          count--;
+                        }
+                        if (widget.onChange != null) {
+                          widget.onChange!(isFavorite, isSaved, count);
+                        }
                         setState(() {});
                       },
                       icon: isFavorite == false
@@ -136,18 +174,27 @@ class _DTCPostsState extends State<DTCPosts> {
                               CupertinoIcons.heart,
                             )
                           : Icon(
-                              CupertinoIcons.heart,
+                              CupertinoIcons.heart_fill,
                               color: RedColor,
                             )),
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.bookmark_border,
-                      )),
+                      onPressed: () {
+                        isSaved = !isSaved;
+                        if (widget.onChange != null)
+                          widget.onChange!(isFavorite, isSaved, count);
+                        setState(() {});
+                      },
+                      icon: isSaved == false
+                          ? Icon(
+                              Icons.bookmark_border,
+                            )
+                          : Icon(
+                              Icons.bookmark,
+                            )),
                   const Spacer(
                     flex: 1,
                   ),
-                  const Text('610 إعجاب'),
+                  Text('$count إعجاب'),
                 ],
               ),
             )
@@ -266,7 +313,7 @@ Widget departmentPosts({
                 children: [
                   IconButton(
                       onPressed: () {},
-                      icon: const Icon(
+                      icon: Icon(
                         CupertinoIcons.heart,
                       )),
                   IconButton(

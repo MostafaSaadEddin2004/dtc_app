@@ -77,9 +77,9 @@ class _TeacherAuthInformationPageState
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -102,9 +102,9 @@ class _TeacherAuthInformationPageState
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -132,9 +132,9 @@ class _TeacherAuthInformationPageState
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -157,9 +157,9 @@ class _TeacherAuthInformationPageState
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -258,9 +258,9 @@ class _TeacherAuthInformationPageState
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -283,9 +283,9 @@ class _TeacherAuthInformationPageState
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )

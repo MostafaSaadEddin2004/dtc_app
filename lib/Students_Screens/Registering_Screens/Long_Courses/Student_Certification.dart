@@ -143,8 +143,11 @@ class _StudentCertificationState extends State<StudentCertification> {
                   nextButton(
                       text: 'التالي',
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => const RequiredDocuments())));
+                        //if (formState.currentState!.validate()) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: ((context) =>
+                                  const RequiredDocuments())));
+                        //}
                       }),
                 ],
               ),

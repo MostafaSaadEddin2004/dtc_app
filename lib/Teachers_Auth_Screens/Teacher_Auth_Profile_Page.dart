@@ -1,4 +1,3 @@
-import 'package:dtc_app/Browsers_Screens/Browser_Settings_Page.dart';
 import 'package:flutter/material.dart';
 
 import '../Constents/Colors.dart';

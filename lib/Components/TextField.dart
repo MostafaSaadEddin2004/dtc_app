@@ -16,8 +16,6 @@ String? RegistrationValidator(
   }
 }
 
-String? DataEntry(String text, String fieldName) {}
-
 Widget customTextField({
   required TextEditingController controller,
   required String? Function(String? text) validator,
@@ -29,10 +27,11 @@ Widget customTextField({
   TextInputType? keyboardType,
   IconData? prefix,
   IconButton? suffix,
+  String suffixText = '',
   required void Function(String data) onChanged,
 }) =>
     Container(
-      margin: const EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 15),
       // decoration: BoxDecoration(
       //   color: WhiteColor,
       //   borderRadius: BorderRadius.circular(20),
@@ -60,6 +59,7 @@ Widget customTextField({
             floatingLabelStyle: const TextStyle(
               color: BlackColor,
             ),
+            prefix: Text(suffixText),
             hintText: hint,
             label: Text(labelText!),
             labelStyle: const TextStyle(color: GreyColor, fontSize: 16),
@@ -82,7 +82,6 @@ Widget registrationInfoTextField({
   required double radius,
   required TextInputType? keyboardType,
   IconData? prefix,
-  
 }) =>
     Container(
       // decoration: BoxDecoration(
@@ -97,7 +96,7 @@ Widget registrationInfoTextField({
       //   ],
       // ),
       child: TextFormField(
-          
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: controller,
           validator: validator,
           keyboardType: keyboardType,

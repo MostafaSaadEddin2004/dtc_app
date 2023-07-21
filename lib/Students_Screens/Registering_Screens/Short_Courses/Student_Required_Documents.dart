@@ -57,8 +57,11 @@ class _StudentRequiredDocumentsState extends State<StudentRequiredDocuments> {
                     builder: (context) => CustomDialog(
                         title: 'الإنتساب للدورة',
                         onPressed: () {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              StudentTabBar.id, (route) => false);
+                          Navigator.of(context)
+                            ..pop()
+                            ..pop()
+                            ..pop()
+                            ..pop();
                         }),
                   );
                 }),

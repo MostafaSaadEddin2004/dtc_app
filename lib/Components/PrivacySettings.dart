@@ -17,14 +17,21 @@ Widget privacyEditing({
             BoxShadow(color: GreyColor, blurRadius: 2, offset: Offset(2, 2))
           ]),
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.only(left: 5, top: 5, right: 15, bottom: 5),
         child: Row(
           children: [
-            IconButton(onPressed: onPressedIconButton, icon: Icon(icon)),
+            Icon(icon),
             const SizedBox(
               width: 10,
             ),
-            labelFont(text: label),
+           Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      labelFont(text: label),
+                      bodyText(text: value),
+                    ],
+                  ),
+               
             const SizedBox(
               width: 10,
             ),
@@ -33,10 +40,8 @@ Widget privacyEditing({
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [const Icon(Icons.edit), bodyText(text: value)],
-              ),
+              child: IconButton(
+                  onPressed: onPressedIconButton, icon: Icon(Icons.edit)),
             )
           ],
         ),

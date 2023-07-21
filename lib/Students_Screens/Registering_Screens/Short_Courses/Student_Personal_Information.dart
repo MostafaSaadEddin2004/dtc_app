@@ -68,7 +68,8 @@ class _StudentPersonalInformationState
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(hint: '',
+                              registrationDropDownSearch(
+                                  hint: '',
                                   items: ['ذكر', 'أنثى'],
                                   onChange: (data) {
                                     gender = data!;
@@ -88,7 +89,8 @@ class _StudentPersonalInformationState
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(hint: '',
+                              registrationDropDownSearch(
+                                  hint: '',
                                   items: ['متزوج', 'مخطوب', 'أعزب'],
                                   onChange: (data) {
                                     situation = data!;
@@ -171,7 +173,8 @@ class _StudentPersonalInformationState
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(hint: '',
+                              registrationDropDownSearch(
+                                  hint: '',
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
@@ -191,7 +194,8 @@ class _StudentPersonalInformationState
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(hint: '',
+                              registrationDropDownSearch(
+                                  hint: '',
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
@@ -272,13 +276,11 @@ class _StudentPersonalInformationState
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'الحقل مطلوب';
-                                  } else if (text.length < 10) {
-                                    return 'الحقل يجب أن يكون 10 أرقام';
-                                  } else if (text.length > 10) {
-                                    return 'الحقل يجب أن يكون 10 أرقام';
-                                  }
+                               if (text!.isEmpty) {
+                      return 'رقم الجوال مطلوب';
+                    } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
+                      return 'الرجاء التأكد من رقم الجوال';
+                    } 
                                 },
                               )
                             ],
@@ -384,10 +386,12 @@ class _StudentPersonalInformationState
                       nextButton(
                           text: 'التالي',
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const StudentOtherInformation(),
-                            ));
+                            //if (formState.currentState!.validate()) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const StudentOtherInformation(),
+                              ));
+                            //}
                           }),
                     ],
                   ),

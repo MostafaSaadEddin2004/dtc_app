@@ -73,9 +73,9 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -98,9 +98,9 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -128,9 +128,9 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -153,9 +153,9 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -254,9 +254,9 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -279,9 +279,9 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                                    return 'User Name is required';
+                                    return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'User Name must be 3 character at least';
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -403,9 +403,11 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                       nextButton(
                           text: 'التالي',
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const TeacherStartPage()));
+                            if (formState.currentState!.validate()) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const TeacherStartPage()));
+                            }
                           }),
                     ],
                   ),

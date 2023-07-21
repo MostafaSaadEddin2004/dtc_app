@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../Components/Notes.dart';
 import '../SignUp_Type.dart';
+import 'Teacher_Auth_Adding_Notes.dart';
 import 'Teacher_Auth_Profile_Page.dart';
 
 class TeacherAuthNotesPage extends StatefulWidget {
@@ -69,7 +70,11 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             backgroundColor: PrimaryColor,
-            onPressed: () {},
+            onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const TeacherAuthAddingNotes(),
+              ));
+            },
             child: const Icon(
               Icons.add,
               size: 40,

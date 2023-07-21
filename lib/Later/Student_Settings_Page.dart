@@ -2,7 +2,6 @@ import 'package:dtc_app/Constents/Colors.dart';
 import 'package:dtc_app/Constents/TextStyle.dart';
 import 'package:flutter/material.dart';
 
-import 'Student_Language_Page.dart';
 import 'Student_Settings_Page.dart';
 
 class StudentSettingsPage extends StatefulWidget {
@@ -22,7 +21,7 @@ class _StudentSettingsPageState extends State<StudentSettingsPage> {
         child: Column(children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(StudentLanguagePage.id);
+              // Navigator.of(context).pushNamed(StudentLanguagePage.id);
             },
             child: Row(
               children: const [

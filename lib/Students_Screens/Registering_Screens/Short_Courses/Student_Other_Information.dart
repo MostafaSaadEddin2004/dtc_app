@@ -182,10 +182,12 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                     nextButton(
                         text: 'التالي',
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                const StudentRequiredDocuments(),
-                          ));
+                          //if (formState.currentState!.validate()) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const StudentRequiredDocuments(),
+                            ));
+                          //}
                         }),
                   ],
                 ),

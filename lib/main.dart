@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'Browsers_Screens/Browser_Course_Page.dart';
-import 'Browsers_Screens/Browser_Information_Page.dart';
 import 'Browsers_Screens/Browser_Start_Page.dart';
 import 'Browsers_Screens/Registration_Screens/Browser_SignIn_Screen.dart';
 import 'Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
 import 'Constents/Colors.dart';
 import 'SignUp_Type.dart';
 import 'Start_App_Screens/Start_App_Screen.dart';
-import 'Students_Screens/Courses_and_Posts/Student_Course_Page.dart';
 import 'Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
 import 'Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
 import 'Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
@@ -25,7 +23,6 @@ import 'Teachers_Screens/Registration_Screens/Teacher_SignIn_Screen.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';
 import 'Teachers_Screens/Teacher_Information_Page.dart';
 import 'Teachers_Screens/Teacher_Start_Page.dart';
-
 void main() {
   runApp(const Main());
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -33,10 +30,8 @@ void main() {
     statusBarColor: PrimaryColor,
   ));
 }
-
 class Main extends StatelessWidget {
   const Main({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,15 +49,14 @@ class Main extends StatelessWidget {
         SignUpType.id: (context) => const SignUpType(),
         BrowserSignInScreen.id: (context) => const BrowserSignInScreen(),
         BrowserSignUpScreen.id: (context) => const BrowserSignUpScreen(),
-        BrowserInformationPage.id: (context) => const BrowserInformationPage(),
         BrowserStartPage.id: (context) => const BrowserStartPage(),
-        BrowserCoursePage.id:(context) => const BrowserCoursePage(),
+        BrowserCoursePage.id: (context) => const BrowserCoursePage(),
+        StudentTabBar.id: (context) => const StudentTabBar(),
         StudentSignUpScreen.id: (context) => const StudentSignUpScreen(),
         StudentSignInScreen.id: (context) => const StudentSignInScreen(),
         AcceptanceQualifications.id: (context) =>
             const AcceptanceQualifications(),
         StudentStartPage.id: (context) => const StudentStartPage(),
-        StudentCoursePage.id:(context) => const StudentCoursePage(),
         TeacherAuthSignUpScreen.id: (context) =>
             const TeacherAuthSignUpScreen(),
         TeacherAuthSignInScreen.id: (context) =>
