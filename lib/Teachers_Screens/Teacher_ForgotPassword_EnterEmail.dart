@@ -1,25 +1,24 @@
-import 'package:flutter/cupertino.dart';
+import 'package:dtc_app/Components/Buttons.dart';
+import 'package:dtc_app/Components/CustomAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../Components/Buttons.dart';
-import '../Components/CustomAppBar.dart';
 import '../Components/TextField.dart';
 import '../Constents/Controller.dart';
 import '../Constents/TextStyle.dart';
-import 'Browser_ForgotPassword_EnterPassword.dart';
+import 'Teacher_ForgotPassword_EnterCode.dart';
 
-class BrowserForgotPasswordEnterCode extends StatefulWidget {
-  const BrowserForgotPasswordEnterCode({super.key});
+class TeacherForgotPasswordEnterEmail extends StatefulWidget {
+  const TeacherForgotPasswordEnterEmail({super.key});
 
   @override
-  State<BrowserForgotPasswordEnterCode> createState() =>
-      _BrowserForgotPasswordEnterCodeState();
+  State<TeacherForgotPasswordEnterEmail> createState() =>
+      _TeacherForgotPasswordEnterEmailState();
 }
 
-class _BrowserForgotPasswordEnterCodeState
-    extends State<BrowserForgotPasswordEnterCode> {
+class _TeacherForgotPasswordEnterEmailState
+    extends State<TeacherForgotPasswordEnterEmail> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -30,25 +29,25 @@ class _BrowserForgotPasswordEnterCodeState
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 30),
             child: Column(children: [
-              titleText(text: 'أدخل الكود الذي تم إرساله إليك'),
+              titleText(text: 'أدخل إيميل لإستلام كود لتغيير كلمة المرور'),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: customTextField(
                     onChanged: (data) {},
-                    //suffixText: '+963',
-                    hint: 'أدخل الكود',
-                    controller: browserCodeController,
+                    hint: 'أدخل الإيميل',
+                    controller: browserEmailController,
                     validator: (text) {
                       if (text!.isEmpty) {
-                        return 'الكود مطلوب';
-                      } else if (text.length < 6 && text.length > 6) {
-                        return 'الكود يجب أن يكون 6 أرقام';
+                        return 'الإيميل مطلوب';
+                      }
+                      if (!RegExp(r'^\w+@gmail.com$').hasMatch(text)) {
+                        return 'يرجى التأكد من إدخال @gmail.com';
                       }
                     },
-                    labelText: 'الكود',
+                    labelText: 'الإيميل',
                     obscure: false,
-                    prefix: Icons.numbers,
-                    keyboardType: TextInputType.number,
+                    prefix: Icons.email,
+                    keyboardType: TextInputType.emailAddress,
                     radius: 20,
                     padding: 15),
               ),
@@ -64,7 +63,7 @@ class _BrowserForgotPasswordEnterCodeState
                         //if (formKey.currentState!.validate()) {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              const BrowserForgotPasswordEnterPassword(),
+                              const TeacherForgotPasswordEnterCode(),
                         ));
                         //}
                       }),

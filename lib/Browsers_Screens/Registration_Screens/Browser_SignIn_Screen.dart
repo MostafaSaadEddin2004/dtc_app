@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Components/TextField.dart';
 import '../../Constents/Colors.dart';
 import '../../Constents/Controller.dart';
-import '../../Teachers_Screens/Browser_ChangePassword.dart';
+import '../../Teachers_Screens/Teacher_ChangePassword.dart';
 import 'Browser_SignUp_Screen.dart';
 
 class BrowserSignInScreen extends StatefulWidget {
@@ -99,7 +99,7 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              const BrowserChangePasswordEnterPassword(),
+                              const TeacherChangePasswordEnterPassword(),
                         ));
                       },
                       child: const Text(

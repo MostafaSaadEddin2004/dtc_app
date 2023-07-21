@@ -9,16 +9,16 @@ import '../Components/TextField.dart';
 import '../Constents/Controller.dart';
 import '../Constents/TextStyle.dart';
 
-class BrowserChangePasswordEnterPassword extends StatefulWidget {
-  const BrowserChangePasswordEnterPassword({super.key});
+class TeacherChangePasswordEnterPassword extends StatefulWidget {
+  const TeacherChangePasswordEnterPassword({super.key});
 
   @override
-  State<BrowserChangePasswordEnterPassword> createState() =>
-      _BrowserChangePasswordEnterPasswordState();
+  State<TeacherChangePasswordEnterPassword> createState() =>
+      _TeacherChangePasswordEnterPasswordState();
 }
 
-class _BrowserChangePasswordEnterPasswordState
-    extends State<BrowserChangePasswordEnterPassword> {
+class _TeacherChangePasswordEnterPasswordState
+    extends State<TeacherChangePasswordEnterPassword> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool currentSecure = false;
   bool newSecure = false;
@@ -32,7 +32,6 @@ class _BrowserChangePasswordEnterPasswordState
           child: Container(
             margin: const EdgeInsets.symmetric(vertical: 30),
             child: Column(children: [
-              titleText(text: 'أدخل الكود الذي تم إرساله إليك'),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: customTextField(

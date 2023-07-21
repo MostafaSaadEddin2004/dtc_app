@@ -8,16 +8,16 @@ import '../Components/TextField.dart';
 import '../Constents/Controller.dart';
 import '../Constents/TextStyle.dart';
 
-class BrowserForgotPasswordEnterPassword extends StatefulWidget {
-  const BrowserForgotPasswordEnterPassword({super.key});
+class TeacherrForgotPasswordEnterPassword extends StatefulWidget {
+  const TeacherrForgotPasswordEnterPassword({super.key});
 
   @override
-  State<BrowserForgotPasswordEnterPassword> createState() =>
-      _BrowserForgotPasswordEnterPasswordState();
+  State<TeacherrForgotPasswordEnterPassword> createState() =>
+      _TeacherrForgotPasswordEnterPasswordState();
 }
 
-class _BrowserForgotPasswordEnterPasswordState
-    extends State<BrowserForgotPasswordEnterPassword> {
+class _TeacherrForgotPasswordEnterPasswordState
+    extends State<TeacherrForgotPasswordEnterPassword> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool newSecure = false;
   bool confirmSecure = false;
