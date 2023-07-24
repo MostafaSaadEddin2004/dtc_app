@@ -6,6 +6,7 @@ import '../../../Components/CustomAppBar.dart';
 import '../../../Components/DropDownSearch.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
+import '../../../Constents/Controller.dart';
 import '../../../Constents/TextStyle.dart';
 import 'Student_Other_Information.dart';
 
@@ -21,18 +22,7 @@ class StudentPersonalInformation extends StatefulWidget {
 class _StudentPersonalInformationState
     extends State<StudentPersonalInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController situationController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController englishFullNameController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController nationalityController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController currentController = TextEditingController();
-  TextEditingController birthDateController = TextEditingController();
-  String nationality = '';
-  String situation = '';
-  String gender = '';
+  
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -72,7 +62,7 @@ class _StudentPersonalInformationState
                                   hint: '',
                                   items: ['ذكر', 'أنثى'],
                                   onChange: (data) {
-                                    gender = data!;
+                                    studentGenderVariable = data!;
                                   },
                                   validator: (data) {
                                     if (data!.isEmpty) {
@@ -93,7 +83,7 @@ class _StudentPersonalInformationState
                                   hint: '',
                                   items: ['متزوج', 'مخطوب', 'أعزب'],
                                   onChange: (data) {
-                                    situation = data!;
+                                    studentSituationVariable = data!;
                                   },
                                   validator: (data) {
                                     if (data!.isEmpty) {
@@ -119,7 +109,7 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: fullNameController,
+                                controller: studentCourseFullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -144,7 +134,7 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: englishFullNameController,
+                                controller: studentCourseEnglishFullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -166,7 +156,7 @@ class _StudentPersonalInformationState
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: nationality == 'فلسطيني مُسجل' || nationality == ''
+                    child: studentNationalityVariable == 'فلسطيني مُسجل' || studentNationalityVariable == ''
                         ? Column(
                             children: [
                               titleText(text: 'الجنسية'),
@@ -178,7 +168,7 @@ class _StudentPersonalInformationState
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
-                                      nationality = data!;
+                                      studentNationalityVariable = data!;
                                     });
                                   },
                                   validator: (data) {
@@ -199,7 +189,7 @@ class _StudentPersonalInformationState
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
-                                      nationality = data!;
+                                      studentNationalityVariable = data!;
                                     });
                                   },
                                   validator: (data) {
@@ -215,7 +205,7 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: nationalityController,
+                                controller: studentCourseNationalityController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -243,7 +233,7 @@ class _StudentPersonalInformationState
                           height: 10,
                         ),
                         registrationInfoTextField(
-                          controller: emailController,
+                          controller: studentCourseEmailController,
                           keyboardType: TextInputType.streetAddress,
                           radius: 20,
                           validator: (text) {
@@ -272,7 +262,7 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: phoneNumberController,
+                                controller: studentCoursePhoneNumberController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -297,7 +287,7 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: currentController,
+                                controller: studentCourseCurrentLocationController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
                                 validator: (text) {
@@ -339,7 +329,7 @@ class _StudentPersonalInformationState
                           // ),
                           child: TextFormField(
                               onChanged: (data) {},
-                              controller: birthDateController,
+                              controller: studentCourseBirthDateController,
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';

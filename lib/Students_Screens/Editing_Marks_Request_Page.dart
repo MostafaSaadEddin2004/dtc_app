@@ -4,6 +4,7 @@ import '../Components/Buttons.dart';
 import '../Components/DropDownSearch.dart';
 import '../Components/TextField.dart';
 import '../Constents/Colors.dart';
+import '../Constents/Controller.dart';
 import '../Constents/TextStyle.dart';
 
 class EditingMarksRequestPage extends StatefulWidget {
@@ -17,10 +18,7 @@ class EditingMarksRequestPage extends StatefulWidget {
 
 class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController markController = TextEditingController();
-  TextEditingController markEditingRequestTextController =
-      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -48,7 +46,7 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               height: 10,
                             ),
                             registrationInfoTextField(
-                              controller: fullNameController,
+                              controller: studentEMRFullNameController,
                               keyboardType: TextInputType.name,
                               radius: 20,
                               validator: (text) {
@@ -73,7 +71,7 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               height: 10,
                             ),
                             registrationInfoTextField(
-                              controller: markController,
+                              controller: studentEMRGainedMarkController,
                               keyboardType: TextInputType.name,
                               radius: 20,
                               validator: (text) {
@@ -94,27 +92,6 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15, top: 15, right: 15),
-                  child: Column(
-                    children: [
-                      titleText(text: 'نص طلب تعديل العلامات'),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      registrationInfoTextField(
-                        controller: markEditingRequestTextController,
-                        keyboardType: TextInputType.name,
-                        radius: 20,
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'الحقل مطلوب';
-                          }
-                        },
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, top: 15, right: 15),
                   child: Row(
                     children: [
                       Expanded(
@@ -125,14 +102,18 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               height: 10,
                             ),
                             registrationDropDownSearch(
-                              hint: '',
-                              items: [
-                              'تكنولوجيا المعلومات',
-                              'الطبي',
-                              'الهندسي',
-                              'التجاري',
-                              'الميكانيكي'
-                            ], onChange: (data) {}, validator: (data) {})
+                                hint: '',
+                                items: [
+                                  'تكنولوجيا المعلومات',
+                                  'الطبي',
+                                  'الهندسي',
+                                  'التجاري',
+                                  'الميكانيكي'
+                                ],
+                                onChange: (data) {
+                                  departmentName = data!;
+                                },
+                                validator: (data) {})
                           ],
                         ),
                       ),
@@ -143,10 +124,12 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            registrationDropDownSearch(hint: '',
-
+                            registrationDropDownSearch(
+                                hint: '',
                                 items: [],
-                                onChange: (data) {},
+                                onChange: (data) {
+                                  className = data!;
+                                },
                                 validator: (data) {})
                           ],
                         ),
@@ -165,9 +148,12 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            registrationDropDownSearch(hint: '',
+                            registrationDropDownSearch(
+                                hint: '',
                                 items: [],
-                                onChange: (data) {},
+                                onChange: (data) {
+                                  teacherName = data!;
+                                },
                                 validator: (data) {})
                           ],
                         ),
@@ -180,13 +166,50 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               height: 10,
                             ),
                             registrationDropDownSearch(
-                              hint: '',
+                                hint: '',
                                 items: [],
-                                onChange: (data) {},
+                                onChange: (data) {
+                                  subjectName = data!;
+                                },
                                 validator: (data) {})
                           ],
                         ),
                       ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, top: 15, right: 15),
+                  child: Column(
+                    children: [
+                      titleText(text: 'نص طلب تعديل العلامات'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                          onChanged: (data) {},
+                          controller: markEditingRequestTextController,
+                          validator: (text) {
+                            if (text!.isEmpty) {
+                              return 'الحقل مطلوب';
+                            }
+                          },
+                          keyboardType: TextInputType.text,
+                          enabled: true,
+                          cursorColor: GreyColor,
+                          decoration: InputDecoration(
+                            hintText: 'أكتب هنا...',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(
+                                    color: Colors.transparent)),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 50),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(color: GreyColor),
+                            ),
+                          )),
                     ],
                   ),
                 ),

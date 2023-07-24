@@ -157,31 +157,6 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
               height: 10,
             ),
             GestureDetector(
-              onTap: () {},
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.location_on,
-                    color: WhiteColor,
-                    size: 30,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    'موقع المعهد',
-                    style: TextStyle(
-                        color: WhiteColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            GestureDetector(
               onTap: () {
                 Navigator.of(context)
                     .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
@@ -239,22 +214,22 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
                 Navigator.of(context)
                     .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
               },
-              child: Row(
+              child:Row(
                 children: const [
+                  Icon(
+                    Icons.exit_to_app_rounded,
+                    color: RedColor,
+                    size: 30,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
                   Text(
                     'تسجيل الخروج',
                     style: TextStyle(
                         color: RedColor,
                         fontSize: 24,
                         fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Icon(
-                    Icons.exit_to_app_rounded,
-                    color: RedColor,
-                    size: 30,
                   ),
                 ],
               ),
@@ -267,7 +242,15 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
         color: Colors.transparent,
         child: ListView.builder(
           itemCount: posts.length,
-          itemBuilder: (context, index) => registerCoursesPost(
+          itemBuilder: (context, index) => RegisterCoursesPost(
+            onChange: (isFavorite, isSaved, count) {
+              changes[index].isFavorite = isFavorite;
+              changes[index].isSaved = isSaved;
+              changes[index].count = count;
+            },
+            isFavorite: changes[index].isFavorite,
+            isSaved: changes[index].isSaved,
+            count: changes[index].count,
             time: posts[index]["Time"].toString(),
             poster: posts[index]["Poster"].toString(),
             postImage: posts[index]['Images'].toString(),

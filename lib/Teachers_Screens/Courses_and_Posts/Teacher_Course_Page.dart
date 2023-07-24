@@ -79,7 +79,15 @@ class _TeacherCoursePageState extends State<TeacherCoursePage> {
       color: Colors.transparent,
       child: ListView.builder(
         itemCount: posts.length,
-        itemBuilder: (context, index) => coursesPost(
+        itemBuilder: (context, index) => CoursesPost(
+            onChange: (isFavorite, isSaved, count) {
+              changes[index].isFavorite = isFavorite;
+              changes[index].isSaved = isSaved;
+              changes[index].count = count;
+            },
+            isFavorite: changes[index].isFavorite,
+            isSaved: changes[index].isSaved,
+            count: changes[index].count,
             time: posts[index]["Time"].toString(),
             poster: posts[index]["Poster"].toString(),
             postImage: posts[index]['Images'].toString(),

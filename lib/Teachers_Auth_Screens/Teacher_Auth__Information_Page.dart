@@ -7,6 +7,7 @@ import '../Components/DropDownSearch.dart';
 import '../Components/Label.dart';
 import '../Components/TextField.dart';
 import '../Constents/Colors.dart';
+import '../Constents/Controller.dart';
 import '../Constents/TextStyle.dart';
 import 'Teacher_Auth_Start_Page.dart';
 
@@ -22,21 +23,8 @@ class TeacherAuthInformationPage extends StatefulWidget {
 class _TeacherAuthInformationPageState
     extends State<TeacherAuthInformationPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController teacherAuthFirstNameController =
-      TextEditingController();
-  TextEditingController teacherAuthBirthDateController =
-      TextEditingController();
-  TextEditingController teacherAuthLastName = TextEditingController();
-  TextEditingController teacherAuthCertification = TextEditingController();
-  TextEditingController teacherAuthSpecialty = TextEditingController();
-  TextEditingController teacherAuthCurrentController = TextEditingController();
-  TextEditingController teacherAuthPermanentController =
-      TextEditingController();
-  TextEditingController teacherAuthNationalityController =
-      TextEditingController();
+
   DateTime? dateTime;
-  String nationality = '';
-  String department = '';
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -72,7 +60,7 @@ class _TeacherAuthInformationPageState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherAuthFirstNameController,
+                                controller: teacherFirstNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -97,7 +85,7 @@ class _TeacherAuthInformationPageState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherAuthLastName,
+                                controller: teacherLastNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -127,7 +115,7 @@ class _TeacherAuthInformationPageState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherAuthCertification,
+                                controller: teacherCertificationController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -152,7 +140,7 @@ class _TeacherAuthInformationPageState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherAuthSpecialty,
+                                controller: teacherSpecialtyController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -194,7 +182,7 @@ class _TeacherAuthInformationPageState
                           // ),
                           child: TextFormField(
                               onChanged: (data) {},
-                              controller: teacherAuthBirthDateController,
+                              controller: teacherBirthDateController,
                               validator: (text) {},
                               keyboardType: TextInputType.none,
                               enabled: true,
@@ -221,7 +209,7 @@ class _TeacherAuthInformationPageState
                                         firstDate: DateTime(2000),
                                         lastDate: DateTime(2024),
                                         keyboardType: TextInputType.datetime);
-                                    teacherAuthBirthDateController.text =
+                                    teacherBirthDateController.text =
                                         '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
                                   },
                                 ),
@@ -253,7 +241,7 @@ class _TeacherAuthInformationPageState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherAuthCurrentController,
+                                controller: teacherCurrentLocationController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
                                 validator: (text) {
@@ -278,7 +266,7 @@ class _TeacherAuthInformationPageState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherAuthPermanentController,
+                                controller: teacherPermanentLocationController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
                                 validator: (text) {
@@ -300,7 +288,8 @@ class _TeacherAuthInformationPageState
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: nationality == 'فلسطيني مُسجل' || nationality == ''
+                    child: teacherAuthNationalityVariable == 'فلسطيني مُسجل' ||
+                            teacherAuthNationalityVariable == ''
                         ? Column(
                             children: [
                               titleText(text: 'الجنسية'),
@@ -312,7 +301,7 @@ class _TeacherAuthInformationPageState
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
-                                      nationality = data!;
+                                      teacherNationalityVariable = data!;
                                     });
                                   },
                                   validator: (data) {
@@ -333,7 +322,7 @@ class _TeacherAuthInformationPageState
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
-                                      nationality = data!;
+                                      teacherAuthNationalityVariable = data!;
                                     });
                                   },
                                   validator: (data) {
@@ -349,7 +338,7 @@ class _TeacherAuthInformationPageState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherAuthNationalityController,
+                                controller: teacherNationalityController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -387,7 +376,7 @@ class _TeacherAuthInformationPageState
                             ],
                             onChange: (data) {
                               setState(() {
-                                department = data!;
+                                teacherDepartmentVariable = data!;
                               });
                             },
                             validator: (data) {

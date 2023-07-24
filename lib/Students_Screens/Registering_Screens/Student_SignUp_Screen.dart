@@ -19,7 +19,7 @@ class StudentSignUpScreen extends StatefulWidget {
 class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   bool secure = false;
   GlobalKey<FormState> formState = GlobalKey();
-  
+
   bool CheckBoxValue = false;
 
   @override
@@ -64,12 +64,13 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل الإيميل',
-                  controller: studentSinUpUsernameController,
+                  controller: studentSignUpEmailController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'الإيميل مطلوب';
                     }
-                    if (!RegExp(r'^\w+@gmail.com$').hasMatch(text)) {
+                    if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                        .hasMatch(text)) {
                       return 'يرجى التأكد من إدخال @gmail.com';
                     }
                   },

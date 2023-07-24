@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../Components/CustomAppBar.dart';
 import '../Constents/Colors.dart';
+import '../Constents/Controller.dart';
 import '../Constents/TextStyle.dart';
 
 class AddingPostPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class AddingPostPage extends StatefulWidget {
 
 class _AddingPostPageState extends State<AddingPostPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController postTitle = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +54,9 @@ class _AddingPostPageState extends State<AddingPostPage> {
                         // ),
                         child: TextFormField(
                             onChanged: (data) {},
-                            controller: postTitle,
+                            controller: postTitleController,
                             validator: (text) {},
-                            keyboardType: TextInputType.none,
+                            keyboardType: TextInputType.text,
                             enabled: true,
                             cursorColor: GreyColor,
                             decoration: InputDecoration(
@@ -107,7 +108,7 @@ class _AddingPostPageState extends State<AddingPostPage> {
                         // ),
                         child: TextFormField(
                             onChanged: (data) {},
-                            controller: postTitle,
+                            controller: postImageController,
                             validator: (text) {},
                             keyboardType: TextInputType.none,
                             enabled: true,

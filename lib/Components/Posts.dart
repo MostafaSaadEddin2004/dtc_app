@@ -17,16 +17,17 @@ List<Change> changes = posts
     .toList();
 
 class DTCPosts extends StatefulWidget {
-  const DTCPosts(
-      {super.key,
-      required this.time,
-      required this.poster,
-      required this.postImage,
-      required this.postText,
-      this.isFavorite = false,
-      this.isSaved = false,
-      this.onChange,
-      this.count = 0});
+  const DTCPosts({
+    super.key,
+    required this.time,
+    required this.poster,
+    required this.postImage,
+    required this.postText,
+    this.isFavorite = false,
+    this.isSaved = false,
+    this.onChange,
+    this.count = 0,
+  });
 
   final String time;
   final String poster;
@@ -46,13 +47,6 @@ class _DTCPostsState extends State<DTCPosts> {
   late bool isSaved = widget.isSaved;
   late int count = widget.count;
   @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   bool isF = isFavorite;
-  //   bool isS = isSaved;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -203,14 +197,38 @@ class _DTCPostsState extends State<DTCPosts> {
   }
 }
 
-Widget departmentPosts({
-  required String time,
-  required String Poster,
-  required String PostImage,
-  required String postText,
-  final BuildContext? contextParameter,
-}) =>
-    Container(
+class DepartmentPosts extends StatefulWidget {
+  const DepartmentPosts({
+    super.key,
+    required this.time,
+    required this.poster,
+    required this.postImage,
+    required this.postText,
+    this.isFavorite = false,
+    this.isSaved = false,
+    this.count = 0,
+    this.onChange,
+  });
+  final String time;
+  final String poster;
+  final String postImage;
+  final String postText;
+  final bool isFavorite;
+  final bool isSaved;
+  final int count;
+  final Function(bool isFavorite, bool isSaved, int count)? onChange;
+
+  @override
+  State<DepartmentPosts> createState() => _DepartmentPostsState();
+}
+
+class _DepartmentPostsState extends State<DepartmentPosts> {
+  late bool isFavorite = widget.isFavorite;
+  late bool isSaved = widget.isSaved;
+  late int count = widget.count;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
         margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
         decoration: BoxDecoration(
           color: WhiteColor,
@@ -255,7 +273,7 @@ Widget departmentPosts({
                         height: 10,
                       ),
                       Text(
-                        Poster,
+                        widget.poster,
                         style: const TextStyle(fontSize: 16),
                       ),
                     ],
@@ -269,7 +287,7 @@ Widget departmentPosts({
                         height: 30,
                       ),
                       Text(
-                        time,
+                        widget.time,
                         style: const TextStyle(fontSize: 12),
                       ),
                     ],
@@ -291,20 +309,20 @@ Widget departmentPosts({
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(postText),
+              child: Text(widget.postText),
             ),
             const SizedBox(
               height: 5,
             ),
             GestureDetector(
               onTap: () {
-                print(PostImage);
+                print(widget.postImage);
               },
               child: Container(
                 width: double.infinity,
-                child: PostImage == ""
+                child: widget.postImage == ""
                     ? const SizedBox()
-                    : Image.asset(PostImage, fit: BoxFit.cover),
+                    : Image.asset(widget.postImage, fit: BoxFit.cover),
               ),
             ),
             Padding(
@@ -312,33 +330,88 @@ Widget departmentPosts({
               child: Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        CupertinoIcons.heart,
-                      )),
+                      onPressed: () {
+                        isFavorite = !isFavorite;
+                        if (isFavorite) {
+                          count++;
+                        } else {
+                          count--;
+                        }
+                        if (widget.onChange != null) {
+                          widget.onChange!(isFavorite, isSaved, count);
+                        }
+                        setState(() {});
+                      },
+                      icon: isFavorite == false
+                          ? const Icon(
+                              CupertinoIcons.heart,
+                            )
+                          : const Icon(
+                              CupertinoIcons.heart_fill,
+                              color: RedColor,
+                            )),
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.bookmark_border,
-                      )),
+                      onPressed: () {
+                        isSaved = !isSaved;
+                        if (widget.onChange != null)
+                          widget.onChange!(isFavorite, isSaved, count);
+                        setState(() {});
+                      },
+                      icon: isSaved == false
+                          ? const Icon(
+                              Icons.bookmark_border,
+                            )
+                          : const Icon(
+                              Icons.bookmark,
+                              color: BlackColor,
+                            )),
                   const Spacer(
                     flex: 1,
                   ),
-                  const Text('610 تفاعل'),
+                  Text('$count إعجاب'),
                 ],
               ),
             )
           ],
         ));
+    ;
+  }
+}
 
-Widget registerCoursesPost({
-  required String time,
-  required String poster,
-  required String postImage,
-  required String postText,
-  required void Function() onTap,
-}) =>
-    Container(
+class RegisterCoursesPost extends StatefulWidget {
+  const RegisterCoursesPost(
+      {super.key,
+      required this.time,
+      required this.poster,
+      required this.postImage,
+      required this.postText,
+      this.isFavorite = false,
+      this.isSaved = false,
+      this.count = 0,
+      this.onChange,
+      required this.onTap});
+
+  final String time;
+  final String poster;
+  final String postImage;
+  final String postText;
+  final bool isFavorite;
+  final bool isSaved;
+  final int count;
+  final Function(bool isFavorite, bool isSaved, int count)? onChange;
+  final void Function() onTap;
+
+  @override
+  State<RegisterCoursesPost> createState() => _RegisterCoursesPostState();
+}
+
+class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
+  late bool isFavorite = widget.isFavorite;
+  late bool isSaved = widget.isSaved;
+  late int count = widget.count;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
         margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
         decoration: BoxDecoration(
           color: WhiteColor,
@@ -383,7 +456,7 @@ Widget registerCoursesPost({
                         height: 10,
                       ),
                       Text(
-                        poster,
+                        widget.poster,
                         style: const TextStyle(fontSize: 16),
                       ),
                     ],
@@ -402,7 +475,7 @@ Widget registerCoursesPost({
                         height: 15,
                       ),
                       Text(
-                        time,
+                        widget.time,
                         style: const TextStyle(fontSize: 12),
                       ),
                     ],
@@ -424,20 +497,20 @@ Widget registerCoursesPost({
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(postText),
+              child: Text(widget.postText),
             ),
             const SizedBox(
               height: 5,
             ),
             GestureDetector(
               onTap: () {
-                print(postImage);
+                print(widget.postImage);
               },
               child: Container(
                 width: double.infinity,
-                child: postImage == ""
+                child: widget.postImage == ""
                     ? const SizedBox()
-                    : Image.asset(postImage, fit: BoxFit.cover),
+                    : Image.asset(widget.postImage, fit: BoxFit.cover),
               ),
             ),
             Padding(
@@ -445,16 +518,41 @@ Widget registerCoursesPost({
               child: Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        CupertinoIcons.heart,
-                        fill: 1,
-                      )),
+                      onPressed: () {
+                        isFavorite = !isFavorite;
+                        if (isFavorite) {
+                          count++;
+                        } else {
+                          count--;
+                        }
+                        if (widget.onChange != null) {
+                          widget.onChange!(isFavorite, isSaved, count);
+                        }
+                        setState(() {});
+                      },
+                      icon: isFavorite == false
+                          ? const Icon(
+                              CupertinoIcons.heart,
+                            )
+                          : const Icon(
+                              CupertinoIcons.heart_fill,
+                              color: RedColor,
+                            )),
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.bookmark_border,
-                      )),
+                      onPressed: () {
+                        isSaved = !isSaved;
+                        if (widget.onChange != null)
+                          widget.onChange!(isFavorite, isSaved, count);
+                        setState(() {});
+                      },
+                      icon: isSaved == false
+                          ? const Icon(
+                              Icons.bookmark_border,
+                            )
+                          : const Icon(
+                              Icons.bookmark,
+                              color: BlackColor,
+                            )),
                   // TextButton(
                   //   onPressed: () {},
                   //   child: Text(
@@ -465,12 +563,12 @@ Widget registerCoursesPost({
                   const Spacer(
                     flex: 1,
                   ),
-                  const Text('610 تفاعل'),
+                  Text('$count إعجاب'),
                 ],
               ),
             ),
             InkWell(
-              onTap: onTap,
+              onTap: widget.onTap,
               child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -495,14 +593,41 @@ Widget registerCoursesPost({
             )
           ],
         ));
+    ;
+  }
+}
 
-Widget coursesPost({
-  required String time,
-  required String poster,
-  required String postImage,
-  required String postText,
-}) =>
-    Container(
+class CoursesPost extends StatefulWidget {
+  const CoursesPost({
+    super.key,
+    required this.time,
+    required this.poster,
+    required this.postImage,
+    required this.postText,
+    this.isFavorite = false,
+    this.isSaved = false,
+    this.count = 0,
+    this.onChange,
+  });
+  final String time;
+  final String poster;
+  final String postImage;
+  final String postText;
+  final bool isFavorite;
+  final bool isSaved;
+  final int count;
+  final Function(bool isFavorite, bool isSaved, int count)? onChange;
+  @override
+  State<CoursesPost> createState() => _CoursesPostState();
+}
+
+class _CoursesPostState extends State<CoursesPost> {
+  late bool isFavorite = widget.isFavorite;
+  late bool isSaved = widget.isSaved;
+  late int count = widget.count;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
         margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
         decoration: BoxDecoration(
           color: WhiteColor,
@@ -547,7 +672,7 @@ Widget coursesPost({
                         height: 10,
                       ),
                       Text(
-                        poster,
+                        widget.poster,
                         style: const TextStyle(fontSize: 16),
                       ),
                     ],
@@ -566,7 +691,7 @@ Widget coursesPost({
                         height: 15,
                       ),
                       Text(
-                        time,
+                        widget.time,
                         style: const TextStyle(fontSize: 12),
                       ),
                     ],
@@ -588,20 +713,20 @@ Widget coursesPost({
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(postText),
+              child: Text(widget.postText),
             ),
             const SizedBox(
               height: 5,
             ),
             GestureDetector(
               onTap: () {
-                print(postImage);
+                print(widget.postImage);
               },
               child: Container(
                 width: double.infinity,
-                child: postImage == ""
+                child: widget.postImage == ""
                     ? const SizedBox()
-                    : Image.asset(postImage, fit: BoxFit.cover),
+                    : Image.asset(widget.postImage, fit: BoxFit.cover),
               ),
             ),
             Padding(
@@ -609,16 +734,41 @@ Widget coursesPost({
               child: Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        CupertinoIcons.heart,
-                        fill: 1,
-                      )),
+                      onPressed: () {
+                        isFavorite = !isFavorite;
+                        if (isFavorite) {
+                          count++;
+                        } else {
+                          count--;
+                        }
+                        if (widget.onChange != null) {
+                          widget.onChange!(isFavorite, isSaved, count);
+                        }
+                        setState(() {});
+                      },
+                      icon: isFavorite == false
+                          ? const Icon(
+                              CupertinoIcons.heart,
+                            )
+                          : const Icon(
+                              CupertinoIcons.heart_fill,
+                              color: RedColor,
+                            )),
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.bookmark_border,
-                      )),
+                      onPressed: () {
+                        isSaved = !isSaved;
+                        if (widget.onChange != null)
+                          widget.onChange!(isFavorite, isSaved, count);
+                        setState(() {});
+                      },
+                      icon: isSaved == false
+                          ? const Icon(
+                              Icons.bookmark_border,
+                            )
+                          : const Icon(
+                              Icons.bookmark,
+                              color: BlackColor,
+                            )),
                   // TextButton(
                   //   onPressed: () {},
                   //   child: Text(
@@ -629,9 +779,12 @@ Widget coursesPost({
                   const Spacer(
                     flex: 1,
                   ),
-                  const Text('610 تفاعل'),
+                  Text('$count إعجاب'),
                 ],
               ),
             ),
           ],
         ));
+    ;
+  }
+}

@@ -21,18 +21,17 @@ class TeacherInformationPage extends StatefulWidget {
 
 class _TeacherInformationPageState extends State<TeacherInformationPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController teacherFirstNameController = TextEditingController();
-  TextEditingController teacherBirthDateController = TextEditingController();
-  TextEditingController teacherLastName = TextEditingController();
-  TextEditingController teacherCertification = TextEditingController();
-  TextEditingController teacherSpecialty = TextEditingController();
-  TextEditingController teacherCurrentController = TextEditingController();
-  TextEditingController teacherPermanentController = TextEditingController();
-  TextEditingController teacherAuthNationalityController =
-      TextEditingController();
-  DateTime? dateTime;
+  var teacherFirstNameController = TextEditingController();
+  var teacherBirthDateController = TextEditingController();
+  var teacherLastName = TextEditingController();
+  var teacherCertification = TextEditingController();
+  var teacherSpecialty = TextEditingController();
+  var teacherCurrentController = TextEditingController();
+  var teacherPermanentController = TextEditingController();
+  var teacherAuthNationalityController = TextEditingController();
   String nationality = '';
   String department = '';
+  DateTime? dateTime;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;

@@ -42,7 +42,8 @@ class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
               const Text(
                 'مرحباً بكم!',
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              ), customTextField(
+              ),
+              customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل إسم الستخدم',
                   controller: teacherAuthSignUpUsernameController,
@@ -68,7 +69,8 @@ class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
                     if (text!.isEmpty) {
                       return 'الإيميل مطلوب';
                     }
-                    if (!RegExp(r'^\w+@gmail.com$').hasMatch(text)) {
+                    if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                        .hasMatch(text)) {
                       return 'يرجى التأكد من إدخال @gmail.com';
                     }
                   },
@@ -88,7 +90,7 @@ class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
                   //     return 'إسم المستخدم يجب أن يكون على الأقل 3 أحرف';
                   //   }
                   // },
-                  labelText: 'إسم المستخدم',
+                  labelText: 'الإييميل',
                   obscure: false,
                   prefix: Icons.person,
                   keyboardType: TextInputType.emailAddress,

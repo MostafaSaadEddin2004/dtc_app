@@ -155,20 +155,20 @@ class _TeacherNotificationsPageState extends State<TeacherNotificationsPage> {
                 },
                 child: Row(
                   children: const [
+                    Icon(
+                      Icons.exit_to_app_rounded,
+                      color: RedColor,
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
                     Text(
                       'تسجيل الخروج',
                       style: TextStyle(
                           color: RedColor,
                           fontSize: 24,
                           fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Icon(
-                      Icons.exit_to_app_rounded,
-                      color: RedColor,
-                      size: 30,
                     ),
                   ],
                 ),

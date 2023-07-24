@@ -50,7 +50,8 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
                     if (text!.isEmpty) {
                       return 'الإيميل مطلوب';
                     }
-                    if (!RegExp(r'^\w+@gmail.com$').hasMatch(text)) {
+                    if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                        .hasMatch(text)) {
                       return 'يرجى التأكد من إدخال @gmail.com';
                     }
                   },

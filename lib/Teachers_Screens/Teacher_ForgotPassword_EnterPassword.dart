@@ -30,7 +30,6 @@ class _TeacherrForgotPasswordEnterPasswordState
           child: Container(
             margin: const EdgeInsets.symmetric(vertical: 30),
             child: Column(children: [
-              titleText(text: 'أدخل الكود الذي تم إرساله إليك'),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: customTextField(

@@ -166,31 +166,6 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
                 child: Row(
                   children: const [
                     Icon(
-                      Icons.location_on,
-                      color: WhiteColor,
-                      size: 30,
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      'موقع المعهد',
-                      style: TextStyle(
-                          color: WhiteColor,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Row(
-                  children: const [
-                    Icon(
                       Icons.people,
                       color: WhiteColor,
                       size: 30,
@@ -217,24 +192,24 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
                       .pushReplacementNamed(SignUpType.id);
                 },
                 child: Row(
-                  children: const [
-                    Text(
-                      'تسجيل الخروج',
-                      style: TextStyle(
-                          color: RedColor,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Icon(
-                      Icons.exit_to_app_rounded,
-                      color: RedColor,
-                      size: 30,
-                    ),
-                  ],
-                ),
+                children: const [
+                  Icon(
+                    Icons.exit_to_app_rounded,
+                    color: RedColor,
+                    size: 30,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    'تسجيل الخروج',
+                    style: TextStyle(
+                        color: RedColor,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
               )
             ]),
           ),

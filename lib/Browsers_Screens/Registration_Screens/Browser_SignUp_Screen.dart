@@ -18,7 +18,7 @@ class BrowserSignUpScreen extends StatefulWidget {
 class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
   bool secure = false;
   GlobalKey<FormState> formState = GlobalKey();
-  
+
   bool CheckBoxValue = false;
 
   @override
@@ -63,12 +63,13 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل الإيميل',
-                  controller: browserEmailController,
+                  controller: browserSignUpEmailController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'الإيميل مطلوب';
                     }
-                    if (!RegExp(r'^\w+@gmail.com$').hasMatch(text)) {
+                    if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                        .hasMatch(text)) {
                       return 'يرجى التأكد من إدخال @gmail.com';
                     }
                   },

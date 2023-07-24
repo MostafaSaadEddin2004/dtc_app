@@ -5,6 +5,7 @@ import '../../../Components/DropDownSearch.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
 import '../../../Constents/Colors.dart';
+import '../../../Constents/Controller.dart';
 import '../../../Constents/TextStyle.dart';
 import 'Browser_Other_Information.dart';
 
@@ -20,14 +21,7 @@ class BrowserPersonalInformation extends StatefulWidget {
 class _BrowserPersonalInformationState
     extends State<BrowserPersonalInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController englishFullNameController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController nationalityController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController currentController = TextEditingController();
-  TextEditingController birthDateController = TextEditingController();
-  String nationality = '';
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -66,7 +60,9 @@ class _BrowserPersonalInformationState
                               registrationDropDownSearch(
                                   hint: '',
                                   items: ['ذكر', 'أنثى'],
-                                  onChange: (data) {},
+                                  onChange: (data) {
+                                    browserGenderVariable = data!;
+                                  },
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
@@ -85,7 +81,9 @@ class _BrowserPersonalInformationState
                               registrationDropDownSearch(
                                   hint: '',
                                   items: ['متزوج', 'مخطوب', 'أعزب'],
-                                  onChange: (data) {},
+                                  onChange: (data) {
+                                    browserSituationVariable = data!;
+                                  },
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
@@ -110,14 +108,14 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: fullNameController,
+                                controller: browserCourseFullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
                                     return 'الحقل مطلوب';
                                   } else if (text.length < 3) {
-                                    return 'الحقل يجب أن يكون 5 أحرف او أكثر';
+                                    return 'الحقل يجب أن يكون 3 أحرف او أكثر';
                                   }
                                 },
                               )
@@ -135,7 +133,8 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: englishFullNameController,
+                                controller:
+                                    browserCourseEnglishFullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -157,7 +156,8 @@ class _BrowserPersonalInformationState
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: nationality == 'فلسطيني مُسجل' || nationality == ''
+                    child: browserNationalityVariable == 'فلسطيني مُسجل' ||
+                            browserNationalityVariable == ''
                         ? Column(
                             children: [
                               titleText(text: 'الجنسية'),
@@ -169,7 +169,7 @@ class _BrowserPersonalInformationState
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
-                                      nationality = data!;
+                                      browserNationalityVariable = data!;
                                     });
                                   },
                                   validator: (data) {
@@ -190,7 +190,7 @@ class _BrowserPersonalInformationState
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
-                                      nationality = data!;
+                                      browserNationalityVariable = data!;
                                     });
                                   },
                                   validator: (data) {
@@ -206,16 +206,14 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: nationalityController,
+                                controller: browserCourseNationalityController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
                                     return 'الحقل مطلوب';
-                                  } else if (text.length < 10) {
+                                  } else if (text.length < 4) {
                                     return 'الحقل يجب أن يكون 4 أحرف أو أكثر';
-                                  } else if (text.length > 10) {
-                                    return 'الحقل يجب أن يكون 4 أحرف او أكثر';
                                   }
                                 },
                               ),
@@ -234,14 +232,16 @@ class _BrowserPersonalInformationState
                           height: 10,
                         ),
                         registrationInfoTextField(
-                          controller: emailController,
-                          keyboardType: TextInputType.streetAddress,
+                          controller: browserCourseEmailController,
+                          keyboardType: TextInputType.emailAddress,
                           radius: 20,
                           validator: (text) {
                             if (text!.isEmpty) {
-                              return 'الحقل مطلوب';
-                            } else if (text.length < 3) {
-                              return 'الحقل يجب أن يكون 12 حرف أو أكثر';
+                              return 'الإيميل مطلوب';
+                            } else if (!RegExp(
+                                    r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                                .hasMatch(text)) {
+                              return 'يرجى التأكد من إدخال @gmail.com';
                             }
                           },
                         )
@@ -263,15 +263,16 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: phoneNumberController,
-                                keyboardType: TextInputType.name,
+                                controller: browserCoursePhoneNumberController,
+                                keyboardType: TextInputType.number,
                                 radius: 20,
                                 validator: (text) {
-                            if (text!.isEmpty) {
-                      return 'رقم الجوال مطلوب';
-                    } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
-                      return 'الرجاء التأكد من رقم الجوال';
-                    } 
+                                  if (text!.isEmpty) {
+                                    return 'رقم الجوال مطلوب';
+                                  } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
+                                      .hasMatch(text)) {
+                                    return 'الرجاء التأكد من رقم الجوال';
+                                  }
                                 },
                               )
                             ],
@@ -288,7 +289,8 @@ class _BrowserPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: currentController,
+                                controller:
+                                    browserCourseCurrentLocationController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
                                 validator: (text) {
@@ -330,7 +332,7 @@ class _BrowserPersonalInformationState
                           // ),
                           child: TextFormField(
                               onChanged: (data) {},
-                              controller: birthDateController,
+                              controller: browserCourseBirthDateController,
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';

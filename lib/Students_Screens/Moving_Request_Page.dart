@@ -5,6 +5,7 @@ import '../Components/DropDownSearch.dart';
 import '../Components/Label.dart';
 import '../Components/TextField.dart';
 import '../Constents/Colors.dart';
+import '../Constents/Controller.dart';
 import '../Constents/TextStyle.dart';
 
 class MovingRequestPage extends StatefulWidget {
@@ -17,11 +18,7 @@ class MovingRequestPage extends StatefulWidget {
 
 class _MovingRequestPageState extends State<MovingRequestPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController marksController = TextEditingController();
-  TextEditingController movingRequestTextController = TextEditingController();
-  String currentDepartment = '';
-  String newDepartment = '';
+  
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -50,7 +47,7 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: fullNameController,
+                                controller: studentMRFullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -75,7 +72,7 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: marksController,
+                                controller: studentMRMarkController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -97,28 +94,6 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 15, top: 15, right: 15),
-                    child: Column(
-                      children: [
-                        titleText(text: 'نص طلب الإنتقال'),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        registrationInfoTextField(
-                          controller: movingRequestTextController,
-                          keyboardType: TextInputType.name,
-                          radius: 20,
-                          validator: (text) {
-                            if (text!.isEmpty) {
-                              return 'الحقل مطلوب';
-                            }
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, top: 15, right: 15),
                     child: Row(
                       children: [
                         Expanded(
@@ -129,7 +104,7 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                                 height: 10,
                               ),
                               registrationDropDownSearch(
-                                hint: '',
+                                  hint: '',
                                   items: [
                                     'تكنولوجيا المعلومات',
                                     'الطبي',
@@ -151,9 +126,12 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(hint: '',
+                              registrationDropDownSearch(
+                                  hint: '',
                                   items: [],
-                                  onChange: (data) {},
+                                  onChange: (data) {
+                                    currentClass = data!;
+                                  },
                                   validator: (data) {})
                             ],
                           ),
@@ -174,7 +152,7 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                                 height: 10,
                               ),
                               registrationDropDownSearch(
-                                hint: '',
+                                  hint: '',
                                   items: [
                                     'تكنولوجيا المعلومات',
                                     'الطبي',
@@ -197,13 +175,51 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                                 height: 10,
                               ),
                               registrationDropDownSearch(
-                                hint: '',
+                                  hint: '',
                                   items: [],
-                                  onChange: (data) {},
+                                  onChange: (data) {
+                                    newClass = data!;
+                                  },
                                   validator: (data) {})
                             ],
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, top: 15, right: 15),
+                    child: Column(
+                      children: [
+                        titleText(text: 'نص طلب الإنتقال'),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                            onChanged: (data) {},
+                            controller: movingRequestTextController,
+                            validator: (text) {
+                              if (text!.isEmpty) {
+                                return 'الحقل مطلوب';
+                              }
+                            },
+                            keyboardType: TextInputType.text,
+                            enabled: true,
+                            cursorColor: GreyColor,
+                            decoration: InputDecoration(
+                              hintText: 'أكتب هنا...',
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: const BorderSide(
+                                      color: Colors.transparent)),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 50),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(color: GreyColor),
+                              ),
+                            )),
                       ],
                     ),
                   ),

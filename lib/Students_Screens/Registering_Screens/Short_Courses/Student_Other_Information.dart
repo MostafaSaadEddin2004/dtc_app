@@ -6,6 +6,7 @@ import '../../../Components/Buttons.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
 import '../../../Constents/Colors.dart';
+import '../../../Constents/Controller.dart';
 import 'Student_Required_Documents.dart';
 
 class StudentOtherInformation extends StatefulWidget {
@@ -19,7 +20,7 @@ class StudentOtherInformation extends StatefulWidget {
 
 class _StudentOtherInformationState extends State<StudentOtherInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController educationPlaceController = TextEditingController();
+  
   int educationSelectedIndex = 1;
   int workSelectedIndex = 1;
   int timeSelectedIndex = 1;
@@ -94,7 +95,7 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                               height: 10,
                             ),
                             registrationInfoTextField(
-                              controller: educationPlaceController,
+                              controller: studentEducationPlaceController,
                               keyboardType: TextInputType.name,
                               radius: 20,
                               validator: (text) {

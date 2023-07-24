@@ -80,10 +80,18 @@ class _TeacherDepartmentPostsPageState
         color: Colors.transparent,
         child: ListView.builder(
           itemCount: posts.length,
-          itemBuilder: (context, index) => departmentPosts(
+          itemBuilder: (context, index) => DepartmentPosts(
+              onChange: (isFavorite, isSaved, count) {
+                changes[index].isFavorite = isFavorite;
+                changes[index].isSaved = isSaved;
+                changes[index].count = count;
+              },
+              isFavorite: changes[index].isFavorite,
+              isSaved: changes[index].isSaved,
+              count: changes[index].count,
               time: posts[index]["Time"].toString(),
-              Poster: posts[index]["Poster"].toString(),
-              PostImage: posts[index]['Images'].toString(),
+              poster: posts[index]["Poster"].toString(),
+              postImage: posts[index]['Images'].toString(),
               postText: posts[index]['PostText'].toString()),
         ),
       ),

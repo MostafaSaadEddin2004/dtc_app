@@ -2,7 +2,7 @@ import 'package:dtc_app/Constents/Colors.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/Notes.dart';
-import 'Student_Adding_Notes_Page.dart';
+import 'Student_Adding_Notes.dart';
 import 'Student_Profile_Page.dart';
 
 class StudentProfileNotesPage extends StatefulWidget {
@@ -71,7 +71,7 @@ class _StudentProfileNotesPageState extends State<StudentProfileNotesPage> {
         floatingActionButton: FloatingActionButton(
             backgroundColor: PrimaryColor,
             onPressed: () {Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const StudentAddingNotesPage(),
+                builder: (context) => const StudentAddingNotes(),
               ));},
             child: const Icon(
               Icons.add,

@@ -48,7 +48,6 @@ Widget notificationsBubble({
           const SizedBox(
             width: 10,
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
         ],
       ),
     );

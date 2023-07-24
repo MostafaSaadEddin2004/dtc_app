@@ -4,6 +4,7 @@ import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
 import '../../../Constents/Colors.dart';
+import '../../../Constents/Controller.dart';
 import '../../../Constents/TextStyle.dart';
 import 'Browser_Required_Documents.dart';
 
@@ -18,7 +19,7 @@ class BrowserOtherInformation extends StatefulWidget {
 
 class _BrowserOtherInformationState extends State<BrowserOtherInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController educationPlaceController = TextEditingController();
+
   int educationSelectedIndex = 1;
   int workSelectedIndex = 1;
   int timeSelectedIndex = 1;
@@ -93,14 +94,14 @@ class _BrowserOtherInformationState extends State<BrowserOtherInformation> {
                               height: 10,
                             ),
                             registrationInfoTextField(
-                              controller: educationPlaceController,
+                              controller: browserCourseEducationPlaceController,
                               keyboardType: TextInputType.name,
                               radius: 20,
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
                                 } else if (text.length < 3) {
-                                  return 'الحقل يجب أن يكون 8 أحرف أ, أكثر ';
+                                  return 'الحقل يجب أن يكون 3 أحرف أو أكثر ';
                                 }
                               },
                             ),
