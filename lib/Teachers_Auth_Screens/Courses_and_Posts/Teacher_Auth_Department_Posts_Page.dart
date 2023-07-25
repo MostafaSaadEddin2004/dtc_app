@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Components/Posts.dart';
-import '../../Constents/Colors.dart';
+import '../../Constants/Colors.dart';
 import '../Adding_Posts.dart';
 
 class TeacherAuthDepartmentPostsPage extends StatefulWidget {

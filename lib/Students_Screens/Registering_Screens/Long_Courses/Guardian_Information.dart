@@ -4,8 +4,8 @@ import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
-import '../../../Constents/Colors.dart';
-import '../../../Constents/TextStyle.dart';
+import '../../../Constants/Colors.dart';
+import '../../../Constants/TextStyle.dart';
 import 'Student_Certification.dart';
 
 class GuardianInformation extends StatefulWidget {
@@ -120,11 +120,12 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
-                                 if (text!.isEmpty) {
-                      return 'رقم الجوال مطلوب';
-                    } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
-                      return 'الرجاء التأكد من رقم الجوال';
-                    } 
+                                  if (text!.isEmpty) {
+                                    return 'رقم الجوال مطلوب';
+                                  } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
+                                      .hasMatch(text)) {
+                                    return 'الرجاء التأكد من رقم الجوال';
+                                  }
                                 },
                               )
                             ],
@@ -202,10 +203,11 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
-                      return 'رقم الجوال مطلوب';
-                    } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
-                      return 'الرجاء التأكد من رقم الجوال';
-                    } 
+                                    return 'رقم الجوال مطلوب';
+                                  } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
+                                      .hasMatch(text)) {
+                                    return 'الرجاء التأكد من رقم الجوال';
+                                  }
                                 },
                               ),
                             ],
@@ -224,10 +226,10 @@ class _GuardianInformationState extends State<GuardianInformation> {
                           text: 'التالي',
                           onTap: () {
                             //if (formState.currentState!.validate()) {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const StudentCertification(),
-                              ));
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const StudentCertification(),
+                            ));
                             //}
                           }),
                     ],

@@ -1,5 +1,4 @@
 import 'package:dtc_app/Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,7 +6,7 @@ import 'Browsers_Screens/Browser_Course_Page.dart';
 import 'Browsers_Screens/Browser_Start_Page.dart';
 import 'Browsers_Screens/Registration_Screens/Browser_SignIn_Screen.dart';
 import 'Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
-import 'Constents/Colors.dart';
+import 'Constants/Colors.dart';
 import 'SignUp_Type.dart';
 import 'Start_App_Screens/Start_App_Screen.dart';
 import 'Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
@@ -15,7 +14,6 @@ import 'Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualificati
 import 'Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
 import 'Students_Screens/Registering_Screens/Student_SignUp_Screen.dart';
 import 'Students_Screens/Student_Start_Page.dart';
-import 'Teachers_Auth_Screens/Adding_Posts.dart';
 import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignIn_Screen.dart';
 import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
 import 'Teachers_Auth_Screens/Teacher_Auth__Information_Page.dart';

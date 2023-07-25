@@ -1,10 +1,10 @@
 import 'package:dtc_app/Components/TextField.dart';
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../Components/Buttons.dart';
-import '../../Constents/Controller.dart';
+import '../../Constants/Controller.dart';
 import 'Long_Courses/Acceptance_Qualifications.dart';
 
 class StudentSignUpScreen extends StatefulWidget {

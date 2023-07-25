@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Constents/Colors.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/Colors.dart';
+import '../Constants/TextStyle.dart';
 import 'Browser_Saved_Page.dart';
 import 'Browser_Privacy_Page.dart';
 

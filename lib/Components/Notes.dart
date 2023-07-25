@@ -1,6 +1,6 @@
-import 'package:dtc_app/Constents/TextStyle.dart';
+import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:flutter/material.dart';
-import '../Constents/Colors.dart';
+import '../Constants/Colors.dart';
 
 Widget notes({
   required String noteTitle,

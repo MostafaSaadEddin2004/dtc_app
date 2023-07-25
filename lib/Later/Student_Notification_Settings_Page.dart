@@ -1,6 +1,6 @@
 import 'package:dtc_app/Components/Label.dart';
-import 'package:dtc_app/Constents/Colors.dart';
-import 'package:dtc_app/Constents/TextStyle.dart';
+import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:flutter/material.dart';
 
 import 'Student_Notification_Tone_Page.dart';

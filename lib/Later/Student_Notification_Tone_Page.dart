@@ -1,5 +1,5 @@
-import 'package:dtc_app/Constents/Colors.dart';
-import 'package:dtc_app/Constents/TextStyle.dart';
+import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:flutter/material.dart';
 
 class StudentNotificationTonePage extends StatefulWidget {

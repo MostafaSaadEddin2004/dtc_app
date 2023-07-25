@@ -6,8 +6,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/TextField.dart';
-import '../Constents/Controller.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/Controller.dart';
+import '../Constants/TextStyle.dart';
 import 'Student_ForgotPassword_EnterPassword.dart';
 
 class StudentForgotPasswordEnterCode extends StatefulWidget {

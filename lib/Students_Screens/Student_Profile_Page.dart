@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Constents/Colors.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/Colors.dart';
+import '../Constants/TextStyle.dart';
 import 'Student_Profile_Notes_Page.dart';
 import 'Student_Saved_Page.dart';
 import 'Student_Privacy_Page.dart';

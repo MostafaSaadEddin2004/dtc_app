@@ -7,8 +7,8 @@ import '../Components/CustomAppBar.dart';
 import '../Components/DropDownSearch.dart';
 import '../Components/Label.dart';
 import '../Components/TextField.dart';
-import '../Constents/Colors.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/Colors.dart';
+import '../Constants/TextStyle.dart';
 import 'Teacher_Start_Page.dart';
 
 class TeacherInformationPage extends StatefulWidget {

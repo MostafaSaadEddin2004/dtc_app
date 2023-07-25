@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../Constents/Colors.dart';
+import '../Constants/Colors.dart';
 import '../Students_Screens/Student_Home_Page.dart';
 
 class Change {

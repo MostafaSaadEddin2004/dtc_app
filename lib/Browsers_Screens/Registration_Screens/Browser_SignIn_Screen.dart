@@ -1,8 +1,8 @@
 import 'package:dtc_app/Components/Buttons.dart';
 import 'package:flutter/material.dart';
 import '../../Components/TextField.dart';
-import '../../Constents/Colors.dart';
-import '../../Constents/Controller.dart';
+import '../../Constants/Colors.dart';
+import '../../Constants/Controller.dart';
 import '../../Teachers_Screens/Teacher_ChangePassword.dart';
 import 'Browser_SignUp_Screen.dart';
 

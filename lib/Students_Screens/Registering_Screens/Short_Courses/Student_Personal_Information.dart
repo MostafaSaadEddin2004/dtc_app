@@ -1,4 +1,4 @@
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Components/Buttons.dart';
@@ -6,8 +6,8 @@ import '../../../Components/CustomAppBar.dart';
 import '../../../Components/DropDownSearch.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
-import '../../../Constents/Controller.dart';
-import '../../../Constents/TextStyle.dart';
+import '../../../Constants/Controller.dart';
+import '../../../Constants/TextStyle.dart';
 import 'Student_Other_Information.dart';
 
 class StudentPersonalInformation extends StatefulWidget {
@@ -22,7 +22,7 @@ class StudentPersonalInformation extends StatefulWidget {
 class _StudentPersonalInformationState
     extends State<StudentPersonalInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -134,7 +134,8 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: studentCourseEnglishFullNameController,
+                                controller:
+                                    studentCourseEnglishFullNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -156,7 +157,8 @@ class _StudentPersonalInformationState
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: studentNationalityVariable == 'فلسطيني مُسجل' || studentNationalityVariable == ''
+                    child: studentNationalityVariable == 'فلسطيني مُسجل' ||
+                            studentNationalityVariable == ''
                         ? Column(
                             children: [
                               titleText(text: 'الجنسية'),
@@ -266,11 +268,12 @@ class _StudentPersonalInformationState
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
-                               if (text!.isEmpty) {
-                      return 'رقم الجوال مطلوب';
-                    } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
-                      return 'الرجاء التأكد من رقم الجوال';
-                    } 
+                                  if (text!.isEmpty) {
+                                    return 'رقم الجوال مطلوب';
+                                  } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
+                                      .hasMatch(text)) {
+                                    return 'الرجاء التأكد من رقم الجوال';
+                                  }
                                 },
                               )
                             ],
@@ -287,7 +290,8 @@ class _StudentPersonalInformationState
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: studentCourseCurrentLocationController,
+                                controller:
+                                    studentCourseCurrentLocationController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
                                 validator: (text) {
@@ -377,10 +381,10 @@ class _StudentPersonalInformationState
                           text: 'التالي',
                           onTap: () {
                             //if (formState.currentState!.validate()) {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const StudentOtherInformation(),
-                              ));
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const StudentOtherInformation(),
+                            ));
                             //}
                           }),
                     ],

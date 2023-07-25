@@ -1,6 +1,6 @@
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/TextStyle.dart';
 
 Widget notificationsBubble({
   required String notificationText,

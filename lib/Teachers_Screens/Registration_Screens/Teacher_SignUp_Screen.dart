@@ -1,6 +1,6 @@
 import 'package:dtc_app/Components/TextField.dart';
-import 'package:dtc_app/Constents/Colors.dart';
-import 'package:dtc_app/Constents/Controller.dart';
+import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/Constants/Controller.dart';
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
 import '../Teacher_Information_Page.dart';

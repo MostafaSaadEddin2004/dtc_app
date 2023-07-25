@@ -1,8 +1,8 @@
 import 'package:dtc_app/Components/Posts.dart';
-import 'package:dtc_app/Constents/TextStyle.dart';
+import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:flutter/material.dart';
 import '../Components/BottomNavBar.dart';
-import '../Constents/Colors.dart';
+import '../Constants/Colors.dart';
 import 'Browser_Course_Page.dart';
 import 'Browser_Home_Page.dart';
 import 'Browser_Profile_Page.dart';

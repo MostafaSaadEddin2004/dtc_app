@@ -1,7 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
-import '../Constents/Colors.dart';
+import '../Constants/Colors.dart';
 
 Widget registrationDropDownSearch({
   required void Function(String? data) onChange,

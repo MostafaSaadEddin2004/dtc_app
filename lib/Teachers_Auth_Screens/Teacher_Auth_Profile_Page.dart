@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Constents/Colors.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/Colors.dart';
+import '../Constants/TextStyle.dart';
 import 'Teacher_Auth_Profile_Notes_Page.dart';
 import 'Teacher_Auth_Saved_Page.dart';
 import 'Teacher_Auth_Privacy_Page.dart';

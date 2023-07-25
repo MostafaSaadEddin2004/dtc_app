@@ -1,9 +1,9 @@
 import 'package:dtc_app/Components/Posts.dart';
-import 'package:dtc_app/Constents/TextStyle.dart';
+import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/BottomNavBar.dart';
-import '../Constents/Colors.dart';
+import '../Constants/Colors.dart';
 import 'Courses_and_Posts/Student_Course_Page.dart';
 import 'Courses_and_Posts/Student_TabBar_CADP.dart';
 import 'Student_Home_Page.dart';

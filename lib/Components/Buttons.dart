@@ -1,4 +1,4 @@
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 
 Widget customButton({
@@ -35,10 +35,37 @@ Widget customButton({
       ),
     );
 
-Widget nextButton({
-  required String text,
-  required void Function() onTap,
-}) =>
+Widget coloredNextButton(
+        {required String text, required void Function() onTap, required Color buttonColor}) =>
+    InkWell(
+      radius: 20,
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(left: 15, right: 15),
+        alignment: Alignment.center,
+        height: 50,
+        width: 100,
+        decoration: BoxDecoration(
+          color: buttonColor,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [
+            BoxShadow(
+              color: GreyColor,
+              blurRadius: 2,
+              offset: Offset(2, 2), // Shadow position
+            ),
+          ],
+        ),
+        child: Text(
+          text,
+          style: const TextStyle(
+              fontSize: 20, color: WhiteColor, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+
+Widget nextButton(
+        {required String text, required void Function() onTap, Color}) =>
     InkWell(
       radius: 20,
       onTap: onTap,

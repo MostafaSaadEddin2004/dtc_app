@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
 import 'Components/Buttons.dart';
-import 'Constents/Colors.dart';
+import 'Constants/Colors.dart';
 import 'Students_Screens/Registering_Screens/Student_SignUp_Screen.dart';
 import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';

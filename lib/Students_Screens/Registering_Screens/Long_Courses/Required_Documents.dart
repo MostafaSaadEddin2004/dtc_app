@@ -4,7 +4,7 @@ import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Documents_card.dart';
 import '../../../Components/Label.dart';
-import '../../../Constents/Colors.dart';
+import '../../../Constants/Colors.dart';
 import '../../Student_Start_Page.dart';
 
 class RequiredDocuments extends StatefulWidget {
@@ -14,7 +14,8 @@ class RequiredDocuments extends StatefulWidget {
   @override
   State<RequiredDocuments> createState() => _RequiredDocumentsState();
 }
- GlobalKey<FormState> formState = GlobalKey<FormState>();
+
+GlobalKey<FormState> formState = GlobalKey<FormState>();
 
 class _RequiredDocumentsState extends State<RequiredDocuments> {
   @override
@@ -42,7 +43,8 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                 const SizedBox(
                   height: 15,
                 ),
-                documentsCard(title: 'صورة مصدقة عن الشهادة التي يحملها الطالب'),
+                documentsCard(
+                    title: 'صورة مصدقة عن الشهادة التي يحملها الطالب'),
                 const SizedBox(
                   height: 15,
                 ),

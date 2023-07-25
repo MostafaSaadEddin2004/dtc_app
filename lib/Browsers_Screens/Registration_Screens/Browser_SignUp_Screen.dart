@@ -1,9 +1,9 @@
 import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
 import 'package:dtc_app/Components/TextField.dart';
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
-import '../../Constents/Controller.dart';
+import '../../Constants/Controller.dart';
 import 'Browser_SignIn_Screen.dart';
 
 class BrowserSignUpScreen extends StatefulWidget {

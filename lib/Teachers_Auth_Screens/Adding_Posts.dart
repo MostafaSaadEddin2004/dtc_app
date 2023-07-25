@@ -3,9 +3,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../Components/CustomAppBar.dart';
-import '../Constents/Colors.dart';
-import '../Constents/Controller.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/Colors.dart';
+import '../Constants/Controller.dart';
+import '../Constants/TextStyle.dart';
 
 class AddingPostPage extends StatefulWidget {
   const AddingPostPage({super.key});

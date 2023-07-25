@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
-import '../../Constents/Colors.dart';
-import '../../Constents/Controller.dart';
+import '../../Constants/Colors.dart';
+import '../../Constants/Controller.dart';
 import '../Student_ForgotPassword_EnterEmail.dart';
 import 'Student_SignUp_Screen.dart';
 

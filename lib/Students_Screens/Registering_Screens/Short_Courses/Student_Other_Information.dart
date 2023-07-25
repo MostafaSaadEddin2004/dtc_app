@@ -1,12 +1,12 @@
 import 'package:dtc_app/Components/CustomAppBar.dart';
-import 'package:dtc_app/Constents/TextStyle.dart';
+import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Components/Buttons.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
-import '../../../Constents/Colors.dart';
-import '../../../Constents/Controller.dart';
+import '../../../Constants/Colors.dart';
+import '../../../Constants/Controller.dart';
 import 'Student_Required_Documents.dart';
 
 class StudentOtherInformation extends StatefulWidget {
@@ -20,7 +20,7 @@ class StudentOtherInformation extends StatefulWidget {
 
 class _StudentOtherInformationState extends State<StudentOtherInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  
+
   int educationSelectedIndex = 1;
   int workSelectedIndex = 1;
   int timeSelectedIndex = 1;
@@ -184,10 +184,10 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                         text: 'التالي',
                         onTap: () {
                           //if (formState.currentState!.validate()) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const StudentRequiredDocuments(),
-                            ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                const StudentRequiredDocuments(),
+                          ));
                           //}
                         }),
                   ],

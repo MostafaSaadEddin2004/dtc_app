@@ -1,4 +1,4 @@
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Comparison_Screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,8 @@ class AcceptanceQualifications extends StatefulWidget {
   State<AcceptanceQualifications> createState() =>
       _AcceptanceQualificationsState();
 }
- GlobalKey<FormState> formState = GlobalKey<FormState>();
+
+GlobalKey<FormState> formState = GlobalKey<FormState>();
 
 class _AcceptanceQualificationsState extends State<AcceptanceQualifications> {
   @override
@@ -81,7 +82,8 @@ class _AcceptanceQualificationsState extends State<AcceptanceQualifications> {
                                   text:
                                       '(تقبل طلبات ذوي الإعاقة وتُدرس خصوصية كل حالة على حدة شرط استيفاء شروط القبول)',
                                   style: TextStyle(
-                                      fontSize: 14, fontWeight: FontWeight.bold),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 )
                               ]),
                           overflow: TextOverflow.ellipsis,
@@ -158,7 +160,8 @@ class _AcceptanceQualificationsState extends State<AcceptanceQualifications> {
                                 TextSpan(
                                   text: 'شرطياً في قائمة الإحتياط',
                                   style: TextStyle(
-                                      fontSize: 14, fontWeight: FontWeight.bold),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 )
                               ]),
                           overflow: TextOverflow.ellipsis,
@@ -184,7 +187,8 @@ class _AcceptanceQualificationsState extends State<AcceptanceQualifications> {
                                 TextSpan(
                                   text: 'الحد  الأدنى للعلامات ',
                                   style: TextStyle(
-                                      fontSize: 14, fontWeight: FontWeight.bold),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 TextSpan(
                                   text: 'المطلوبة للإشتراك بالمفاضلة الأولى ',
@@ -193,7 +197,8 @@ class _AcceptanceQualificationsState extends State<AcceptanceQualifications> {
                                 TextSpan(
                                   text: 'شرطياً في قائمة الإحتياط ',
                                   style: TextStyle(
-                                      fontSize: 14, fontWeight: FontWeight.bold),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ]),
                           overflow: TextOverflow.ellipsis,
@@ -257,7 +262,8 @@ class _AcceptanceQualificationsState extends State<AcceptanceQualifications> {
                                   text:
                                       '(تقبل طلبات ذوي الإعاقة وتُدرس خصوصية كل حالة على حدة شرط استيفاء شروط القبول)',
                                   style: TextStyle(
-                                      fontSize: 14, fontWeight: FontWeight.bold),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 )
                               ]),
                           overflow: TextOverflow.ellipsis,
@@ -334,7 +340,8 @@ class _AcceptanceQualificationsState extends State<AcceptanceQualifications> {
                                 TextSpan(
                                   text: 'شرطياً في قائمة الإحتياط',
                                   style: TextStyle(
-                                      fontSize: 14, fontWeight: FontWeight.bold),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
                                 )
                               ]),
                           overflow: TextOverflow.ellipsis,
@@ -355,7 +362,8 @@ class _AcceptanceQualificationsState extends State<AcceptanceQualifications> {
                         onTap: () {
                           if (formState.currentState!.validate()) {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const ComparisonScreen()));
+                                builder: (context) =>
+                                    const ComparisonScreen()));
                           }
                         }),
                   ],

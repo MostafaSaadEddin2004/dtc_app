@@ -1,5 +1,5 @@
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Personal_Information.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/data_table.dart';
@@ -16,7 +16,8 @@ class ComparisonScreen extends StatefulWidget {
   @override
   State<ComparisonScreen> createState() => _ComparisonScreenState();
 }
- GlobalKey<FormState> formState = GlobalKey<FormState>();
+
+GlobalKey<FormState> formState = GlobalKey<FormState>();
 
 class _ComparisonScreenState extends State<ComparisonScreen> {
   @override
@@ -26,7 +27,6 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
     return Scaffold(
       appBar: CustomAppBar(title: 'طلب الانتساب'),
       body: Form(
-
         key: formState,
         child: ListView(
           children: [
@@ -160,7 +160,8 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                     padding: EdgeInsets.only(left: 15, right: 15),
                     child: Text(
                       'ملاحظة :',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   Flexible(

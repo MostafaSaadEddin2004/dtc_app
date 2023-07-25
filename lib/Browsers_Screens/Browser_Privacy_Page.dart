@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Components/PrivacySettings.dart';
-import '../Constents/Colors.dart';
+import '../Constants/Colors.dart';
 import 'Browser_ChangePassword.dart';
 
 class BrowserPrivacyPage extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Constents/Colors.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/Colors.dart';
+import '../Constants/TextStyle.dart';
 
 class BrowserTonePage extends StatefulWidget {
   const BrowserTonePage({super.key});

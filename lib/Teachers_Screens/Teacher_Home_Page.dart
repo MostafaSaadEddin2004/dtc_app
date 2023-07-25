@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Components/Posts.dart';
-import '../Constents/Colors.dart';
+import '../Constants/Colors.dart';
 import '../SignUp_Type.dart';
 import 'Teacher_Profile_Page.dart';
 

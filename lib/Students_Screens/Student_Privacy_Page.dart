@@ -1,4 +1,4 @@
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/PrivacySettings.dart';

@@ -1,5 +1,5 @@
 import 'package:dtc_app/Components/BottomNavBar.dart';
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notifications.dart';
 import '../SignUp_Type.dart';

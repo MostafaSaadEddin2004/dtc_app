@@ -1,10 +1,10 @@
 import 'package:dtc_app/Components/Buttons.dart';
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
-import '../../../Constents/TextStyle.dart';
+import '../../../Constants/TextStyle.dart';
 import 'Guardian_Information.dart';
 
 class PersonalInformation extends StatefulWidget {
@@ -351,9 +351,9 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           text: 'التالي',
                           onTap: () {
                             //if (formState.currentState!.validate()) {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      const GuardianInformation()));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const GuardianInformation()));
                             //}
                           }),
                     ],

@@ -1,5 +1,5 @@
 import 'package:dtc_app/Components/Buttons.dart';
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -31,21 +31,12 @@ class CustomDialog extends StatelessWidget {
   }
 }
 
-class EditingPrivacyDialog extends StatelessWidget {
-  final String title;
-  final String message;
-  final VoidCallback onPressed;
-
-  const EditingPrivacyDialog({
-    Key? key,
-    required this.title,
-    required this.message,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
+Widget warningDialog({
+  required String title,
+  required String message,
+  required VoidCallback onPressed,
+}) =>
+    AlertDialog(
       title: Text(title),
       content: Text(message),
       actions: [
@@ -55,5 +46,25 @@ class EditingPrivacyDialog extends StatelessWidget {
         ),
       ],
     );
-  }
-}
+
+Widget towButtonWarningDialog({
+  required String title,
+  required String message,
+  required VoidCallback onOkPressed,
+  required String okButtonText,
+  required VoidCallback onCancelPressed,
+  required String cancelButtonText,
+}) =>
+    AlertDialog(
+        title: Text(title),
+        content: Text(message),
+        actions:  [
+                coloredNextButton(
+                    text: okButtonText,
+                    onTap: onOkPressed,
+                    buttonColor: PrimaryColor),
+                coloredNextButton(
+                    text: cancelButtonText,
+                    onTap: onCancelPressed,
+                    buttonColor: RedColor),
+              ]);

@@ -5,8 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../Components/TextField.dart';
-import '../Constents/Controller.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/Controller.dart';
+import '../Constants/TextStyle.dart';
 import 'Teacher_Auth_ForgotPassword_EnterCode.dart';
 
 class TeacherAuthForgotPasswordEnterEmail extends StatefulWidget {

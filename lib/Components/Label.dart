@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Constents/Colors.dart';
+import '../Constants/Colors.dart';
 
 Widget labelStyle({
   required String text,

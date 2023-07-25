@@ -1,9 +1,9 @@
 import 'package:dtc_app/Components/TextField.dart';
-import 'package:dtc_app/Constents/Colors.dart';
+import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import '../../Components/Buttons.dart';
-import '../../Constents/Controller.dart';
+import '../../Constants/Controller.dart';
 import '../Teacher_Auth__Information_Page.dart';
 import 'Teacher_Auth_SignIn_Screen.dart';
 

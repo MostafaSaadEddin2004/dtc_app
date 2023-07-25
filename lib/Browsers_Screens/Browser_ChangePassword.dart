@@ -6,8 +6,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/TextField.dart';
-import '../Constents/Controller.dart';
-import '../Constents/TextStyle.dart';
+import '../Constants/Controller.dart';
+import '../Constants/TextStyle.dart';
 
 class BrowserChangePasswordEnterPassword extends StatefulWidget {
   const BrowserChangePasswordEnterPassword({super.key});

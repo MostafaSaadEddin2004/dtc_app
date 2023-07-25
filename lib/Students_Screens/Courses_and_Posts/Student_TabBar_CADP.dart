@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../Constents/Colors.dart';
+import '../../Constants/Colors.dart';
 import '../../SignUp_Type.dart';
 import '../Student_Profile_Page.dart';
 import 'Student_Course_Page.dart';
