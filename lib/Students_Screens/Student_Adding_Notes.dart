@@ -147,7 +147,13 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                             showDialog(
                               context: context,
                               builder: (context) => CustomDialog(
-                                  onPressed: () {}, title: 'إضافة الملاحظة'),
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                      ..pop()
+                                      ..pop();
+                                    print('Note added successfully');
+                                  },
+                                  title: 'إضافة الملاحظة'),
                             );
                           }),
                     ],

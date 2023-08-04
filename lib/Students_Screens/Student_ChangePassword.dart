@@ -1,8 +1,5 @@
 import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/TextField.dart';

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../Components/CustomAppBar.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
@@ -17,7 +14,6 @@ class AddingPostPage extends StatefulWidget {
 
 class _AddingPostPageState extends State<AddingPostPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +86,7 @@ class _AddingPostPageState extends State<AddingPostPage> {
                   padding: const EdgeInsets.only(left: 15, right: 15),
                   child: Column(
                     children: [
-                      titleText(text: 'صورة المنشور'),
+                      titleText(text: 'صورة او ملف المنشور'),
                       const SizedBox(
                         height: 10,
                       ),
@@ -119,7 +115,8 @@ class _AddingPostPageState extends State<AddingPostPage> {
                               floatingLabelStyle: const TextStyle(
                                 color: BlackColor,
                               ),
-                              hintText: 'أنقر على الرمز لنحميل صصورة',
+                              hintText:
+                                  'أنقر على الرمز لنحميل صورة او ملف للمنشور',
                               labelStyle: const TextStyle(
                                   color: GreyColor, fontSize: 16),
                               border: OutlineInputBorder(

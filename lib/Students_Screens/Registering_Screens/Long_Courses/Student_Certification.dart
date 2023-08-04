@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Label.dart';
-import '../../../Components/TextField.dart';
 import '../../../Constants/Colors.dart';
+import '../../../Constants/Controller.dart';
 import '../../../Constants/TextStyle.dart';
 import 'Required_Documents.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -19,8 +19,6 @@ class StudentCertification extends StatefulWidget {
 
 class _StudentCertificationState extends State<StudentCertification> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController totalDegreesController = TextEditingController();
-  TextEditingController certificationDateController = TextEditingController();
   DateTime? dateTime;
   @override
   Widget build(BuildContext context) {
@@ -41,7 +39,7 @@ class _StudentCertificationState extends State<StudentCertification> {
               const SizedBox(
                 height: 15,
               ),
-              titleText(text: 'المعدل دون مادة الديانةٍ'),
+              titleText(text: 'مجموع العلامات دون مادة الديانة'),
               const SizedBox(
                 height: 10,
               ),
@@ -60,7 +58,7 @@ class _StudentCertificationState extends State<StudentCertification> {
                 // ),
                 child: TextFormField(
                     onChanged: (data) {},
-                    controller: totalDegreesController,
+                    controller: studentTotalDegreesController,
                     validator: (text) {},
                     keyboardType: TextInputType.number,
                     enabled: true,
@@ -101,7 +99,7 @@ class _StudentCertificationState extends State<StudentCertification> {
                 // ),
                 child: TextFormField(
                     onChanged: (data) {},
-                    controller: certificationDateController,
+                    controller: studentCertificationDateController,
                     validator: (text) {},
                     keyboardType: TextInputType.datetime,
                     enabled: true,
@@ -122,7 +120,7 @@ class _StudentCertificationState extends State<StudentCertification> {
                               firstDate: DateTime(2000),
                               lastDate: DateTime(2024),
                               keyboardType: TextInputType.datetime);
-                          certificationDateController.text =
+                          studentCertificationDateController.text =
                               '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
                         },
                       ),

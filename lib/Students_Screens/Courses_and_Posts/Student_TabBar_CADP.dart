@@ -142,24 +142,24 @@ class _StudentTabBarState extends State<StudentTabBar> {
                     Navigator.of(context).pushReplacementNamed(SignUpType.id);
                   },
                   child: Row(
-                children: const [
-                  Icon(
-                    Icons.exit_to_app_rounded,
-                    color: RedColor,
-                    size: 30,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    'تسجيل الخروج',
-                    style: TextStyle(
+                    children: const [
+                      Icon(
+                        Icons.exit_to_app_rounded,
                         color: RedColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
+                        size: 30,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        'تسجيل الخروج',
+                        style: TextStyle(
+                            color: RedColor,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
-                ],
-              ),
                 )
               ]),
             ),

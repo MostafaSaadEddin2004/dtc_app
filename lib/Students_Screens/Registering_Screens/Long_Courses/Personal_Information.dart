@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
+import '../../../Constants/Controller.dart';
 import '../../../Constants/TextStyle.dart';
 import 'Guardian_Information.dart';
 
@@ -18,15 +19,6 @@ class PersonalInformation extends StatefulWidget {
 
 class _PersonalInformationState extends State<PersonalInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController fatherNameController = TextEditingController();
-  TextEditingController motherNameController = TextEditingController();
-  TextEditingController birthPlaceController = TextEditingController();
-  TextEditingController birthDateController = TextEditingController();
-  TextEditingController englishFullNameController = TextEditingController();
-  TextEditingController soliderController = TextEditingController();
-  TextEditingController currentController = TextEditingController();
-  TextEditingController permanentController = TextEditingController();
   DateTime? dateTime;
   @override
   Widget build(BuildContext context) {
@@ -37,6 +29,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
           key: formState,
           child: SingleChildScrollView(
             child: Container(
+              height: height-92,
               child: Column(
                 children: [
                   const SizedBox(
@@ -58,19 +51,19 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         Expanded(
                           child: Column(
                             children: [
-                              titleText(text: 'الإسم الكامل'),
+                              titleText(text: 'إسم الأم'),
                               const SizedBox(
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: fullNameController,
+                                controller: studentMotherNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
                                     return 'هذا الحقل مطلوب';
-                                  } else if (text.length < 3) {
-                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
+                                  } else if (text.length < 2) {
+                                    return 'الحقل يجب أن يكون حرفين على الأقل';
                                   }
                                 },
                               )
@@ -88,7 +81,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: fatherNameController,
+                                controller: studentFatherNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -113,19 +106,19 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         Expanded(
                           child: Column(
                             children: [
-                              titleText(text: 'إسم الأم'),
+                              titleText(text: 'شعبة التجنيد'),
                               const SizedBox(
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: motherNameController,
+                                controller: studentSoliderController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
                                     return 'هذا الحقل مطلوب';
-                                  } else if (text.length < 2) {
-                                    return 'الحقل يجب أن يكون حرفين على الأقل';
+                                  } else if (text.length < 3) {
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
                                 },
                               )
@@ -143,7 +136,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: birthPlaceController,
+                                controller: studentBirthPlaceController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -185,7 +178,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           // ),
                           child: TextFormField(
                               onChanged: (data) {},
-                              controller: birthDateController,
+                              controller: studentBirthPlaceController,
                               validator: (text) {},
                               keyboardType: TextInputType.none,
                               enabled: true,
@@ -212,7 +205,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                         firstDate: DateTime(2000),
                                         lastDate: DateTime(2024),
                                         keyboardType: TextInputType.datetime);
-                                    birthDateController.text =
+                                    studentBirthPlaceController.text =
                                         '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
                                   },
                                 ),
@@ -224,61 +217,6 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                       const BorderSide(color: GreyColor),
                                 ),
                               )),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, top: 15, right: 15),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              titleText(text: 'شعبة التجنيد'),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              registrationInfoTextField(
-                                controller: soliderController,
-                                keyboardType: TextInputType.name,
-                                radius: 20,
-                                validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'هذا الحقل مطلوب';
-                                  } else if (text.length < 3) {
-                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }
-                                },
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              titleText(text: 'الإسم الكامل بالإنكليزية'),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              registrationInfoTextField(
-                                controller: englishFullNameController,
-                                keyboardType: TextInputType.name,
-                                radius: 20,
-                                validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'هذا الحقل مطلوب';
-                                  } else if (text.length < 3) {
-                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }
-                                },
-                              ),
-                            ],
-                          ),
                         ),
                       ],
                     ),
@@ -299,7 +237,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: currentController,
+                                controller: studentCurrentController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
                                 validator: (text) {
@@ -324,7 +262,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: permanentController,
+                                controller: studentPermanentController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
                                 validator: (text) {
@@ -341,8 +279,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
+                  const Spacer(
+                    flex: 1,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,

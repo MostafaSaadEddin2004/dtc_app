@@ -18,49 +18,49 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
   ];
@@ -189,25 +189,25 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
                 onTap: () {
                   Navigator.of(context).pushReplacementNamed(SignUpType.id);
                 },
-                child:Row(
-                children: const [
-                  Icon(
-                    Icons.exit_to_app_rounded,
-                    color: RedColor,
-                    size: 30,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    'تسجيل الخروج',
-                    style: TextStyle(
-                        color: RedColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.exit_to_app_rounded,
+                      color: RedColor,
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      'تسجيل الخروج',
+                      style: TextStyle(
+                          color: RedColor,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               )
             ]),
           ),
@@ -219,7 +219,7 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
             itemBuilder: (context, index) => notes(
               noteTitle: note[index]['NoteTitle'].toString(),
               noteClassification: note[index]['NteClassification'].toString(),
-              noteText: note[index]['NoteText'].toString(),
+              notetext: note[index]['Notetext'].toString(),
             ),
           ),
         ));

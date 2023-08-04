@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Constants/TextStyle.dart';
 
 Widget notificationsBubble({
-  required String notificationText,
+  required String notificationtext,
   required String time,
   required String notificationImage,
 }) =>
@@ -16,7 +16,7 @@ Widget notificationsBubble({
       child: Row(
         children: [
           const Padding(
-            padding: EdgeInsets.only(left: 10, top: 10, bottom: 10,right: 10),
+            padding: EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 10),
             child: CircleAvatar(
                 minRadius: 30,
                 maxRadius: 30,
@@ -36,7 +36,7 @@ Widget notificationsBubble({
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  bodyText(text: notificationText),
+                  bodyText(text: notificationtext),
                   const SizedBox(
                     height: 10,
                   ),

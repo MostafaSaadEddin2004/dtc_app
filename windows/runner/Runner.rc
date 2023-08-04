@@ -6,7 +6,7 @@
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
 //
-// Generated from the TEXTINCLUDE 2 resource.
+// Generated from the textINCLUDE 2 resource.
 //
 #include "winres.h"
 
@@ -22,21 +22,21 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
-// TEXTINCLUDE
+// textINCLUDE
 //
 
-1 TEXTINCLUDE
+1 textINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE
+2 textINCLUDE
 BEGIN
     "#include ""winres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE
+3 textINCLUDE
 BEGIN
     "\r\n"
     "\0"
@@ -113,7 +113,7 @@ END
 #ifndef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
-// Generated from the TEXTINCLUDE 3 resource.
+// Generated from the textINCLUDE 3 resource.
 //
 
 

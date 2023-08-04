@@ -19,49 +19,49 @@ class _StudentProfileNotesPageState extends State<StudentProfileNotesPage> {
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
   ];
@@ -70,9 +70,11 @@ class _StudentProfileNotesPageState extends State<StudentProfileNotesPage> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             backgroundColor: PrimaryColor,
-            onPressed: () {Navigator.of(context).push(MaterialPageRoute(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const StudentAddingNotes(),
-              ));},
+              ));
+            },
             child: const Icon(
               Icons.add,
               size: 40,
@@ -86,7 +88,7 @@ class _StudentProfileNotesPageState extends State<StudentProfileNotesPage> {
             itemBuilder: (context, index) => notes(
               noteTitle: note[index]['NoteTitle'].toString(),
               noteClassification: note[index]['NteClassification'].toString(),
-              noteText: note[index]['NoteText'].toString(),
+              notetext: note[index]['Notetext'].toString(),
             ),
           ),
         ));

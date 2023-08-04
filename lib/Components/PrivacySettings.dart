@@ -24,14 +24,13 @@ Widget privacyEditing({
             const SizedBox(
               width: 10,
             ),
-           Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      labelFont(text: label),
-                      bodyText(text: value),
-                    ],
-                  ),
-               
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                labelFont(text: label),
+                bodyText(text: value),
+              ],
+            ),
             const SizedBox(
               width: 10,
             ),

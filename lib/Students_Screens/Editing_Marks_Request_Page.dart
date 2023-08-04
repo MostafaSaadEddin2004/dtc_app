@@ -41,109 +41,6 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                       Expanded(
                         child: Column(
                           children: [
-                            titleText(text: 'الإسم الكامل'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            registrationInfoTextField(
-                              controller: studentEMRFullNameController,
-                              keyboardType: TextInputType.name,
-                              radius: 20,
-                              validator: (text) {
-                                if (text!.isEmpty) {
-                                  return 'الحقل مطلوب';
-                                } else if (text.length < 3) {
-                                  return 'الحقل يجب أن يكون 5 أحرف او أكثر';
-                                }
-                              },
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            titleText(text: 'العلامة المكتسبة'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            registrationInfoTextField(
-                              controller: studentEMRGainedMarkController,
-                              keyboardType: TextInputType.name,
-                              radius: 20,
-                              validator: (text) {
-                                if (text!.isEmpty) {
-                                  return 'الحقل مطلوب';
-                                } else if (text.length < 4) {
-                                  return 'الحقل يجب أن يكون 4 أرقام';
-                                } else if (text.length > 4) {
-                                  return 'الحقل يجب أن يكون 4 أرقام';
-                                }
-                              },
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, top: 15, right: 15),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            titleText(text: 'القسم'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            registrationDropDownSearch(
-                                hint: '',
-                                items: [
-                                  'تكنولوجيا المعلومات',
-                                  'الطبي',
-                                  'الهندسي',
-                                  'التجاري',
-                                  'الميكانيكي'
-                                ],
-                                onChange: (data) {
-                                  departmentName = data!;
-                                },
-                                validator: (data) {})
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            titleText(text: 'الفرع'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            registrationDropDownSearch(
-                                hint: '',
-                                items: [],
-                                onChange: (data) {
-                                  className = data!;
-                                },
-                                validator: (data) {})
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, top: 15, right: 15),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
                             titleText(text: 'إسم المدرس'),
                             const SizedBox(
                               height: 10,
@@ -175,6 +72,31 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                           ],
                         ),
                       ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, top: 15, right: 15),
+                  child: Column(
+                    children: [
+                      titleText(text: 'العلامة المكتسبة'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      registrationInfoTextField(
+                        controller: studentEMRGainedMarkController,
+                        keyboardType: TextInputType.name,
+                        radius: 20,
+                        validator: (text) {
+                          if (text!.isEmpty) {
+                            return 'الحقل مطلوب';
+                          } else if (text.length < 4) {
+                            return 'الحقل يجب أن يكون 4 أرقام';
+                          } else if (text.length > 4) {
+                            return 'الحقل يجب أن يكون 4 أرقام';
+                          }
+                        },
+                      )
                     ],
                   ),
                 ),

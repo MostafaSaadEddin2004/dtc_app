@@ -1,8 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/TextField.dart';
@@ -35,7 +31,7 @@ class _TeacherAuthForgotPasswordEnterCodeState
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: customTextField(
                     onChanged: (data) {},
-                    //suffixText: '+963',
+                    //suffixtext: '+963',
                     hint: 'أدخل الكود',
                     controller: browserCodeController,
                     validator: (text) {

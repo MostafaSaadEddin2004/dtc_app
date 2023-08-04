@@ -2,10 +2,10 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Personal_Information.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/material/data_table.dart';
 import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Label.dart';
+import '../../../Constants/Controller.dart';
 import 'Wishes.dart';
 
 class ComparisonScreen extends StatefulWidget {
@@ -21,8 +21,6 @@ GlobalKey<FormState> formState = GlobalKey<FormState>();
 
 class _ComparisonScreenState extends State<ComparisonScreen> {
   @override
-  String? Certificate;
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'طلب الانتساب'),
@@ -57,7 +55,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                 ),
                 child: DropdownSearch<String>(
                   onChanged: (data) {
-                    Certificate = data;
+                    certification = data!;
                   },
                   dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(

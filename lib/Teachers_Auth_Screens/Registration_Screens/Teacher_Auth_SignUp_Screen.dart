@@ -1,8 +1,7 @@
-import 'package:dtc_app/Components/TextField.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import '../../Components/Buttons.dart';
+import '../../Components/TextField.dart';
 import '../../Constants/Controller.dart';
 import '../Teacher_Auth__Information_Page.dart';
 import 'Teacher_Auth_SignIn_Screen.dart';
@@ -45,24 +44,6 @@ class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
               ),
               customTextField(
                   onChanged: (data) {},
-                  hint: 'أدخل إسم الستخدم',
-                  controller: teacherAuthSignUpUsernameController,
-                  validator: (text) {
-                    if (text!.isEmpty) {
-                      return 'إسم المستخدم مطلوب';
-                    }
-                    if (text.length < 3) {
-                      return 'إسم المسخدم يجب أن يكون 3 أحرف على الأقل';
-                    }
-                  },
-                  labelText: 'إسم المسنخدم',
-                  obscure: false,
-                  prefix: Icons.person,
-                  keyboardType: TextInputType.name,
-                  radius: 20,
-                  padding: 15),
-              customTextField(
-                  onChanged: (data) {},
                   hint: 'أدخل الإيميل',
                   controller: teacherAuthEmailController,
                   validator: (text) {
@@ -77,10 +58,10 @@ class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
                   //   validator: MultiValidator([
                   //                  RequiredValidator(
 
-                  //                     errorText: 'إسم المستخدم مطلوب'),
-                  //                      PatternValidator(r'(?=.*?[#?!@teacherAuth$%^&*-])', errorText: 'الرجاء التحقق من هذا الحقل'),
+                  //                     errortext: 'إسم المستخدم مطلوب'),
+                  //                      PatternValidator(r'(?=.*?[#?!@teacherAuth$%^&*-])', errortext: 'الرجاء التحقق من هذا الحقل'),
                   //                 MinLengthValidator(8,
-                  //                     errorText:
+                  //                     errortext:
                   //                         ' الايميل يجب ان لا يقل عن 8 محرف'),
                   //               ]),
                   // validator: (text) {
@@ -131,7 +112,7 @@ class _TeacherAuthSignUpScreenState extends State<TeacherAuthSignUpScreen> {
               ),
               customTextField(
                   onChanged: (data) {},
-                  //suffixText: '+963',
+                  //suffixtext: '+963',
                   hint: 'أدخل رقم الجوال',
                   controller: teacherAuthSignUpPhoneController,
                   validator: (text) {

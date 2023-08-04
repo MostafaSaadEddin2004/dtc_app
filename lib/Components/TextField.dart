@@ -27,53 +27,41 @@ Widget customTextField({
   TextInputType? keyboardType,
   IconData? prefix,
   IconButton? suffix,
-  String suffixText = '',
   required void Function(String data) onChanged,
 }) =>
     Container(
-      margin: const EdgeInsets.only(top: 15),
-      // decoration: BoxDecoration(
-      //   color: WhiteColor,
-      //   borderRadius: BorderRadius.circular(20),
-      //   boxShadow: const [
-      //     BoxShadow(
-      //       color: GreyColor,
-      //       blurRadius: 2,
-      //       offset: Offset(2, 2), // Shadow position
-      //     ),
-      //   ],
-      // ),
+      margin: const EdgeInsetsDirectional.symmetric(vertical: 5),
       child: TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          onChanged: onChanged,
-          controller: controller,
-          validator: validator,
-          keyboardType: keyboardType,
-          obscureText: obscure!,
-          enabled: true,
-          cursorColor: GreyColor,
-          decoration: InputDecoration(
-            alignLabelWithHint: true,
-            prefixIconColor: GreyColor,
-            suffixIconColor: GreyColor,
-            floatingLabelStyle: const TextStyle(
-              color: BlackColor,
-            ),
-            prefix: Text(suffixText),
-            hintText: hint,
-            label: Text(labelText!),
-            labelStyle: const TextStyle(color: GreyColor, fontSize: 16),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(radius),
-                borderSide: const BorderSide(color: Colors.transparent)),
-            prefixIcon: Icon(prefix),
-            suffixIcon: suffix,
-            contentPadding: EdgeInsets.all(padding),
-            focusedBorder: OutlineInputBorder(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        onChanged: onChanged,
+        controller: controller,
+        validator: validator,
+        keyboardType: keyboardType,
+        obscureText: obscure!,
+        enabled: true,
+        cursorColor: GreyColor,
+        decoration: InputDecoration(
+          alignLabelWithHint: true,
+          prefixIconColor: GreyColor,
+          suffixIconColor: GreyColor,
+          floatingLabelStyle: const TextStyle(
+            color: BlackColor,
+          ),
+          hintText: hint,
+          label: Text(labelText!),
+          labelStyle: const TextStyle(color: GreyColor, fontSize: 16),
+          border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
-              borderSide: BorderSide(color: GreyColor),
-            ),
-          )),
+              borderSide: const BorderSide(color: Colors.transparent)),
+          prefixIcon: Icon(prefix),
+          suffixIcon: suffix,
+          contentPadding: EdgeInsets.all(padding),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(radius),
+            borderSide: BorderSide(color: GreyColor),
+          ),
+        ),
+      ),
     );
 
 Widget registrationInfoTextField({
@@ -82,44 +70,33 @@ Widget registrationInfoTextField({
   required double radius,
   required TextInputType? keyboardType,
   IconData? prefix,
-  
 }) =>
     Container(
-      // decoration: BoxDecoration(
-      //   color: WhiteColor,
-      //   borderRadius: BorderRadius.circular(20),
-      //   boxShadow: const [
-      //     BoxShadow(
-      //       color: GreyColor,
-      //       blurRadius: 2,
-      //       offset: Offset(2, 2), // Shadow position
-      //     ),
-      //   ],
-      // ),
       child: TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          controller: controller,
-          validator: validator,
-          keyboardType: keyboardType,
-          enabled: true,
-          cursorColor: GreyColor,
-          decoration: InputDecoration(
-            alignLabelWithHint: true,
-            // floatingLabelStyle: const TextStyle(
-            //   color: BlackColor,
-            // ),
-            hintText: 'أكتب هنا...',
-            // label: Text(label!),
-            // labelStyle: const TextStyle(color: GreyColor, fontSize: 16),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(radius),
-                borderSide: const BorderSide(color: Colors.transparent)),
-            contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            focusedBorder: OutlineInputBorder(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        controller: controller,
+        validator: validator,
+        keyboardType: keyboardType,
+        enabled: true,
+        cursorColor: GreyColor,
+        decoration: InputDecoration(
+          alignLabelWithHint: true,
+          // floatingLabelStyle: const TextStyle(
+          //   color: BlackColor,
+          // ),
+          hintText: 'أكتب هنا...',
+          // label: Text(label!),
+          // labelStyle: const TextStyle(color: GreyColor, fontSize: 16),
+          border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
-              borderSide: const BorderSide(
-                color: GreyColor,
-              ),
+              borderSide: const BorderSide(color: Colors.transparent)),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(radius),
+            borderSide: const BorderSide(
+              color: GreyColor,
             ),
-          )),
+          ),
+        ),
+      ),
     );

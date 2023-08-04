@@ -1,15 +1,11 @@
-import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Comparison_Screen.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Personal_Information.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/CustomCheckBoxList.dart';
 import '../../../Components/Dialogs.dart';
 import '../../../Components/Label.dart';
 import '../../../Constants/Colors.dart';
-import 'Required_Documents.dart';
 
 class WishesPage extends StatefulWidget {
   const WishesPage({super.key});
@@ -38,7 +34,7 @@ class _WishesPageState extends State<WishesPage> {
     'التصميم الإعلاني',
     'مساعد مهندس ديكور وتصميم داخلي'
   ];
-  List<String> selectedWishes = [];
+  late List<Wish> wishes = wishesList.map((e) => Wish(e)).toList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,9 +53,13 @@ class _WishesPageState extends State<WishesPage> {
             margin: const EdgeInsets.only(top: 10),
             height: 278,
             child: ListView.builder(
-                itemCount: wishesList.length,
+                itemCount: wishes.where((element) => !element.selected).length,
                 itemBuilder: (context, index) {
                   // String key = scientific.keys.elementAt(index);
+                  final wishes = this
+                      .wishes
+                      .where((element) => !element.selected)
+                      .toList();
                   return Container(
                     margin:
                         const EdgeInsets.only(bottom: 10, left: 15, right: 15),
@@ -76,7 +76,7 @@ class _WishesPageState extends State<WishesPage> {
                               offset: Offset(2, 2))
                         ]),
                     child: Row(children: [
-                      Text('${wishesList[index]}'),
+                      Text('${wishes[index].name}'),
                       const Spacer(
                         flex: 1,
                       ),
@@ -84,12 +84,9 @@ class _WishesPageState extends State<WishesPage> {
                           onPressed: () {
                             if (checkedCount <= 5) {
                               checkedCount++;
-                              selectedWishes.add(wishesList[index]);
-                              wishesList.remove(wishesList[index]);
+                              wishes[index].selected = true;
                               setState(() {});
-                            } else {
-                              print('stop select');
-                            }
+                            } else {}
                           },
                           icon: const Icon(
                             Icons.add_circle_rounded,
@@ -130,8 +127,12 @@ class _WishesPageState extends State<WishesPage> {
             margin: const EdgeInsets.only(top: 10),
             height: 210,
             child: ListView.builder(
-                itemCount: selectedWishes.length,
+                itemCount: wishes.where((element) => element.selected).length,
                 itemBuilder: (context, index) {
+                  final wishes = this
+                      .wishes
+                      .where((element) => element.selected)
+                      .toList();
                   return Container(
                     margin:
                         const EdgeInsets.only(bottom: 10, left: 15, right: 15),
@@ -148,15 +149,14 @@ class _WishesPageState extends State<WishesPage> {
                               offset: Offset(2, 2))
                         ]),
                     child: Row(children: [
-                      Text('${index + 1}-  ${selectedWishes[index]}'),
+                      Text('${index + 1}-  ${wishes[index].name}'),
                       const Spacer(
                         flex: 1,
                       ),
                       IconButton(
                           onPressed: () {
                             checkedCount--;
-                            wishesList.add(selectedWishes[index]);
-                            selectedWishes.remove(selectedWishes[index]);
+                            wishes[index].selected = false;
                             setState(() {});
                           },
                           icon: const Icon(
@@ -193,4 +193,11 @@ class _WishesPageState extends State<WishesPage> {
       ),
     );
   }
+}
+
+class Wish {
+  final String name;
+  bool selected = false;
+
+  Wish(this.name);
 }

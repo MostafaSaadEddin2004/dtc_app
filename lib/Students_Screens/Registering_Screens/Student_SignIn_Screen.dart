@@ -47,7 +47,7 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل الإيميل',
-                  controller: studentSignInUsernameController,
+                  controller: studentSignInEmailController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'الإيميل مطلوب';
@@ -69,7 +69,7 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل كلمة المرور',
-                  controller: studentSignINPasswordController,
+                  controller: studentSignInPasswordController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'كلمة المرور مطلوبة';

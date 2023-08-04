@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/Dialogs.dart';
@@ -117,7 +115,7 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                         ),
                         TextFormField(
                             onChanged: (data) {},
-                            controller: teacherNoteText,
+                            controller: teacherNotetext,
                             validator: (text) {},
                             keyboardType: TextInputType.text,
                             enabled: true,

@@ -12,7 +12,7 @@ class BrowserTonePage extends StatefulWidget {
 }
 
 class _BrowserTonePageState extends State<BrowserTonePage> {
-  List tones = const[
+  List tones = const [
     'Default',
     'None',
     'Tone',

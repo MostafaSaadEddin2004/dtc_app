@@ -48,7 +48,7 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                   height: 15,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 28),
+                  padding: const EdgeInsets.only(left: 28, right: 28),
                   child: labelFont(text: 'الدراسة'),
                 ),
                 RadioListTile(
@@ -75,7 +75,17 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                     value: 3,
                     groupValue: educationSelectedIndex,
                     activeColor: PrimaryColor,
-                    title: const Text('طالب خارج المعهد'),
+                    title: const Text('طالب جامعي'),
+                    onChanged: (index) {
+                      setState(() {
+                        educationSelectedIndex = index!;
+                      });
+                    }),
+                RadioListTile(
+                    value: 4,
+                    groupValue: educationSelectedIndex,
+                    activeColor: PrimaryColor,
+                    title: const Text('طالب جامعي متخرج'),
                     onChanged: (index) {
                       setState(() {
                         educationSelectedIndex = index!;
@@ -114,7 +124,7 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                       )
                     : const SizedBox(),
                 Padding(
-                  padding: const EdgeInsets.only(left: 28),
+                  padding: const EdgeInsets.only(left: 28, right: 28),
                   child: labelFont(text: 'العمل'),
                 ),
                 RadioListTile(
@@ -151,14 +161,14 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                   height: 15,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 28),
+                  padding: const EdgeInsets.only(left: 28, right: 28),
                   child: labelFont(text: 'وقت الدورة'),
                 ),
                 RadioListTile(
                     value: 1,
                     groupValue: timeSelectedIndex,
                     activeColor: PrimaryColor,
-                    title: const Text('صباحي'),
+                    title: const Text('صباحي قبل الساعة الثانية ظهراً'),
                     onChanged: (index) {
                       setState(() {
                         timeSelectedIndex = index!;
@@ -168,7 +178,7 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                     value: 2,
                     groupValue: timeSelectedIndex,
                     activeColor: PrimaryColor,
-                    title: const Text('مسائي'),
+                    title: const Text('مسائي بعد الساعة الثانية ظهراً'),
                     onChanged: (index) {
                       setState(() {
                         timeSelectedIndex = index!;

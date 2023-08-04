@@ -1,13 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
+import 'Browsers_Screens/Registration_Screens/Browser_Name_SignUp_Screen.dart';
 import 'Components/Buttons.dart';
 import 'Constants/Colors.dart';
-import 'Students_Screens/Registering_Screens/Student_SignUp_Screen.dart';
-import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
-import 'Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';
+import 'Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
+import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Name_SignUp_Screen.dart';
+import 'Teachers_Screens/Registration_Screens/Teacher_Name_SignUp_Screen.dart';
 
 class SignUpType extends StatefulWidget {
   const SignUpType({super.key});
@@ -334,22 +332,22 @@ class _SignUpTypeState extends State<SignUpType> {
                     onTap: () {
                       if (selectedBrowser == true) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                          BrowserSignUpScreen.id,
+                          BrowserNameSignUpPage.id,
                           (Route<dynamic> route) => false,
                         );
                       } else if (selectedStudent == true) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                          StudentSignUpScreen.id,
+                          StudentNameSignUpPage.id,
                           (Route<dynamic> route) => false,
                         );
                       } else if (selectedTeacherAuth == true) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                          TeacherAuthSignUpScreen.id,
+                          TeacherAuthNameSignUpPage.id,
                           (Route<dynamic> route) => false,
                         );
                       } else if (selectedTeacher == true) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                          TeacherSignUpScreen.id,
+                          TeacherNameSignUpPage.id,
                           (Route<dynamic> route) => false,
                         );
                       }

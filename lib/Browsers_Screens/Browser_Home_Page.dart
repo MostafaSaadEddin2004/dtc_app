@@ -19,56 +19,56 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '2:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '3:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': '',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '4:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '5:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '6:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': '',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '7:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '8:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
   ];
@@ -209,8 +209,8 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                    SignUpType.id, (route) => false);
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
               },
               child: Row(
                 children: const [
@@ -240,7 +240,8 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
         color: Colors.transparent,
         child: ListView.builder(
           itemCount: posts.length,
-          itemBuilder: (context, index) => DTCPosts(onChange: (isFavorite, isSaved, count) {
+          itemBuilder: (context, index) => DTCPosts(
+              onChange: (isFavorite, isSaved, count) {
                 changes[index].isFavorite = isFavorite;
                 changes[index].isSaved = isSaved;
                 changes[index].count = count;
@@ -249,9 +250,8 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
               isSaved: changes[index].isSaved,
               count: changes[index].count,
               time: posts[index]["Time"].toString(),
-              poster: posts[index]["Poster"].toString(),
               postImage: posts[index]['Images'].toString(),
-              postText: posts[index]['PostText'].toString()),
+              posttext: posts[index]['Posttext'].toString()),
         ),
       ),
     );

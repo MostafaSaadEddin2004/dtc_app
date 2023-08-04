@@ -36,7 +36,9 @@ Widget customButton({
     );
 
 Widget coloredNextButton(
-        {required String text, required void Function() onTap, required Color buttonColor}) =>
+        {required String text,
+        required void Function() onTap,
+        required Color buttonColor}) =>
     InkWell(
       radius: 20,
       onTap: onTap,
@@ -65,7 +67,7 @@ Widget coloredNextButton(
     );
 
 Widget nextButton(
-        {required String text, required void Function() onTap, Color}) =>
+        {required String text, required void Function() onTap}) =>
     InkWell(
       radius: 20,
       onTap: onTap,

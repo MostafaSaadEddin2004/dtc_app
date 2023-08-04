@@ -19,56 +19,56 @@ class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '2:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '3:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': '',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '4:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '5:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '6:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': '',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '7:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '8:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'PostText':
+      'Posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
   ];
@@ -78,9 +78,10 @@ class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: PrimaryColor,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-          Container(                padding:const EdgeInsets.symmetric(horizontal: 10),
-
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             alignment: Alignment.center,
             height: 30,
             width: 60,
@@ -181,8 +182,7 @@ class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context)
-                    .pushReplacementNamed(SignUpType.id);
+                Navigator.of(context).pushReplacementNamed(SignUpType.id);
               },
               child: Row(
                 children: const [
@@ -213,7 +213,7 @@ class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
         child: ListView.builder(
           itemCount: posts.length,
           itemBuilder: (context, index) => DTCPosts(
-            onChange: (isFavorite, isSaved, count) {
+              onChange: (isFavorite, isSaved, count) {
                 changes[index].isFavorite = isFavorite;
                 changes[index].isSaved = isSaved;
                 changes[index].count = count;
@@ -222,9 +222,8 @@ class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
               isSaved: changes[index].isSaved,
               count: changes[index].count,
               time: posts[index]["Time"].toString(),
-              poster: posts[index]["Poster"].toString(),
               postImage: posts[index]['Images'].toString(),
-              postText: posts[index]['PostText'].toString()),
+              posttext: posts[index]['Posttext'].toString()),
         ),
       ),
     );

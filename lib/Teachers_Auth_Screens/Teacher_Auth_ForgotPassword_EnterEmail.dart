@@ -1,9 +1,6 @@
 import 'package:dtc_app/Components/Buttons.dart';
 import 'package:dtc_app/Components/CustomAppBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../Components/TextField.dart';
 import '../Constants/Controller.dart';
 import '../Constants/TextStyle.dart';

@@ -20,9 +20,8 @@ class DTCPosts extends StatefulWidget {
   const DTCPosts({
     super.key,
     required this.time,
-    required this.poster,
     required this.postImage,
-    required this.postText,
+    required this.posttext,
     this.isFavorite = false,
     this.isSaved = false,
     this.onChange,
@@ -30,9 +29,8 @@ class DTCPosts extends StatefulWidget {
   });
 
   final String time;
-  final String poster;
   final String postImage;
-  final String postText;
+  final String posttext;
   final bool isFavorite;
   final bool isSaved;
   final int count;
@@ -82,22 +80,9 @@ class _DTCPostsState extends State<DTCPosts> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'معهد دمشق المتوسط',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      // SizedBox(
-                      //   height: 5,
-                      // ),
-                      Text(
-                        widget.poster,
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                    ],
+                  const Text(
+                    'معهد دمشق المتوسط',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   const Spacer(
                     flex: 1,
@@ -130,7 +115,7 @@ class _DTCPostsState extends State<DTCPosts> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.postText),
+              child: Text(widget.posttext),
             ),
             const SizedBox(
               height: 5,
@@ -203,7 +188,7 @@ class DepartmentPosts extends StatefulWidget {
     required this.time,
     required this.poster,
     required this.postImage,
-    required this.postText,
+    required this.posttext,
     this.isFavorite = false,
     this.isSaved = false,
     this.count = 0,
@@ -212,7 +197,7 @@ class DepartmentPosts extends StatefulWidget {
   final String time;
   final String poster;
   final String postImage;
-  final String postText;
+  final String posttext;
   final bool isFavorite;
   final bool isSaved;
   final int count;
@@ -309,7 +294,7 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.postText),
+              child: Text(widget.posttext),
             ),
             const SizedBox(
               height: 5,
@@ -382,9 +367,8 @@ class RegisterCoursesPost extends StatefulWidget {
   const RegisterCoursesPost(
       {super.key,
       required this.time,
-      required this.poster,
       required this.postImage,
-      required this.postText,
+      required this.posttext,
       this.isFavorite = false,
       this.isSaved = false,
       this.count = 0,
@@ -392,9 +376,8 @@ class RegisterCoursesPost extends StatefulWidget {
       required this.onTap});
 
   final String time;
-  final String poster;
   final String postImage;
-  final String postText;
+  final String posttext;
   final bool isFavorite;
   final bool isSaved;
   final int count;
@@ -448,7 +431,7 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'إسم الدورة',
+                        'معهد دمشق المتوسط',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
@@ -456,7 +439,7 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
                         height: 10,
                       ),
                       Text(
-                        widget.poster,
+                        'إسم الدورة',
                         style: const TextStyle(fontSize: 16),
                       ),
                     ],
@@ -497,7 +480,7 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.postText),
+              child: Text(widget.posttext),
             ),
             const SizedBox(
               height: 5,
@@ -603,7 +586,7 @@ class CoursesPost extends StatefulWidget {
     required this.time,
     required this.poster,
     required this.postImage,
-    required this.postText,
+    required this.posttext,
     this.isFavorite = false,
     this.isSaved = false,
     this.count = 0,
@@ -612,7 +595,7 @@ class CoursesPost extends StatefulWidget {
   final String time;
   final String poster;
   final String postImage;
-  final String postText;
+  final String posttext;
   final bool isFavorite;
   final bool isSaved;
   final int count;
@@ -713,7 +696,7 @@ class _CoursesPostState extends State<CoursesPost> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.postText),
+              child: Text(widget.posttext),
             ),
             const SizedBox(
               height: 5,

@@ -5,6 +5,7 @@ import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
 import '../../../Constants/Colors.dart';
+import '../../../Constants/Controller.dart';
 import '../../../Constants/TextStyle.dart';
 import 'Student_Certification.dart';
 
@@ -18,13 +19,6 @@ class GuardianInformation extends StatefulWidget {
 
 class _GuardianInformationState extends State<GuardianInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  TextEditingController guardianNameController = TextEditingController();
-  TextEditingController guardianWorkController = TextEditingController();
-  TextEditingController guardianPhoneNumberController = TextEditingController();
-  TextEditingController motherPhoneNumberController = TextEditingController();
-  TextEditingController telephoneController = TextEditingController();
-  TextEditingController studentPhoneNumberController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     double hight = MediaQuery.of(context).size.height;

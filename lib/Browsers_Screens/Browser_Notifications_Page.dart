@@ -129,32 +129,32 @@ class _NotificationsPageState extends State<NotificationsPage> {
                       .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
                 },
                 child: Row(
-                children: const [
-                  Icon(
-                    Icons.exit_to_app_rounded,
-                    color: RedColor,
-                    size: 30,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    'تسجيل الخروج',
-                    style: TextStyle(
-                        color: RedColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+                  children: const [
+                    Icon(
+                      Icons.exit_to_app_rounded,
+                      color: RedColor,
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      'تسجيل الخروج',
+                      style: TextStyle(
+                          color: RedColor,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 30,
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      SignUpType.id, (route) => false);
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
                 },
                 child: Row(
                   children: const [
@@ -183,7 +183,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
           itemCount: 20,
           itemBuilder: (context, index) => notificationsBubble(
               notificationImage: 'assets/images/DTC_LOGO.png',
-              notificationText:
+              notificationtext:
                   """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.""",
               time: 'الأحد     10:10 صباحاً'),
         ));

@@ -1,5 +1,4 @@
 import 'package:dtc_app/Components/Buttons.dart';
-import 'package:dtc_app/Students_Screens/Student_Home_Page.dart';
 import 'package:flutter/material.dart';
 import '../../Components/TextField.dart';
 import '../../Constants/Colors.dart';
@@ -46,7 +45,7 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أدخل الإيميل',
-                    controller: teacherSignInUsernameController,
+                    controller: teacherSignInEmailController,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'الإيميل مطلوب';

@@ -1,4 +1,5 @@
 import 'package:dtc_app/Components/Buttons.dart';
+import '../../Components/TextField.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -51,20 +52,73 @@ Widget towButtonWarningDialog({
   required String title,
   required String message,
   required VoidCallback onOkPressed,
-  required String okButtonText,
+  required String okButtontext,
   required VoidCallback onCancelPressed,
-  required String cancelButtonText,
+  required String cancelButtontext,
 }) =>
+    AlertDialog(title: Text(title), content: Text(message), actions: [
+      coloredNextButton(
+          text: okButtontext, onTap: onOkPressed, buttonColor: PrimaryColor),
+      coloredNextButton(
+          text: cancelButtontext,
+          onTap: onCancelPressed,
+          buttonColor: RedColor),
+    ]);
+
+Widget editingPrivacyDialog(
+        {required String title,
+        required TextEditingController controller,
+        required String? Function(String? text) validator,
+        required String? Function(String? text) onChanged,
+        required VoidCallback onOkPressed,
+        required VoidCallback onCancelPressed,
+        required TextInputType keyboardType,
+        required IconData prefixIcon,
+        Key? key,
+        String? hint}) =>
     AlertDialog(
-        title: Text(title),
-        content: Text(message),
-        actions:  [
+      title: Text(title),
+      content: Form(
+        key: key,
+        child: TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          onChanged: onChanged,
+          controller: controller,
+          validator: validator,
+          keyboardType: keyboardType,
+          enabled: true,
+          cursorColor: GreyColor,
+          decoration: InputDecoration(
+            prefixIconColor: GreyColor,
+            hintText: hint,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.transparent)),
+            prefixIcon: Icon(prefixIcon),
+            contentPadding: const EdgeInsets.all(15),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color: GreyColor),
+            ),
+          ),
+        ),
+      ),
+      actions: [
+        Column(
+          children: [
+            Row(
+              children: [
                 coloredNextButton(
-                    text: okButtonText,
+                    text: 'تعديل',
                     onTap: onOkPressed,
                     buttonColor: PrimaryColor),
                 coloredNextButton(
-                    text: cancelButtonText,
+                    text: 'إلغاء',
                     onTap: onCancelPressed,
                     buttonColor: RedColor),
-              ]);
+              ],
+            ),
+          ],
+        )
+      ],
+    );

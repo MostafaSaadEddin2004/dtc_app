@@ -18,49 +18,49 @@ class _TeacherProfileNotesPageState extends State<TeacherProfileNotesPage> {
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'NoteTitle': 'عنوان الملاحظة',
       'NteClassification': 'التصنيف',
-      'NoteText':
+      'Notetext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
   ];
@@ -83,7 +83,7 @@ class _TeacherProfileNotesPageState extends State<TeacherProfileNotesPage> {
             itemBuilder: (context, index) => notes(
               noteTitle: note[index]['NoteTitle'].toString(),
               noteClassification: note[index]['NteClassification'].toString(),
-              noteText: note[index]['NoteText'].toString(),
+              notetext: note[index]['Notetext'].toString(),
             ),
           ),
         ));

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/DropDownSearch.dart';
@@ -23,7 +21,6 @@ class TeacherAuthInformationPage extends StatefulWidget {
 class _TeacherAuthInformationPageState
     extends State<TeacherAuthInformationPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-
   DateTime? dateTime;
   @override
   Widget build(BuildContext context) {
@@ -55,7 +52,7 @@ class _TeacherAuthInformationPageState
                         Expanded(
                           child: Column(
                             children: [
-                              titleText(text: 'الإسم'),
+                              titleText(text: 'الإسم باللغة العربية'),
                               const SizedBox(
                                 height: 10,
                               ),

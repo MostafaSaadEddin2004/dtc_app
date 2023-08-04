@@ -5,7 +5,7 @@ import '../Constants/Colors.dart';
 Widget notes({
   required String noteTitle,
   required String noteClassification,
-  required String noteText,
+  required String notetext,
 }) =>
     Container(
       margin: const EdgeInsets.only(left: 15, bottom: 10, right: 15),
@@ -41,7 +41,7 @@ Widget notes({
             ),
             Row(
               children: [
-                Expanded(child: bodyText(text: noteText)),
+                Expanded(child: bodyText(text: notetext)),
                 const SizedBox(
                   width: 10,
                 ),

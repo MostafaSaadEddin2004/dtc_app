@@ -1,8 +1,9 @@
 import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
-import 'package:dtc_app/Components/TextField.dart';
+
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
+import '../../Components/TextField.dart';
 import '../../Constants/Controller.dart';
 import 'Browser_SignIn_Screen.dart';
 
@@ -42,24 +43,6 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                 'مرحباً بكم!',
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
-              customTextField(
-                  onChanged: (data) {},
-                  hint: 'أدخل إسم الستخدم',
-                  controller: browserSignUpUsernameController,
-                  validator: (text) {
-                    if (text!.isEmpty) {
-                      return 'إسم المستخدم مطلوب';
-                    }
-                    if (text.length < 3) {
-                      return 'إسم المسخدم يجب أن يكون 3 أحرف على الأقل';
-                    }
-                  },
-                  labelText: 'إسم المسنخدم',
-                  obscure: false,
-                  prefix: Icons.person,
-                  keyboardType: TextInputType.name,
-                  radius: 20,
-                  padding: 15),
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل الإيميل',
@@ -108,7 +91,7 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                   padding: 15),
               customTextField(
                   onChanged: (data) {},
-                  //suffixText: '+963',
+                  //suffixtext: '+963',
                   hint: 'أدخل رقم الجوال',
                   controller: browserSignUpPhoneController,
                   validator: (text) {

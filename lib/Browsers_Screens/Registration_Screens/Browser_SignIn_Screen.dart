@@ -45,7 +45,7 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل الإيميل',
-                  controller: browserSignINUsernameController,
+                  controller: browserSignInEmailController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'الإيميل مطلوب';

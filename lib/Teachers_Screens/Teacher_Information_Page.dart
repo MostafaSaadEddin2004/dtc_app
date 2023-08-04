@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/DropDownSearch.dart';
 import '../Components/Label.dart';
 import '../Components/TextField.dart';
 import '../Constants/Colors.dart';
+import '../Constants/Controller.dart';
 import '../Constants/TextStyle.dart';
 import 'Teacher_Start_Page.dart';
 
@@ -21,16 +19,6 @@ class TeacherInformationPage extends StatefulWidget {
 
 class _TeacherInformationPageState extends State<TeacherInformationPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  var teacherFirstNameController = TextEditingController();
-  var teacherBirthDateController = TextEditingController();
-  var teacherLastName = TextEditingController();
-  var teacherCertification = TextEditingController();
-  var teacherSpecialty = TextEditingController();
-  var teacherCurrentController = TextEditingController();
-  var teacherPermanentController = TextEditingController();
-  var teacherAuthNationalityController = TextEditingController();
-  String nationality = '';
-  String department = '';
   DateTime? dateTime;
   @override
   Widget build(BuildContext context) {
@@ -62,7 +50,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                         Expanded(
                           child: Column(
                             children: [
-                              titleText(text: 'الإسم'),
+                              titleText(text: 'الإسم باللغة العربية'),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -92,7 +80,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherLastName,
+                                controller: teacherLastNameController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -122,7 +110,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherCertification,
+                                controller: teacherCertificationController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -147,7 +135,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherSpecialty,
+                                controller: teacherSpecialtyController,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {
@@ -248,7 +236,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherCurrentController,
+                                controller: teacherCurrentLocationController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
                                 validator: (text) {
@@ -273,7 +261,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: teacherPermanentController,
+                                controller: teacherPermanentLocationController,
                                 keyboardType: TextInputType.streetAddress,
                                 radius: 20,
                                 validator: (text) {
@@ -295,7 +283,8 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: nationality == 'فلسطيني مُسجل' || nationality == ''
+                    child: teacherNationalityVariable == 'فلسطيني مُسجل' ||
+                            teacherNationalityVariable == ''
                         ? Column(
                             children: [
                               titleText(text: 'الجنسية'),
@@ -307,7 +296,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
-                                      nationality = data!;
+                                      teacherNationalityVariable = data!;
                                     });
                                   },
                                   validator: (data) {
@@ -328,7 +317,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                   items: ['فلسطيني مُسجل', 'أخرى...'],
                                   onChange: (data) {
                                     setState(() {
-                                      nationality = data!;
+                                      teacherNationalityVariable = data!;
                                     });
                                   },
                                   validator: (data) {
@@ -382,7 +371,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                             ],
                             onChange: (data) {
                               setState(() {
-                                department = data!;
+                                teacherDepartmentVariable = data!;
                               });
                             },
                             validator: (data) {

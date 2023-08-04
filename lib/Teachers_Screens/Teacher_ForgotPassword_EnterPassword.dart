@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/TextField.dart';
 import '../Constants/Controller.dart';
-import '../Constants/TextStyle.dart';
 
 class TeacherrForgotPasswordEnterPassword extends StatefulWidget {
   const TeacherrForgotPasswordEnterPassword({super.key});
