@@ -1,7 +1,8 @@
-import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
-
+import '../Components/Dialogs.dart';
 import '../Components/PrivacySettings.dart';
+import '../Constants/Controller.dart';
+import 'Teacher_Auth_ChangePassword.dart';
 
 class TeacherAuthPrivacyPage extends StatefulWidget {
   const TeacherAuthPrivacyPage({super.key});
@@ -12,80 +13,6 @@ class TeacherAuthPrivacyPage extends StatefulWidget {
 }
 
 class _TeacherAuthPrivacyPageState extends State<TeacherAuthPrivacyPage> {
-  List privacyValues = const [
-    {
-      'PrefixIcon': Icons.call,
-      'PrefixIconColor': BlackColor,
-      'SuffixIcon': Icons.edit,
-      'SuffixIconColor': BlackColor,
-      'SuffixIconSize': 20.0,
-      'IsValueTrue': true,
-      'Value': 'Phone Number',
-      'Label': 'Phone Number',
-      'LabelColor': BlackColor,
-      'Color': WhiteColor,
-    },
-    {
-      'PrefixIcon': Icons.person,
-      'PrefixIconColor': BlackColor,
-      'SuffixIcon': Icons.edit,
-      'SuffixIconColor': BlackColor,
-      'SuffixIconSize': 20.0,
-      'IsValueTrue': true,
-      'Value': 'User Name',
-      'Label': 'User Name',
-      'LabelColor': BlackColor,
-      'Color': WhiteColor
-    },
-    {
-      'PrefixIcon': Icons.lock,
-      'PrefixIconColor': BlackColor,
-      'SuffixIcon': Icons.edit,
-      'SuffixIconColor': BlackColor,
-      'SuffixIconSize': 20.0,
-      'IsValueTrue': true,
-      'Value': 'Password',
-      'Label': 'Password',
-      'LabelColor': BlackColor,
-      'Color': WhiteColor
-    },
-    {
-      'PrefixIcon': Icons.location_on,
-      'PrefixIconColor': BlackColor,
-      'SuffixIcon': Icons.edit,
-      'SuffixIconColor': BlackColor,
-      'SuffixIconSize': 20.0,
-      'IsValueTrue': true,
-      'Value': 'Location',
-      'Label': 'Location',
-      'LabelColor': BlackColor,
-      'Color': WhiteColor
-    },
-    {
-      'PrefixIcon': Icons.move_up_rounded,
-      'PrefixIconColor': WhiteColor,
-      'SuffixIcon': Icons.arrow_circle_right_rounded,
-      'SuffixIconColor': WhiteColor,
-      'SuffixIconSize': 40.0,
-      'IsValueTrue': false,
-      'Value': '',
-      'Label': 'Move Request',
-      'LabelColor': WhiteColor,
-      'Color': PrimaryColor
-    },
-    {
-      'PrefixIcon': Icons.edit_document,
-      'PrefixIconColor': WhiteColor,
-      'SuffixIcon': Icons.arrow_circle_right_rounded,
-      'SuffixIconColor': WhiteColor,
-      'SuffixIconSize': 40.0,
-      'IsValueTrue': false,
-      'Value': '',
-      'Label': 'Edit Marks Request',
-      'LabelColor': WhiteColor,
-      'Color': PrimaryColor
-    }
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,23 +25,42 @@ class _TeacherAuthPrivacyPageState extends State<TeacherAuthPrivacyPage> {
               privacyEditing(
                   icon: Icons.call,
                   label: 'رقم الهاتف',
-                  onPressedIconButton: () {},
+                  onPressedIconButton: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => editingPrivacyDialog(
+                          controller: teacherAuthPrivacyEditingPhone,
+                          onChanged: (text) {},
+                          validator: (text) {
+                            if (!RegExp(r'^(\+?963|0)?9\d{8}$')
+                                .hasMatch(text!)) {
+                              return 'الرجاء التأكد من رقم الجوال';
+                            }
+                          },
+                          keyboardType: TextInputType.number,
+                          onCancelPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          onOkPressed: () {
+                            print('not null');
+                          },
+                          prefixIcon: Icons.call,
+                          title: 'رقم الهاتف',
+                          hint: 'أدخل رقم الهاتف'),
+                    );
+                  },
                   value: 'رقم الهاتف'),
-              const SizedBox(
-                height: 15,
-              ),
-              privacyEditing(
-                  icon: Icons.person,
-                  label: 'اسم المستخدم',
-                  onPressedIconButton: () {},
-                  value: 'اسم المستخدم'),
               const SizedBox(
                 height: 15,
               ),
               privacyEditing(
                   icon: Icons.lock,
                   label: 'كلمة السر',
-                  onPressedIconButton: () {},
+                  onPressedIconButton: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            const TeacherAuthChangePasswordEnterPassword()));
+                  },
                   value: 'كلمة السر'),
               const SizedBox(
                 height: 15,
@@ -122,34 +68,32 @@ class _TeacherAuthPrivacyPageState extends State<TeacherAuthPrivacyPage> {
               privacyEditing(
                   icon: Icons.location_on,
                   label: 'الموقع',
-                  onPressedIconButton: () {},
+                  onPressedIconButton: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => editingPrivacyDialog(
+                          controller: teacherAuthPrivacyEditingLocation,
+                          onChanged: (text) {},
+                          validator: (text) {
+                            if (text!.length < 3) {
+                              return 'الموقع يجب أن يكون 3 أحرف على الأقل';
+                            }
+                          },
+                          keyboardType: TextInputType.name,
+                          onCancelPressed: () {
+                            Navigator.of(context).pop();
+                            setState(() {});
+                          },
+                          onOkPressed: () {},
+                          prefixIcon: Icons.location_on,
+                          title: 'الموقع',
+                          hint: 'أدخل الموقع'),
+                    );
+                  },
                   value: 'الموقع'),
               const SizedBox(
                 height: 15,
               ),
-              studentRequests(
-                onPressedIconButton: () {},
-                prefixIcon: Icons.move_up_rounded,
-                prefixIconColor: WhiteColor,
-                suffixIcon: Icons.arrow_circle_left_rounded,
-                suffixIconColor: WhiteColor,
-                suffixIconSize: 40,
-                label: 'طلب انتقال',
-                labelColor: WhiteColor,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              studentRequests(
-                onPressedIconButton: () {},
-                prefixIcon: Icons.edit_document,
-                prefixIconColor: WhiteColor,
-                suffixIcon: Icons.arrow_circle_left_rounded,
-                suffixIconColor: WhiteColor,
-                suffixIconSize: 40,
-                label: 'طلب تعديل علامات',
-                labelColor: WhiteColor,
-              )
             ],
           ),
         ),

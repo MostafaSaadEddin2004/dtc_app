@@ -18,56 +18,56 @@ class _StudentCoursePageState extends State<StudentCoursePage> {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.""",
     },
     {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.""",
     },
     {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.""",
     },
     {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.""",
     },
     {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.""",
     },
     {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.""",
     },
     {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.""",
     },
     {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.""",
     },
   ];
@@ -81,16 +81,16 @@ class _StudentCoursePageState extends State<StudentCoursePage> {
         itemCount: posts.length,
         itemBuilder: (context, index) => RegisterCoursesPost(
             onChange: (isFavorite, isSaved, count) {
-              changes[index].isFavorite = isFavorite;
-              changes[index].isSaved = isSaved;
-              changes[index].count = count;
+              registerCoursesPostChange[index].isFavorite = isFavorite;
+              registerCoursesPostChange[index].isSaved = isSaved;
+              registerCoursesPostChange[index].count = count;
             },
-            isFavorite: changes[index].isFavorite,
-            isSaved: changes[index].isSaved,
-            count: changes[index].count,
+            isFavorite: registerCoursesPostChange[index].isFavorite,
+            isSaved: registerCoursesPostChange[index].isSaved,
+            count: registerCoursesPostChange[index].count,
             time: posts[index]["Time"].toString(),
             postImage: posts[index]['Images'].toString(),
-            posttext: posts[index]['Posttext'].toString(),
+            posttext: posts[index]['posttext'].toString(),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const StudentPersonalInformation(),

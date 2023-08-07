@@ -85,15 +85,14 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                       ),
                       registrationInfoTextField(
                         controller: studentEMRGainedMarkController,
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.number,
                         radius: 20,
                         validator: (text) {
                           if (text!.isEmpty) {
-                            return 'الحقل مطلوب';
-                          } else if (text.length < 4) {
-                            return 'الحقل يجب أن يكون 4 أرقام';
-                          } else if (text.length > 4) {
-                            return 'الحقل يجب أن يكون 4 أرقام';
+                            return 'هذا الحقل مطلوب';
+                          } else if (int.parse(text) < 0 ||
+                              int.parse(text) > 2700) {
+                            return 'العلامة يجب أن تكون بين 0 - 2700';
                           }
                         },
                       )

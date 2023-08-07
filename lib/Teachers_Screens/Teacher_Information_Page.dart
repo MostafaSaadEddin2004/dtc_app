@@ -7,6 +7,7 @@ import '../Components/TextField.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
 import '../Constants/TextStyle.dart';
+import '../Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
 import 'Teacher_Start_Page.dart';
 
 class TeacherInformationPage extends StatefulWidget {
@@ -41,61 +42,6 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                   ),
                   const SizedBox(
                     height: 15,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, top: 15, right: 15),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              titleText(text: 'الإسم باللغة العربية'),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              registrationInfoTextField(
-                                controller: teacherFirstNameController,
-                                keyboardType: TextInputType.name,
-                                radius: 20,
-                                validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'هذا الحقل مطلوب';
-                                  } else if (text.length < 3) {
-                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }
-                                },
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              titleText(text: 'الكنية'),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              registrationInfoTextField(
-                                controller: teacherLastNameController,
-                                keyboardType: TextInputType.name,
-                                radius: 20,
-                                validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'هذا الحقل مطلوب';
-                                  } else if (text.length < 3) {
-                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }
-                                },
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                   Padding(
                     padding:
@@ -389,12 +335,19 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       nextButton(
-                          text: 'التالي',
+                          text: 'إنهاء',
                           onTap: () {
                             if (formState.currentState!.validate()) {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
                                       const TeacherStartPage()));
+                            }
+                          },
+                          onDoubleTap: () {
+                            if (formState.currentState!.validate()) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const TeacherAuthStartPage()));
                             }
                           }),
                     ],

@@ -217,9 +217,15 @@ class _StudentNotesPageState extends State<StudentNotesPage> {
           child: ListView.builder(
             itemCount: note.length,
             itemBuilder: (context, index) => notes(
+              onEditPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const StudentAddingNotes(),
+                ));
+              },
+              onDeletePressed: () {},
               noteTitle: note[index]['NoteTitle'].toString(),
               noteClassification: note[index]['NteClassification'].toString(),
-              notetext: note[index]['Notetext'].toString(),
+              noteText: note[index]['Notetext'].toString(),
             ),
           ),
         ));

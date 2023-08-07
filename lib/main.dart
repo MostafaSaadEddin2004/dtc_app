@@ -16,10 +16,6 @@ import 'Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
 import 'Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
 import 'Students_Screens/Registering_Screens/Student_SignUp_Screen.dart';
 import 'Students_Screens/Student_Start_Page.dart';
-import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Name_SignUp_Screen.dart';
-import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignIn_Screen.dart';
-import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
-import 'Teachers_Auth_Screens/Teacher_Auth__Information_Page.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_Name_SignUp_Screen.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_SignIn_Screen.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';
@@ -63,14 +59,6 @@ class Main extends StatelessWidget {
         AcceptanceQualifications.id: (context) =>
             const AcceptanceQualifications(),
         StudentStartPage.id: (context) => const StudentStartPage(),
-        TeacherAuthNameSignUpPage.id: (context) =>
-            const TeacherAuthNameSignUpPage(),
-        TeacherAuthSignUpScreen.id: (context) =>
-            const TeacherAuthSignUpScreen(),
-        TeacherAuthSignInScreen.id: (context) =>
-            const TeacherAuthSignInScreen(),
-        TeacherAuthInformationPage.id: (context) =>
-            const TeacherAuthInformationPage(),
         TeacherAuthStartPage.id: (context) => const TeacherAuthStartPage(),
         TeacherNameSignUpPage.id: (context) => const TeacherNameSignUpPage(),
         TeacherSignUpScreen.id: (context) => const TeacherSignUpScreen(),

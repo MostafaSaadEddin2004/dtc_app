@@ -112,10 +112,8 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (contex) {
-                        return TeacherAuthProfilePage();
-                      }));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (contex) => const TeacherAuthProfilePage()));
                     },
                     child: const CircleAvatar(
                       minRadius: 30,
@@ -218,9 +216,15 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
           child: ListView.builder(
             itemCount: note.length,
             itemBuilder: (context, index) => notes(
+              onEditPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const TeacherAuthAddingNotes(),
+                ));
+              },
+              onDeletePressed: () {},
               noteTitle: note[index]['NoteTitle'].toString(),
               noteClassification: note[index]['NteClassification'].toString(),
-              notetext: note[index]['Notetext'].toString(),
+              noteText: note[index]['Notetext'].toString(),
             ),
           ),
         ));

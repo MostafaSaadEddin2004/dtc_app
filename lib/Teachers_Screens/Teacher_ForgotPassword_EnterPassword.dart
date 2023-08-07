@@ -4,16 +4,16 @@ import '../Components/CustomAppBar.dart';
 import '../Components/TextField.dart';
 import '../Constants/Controller.dart';
 
-class TeacherrForgotPasswordEnterPassword extends StatefulWidget {
-  const TeacherrForgotPasswordEnterPassword({super.key});
+class TeacherForgotPasswordEnterPassword extends StatefulWidget {
+  const TeacherForgotPasswordEnterPassword({super.key});
 
   @override
-  State<TeacherrForgotPasswordEnterPassword> createState() =>
-      _TeacherrForgotPasswordEnterPasswordState();
+  State<TeacherForgotPasswordEnterPassword> createState() =>
+      _TeacherForgotPasswordEnterPasswordState();
 }
 
-class _TeacherrForgotPasswordEnterPasswordState
-    extends State<TeacherrForgotPasswordEnterPassword> {
+class _TeacherForgotPasswordEnterPasswordState
+    extends State<TeacherForgotPasswordEnterPassword> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool newSecure = false;
   bool confirmSecure = false;
@@ -31,7 +31,7 @@ class _TeacherrForgotPasswordEnterPasswordState
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أدخل كلمة المرور الجديدة',
-                    controller: browserNewPassword,
+                    controller: teacherForgotPasswordNewPassword,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'كلمة المرور مطلوبة';
@@ -61,14 +61,14 @@ class _TeacherrForgotPasswordEnterPasswordState
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أكد كلمة المرور الجديدة',
-                    controller: browserConfirmPassword,
+                    controller: teacherForgotPasswordConfirmPassword,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                      } else if (browserConfirmPassword.text !=
-                          browserNewPassword.text) {
+                      } else if (teacherForgotPasswordConfirmPassword.text !=
+                          teacherForgotPasswordNewPassword.text) {
                         return 'كلمة المرور غير متطابقة';
                       }
                     },

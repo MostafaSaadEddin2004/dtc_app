@@ -36,7 +36,7 @@ class _BrowserForgotPasswordEnterCodeState
                     onChanged: (data) {},
                     //suffixtext: '+963',
                     hint: 'أدخل الكود',
-                    controller: browserCodeController,
+                    controller: browserForgotPasswordCodeController,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'الكود مطلوب';

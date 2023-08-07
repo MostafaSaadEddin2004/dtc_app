@@ -12,7 +12,16 @@ class Change {
       {required this.isFavorite, required this.isSaved, required this.count});
 }
 
-List<Change> changes = posts
+List<Change> dTCPostChange = posts
+    .map((e) => Change(isFavorite: false, isSaved: false, count: 0))
+    .toList();
+List<Change> departmentPostChange = posts
+    .map((e) => Change(isFavorite: false, isSaved: false, count: 0))
+    .toList();
+List<Change> registerCoursesPostChange = posts
+    .map((e) => Change(isFavorite: false, isSaved: false, count: 0))
+    .toList();
+List<Change> coursesPostChange = posts
     .map((e) => Change(isFavorite: false, isSaved: false, count: 0))
     .toList();
 

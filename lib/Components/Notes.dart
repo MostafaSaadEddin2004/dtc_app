@@ -5,7 +5,9 @@ import '../Constants/Colors.dart';
 Widget notes({
   required String noteTitle,
   required String noteClassification,
-  required String notetext,
+  required String noteText,
+  required void Function()? onEditPressed,
+  required void Function()? onDeletePressed,
 }) =>
     Container(
       margin: const EdgeInsets.only(left: 15, bottom: 10, right: 15),
@@ -41,17 +43,23 @@ Widget notes({
             ),
             Row(
               children: [
-                Expanded(child: bodyText(text: notetext)),
+                Expanded(child: bodyText(text: noteText)),
                 const SizedBox(
                   width: 10,
                 ),
                 Column(
-                  children: const [
-                    Icon(Icons.edit),
-                    SizedBox(
+                  children: [
+                    IconButton(
+                      onPressed: onEditPressed,
+                      icon: const Icon(Icons.edit),
+                    ),
+                    const SizedBox(
                       height: 20,
                     ),
-                    Icon(Icons.delete),
+                    IconButton(
+                      onPressed: onDeletePressed,
+                      icon: const Icon(Icons.delete),
+                    )
                   ],
                 )
               ],

@@ -42,9 +42,12 @@ class _BrowserNameSignUpPageState extends State<BrowserNameSignUpPage> {
                   controller: browserSinUpFirstNameController,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return 'الإسم مطلوب';
+                      return 'الحقل مطلوب';
                     } else if (text.length < 3) {
                       return 'الإسم يجب أن يكون على الأقل 3 أحرف';
+                    } else if (!RegExp(r'^[\u0600-\u06FF\s]+$')
+                        .hasMatch(text)) {
+                      return 'تأكد من إدخال الإسم باللغة العربية';
                     }
                   },
                   labelText: 'الإسم باللغة العربية',
@@ -59,9 +62,12 @@ class _BrowserNameSignUpPageState extends State<BrowserNameSignUpPage> {
                   controller: browserSinUpLastNameController,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return 'الإسم مطلوب';
+                      return 'الحقل مطلوب';
                     } else if (text.length < 3) {
                       return 'النسبة يجب أن تكون على الأقل 3 أحرف';
+                    } else if (!RegExp(r'^[\u0600-\u06FF\s]+$')
+                        .hasMatch(text)) {
+                      return 'تأكد من إدخال النسبة باللغة العربية';
                     }
                   },
                   labelText: 'النسبة باللغة العربية',
@@ -76,9 +82,11 @@ class _BrowserNameSignUpPageState extends State<BrowserNameSignUpPage> {
                   controller: browserSinUpEnglishFirstNameController,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return 'الإسم مطلوب';
+                      return 'الحقل مطلوب';
                     } else if (text.length < 3) {
                       return 'الإسم يجب أن يكون على الأقل 3 أحرف';
+                    } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(text)) {
+                      return 'تأكد من إدخال الإسم باللغة الإنكليزية';
                     }
                   },
                   labelText: 'الإسم باللغة الإنكليزية',
@@ -93,9 +101,11 @@ class _BrowserNameSignUpPageState extends State<BrowserNameSignUpPage> {
                   controller: browserSinUpEnglishLastNameController,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return 'الإسم مطلوب';
+                      return 'الحقل مطلوب';
                     } else if (text.length < 3) {
                       return 'النسبة يجب أن تكون على الأقل 3 أحرف';
+                    } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(text)) {
+                      return 'تأكد من إدخال النسبة باللغة الإنكليزية';
                     }
                   },
                   labelText: 'النسبة باللغة الإنكليزية',

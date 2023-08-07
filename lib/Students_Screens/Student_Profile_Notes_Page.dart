@@ -1,9 +1,7 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
-
 import '../Components/Notes.dart';
 import 'Student_Adding_Notes.dart';
-import 'Student_Profile_Page.dart';
 
 class StudentProfileNotesPage extends StatefulWidget {
   const StudentProfileNotesPage({super.key});
@@ -86,9 +84,15 @@ class _StudentProfileNotesPageState extends State<StudentProfileNotesPage> {
           child: ListView.builder(
             itemCount: note.length,
             itemBuilder: (context, index) => notes(
+              onEditPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const StudentAddingNotes(),
+                ));
+              },
+              onDeletePressed: (){},
               noteTitle: note[index]['NoteTitle'].toString(),
               noteClassification: note[index]['NteClassification'].toString(),
-              notetext: note[index]['Notetext'].toString(),
+              noteText: note[index]['Notetext'].toString(),
             ),
           ),
         ));

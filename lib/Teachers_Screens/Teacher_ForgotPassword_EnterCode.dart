@@ -34,7 +34,7 @@ class _TeacherForgotPasswordEnterCodeState
                     onChanged: (data) {},
                     //suffixtext: '+963',
                     hint: 'أدخل الكود',
-                    controller: browserCodeController,
+                    controller: teacherForgotPasswordCodeController,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'الكود مطلوب';
@@ -61,7 +61,7 @@ class _TeacherForgotPasswordEnterCodeState
                         //if (formKey.currentState!.validate()) {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              const TeacherrForgotPasswordEnterPassword(),
+                              const TeacherForgotPasswordEnterPassword(),
                         ));
                         //}
                       }),

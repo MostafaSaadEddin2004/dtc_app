@@ -2,6 +2,7 @@ import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/Notes.dart';
+import 'Teacher_Adding_Notes.dart';
 import 'Teacher_Profile_Page.dart';
 
 class TeacherProfileNotesPage extends StatefulWidget {
@@ -69,7 +70,11 @@ class _TeacherProfileNotesPageState extends State<TeacherProfileNotesPage> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             backgroundColor: PrimaryColor,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const TeacherAddingNotes(),
+              ));
+            },
             child: const Icon(
               Icons.add,
               size: 40,
@@ -81,9 +86,15 @@ class _TeacherProfileNotesPageState extends State<TeacherProfileNotesPage> {
           child: ListView.builder(
             itemCount: note.length,
             itemBuilder: (context, index) => notes(
+              onEditPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const TeacherAddingNotes(),
+                ));
+              },
+              onDeletePressed: () {},
               noteTitle: note[index]['NoteTitle'].toString(),
               noteClassification: note[index]['NteClassification'].toString(),
-              notetext: note[index]['Notetext'].toString(),
+              noteText: note[index]['Notetext'].toString(),
             ),
           ),
         ));

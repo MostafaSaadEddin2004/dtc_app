@@ -4,7 +4,6 @@ import 'Browsers_Screens/Registration_Screens/Browser_Name_SignUp_Screen.dart';
 import 'Components/Buttons.dart';
 import 'Constants/Colors.dart';
 import 'Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
-import 'Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Name_SignUp_Screen.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_Name_SignUp_Screen.dart';
 
 class SignUpType extends StatefulWidget {
@@ -18,7 +17,6 @@ class SignUpType extends StatefulWidget {
 
 bool selectedBrowser = false;
 bool selectedStudent = false;
-bool selectedTeacherAuth = false;
 bool selectedTeacher = false;
 
 class _SignUpTypeState extends State<SignUpType> {
@@ -45,7 +43,6 @@ class _SignUpTypeState extends State<SignUpType> {
               onTap: () {
                 selectedBrowser = true;
                 selectedStudent = false;
-                selectedTeacherAuth = false;
                 selectedTeacher = false;
                 setState(() {});
               },
@@ -115,7 +112,6 @@ class _SignUpTypeState extends State<SignUpType> {
               onTap: () {
                 selectedBrowser = false;
                 selectedStudent = true;
-                selectedTeacherAuth = false;
                 selectedTeacher = false;
                 setState(() {});
               },
@@ -186,78 +182,6 @@ class _SignUpTypeState extends State<SignUpType> {
               onTap: () {
                 selectedBrowser = false;
                 selectedStudent = false;
-                selectedTeacherAuth = true;
-                selectedTeacher = false;
-                setState(() {});
-              },
-              child: selectedTeacherAuth == false
-                  ? Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: GreyColor, width: 1),
-                      ),
-                      child: Row(
-                        children: const [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Icon(
-                            Icons.edit_document,
-                            size: 25,
-                            color: GreyColor,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            'تسجيل الدخول كأستاذ مسؤول',
-                            style: TextStyle(fontSize: 18, color: GreyColor),
-                          )
-                        ],
-                      ))
-                  : Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: PrimaryColor,
-                        borderRadius: BorderRadius.circular(25),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: GreyColor,
-                            blurRadius: 4,
-                            offset: Offset(4, 4), // Shadow position
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: const [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Icon(
-                            Icons.edit_document,
-                            size: 25,
-                            color: WhiteColor,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            'تسجيل الدخول كأستاذ مسؤول',
-                            style: TextStyle(fontSize: 18, color: WhiteColor),
-                          )
-                        ],
-                      ),
-                    ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            GestureDetector(
-              onTap: () {
-                selectedBrowser = false;
-                selectedStudent = false;
-                selectedTeacherAuth = false;
                 selectedTeacher = true;
                 setState(() {});
               },
@@ -338,11 +262,6 @@ class _SignUpTypeState extends State<SignUpType> {
                       } else if (selectedStudent == true) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
                           StudentNameSignUpPage.id,
-                          (Route<dynamic> route) => false,
-                        );
-                      } else if (selectedTeacherAuth == true) {
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          TeacherAuthNameSignUpPage.id,
                           (Route<dynamic> route) => false,
                         );
                       } else if (selectedTeacher == true) {

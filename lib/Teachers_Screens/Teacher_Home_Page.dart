@@ -19,56 +19,56 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '2:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '3:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': '',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '4:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '5:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '6:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': '',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '7:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '8:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
   ];
@@ -81,9 +81,10 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.only(left: 10),
             alignment: Alignment.center,
             height: 30,
+            width: 40,
             decoration: BoxDecoration(
               color: PrimaryColor,
               borderRadius: BorderRadius.circular(20),
@@ -213,16 +214,16 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
           itemCount: posts.length,
           itemBuilder: (context, index) => DTCPosts(
               onChange: (isFavorite, isSaved, count) {
-                changes[index].isFavorite = isFavorite;
-                changes[index].isSaved = isSaved;
-                changes[index].count = count;
+                dTCPostChange[index].isFavorite = isFavorite;
+                dTCPostChange[index].isSaved = isSaved;
+                dTCPostChange[index].count = count;
               },
-              isFavorite: changes[index].isFavorite,
-              isSaved: changes[index].isSaved,
-              count: changes[index].count,
+              isFavorite: dTCPostChange[index].isFavorite,
+              isSaved: dTCPostChange[index].isSaved,
+              count: dTCPostChange[index].count,
               time: posts[index]["Time"].toString(),
               postImage: posts[index]['Images'].toString(),
-              posttext: posts[index]['Posttext'].toString()),
+              posttext: posts[index]['posttext'].toString()),
         ),
       ),
     );

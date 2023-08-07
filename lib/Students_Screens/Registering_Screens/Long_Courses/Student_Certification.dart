@@ -2,7 +2,9 @@ import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Wishes
 import 'package:flutter/material.dart';
 import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
+import '../../../Components/DropDownSearch.dart';
 import '../../../Components/Label.dart';
+import '../../../Components/TextField.dart';
 import '../../../Constants/Colors.dart';
 import '../../../Constants/Controller.dart';
 import '../../../Constants/TextStyle.dart';
@@ -44,39 +46,20 @@ class _StudentCertificationState extends State<StudentCertification> {
                 height: 10,
               ),
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-                // decoration: BoxDecoration(
-                //   color: WhiteColor,
-                //   borderRadius: BorderRadius.circular(20),
-                //   boxShadow: const [
-                //     BoxShadow(
-                //       color: GreyColor,
-                //       blurRadius: 2,
-                //       offset: Offset(2, 2), // Shadow position
-                //     ),
-                //   ],
-                // ),
-                child: TextFormField(
-                    onChanged: (data) {},
+                  margin: const EdgeInsets.symmetric(horizontal: 15),
+                  child: registrationInfoTextField(
                     controller: studentTotalDegreesController,
-                    validator: (text) {},
                     keyboardType: TextInputType.number,
-                    enabled: true,
-                    cursorColor: GreyColor,
-                    decoration: InputDecoration(
-                      hintText: 'أكتب هنا...',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(color: GreyColor),
-                      ),
-                    )),
-              ),
+                    radius: 20,
+                    validator: (text) {
+                      if (text!.isEmpty) {
+                        return 'هذا الحقل مطلوب';
+                      } else if (int.parse(text) < 0 ||
+                          int.parse(text) > 2700) {
+                        return 'العلامة يجب أن تكون بين 0 - 2700';
+                      }
+                    },
+                  )),
               const SizedBox(
                 height: 15,
               ),
@@ -84,54 +67,23 @@ class _StudentCertificationState extends State<StudentCertification> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-                // decoration: BoxDecoration(
-                //   color: WhiteColor,
-                //   borderRadius: BorderRadius.circular(20),
-                //   boxShadow: const [
-                //     BoxShadow(
-                //       color: GreyColor,
-                //       blurRadius: 2,
-                //       offset: Offset(2, 2), // Shadow position
-                //     ),
-                //   ],
-                // ),
-                child: TextFormField(
-                    onChanged: (data) {},
-                    controller: studentCertificationDateController,
-                    validator: (text) {},
-                    keyboardType: TextInputType.datetime,
-                    enabled: true,
-                    cursorColor: GreyColor,
-                    decoration: InputDecoration(
-                      suffixIconColor: BlackColor,
-                      hintText: 'أنقر على الرمز لاختيار التاريخ...',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      suffixIcon: IconButton(
-                        icon: const Icon(Icons.calendar_month),
-                        onPressed: () async {
-                          dateTime = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime(2024),
-                              keyboardType: TextInputType.datetime);
-                          studentCertificationDateController.text =
-                              '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
-                        },
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(color: GreyColor),
-                      ),
-                    )),
-              ),
+              registrationDropDownSearch(
+                  hint: '',
+                  items: [
+                    '2018-2019',
+                    '2019-2020',
+                    '2020-2021',
+                    '2021-2022',
+                    '2022-2023'
+                  ],
+                  onChange: (data) {
+                    certificationDate = data!;
+                  },
+                  validator: (data) {
+                    if (data!.isEmpty) {
+                      return 'الحقل مطلوب';
+                    }
+                  }),
               const Spacer(
                 flex: 1,
               ),
@@ -141,10 +93,11 @@ class _StudentCertificationState extends State<StudentCertification> {
                   nextButton(
                       text: 'التالي',
                       onTap: () {
-                        //if (formState.currentState!.validate()) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => const RequiredDocuments())));
-                        //}
+                        if (formState.currentState!.validate()) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: ((context) =>
+                                  const RequiredDocuments())));
+                        }
                       }),
                 ],
               ),

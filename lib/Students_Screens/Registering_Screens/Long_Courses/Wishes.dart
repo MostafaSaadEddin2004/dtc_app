@@ -86,7 +86,18 @@ class _WishesPageState extends State<WishesPage> {
                               checkedCount++;
                               wishes[index].selected = true;
                               setState(() {});
-                            } else {}
+                            } else if (checkedCount == 6) {
+                              showDialog(
+                                context: context,
+                                builder: (context) => warningDialog(
+                                    title: 'إنتباه',
+                                    message: 'لا يمكن إختيار أكثر من ست رغبات',
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    }),
+                              );
+                              setState(() {});
+                            }
                           },
                           icon: const Icon(
                             Icons.add_circle_rounded,
@@ -129,10 +140,8 @@ class _WishesPageState extends State<WishesPage> {
             child: ListView.builder(
                 itemCount: wishes.where((element) => element.selected).length,
                 itemBuilder: (context, index) {
-                  final wishes = this
-                      .wishes
-                      .where((element) => element.selected)
-                      .toList();
+                  final wishes =
+                      this.wishes.where((element) => element.selected).toList();
                   return Container(
                     margin:
                         const EdgeInsets.only(bottom: 10, left: 15, right: 15),
@@ -180,7 +189,16 @@ class _WishesPageState extends State<WishesPage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const PersonalInformation()));
                     } else {
-                      print('you cannot navigate');
+                      showDialog(
+                        context: context,
+                        builder: (context) => warningDialog(
+                            title: 'إنتباه',
+                            message: 'يجب إختيار ست رغبات أولاً',
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            }),
+                      );
+                      setState(() {});
                     }
                   },
                   text: 'التالي'),

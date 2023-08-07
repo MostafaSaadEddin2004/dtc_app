@@ -115,7 +115,7 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                         ),
                         TextFormField(
                             onChanged: (data) {},
-                            controller: teacherNotetext,
+                            controller: teacherNoteText,
                             validator: (text) {},
                             keyboardType: TextInputType.text,
                             enabled: true,
@@ -143,12 +143,17 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       nextButton(
-                          text: 'إضافة',
+                          text: 'إنهاء',
                           onTap: () {
                             showDialog(
                               context: context,
                               builder: (context) => CustomDialog(
-                                  onPressed: () {}, title: 'إضافة الملاحظة'),
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                      ..pop()
+                                      ..pop();
+                                  },
+                                  title: 'إضافة الملاحظة'),
                             );
                           }),
                     ],

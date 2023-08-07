@@ -19,56 +19,56 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
       'Time': '1:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '2:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '3:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': '',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '4:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '5:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '6:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': '',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '7:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Course.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
     {
       'Time': '8:7 مساءً',
       'Poster': 'ناشر المنشور',
       'Images': 'assets/images/Graduation.jpeg',
-      'Posttext':
+      'posttext':
           """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
     },
   ];
@@ -79,20 +79,7 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         actions: [
-          Container(
-            alignment: Alignment.center,
-            height: 30,
-            width: 60,
-            decoration: BoxDecoration(
-              color: PrimaryColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Text(
-              'IT / IT',
-              style: TextStyle(
-                  color: WhiteColor, fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
+          
           IconButton(onPressed: () {}, icon: const Icon(Icons.search))
         ],
       ),
@@ -204,34 +191,6 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
-              },
-              child: Row(
-                children: const [
-                  Text(
-                    'تسجيل الخروج',
-                    style: TextStyle(
-                        color: RedColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Icon(
-                    Icons.exit_to_app_rounded,
-                    color: RedColor,
-                    size: 30,
-                  ),
-                ],
-              ),
-            )
           ]),
         ),
       ),
@@ -242,16 +201,16 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
           itemCount: posts.length,
           itemBuilder: (context, index) => DTCPosts(
               onChange: (isFavorite, isSaved, count) {
-                changes[index].isFavorite = isFavorite;
-                changes[index].isSaved = isSaved;
-                changes[index].count = count;
+                dTCPostChange[index].isFavorite = isFavorite;
+                dTCPostChange[index].isSaved = isSaved;
+                dTCPostChange[index].count = count;
               },
-              isFavorite: changes[index].isFavorite,
-              isSaved: changes[index].isSaved,
-              count: changes[index].count,
+              isFavorite: dTCPostChange[index].isFavorite,
+              isSaved: dTCPostChange[index].isSaved,
+              count: dTCPostChange[index].count,
               time: posts[index]["Time"].toString(),
               postImage: posts[index]['Images'].toString(),
-              posttext: posts[index]['Posttext'].toString()),
+              posttext: posts[index]['posttext'].toString()),
         ),
       ),
     );

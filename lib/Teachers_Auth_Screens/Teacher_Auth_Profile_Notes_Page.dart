@@ -2,6 +2,7 @@ import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/Notes.dart';
+import 'Teacher_Auth_Adding_Notes.dart';
 import 'Teacher_Auth_Profile_Page.dart';
 
 class TeacherAuthProfileNotesPage extends StatefulWidget {
@@ -82,9 +83,15 @@ class _TeacherAuthProfileNotesPageState
           child: ListView.builder(
             itemCount: note.length,
             itemBuilder: (context, index) => notes(
+              onEditPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const TeacherAuthAddingNotes(),
+                ));
+              },
+              onDeletePressed: () {},
               noteTitle: note[index]['NoteTitle'].toString(),
               noteClassification: note[index]['NteClassification'].toString(),
-              notetext: note[index]['Notetext'].toString(),
+              noteText: note[index]['Notetext'].toString(),
             ),
           ),
         ));

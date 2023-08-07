@@ -142,7 +142,7 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       nextButton(
-                          text: 'إضافة',
+                          text: 'إنهاء',
                           onTap: () {
                             showDialog(
                               context: context,
@@ -151,7 +151,6 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                                     Navigator.of(context)
                                       ..pop()
                                       ..pop();
-                                    print('Note added successfully');
                                   },
                                   title: 'إضافة الملاحظة'),
                             );

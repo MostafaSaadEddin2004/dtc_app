@@ -144,12 +144,17 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       nextButton(
-                          text: 'إضافة',
+                          text: 'إنهاء',
                           onTap: () {
                             showDialog(
                               context: context,
                               builder: (context) => CustomDialog(
-                                  onPressed: () {}, title: 'إضافة الملاحظة'),
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                      ..pop()
+                                      ..pop();
+                                  },
+                                  title: 'إضافة الملاحظة'),
                             );
                           }),
                     ],

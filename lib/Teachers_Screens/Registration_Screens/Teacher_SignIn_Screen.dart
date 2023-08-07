@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Components/TextField.dart';
 import '../../Constants/Colors.dart';
 import '../../Constants/Controller.dart';
+import '../Teacher_ForgotPassword_EnterEmail.dart';
 import 'Teacher_SignUp_Screen.dart';
 
 class TeacherSignInScreen extends StatefulWidget {
@@ -100,7 +101,11 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
               Row(
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                const TeacherForgotPasswordEnterEmail()));
+                      },
                       child: const Text(
                         "هل نسيت كلمة المرور ؟",
                         style: TextStyle(
@@ -115,6 +120,9 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
               ),
               customButton(
                   onTap: () {
+                    if (formState.currentState!.validate()) {}
+                  },
+                  onDoubleTap: () {
                     if (formState.currentState!.validate()) {}
                   },
                   backgroundColor: PrimaryColor,

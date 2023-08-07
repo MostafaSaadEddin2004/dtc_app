@@ -34,7 +34,7 @@ class _StudentChangePasswordEnterPasswordState
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أدخل كلمة المرور الحالية',
-                    controller: browserCurrentPassword,
+                    controller: studentCurrentPassword,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'كلمة المرور الحالية مطلوبة';
@@ -64,7 +64,7 @@ class _StudentChangePasswordEnterPasswordState
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أدخل كلمة المرور الجديدة',
-                    controller: browserNewPassword,
+                    controller: studentNewPassword,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'كلمة المرور مطلوبة';
@@ -94,14 +94,14 @@ class _StudentChangePasswordEnterPasswordState
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أكد كلمة المرور الجديدة',
-                    controller: browserConfirmPassword,
+                    controller: studentConfirmPassword,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                      } else if (browserConfirmPassword.text !=
-                          browserNewPassword.text) {
+                      } else if (studentConfirmPassword.text !=
+                          studentNewPassword.text) {
                         return 'كلمة المرور غير متطابقة';
                       }
                     },

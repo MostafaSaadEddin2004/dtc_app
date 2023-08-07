@@ -35,7 +35,7 @@ class _BrowserForgotPasswordEnterEmailState
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أدخل الإيميل',
-                    controller: browserCourseEmailController,
+                    controller: browserForgotPasswordEmailController,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'الإيميل مطلوب';

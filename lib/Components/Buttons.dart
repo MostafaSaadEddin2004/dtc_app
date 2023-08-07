@@ -6,10 +6,12 @@ Widget customButton({
   required Color backgroundColor,
   required double fontSize,
   required void Function() onTap,
+  void Function()? onDoubleTap,
 }) =>
     InkWell(
       radius: 20,
       onTap: onTap,
+      onDoubleTap: onDoubleTap,
       child: Container(
         alignment: Alignment.center,
         height: 50,
@@ -67,10 +69,13 @@ Widget coloredNextButton(
     );
 
 Widget nextButton(
-        {required String text, required void Function() onTap}) =>
+        {required String text,
+        required void Function() onTap,
+        void Function()? onDoubleTap}) =>
     InkWell(
       radius: 20,
       onTap: onTap,
+      onDoubleTap: onDoubleTap,
       child: Container(
         margin: const EdgeInsets.only(left: 15, right: 15),
         alignment: Alignment.center,

@@ -1,15 +1,11 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
-
 import '../Components/Dialogs.dart';
 import '../Components/PrivacySettings.dart';
 import '../Constants/Controller.dart';
 import 'Editing_Marks_Request_Page.dart';
 import 'Moving_Request_Page.dart';
-import 'Student_ForgotPassword_EnterEmail.dart';
-
-
-
+import 'Student_ChangePassword.dart';
 
 class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
@@ -29,7 +25,6 @@ class StudentPrivacyPage extends StatefulWidget {
 }
 
 class _StudentPrivacyPageState extends State<StudentPrivacyPage> {
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,59 +40,28 @@ class _StudentPrivacyPageState extends State<StudentPrivacyPage> {
                   onPressedIconButton: () {
                     showDialog(
                       context: context,
-                      builder: (context) => Form(
-                        key: formState,
-                        child: editingPrivacyDialog(
-                            controller: studentPrivacyEditingPhone,
-                            onChanged: (text) {},
-                            validator: (text) {
-                              if (!RegExp(r'^(\+?963|0)?9\d{8}$')
-                                  .hasMatch(text!)) {
-                                return 'الرجاء التأكد من رقم الجوال';
-                              }
-                            },
-                            keyboardType: TextInputType.number,
-                            onCancelPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            onOkPressed: () {
-                              print('not null');
-                            },
-                            prefixIcon: Icons.call,
-                            title: 'رقم الهاتف',
-                            hint: 'أدخل رقم الهاتف'),
-                      ),
-                    );
-                  },
-                  value: 'رقم الهاتف'),
-              const SizedBox(
-                height: 15,
-              ),
-              privacyEditing(
-                  icon: Icons.person,
-                  label: 'اسم المستخدم',
-                  onPressedIconButton: () {
-                    showDialog(
-                      context: context,
                       builder: (context) => editingPrivacyDialog(
-                          controller: studentPrivacyEditingUsername,
+                          controller: studentPrivacyEditingPhone,
                           onChanged: (text) {},
                           validator: (text) {
-                            if (text!.length < 3) {
-                              return 'إسم المسخدم يجب أن يكون 3 أحرف على الأقل';
+                            if (!RegExp(r'^(\+?963|0)?9\d{8}$')
+                                .hasMatch(text!)) {
+                              return 'الرجاء التأكد من رقم الجوال';
                             }
                           },
-                          keyboardType: TextInputType.name,
+                          keyboardType: TextInputType.number,
                           onCancelPressed: () {
                             Navigator.of(context).pop();
                           },
-                          onOkPressed: () {},
-                          prefixIcon: Icons.person,
-                          title: 'اسم المستخدم',
-                          hint: 'أدخل اسم المستخدم'),
+                          onOkPressed: () {
+                            print('not null');
+                          },
+                          prefixIcon: Icons.call,
+                          title: 'رقم الهاتف',
+                          hint: 'أدخل رقم الهاتف'),
                     );
                   },
-                  value: 'اسم المستخدم'),
+                  value: 'رقم الهاتف'),
               const SizedBox(
                 height: 15,
               ),
@@ -107,7 +71,7 @@ class _StudentPrivacyPageState extends State<StudentPrivacyPage> {
                   onPressedIconButton: () {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
-                          const StudentForgotPasswordEnterEmail(),
+                          const StudentChangePasswordEnterPassword(),
                     ));
                   },
                   value: 'كلمة السر'),
