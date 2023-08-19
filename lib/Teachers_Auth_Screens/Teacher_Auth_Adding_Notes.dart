@@ -144,7 +144,7 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       nextButton(
-                          text: 'إنهاء',
+                          text: 'إضافة',
                           onTap: () {
                             showDialog(
                               context: context,

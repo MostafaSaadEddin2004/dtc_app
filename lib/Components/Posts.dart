@@ -30,7 +30,7 @@ class DTCPosts extends StatefulWidget {
     super.key,
     required this.time,
     required this.postImage,
-    required this.posttext,
+    required this.postText,
     this.isFavorite = false,
     this.isSaved = false,
     this.onChange,
@@ -39,7 +39,7 @@ class DTCPosts extends StatefulWidget {
 
   final String time;
   final String postImage;
-  final String posttext;
+  final String postText;
   final bool isFavorite;
   final bool isSaved;
   final int count;
@@ -124,7 +124,7 @@ class _DTCPostsState extends State<DTCPosts> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.posttext),
+              child: Text(widget.postText),
             ),
             const SizedBox(
               height: 5,
@@ -195,18 +195,16 @@ class DepartmentPosts extends StatefulWidget {
   const DepartmentPosts({
     super.key,
     required this.time,
-    required this.poster,
     required this.postImage,
-    required this.posttext,
+    required this.postText,
     this.isFavorite = false,
     this.isSaved = false,
     this.count = 0,
     this.onChange,
   });
   final String time;
-  final String poster;
   final String postImage;
-  final String posttext;
+  final String postText;
   final bool isFavorite;
   final bool isSaved;
   final int count;
@@ -255,22 +253,10 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'إسم القسم',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        widget.poster,
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                    ],
+                  const Text(
+                    'إسم القسم',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   const Spacer(
                     flex: 1,
@@ -303,7 +289,7 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.posttext),
+              child: Text(widget.postText),
             ),
             const SizedBox(
               height: 5,

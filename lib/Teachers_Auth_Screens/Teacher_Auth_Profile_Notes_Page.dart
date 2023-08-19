@@ -2,6 +2,10 @@ import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/Notes.dart';
+import '../Components/loaing.dart';
+import '../api/models/note_model.dart';
+import '../api/services/note_services.dart';
+import 'Teacher_Auh__Editing_Notes.dart';
 import 'Teacher_Auth_Adding_Notes.dart';
 import 'Teacher_Auth_Profile_Page.dart';
 
@@ -16,56 +20,7 @@ class TeacherAuthProfileNotesPage extends StatefulWidget {
 
 class _TeacherAuthProfileNotesPageState
     extends State<TeacherAuthProfileNotesPage> {
-  List note = const [
-    {
-      'NoteTitle': 'عنوان الملاحظة',
-      'NteClassification': 'التصنيف',
-      'Notetext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'NoteTitle': 'عنوان الملاحظة',
-      'NteClassification': 'التصنيف',
-      'Notetext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'NoteTitle': 'عنوان الملاحظة',
-      'NteClassification': 'التصنيف',
-      'Notetext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'NoteTitle': 'عنوان الملاحظة',
-      'NteClassification': 'التصنيف',
-      'Notetext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'NoteTitle': 'عنوان الملاحظة',
-      'NteClassification': 'التصنيف',
-      'Notetext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'NoteTitle': 'عنوان الملاحظة',
-      'NteClassification': 'التصنيف',
-      'Notetext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'NoteTitle': 'عنوان الملاحظة',
-      'NteClassification': 'التصنيف',
-      'Notetext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'NoteTitle': 'عنوان الملاحظة',
-      'NteClassification': 'التصنيف',
-      'Notetext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-  ];
+  List notes = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,20 +35,26 @@ class _TeacherAuthProfileNotesPageState
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Container(
           margin: const EdgeInsets.only(top: 10),
-          child: ListView.builder(
-            itemCount: note.length,
-            itemBuilder: (context, index) => notes(
-              onEditPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const TeacherAuthAddingNotes(),
-                ));
-              },
-              onDeletePressed: () {},
-              noteTitle: note[index]['NoteTitle'].toString(),
-              noteClassification: note[index]['NteClassification'].toString(),
-              noteText: note[index]['Notetext'].toString(),
-            ),
-          ),
+          child: FutureBuilder<List<NoteModel>>(
+              future: NoteServices.getNote(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData || !mounted) return Loading();
+                final notes = snapshot.data!;
+                return ListView.builder(
+                  itemCount: notes.length,
+                  itemBuilder: (context, index) => Note(note: notes[index], 
+                    onEditPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const TeacherAuthEditingNotes(),
+                      ));
+                    },
+                    onDeletePressed: () {},
+                    noteTitle: notes[index].title,
+                    noteClassification: notes[index].category,
+                    noteText: notes[index].description,
+                  ),
+                );
+              }),
         ));
   }
 }

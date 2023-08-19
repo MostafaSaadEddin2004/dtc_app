@@ -2,6 +2,7 @@ import 'package:dtc_app/api/models/note_model.dart';
 import 'package:dtc_app/api/services/note_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/Dialogs.dart';
@@ -11,19 +12,19 @@ import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
 import '../Constants/TextStyle.dart';
 
-class StudentAddingNotes extends StatefulWidget {
-  const StudentAddingNotes({super.key});
+class TeacherEditingNotes extends StatefulWidget {
+  const TeacherEditingNotes({super.key});
 
   @override
-  State<StudentAddingNotes> createState() => _StudentAddingNotesState();
+  State<TeacherEditingNotes> createState() => _TeacherEditingNotesState();
 }
 
-class _StudentAddingNotesState extends State<StudentAddingNotes> {
+class _TeacherEditingNotesState extends State<TeacherEditingNotes> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(title: 'إضافة ملاحظة'),
+        appBar: CustomAppBar(title: 'تعديل الملاحظة'),
         body: Form(
           key: formKey,
           child: SingleChildScrollView(
@@ -46,10 +47,11 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                               registrationDropDownSearch(
                                   hint: 'إختر',
                                   items: [],
-                                  onChange: (data) {
-                                    studentNoteCLassificationVariable = data!;
-                                  },
-                                  validator: (data) {})
+                                  onChange: (data) {},
+                                  validator: (data) {
+                                    teacherEditingNoteClassificationVariable =
+                                        data!;
+                                  })
                             ],
                           ),
                         ),
@@ -64,7 +66,7 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                                 height: 10,
                               ),
                               registrationInfoTextField(
-                                controller: studentNoteClassification,
+                                controller: teacherEditingNoteClassification,
                                 keyboardType: TextInputType.name,
                                 radius: 20,
                                 validator: (text) {},
@@ -86,7 +88,7 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                         ),
                         TextFormField(
                             onChanged: (data) {},
-                            controller: studentNoteTitle,
+                            controller: teacherEditingNoteTitle,
                             validator: (text) {},
                             keyboardType: TextInputType.name,
                             enabled: true,
@@ -118,7 +120,7 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                         ),
                         TextFormField(
                             onChanged: (data) {},
-                            controller: studentNoteText,
+                            controller: teacherEditingNoteText,
                             validator: (text) {},
                             keyboardType: TextInputType.text,
                             enabled: true,
@@ -146,13 +148,13 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       nextButton(
-                          text: 'إضافة',
+                          text: 'تعديل',
                           onTap: () async {
                             print('tapped');
                             final notes = await NoteServices.postNote(
-                                title: studentNoteTitle.text,
-                                description: studentNoteText.text,
-                                category: studentNoteClassification.text);
+                                title: teacherEditingNoteTitle.text,
+                                description: teacherEditingNoteText.text,
+                                category: teacherEditingNoteClassification.text);
                             showDialog(
                               context: context,
                               builder: (context) => CustomDialog(
@@ -163,9 +165,9 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                                   },
                                   title: 'إضافة الملاحظة'),
                             );
-                            studentNoteTitle.clear();
-                            studentNoteText.clear();
-                            studentNoteClassification.clear();
+                            teacherEditingNoteTitle.clear();
+                            teacherEditingNoteText.clear();
+                            teacherEditingNoteClassification.clear();
                           }),
                     ],
                   ),

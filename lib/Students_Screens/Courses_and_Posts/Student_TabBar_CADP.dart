@@ -12,7 +12,7 @@ class StudentTabBar extends StatefulWidget {
   @override
   State<StudentTabBar> createState() => _StudentTabBarState();
 }
-
+List<Map> posts = [];
 class _StudentTabBarState extends State<StudentTabBar> {
   @override
   Widget build(BuildContext context) {

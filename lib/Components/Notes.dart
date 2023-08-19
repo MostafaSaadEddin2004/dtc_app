@@ -1,15 +1,33 @@
 import 'package:dtc_app/Constants/TextStyle.dart';
+import 'package:dtc_app/api/models/note_model.dart';
 import 'package:flutter/material.dart';
 import '../Constants/Colors.dart';
 
-Widget notes({
-  required String noteTitle,
-  required String noteClassification,
-  required String noteText,
-  required void Function()? onEditPressed,
-  required void Function()? onDeletePressed,
-}) =>
-    Container(
+class Note extends StatefulWidget {
+  const Note({
+    super.key,
+    required this.noteTitle,
+    required this.noteClassification,
+    required this.noteText,
+    required this.onEditPressed,
+    required this.onDeletePressed,
+    required this.note,
+  });
+  final String noteTitle;
+  final String noteClassification;
+  final String noteText;
+  final void Function()? onEditPressed;
+  final void Function()? onDeletePressed;
+  final NoteModel note;
+
+  @override
+  State<Note> createState() => _NoteState();
+}
+
+class _NoteState extends State<Note> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       margin: const EdgeInsets.only(left: 15, bottom: 10, right: 15),
       decoration: BoxDecoration(
           color: WhiteColor,
@@ -24,40 +42,37 @@ Widget notes({
           children: [
             Row(
               children: [
-                labelFont(text: noteTitle),
+                labelFont(text: widget.noteTitle),
                 const Spacer(
                   flex: 1,
                 ),
-                bodyText(text: noteClassification)
+                bodyText(text: widget.noteClassification)
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
+            // const SizedBox(
+            //   height: 5,
+            // ),
             const Divider(
               color: GreyColor,
               thickness: 1,
             ),
-            const SizedBox(
-              height: 5,
-            ),
+            // const SizedBox(
+            //   height: 5,
+            // ),
             Row(
               children: [
-                Expanded(child: bodyText(text: noteText)),
+                Expanded(child: bodyText(text: widget.noteText)),
                 const SizedBox(
                   width: 10,
                 ),
                 Column(
                   children: [
                     IconButton(
-                      onPressed: onEditPressed,
+                      onPressed: widget.onEditPressed,
                       icon: const Icon(Icons.edit),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
                     IconButton(
-                      onPressed: onDeletePressed,
+                      onPressed: widget.onDeletePressed,
                       icon: const Icon(Icons.delete),
                     )
                   ],
@@ -68,3 +83,6 @@ Widget notes({
         ),
       ),
     );
+    ;
+  }
+}

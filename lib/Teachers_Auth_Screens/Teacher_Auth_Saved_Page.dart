@@ -47,7 +47,7 @@ class _TeacherAuthSavedPageState extends State<TeacherAuthSavedPage> {
               count: dTCPostChange[index].count,
               time: posts[index]["Time"].toString(),
               postImage: posts[index]['Images'].toString(),
-              posttext: posts[index]['posttext'].toString()),
+              postText: posts[index]['posttext'].toString()),
         ),
       ),
     );

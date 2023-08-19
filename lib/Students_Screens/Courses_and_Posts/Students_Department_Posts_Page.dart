@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../Components/Posts.dart';
+import '../../Components/loaing.dart';
+import '../../api/models/post_model.dart';
+import '../../api/services/depatrment_post_services.dart';
 
 class StudentsDepartmentPostsPage extends StatefulWidget {
   const StudentsDepartmentPostsPage({super.key});
@@ -10,90 +13,38 @@ class StudentsDepartmentPostsPage extends StatefulWidget {
   State<StudentsDepartmentPostsPage> createState() =>
       _StudentsDepartmentPostsPageState();
 }
-
+List<Map> posts = [];
 class _StudentsDepartmentPostsPageState
     extends State<StudentsDepartmentPostsPage> {
-  List<Map> posts = [
-    {
-      'Time': '1:7 مساءً',
-      'Poster': 'ناشر المنشور',
-      'Images': 'assets/images/Course.jpeg',
-      'posttext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'Time': '1:7 مساءً',
-      'Poster': 'ناشر المنشور',
-      'Images': 'assets/images/Course.jpeg',
-      'posttext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'Time': '1:7 مساءً',
-      'Poster': 'ناشر المنشور',
-      'Images': 'assets/images/Course.jpeg',
-      'posttext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'Time': '1:7 مساءً',
-      'Poster': 'ناشر المنشور',
-      'Images': 'assets/images/Course.jpeg',
-      'posttext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'Time': '1:7 مساءً',
-      'Poster': 'ناشر المنشور',
-      'Images': 'assets/images/Course.jpeg',
-      'posttext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'Time': '1:7 مساءً',
-      'Poster': 'ناشر المنشور',
-      'Images': 'assets/images/Course.jpeg',
-      'posttext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'Time': '1:7 مساءً',
-      'Poster': 'ناشر المنشور',
-      'Images': 'assets/images/Course.jpeg',
-      'posttext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-    {
-      'Time': '1:7 مساءً',
-      'Poster': 'ناشر المنشور',
-      'Images': 'assets/images/Course.jpeg',
-      'posttext':
-          """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis."""
-    },
-  ];
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.only(top: 10),
         color: Colors.transparent,
-        child: ListView.builder(
-          itemCount: posts.length,
-          itemBuilder: (context, index) => DepartmentPosts(
-              onChange: (isFavorite, isSaved, count) {
-                departmentPostChange[index].isFavorite = isFavorite;
-                departmentPostChange[index].isSaved = isSaved;
-                departmentPostChange[index].count = count;
-              },
-              isFavorite: departmentPostChange[index].isFavorite,
-              isSaved: departmentPostChange[index].isSaved,
-              count: departmentPostChange[index].count,
-              time: posts[index]["Time"].toString(),
-              poster: posts[index]["Poster"].toString(),
-              postImage: posts[index]['Images'].toString(),
-              posttext: posts[index]['posttext'].toString()),
-        ),
+        child: FutureBuilder<List<PostModel>>(
+            future: DepartmentPostServices.getDepartmentPost(
+                'Bearer 1|eggNXmXHjk7Be60IlXurReiNBVPOg36X98vIptCt'),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData || !mounted) return Loading();
+              final posts = snapshot.data!;
+              return ListView.builder(
+                itemCount: posts.length,
+                itemBuilder: (context, index) => DepartmentPosts(
+                    onChange: (isFavorite, isSaved, count) {
+                      posts[index].likedByMe = isFavorite;
+                      posts[index].savedByMe = isSaved;
+                      posts[index].likes = count;
+                    },
+                    isFavorite: posts[index].likedByMe,
+                    isSaved: posts[index].savedByMe,
+                    count: posts[index].likes,
+                    time: posts[index].createdAt.toString(),
+                    postImage: posts[index].attachment.toString(),
+                    postText: posts[index].content),
+              );
+            }),
       ),
     );
   }
