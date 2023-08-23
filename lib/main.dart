@@ -9,17 +9,21 @@ import 'Browsers_Screens/Registration_Screens/Browser_Name_SignUp_Screen.dart';
 import 'Browsers_Screens/Registration_Screens/Browser_SignIn_Screen.dart';
 import 'Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
 import 'Constants/Colors.dart';
-import 'SignUp_Type.dart';
+import 'Start_App_Screens/SignUp_Type.dart';
 import 'Start_App_Screens/Start_App_Screen.dart';
 import 'Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
 import 'Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
 import 'Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
 import 'Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
 import 'Students_Screens/Registering_Screens/Student_SignUp_Screen.dart';
+import 'Students_Screens/Student_Editing_Notes.dart';
 import 'Students_Screens/Student_Start_Page.dart';
+import 'Teachers_Auth_Screens/Editing_Posts.dart';
+import 'Teachers_Auth_Screens/Teacher_Auh__Editing_Notes.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_Name_SignUp_Screen.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_SignIn_Screen.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';
+import 'Teachers_Screens/Teacher_Editing_Notes.dart';
 import 'Teachers_Screens/Teacher_Information_Page.dart';
 import 'Teachers_Screens/Teacher_Start_Page.dart';
 
@@ -45,7 +49,7 @@ class Main extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
       ],
-      home: const StartAppScreen(),
+      home: const TeacherAuthStartPage(),
       routes: {
         SignUpType.id: (context) => const SignUpType(),
         BrowserNameSignUpPage.id: (context) => const BrowserNameSignUpPage(),
@@ -57,15 +61,20 @@ class Main extends StatelessWidget {
         StudentTabBar.id: (context) => const StudentTabBar(),
         StudentSignUpScreen.id: (context) => const StudentSignUpScreen(),
         StudentSignInScreen.id: (context) => const StudentSignInScreen(),
+        StudentEditingNotes.id: (context) => const StudentEditingNotes(),
         AcceptanceQualifications.id: (context) =>
             const AcceptanceQualifications(),
         StudentStartPage.id: (context) => const StudentStartPage(),
         TeacherAuthStartPage.id: (context) => const TeacherAuthStartPage(),
+        TeacherAuthEditingNotes.id: (context) =>
+            const TeacherAuthEditingNotes(),
+        EditingPostPage.id: (context) => const EditingPostPage(),
         TeacherNameSignUpPage.id: (context) => const TeacherNameSignUpPage(),
         TeacherSignUpScreen.id: (context) => const TeacherSignUpScreen(),
         TeacherSignInScreen.id: (context) => const TeacherSignInScreen(),
         TeacherInformationPage.id: (context) => const TeacherInformationPage(),
         TeacherStartPage.id: (context) => const TeacherStartPage(),
+        TeacherEditingNotes.id: (context) => const TeacherEditingNotes(),
       },
     );
   }

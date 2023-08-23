@@ -45,13 +45,16 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                   //   child: Text('Settings'),
                   // ),
                   Tab(
-                    child: Text('المحفوظات'),
+                    child: Text('المحفوظات',
+                      style: TextStyle(fontSize: 14),),
                   ),
                   Tab(
-                    child: Text('الملاحظات'),
+                    child: Text('الملاحظات',
+                      style: TextStyle(fontSize: 14),),
                   ),
                   Tab(
-                    child: Text('الخصوصية'),
+                    child: Text('الخصوصية',
+                      style: TextStyle(fontSize: 14),),
                   ),
                 ],
               )),

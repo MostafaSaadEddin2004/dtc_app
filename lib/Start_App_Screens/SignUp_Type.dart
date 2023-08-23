@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'Browsers_Screens/Registration_Screens/Browser_Name_SignUp_Screen.dart';
-import 'Components/Buttons.dart';
-import 'Constants/Colors.dart';
-import 'Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
-import 'Teachers_Screens/Registration_Screens/Teacher_Name_SignUp_Screen.dart';
+import '../Browsers_Screens/Registration_Screens/Browser_Name_SignUp_Screen.dart';
+import '../Components/Buttons.dart';
+import '../Constants/Colors.dart';
+import '../Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
+import '../Teachers_Screens/Registration_Screens/Teacher_Name_SignUp_Screen.dart';
 
 class SignUpType extends StatefulWidget {
   const SignUpType({super.key});

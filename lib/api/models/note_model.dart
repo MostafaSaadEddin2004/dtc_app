@@ -1,8 +1,8 @@
 class NoteModel {
-  int id;
-  String title;
-  String description;
-  String category;
+  final int id;
+  final String title;
+  final String description;
+  final String category;
 
   NoteModel({
     required this.id,

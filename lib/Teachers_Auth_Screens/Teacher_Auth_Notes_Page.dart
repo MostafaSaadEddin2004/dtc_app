@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../Components/Notes.dart';
 import '../Components/loaing.dart';
-import '../SignUp_Type.dart';
+import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/models/note_model.dart';
 import '../api/services/note_services.dart';
 import 'Teacher_Auh__Editing_Notes.dart';
@@ -49,7 +49,7 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
-                'IT / IT',
+                'IT',
                 style: TextStyle(
                     color: WhiteColor,
                     fontWeight: FontWeight.bold,
@@ -172,15 +172,20 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
               future: NoteServices.getNote(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData || !mounted) return Loading();
-                final notes = snapshot.data!;
+                notes = snapshot.data!;
                 return ListView.builder(
                   itemCount: notes.length,
                   itemBuilder: (context, index) => Note(
                     note: notes[index],
-                    onEditPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
+                    onEditPressed: () async {
+                      final NoteModel? note =
+                          await Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const TeacherAuthEditingNotes(),
                       ));
+                      if (note != null) {
+                        notes.add(note);
+                        setState(() {});
+                      }
                     },
                     onDeletePressed: () {},
                     noteTitle: notes[index].title,

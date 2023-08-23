@@ -13,10 +13,11 @@ class StudentsDepartmentPostsPage extends StatefulWidget {
   State<StudentsDepartmentPostsPage> createState() =>
       _StudentsDepartmentPostsPageState();
 }
+
 List<Map> posts = [];
+
 class _StudentsDepartmentPostsPageState
     extends State<StudentsDepartmentPostsPage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,7 +2,7 @@ import 'package:dtc_app/main.dart';
 import 'package:flutter/material.dart';
 import '../Components/Buttons.dart';
 import '../Constants/Colors.dart';
-import '../SignUp_Type.dart';
+import 'SignUp_Type.dart';
 
 class StartAppScreen extends StatelessWidget {
   const StartAppScreen({super.key});

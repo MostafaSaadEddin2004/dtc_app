@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../Components/Posts.dart';
 import '../Components/loaing.dart';
 import '../Constants/Colors.dart';
-import '../SignUp_Type.dart';
+import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/models/post_model.dart';
 import '../api/services/public_post_services.dart';
 import 'Student_Profile_Page.dart';
@@ -25,7 +25,6 @@ class _StudentHomePageState extends State<StudentHomePage> {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             alignment: Alignment.center,

@@ -16,7 +16,8 @@ class TeacherAuthDepartmentPostsPage extends StatefulWidget {
       _TeacherAuthDepartmentPostsPageState();
 }
 
-  List<Map> posts = [];
+List posts = [];
+
 class _TeacherAuthDepartmentPostsPageState
     extends State<TeacherAuthDepartmentPostsPage> {
   @override
@@ -24,7 +25,7 @@ class _TeacherAuthDepartmentPostsPageState
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           backgroundColor: PrimaryColor,
-          onPressed: () {
+          onPressed: ()  {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const AddingPostPage(),
             ));
@@ -45,7 +46,7 @@ class _TeacherAuthDepartmentPostsPageState
               final posts = snapshot.data!;
               return ListView.builder(
                 itemCount: posts.length,
-                itemBuilder: (context, index) => DepartmentPosts(
+                itemBuilder: (context, index) => PostDepartmentPosts(
                     onChange: (isFavorite, isSaved, count) {
                       posts[index].likedByMe = isFavorite;
                       posts[index].savedByMe = isSaved;
@@ -55,6 +56,7 @@ class _TeacherAuthDepartmentPostsPageState
                     isSaved: posts[index].savedByMe,
                     count: posts[index].likes,
                     time: posts[index].createdAt.toString(),
+                    depName: 'إسم القسم',
                     postImage: posts[index].attachment.toString(),
                     postText: posts[index].content),
               );

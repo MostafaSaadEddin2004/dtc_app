@@ -10,6 +10,7 @@ import '../Components/TextField.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
 import '../Constants/TextStyle.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class StudentAddingNotes extends StatefulWidget {
   const StudentAddingNotes({super.key});
@@ -19,164 +20,143 @@ class StudentAddingNotes extends StatefulWidget {
 }
 
 class _StudentAddingNotesState extends State<StudentAddingNotes> {
+  bool isLoading = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: CustomAppBar(title: 'إضافة ملاحظة'),
-        body: Form(
-          key: formKey,
-          child: SingleChildScrollView(
-            child: Container(
-              height: MediaQuery.of(context).size.height - 92,
-              child: Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, top: 30, right: 15),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              titleText(text: 'التصنيف'),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              registrationDropDownSearch(
-                                  hint: 'إختر',
-                                  items: [],
-                                  onChange: (data) {
-                                    studentNoteCLassificationVariable = data!;
-                                  },
-                                  validator: (data) {})
-                            ],
+    return ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: Scaffold(
+          appBar: CustomAppBar(title: 'إضافة ملاحظة'),
+          body: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height - 92,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, top: 30, right: 15),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                titleText(text: 'التصنيف'),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                registrationDropDownSearch(
+                                    hint: 'إختر',
+                                    items: [],
+                                    onChange: (data) {
+                                      studentNoteCLassificationVariable = data!;
+                                    },
+                                    validator: (data) {})
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              titleText(text: 'التصنيف'),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              registrationInfoTextField(
-                                controller: studentNoteClassification,
-                                keyboardType: TextInputType.name,
-                                radius: 20,
-                                validator: (text) {},
-                              )
-                            ],
+                          const SizedBox(
+                            width: 15,
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            child: Column(
+                              children: [
+                                titleText(text: 'التصنيف'),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                registrationInfoTextField(
+                                  controller: studentNoteClassification,
+                                  keyboardType: TextInputType.name,
+                                  radius: 20,
+                                  validator: (text) {},
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, top: 30, right: 15),
-                    child: Column(
-                      children: [
-                        titleText(text: 'عنوان الملاحظة'),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                            onChanged: (data) {},
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, top: 30, right: 15),
+                      child: Column(
+                        children: [
+                          titleText(text: 'عنوان الملاحظة'),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          registrationInfoTextField(
                             controller: studentNoteTitle,
-                            validator: (text) {},
                             keyboardType: TextInputType.name,
-                            enabled: true,
-                            cursorColor: GreyColor,
-                            decoration: InputDecoration(
-                              hintText: 'أكتب هنا...',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent)),
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 10),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(color: GreyColor),
-                              ),
-                            )),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, top: 30, right: 15),
-                    child: Column(
-                      children: [
-                        titleText(text: 'نص الملاحظة'),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                            onChanged: (data) {},
-                            controller: studentNoteText,
+                            radius: 20,
                             validator: (text) {},
-                            keyboardType: TextInputType.text,
-                            enabled: true,
-                            cursorColor: GreyColor,
-                            decoration: InputDecoration(
-                              hintText: 'أكتب هنا...',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent)),
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 50),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(color: GreyColor),
-                              ),
-                            )),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, top: 30, right: 15),
+                      child: Column(
+                        children: [
+                          titleText(text: 'نص الملاحظة'),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          registrationInfoTextField(
+                            maxLines: 6,
+                            controller: studentNoteText,
+                            keyboardType: TextInputType.name,
+                            radius: 20,
+                            validator: (text) {},
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Spacer(
+                      flex: 1,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        nextButton(
+                            text: 'إضافة',
+                            onTap: () async {
+                              isLoading = true;
+                              final note = await NoteServices.postNote(
+                                  title: studentNoteTitle.text.toString(),
+                                  description: studentNoteText.text.toString(),
+                                  category_name: studentNoteClassification.text
+                                      .toString());
+                              isLoading = false;
+                              showDialog(
+                                context: context,
+                                builder: (context) => CustomDialog(
+                                    onPressed: () {
+                                      studentNoteTitle.clear();
+                                      studentNoteText.clear();
+                                      studentNoteClassification.clear();
+                                      Navigator.of(context)
+                                        ..pop()
+                                        ..pop(note);
+                                    },
+                                    title: 'إضافة الملاحظة'),
+                              );
+                            }),
                       ],
                     ),
-                  ),
-                  const Spacer(
-                    flex: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      nextButton(
-                          text: 'إضافة',
-                          onTap: () async {
-                            print('tapped');
-                            final notes = await NoteServices.postNote(
-                                title: studentNoteTitle.text,
-                                description: studentNoteText.text,
-                                category: studentNoteClassification.text);
-                            showDialog(
-                              context: context,
-                              builder: (context) => CustomDialog(
-                                  onPressed: () {
-                                    Navigator.of(context)
-                                      ..pop()
-                                      ..pop();
-                                  },
-                                  title: 'إضافة الملاحظة'),
-                            );
-                            studentNoteTitle.clear();
-                            studentNoteText.clear();
-                            studentNoteClassification.clear();
-                          }),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  )
-                ],
+                    const SizedBox(
+                      height: 30,
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }
 

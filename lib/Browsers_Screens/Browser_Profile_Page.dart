@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Constants/Colors.dart';
 import '../Constants/TextStyle.dart';
+import 'Browser_MyCourses_Page.dart';
 import 'Browser_Saved_Page.dart';
 import 'Browser_Privacy_Page.dart';
 
@@ -17,7 +18,7 @@ class _BrowserProfilePageState extends State<BrowserProfilePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
           appBar: AppBar(
               backgroundColor: PrimaryColor,
@@ -43,10 +44,22 @@ class _BrowserProfilePageState extends State<BrowserProfilePage> {
                   //   child: Text('Settings'),
                   // ),
                   Tab(
-                    child: Text('المحفوظات'),
+                    child: Text(
+                      'المحفوظات',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                   Tab(
-                    child: Text('الخصوصية'),
+                    child: Text(
+                      'الخصوصية',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                  Tab(
+                    child: Text(
+                      'دوراتي',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                 ],
               )),
@@ -54,7 +67,8 @@ class _BrowserProfilePageState extends State<BrowserProfilePage> {
             children: [
               // BrowserSettingsPage(),
               BrowserSavedPage(),
-              BrowserPrivacyPage()
+              BrowserPrivacyPage(),
+              BrowserMyCoursesPage()
             ],
           )),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../Constants/Colors.dart';
-import '../../SignUp_Type.dart';
+import '../../Start_App_Screens/SignUp_Type.dart';
 import '../Student_Profile_Page.dart';
 import 'Student_Course_Page.dart';
 import 'Students_Department_Posts_Page.dart';

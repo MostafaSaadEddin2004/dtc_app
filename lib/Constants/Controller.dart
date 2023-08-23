@@ -90,8 +90,9 @@ String studentNoteCLassificationVariable = '';
 String studentEditingNoteCLassificationVariable = '';
 
 //Teacher Auth Controllers
-var postTitleController = TextEditingController();
-var postImageController = TextEditingController();
+var postTextController = TextEditingController();
+var editingPostTextController = TextEditingController();
+var postFileController = TextEditingController();
 var teacherAuthBirthDateController = TextEditingController();
 var teacherAuthCertificationController = TextEditingController();
 var teacherAuthSpecialtyController = TextEditingController();

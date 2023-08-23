@@ -30,7 +30,7 @@ class _TeacherCoursePageState extends State<TeacherCoursePage> {
               final posts = snapshot.data!;
               return ListView.builder(
                 itemCount: posts.length,
-                itemBuilder: (context, index) => DTCPosts(
+                itemBuilder: (context, index) => CoursesPost(
                     onChange: (isFavorite, isSaved, count) {
                       posts[index].likedByMe = isFavorite;
                       posts[index].savedByMe = isSaved;

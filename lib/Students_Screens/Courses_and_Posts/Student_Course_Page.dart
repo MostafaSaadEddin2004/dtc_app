@@ -31,11 +31,16 @@ class _StudentCoursePageState extends State<StudentCoursePage> {
               final posts = snapshot.data!;
               return ListView.builder(
                 itemCount: posts.length,
-                itemBuilder: (context, index) => DTCPosts(
+                itemBuilder: (context, index) => RegisterCoursesPost(
                     onChange: (isFavorite, isSaved, count) {
                       posts[index].likedByMe = isFavorite;
                       posts[index].savedByMe = isSaved;
                       posts[index].likes = count;
+                    },
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              const StudentPersonalInformation()));
                     },
                     isFavorite: posts[index].likedByMe,
                     isSaved: posts[index].savedByMe,

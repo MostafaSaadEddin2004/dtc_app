@@ -116,30 +116,17 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                         const SizedBox(
                           height: 10,
                         ),
-                        TextFormField(
-                            onChanged: (data) {},
-                            controller: movingRequestTextController,
-                            validator: (text) {
-                              if (text!.isEmpty) {
-                                return 'الحقل مطلوب';
-                              }
-                            },
-                            keyboardType: TextInputType.text,
-                            enabled: true,
-                            cursorColor: GreyColor,
-                            decoration: InputDecoration(
-                              hintText: 'أكتب هنا...',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent)),
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 50),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(color: GreyColor),
-                              ),
-                            )),
+                        registrationInfoTextField(
+                          maxLines: 6,
+                          controller: movingRequestTextController,
+                          keyboardType: TextInputType.text,
+                          radius: 20,
+                          validator: (text) {
+                            if (text!.isEmpty) {
+                              return 'الحقل مطلوب';
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),

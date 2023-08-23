@@ -2,7 +2,7 @@ import 'package:dtc_app/Components/BottomNavBar.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notifications.dart';
-import '../SignUp_Type.dart';
+import '../Start_App_Screens/SignUp_Type.dart';
 import 'Teacher_Auth_Profile_Page.dart';
 
 class TeacherAuthNotificationsPage extends StatefulWidget {
@@ -33,7 +33,7 @@ class _TeacherAuthNotificationsPageState
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
-                'IT / IT',
+                'IT',
                 style: TextStyle(
                     color: WhiteColor,
                     fontWeight: FontWeight.bold,

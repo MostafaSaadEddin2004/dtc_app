@@ -26,7 +26,16 @@ class _TeacherAuthProfileNotesPageState
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             backgroundColor: PrimaryColor,
-            onPressed: () {},
+            onPressed: () async {
+              final NoteModel? note =
+                  await Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const TeacherAuthAddingNotes(),
+              ));
+              if (note != null) {
+                notes.add(note);
+                setState(() {});
+              }
+            },
             child: const Icon(
               Icons.add,
               size: 40,
@@ -39,14 +48,14 @@ class _TeacherAuthProfileNotesPageState
               future: NoteServices.getNote(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData || !mounted) return Loading();
-                final notes = snapshot.data!;
+                notes = snapshot.data!;
                 return ListView.builder(
                   itemCount: notes.length,
-                  itemBuilder: (context, index) => Note(note: notes[index], 
+                  itemBuilder: (context, index) => Note(
+                    note: notes[index],
                     onEditPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const TeacherAuthEditingNotes(),
-                      ));
+                      Navigator.of(context)
+                          .pushNamed(TeacherAuthEditingNotes.id);
                     },
                     onDeletePressed: () {},
                     noteTitle: notes[index].title,

@@ -2,7 +2,7 @@ import 'package:dtc_app/Components/BottomNavBar.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notifications.dart';
-import '../SignUp_Type.dart';
+import '../Start_App_Screens/SignUp_Type.dart';
 import 'Browser_Profile_Page.dart';
 
 class NotificationsPage extends StatefulWidget {
@@ -20,25 +20,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: PrimaryColor,
-          actions: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              alignment: Alignment.center,
-              height: 30,
-              width: 60,
-              decoration: BoxDecoration(
-                color: PrimaryColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Text(
-                'IT / IT',
-                style: TextStyle(
-                    color: WhiteColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
-              ),
-            ),
-          ],
+         
         ),
         drawer: Drawer(
           backgroundColor: PrimaryColor,

@@ -2,7 +2,7 @@ import 'package:dtc_app/Components/BottomNavBar.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notifications.dart';
-import '../SignUp_Type.dart';
+import '../Start_App_Screens/SignUp_Type.dart';
 import 'Teacher_Profile_Page.dart';
 
 class TeacherNotificationsPage extends StatefulWidget {

@@ -15,11 +15,11 @@ abstract class NoteServices extends BaseApi {
       {String? token,
       String? title,
       String? description,
-      String? category}) async {
-    http.Response response = await BaseApi.postRequest(endpoint: 'note', body: {
+      String? category_name}) async {
+    final response = await BaseApi.postRequest(endpoint: 'note', body: {
       'title': title!,
       'description': description!,
-      'category': category!
+      'category_name': category_name!
     });
     return NoteModel.fromJson(jsonDecode(response.body));
   }
@@ -29,20 +29,18 @@ abstract class NoteServices extends BaseApi {
       String? title,
       String? description,
       String? category,
-      required int id}) async {
-    http.Response response = await BaseApi.putRequest(
-        endpoint: 'note',
-        id: id,
-        body: {
-          'title': title,
-          'description': description,
-          'category': category
-        });
-    return NoteModel.fromJson(jsonDecode(response.body));
+      int? id}) async {
+    final response = await BaseApi.putRequest(endpoint: 'note', id: id, body: {
+      'title': title,
+      'description': description,
+      'category': category
+    });
+    return NoteModel.fromJson(jsonDecode(response!.body));
   }
 
   static Future<NoteModel> deleteNote({required int id}) async {
-    http.Response response = await BaseApi.deleteRequest(endpoint: 'note', id: id);
+    http.Response response =
+        await BaseApi.deleteRequest(endpoint: 'note', id: id);
     return jsonDecode(response.body);
   }
 }

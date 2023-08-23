@@ -1,6 +1,5 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 
 String? RegistrationValidator(
     {required value,
@@ -70,9 +69,11 @@ Widget registrationInfoTextField({
   required double radius,
   required TextInputType? keyboardType,
   IconData? prefix,
+  int? maxLines
 }) =>
     Container(
       child: TextFormField(
+        maxLines: maxLines,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         validator: validator,

@@ -1,9 +1,10 @@
 import 'package:dtc_app/Components/loaing.dart';
 import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/Constants/Controller.dart';
 import 'package:dtc_app/api/models/note_model.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notes.dart';
-import '../SignUp_Type.dart';
+import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/services/note_services.dart';
 import 'Student_Adding_Notes.dart';
 import 'Student_Editing_Notes.dart';
@@ -24,10 +25,15 @@ class _StudentNotesPageState extends State<StudentNotesPage> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             backgroundColor: PrimaryColor,
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
+            onPressed: () async {
+              final NoteModel? note =
+                  await Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const StudentAddingNotes(),
               ));
+              if (note != null) {
+                notes.add(note);
+                setState(() {});
+              }
             },
             child: const Icon(
               Icons.add,
@@ -173,15 +179,14 @@ class _StudentNotesPageState extends State<StudentNotesPage> {
               future: NoteServices.getNote(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData || !mounted) return Loading();
-                final notes = snapshot.data!;
+                notes = snapshot.data!;
                 return ListView.builder(
                   itemCount: notes.length,
                   itemBuilder: (context, index) => Note(
-                    note: notes[index], 
+                    note: notes[index],
                     onEditPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const StudentEditingNotes(),
-                      ));
+                      Navigator.of(context)
+                          .pushNamed(StudentEditingNotes.id,);
                     },
                     onDeletePressed: () {},
                     noteTitle: notes[index].title,

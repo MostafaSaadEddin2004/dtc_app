@@ -57,14 +57,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-  dropdown_button2:
-    dependency: "direct main"
-    description:
-      name: dropdown_button2
-      sha256: "13bf78b6e5b6ca7256701988b22e078cd94b41bfab8d68a128651734702e0d1b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.2"
   dropdown_search:
     dependency: "direct main"
     description:
@@ -141,14 +133,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.4.0"
-  form_field_validator:
-    dependency: "direct main"
-    description:
-      name: form_field_validator
-      sha256: c1fc6c89b5525288c02fe989a88c6f30bb6072da4f9dded17a04cf68c4abfb87
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   http:
     dependency: "direct main"
     description:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Constants/Colors.dart';
 import '../Constants/TextStyle.dart';
+import 'Student_MyCourses_Page.dart';
 import 'Student_Profile_Notes_Page.dart';
 import 'Student_Saved_Page.dart';
 import 'Student_Privacy_Page.dart';
@@ -19,7 +20,7 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -45,13 +46,28 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
                   //   child: Text('Settings'),
                   // ),
                   Tab(
-                    child: Text('المحفوظات'),
+                    child: Text(
+                      'المحفوظات',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                   Tab(
-                    child: Text('الملاحظات'),
+                    child: Text(
+                      'الملاحظات',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                   Tab(
-                    child: Text('الخصوصية'),
+                    child: Text(
+                      'الخصوصية',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                  Tab(
+                    child: Text(
+                      'دوراتي',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                 ],
               )),
@@ -60,7 +76,8 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
               // BrowserSettingsPage(),
               StudentSavedPage(),
               StudentProfileNotesPage(),
-              StudentPrivacyPage()
+              StudentPrivacyPage(),
+              StudentMyCoursesPage()
             ],
           )),
     );

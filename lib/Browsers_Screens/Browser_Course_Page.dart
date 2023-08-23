@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Components/Posts.dart';
 import '../Components/loaing.dart';
 import '../Constants/Colors.dart';
-import '../SignUp_Type.dart';
+import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/models/post_model.dart';
 import '../api/services/course_post_services.dart';
 import 'Browser_Profile_Page.dart';
@@ -17,31 +17,16 @@ class BrowserCoursePage extends StatefulWidget {
   @override
   State<BrowserCoursePage> createState() => _BrowserCoursePageState();
 }
+
 List<Map> posts = [];
+
 class _BrowserCoursePageState extends State<BrowserCoursePage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: PrimaryColor,
-        actions: [
-          Container(
-            alignment: Alignment.center,
-            height: 30,
-            width: 60,
-            decoration: BoxDecoration(
-              color: PrimaryColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Text(
-              'IT / IT',
-              style: TextStyle(
-                  color: WhiteColor, fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-        ],
+        
       ),
       drawer: Drawer(
         backgroundColor: PrimaryColor,
@@ -192,11 +177,16 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
               final posts = snapshot.data!;
               return ListView.builder(
                 itemCount: posts.length,
-                itemBuilder: (context, index) => DTCPosts(
+                itemBuilder: (context, index) => RegisterCoursesPost(
                     onChange: (isFavorite, isSaved, count) {
                       posts[index].likedByMe = isFavorite;
                       posts[index].savedByMe = isSaved;
                       posts[index].likes = count;
+                    },
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const BrowserPersonalInformation(),
+                      ));
                     },
                     isFavorite: posts[index].likedByMe,
                     isSaved: posts[index].savedByMe,

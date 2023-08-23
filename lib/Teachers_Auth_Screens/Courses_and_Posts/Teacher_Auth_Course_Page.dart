@@ -14,7 +14,8 @@ class TeacherAuthCoursePage extends StatefulWidget {
   @override
   State<TeacherAuthCoursePage> createState() => _TeacherAuthCoursePageState();
 }
-  List<Map> posts = [];
+
+List<Map> posts = [];
 
 class _TeacherAuthCoursePageState extends State<TeacherAuthCoursePage> {
   @override
@@ -30,7 +31,7 @@ class _TeacherAuthCoursePageState extends State<TeacherAuthCoursePage> {
               final posts = snapshot.data!;
               return ListView.builder(
                 itemCount: posts.length,
-                itemBuilder: (context, index) => DTCPosts(
+                itemBuilder: (context, index) => CoursesPost(
                     onChange: (isFavorite, isSaved, count) {
                       posts[index].likedByMe = isFavorite;
                       posts[index].savedByMe = isSaved;

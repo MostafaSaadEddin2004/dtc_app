@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../Constants/Colors.dart';
-import '../../SignUp_Type.dart';
+import '../../Start_App_Screens/SignUp_Type.dart';
 import '../Teacher_Auth_Profile_Page.dart';
 import 'Teacher_Auth_Course_Page.dart';
 import 'Teacher_Auth_Department_Posts_Page.dart';
@@ -35,7 +35,6 @@ class _TeacherAuthTabBarState extends State<TeacherAuthTabBar> {
               ],
             ),
             actions: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 alignment: Alignment.center,
@@ -45,7 +44,7 @@ class _TeacherAuthTabBarState extends State<TeacherAuthTabBar> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Text(
-                  'IT Head',
+                  'IT',
                   style: TextStyle(
                       color: WhiteColor,
                       fontWeight: FontWeight.bold,

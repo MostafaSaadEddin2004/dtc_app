@@ -40,14 +40,14 @@ class _StudentProfileNotesPageState extends State<StudentProfileNotesPage> {
               future: NoteServices.getNote(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData || !mounted) return Loading();
-                final notes = snapshot.data!;
+                notes = snapshot.data!;
                 return ListView.builder(
                   itemCount: notes.length,
-                  itemBuilder: (context, index) => Note(note: notes[index], 
+                  itemBuilder: (context, index) => Note(
+                    note: notes[index],
                     onEditPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const StudentEditingNotes(),
-                      ));
+                      Navigator.of(context)
+                          .pushNamed(StudentEditingNotes.id,);
                     },
                     onDeletePressed: () {},
                     noteTitle: notes[index].title,

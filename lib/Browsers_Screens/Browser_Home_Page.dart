@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Components/Posts.dart';
 import '../Components/loaing.dart';
 import '../Constants/Colors.dart';
-import '../SignUp_Type.dart';
+import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/services/public_post_services.dart';
 import 'Browser_Profile_Page.dart';
 
@@ -22,7 +22,7 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: PrimaryColor,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+        
       ),
       drawer: Drawer(
         backgroundColor: PrimaryColor,
