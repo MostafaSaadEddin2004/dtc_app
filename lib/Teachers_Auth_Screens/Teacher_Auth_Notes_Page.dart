@@ -25,10 +25,15 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             backgroundColor: PrimaryColor,
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
+            onPressed: () async {
+              final NoteModel? note =
+                  await Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const TeacherAuthAddingNotes(),
               ));
+              if (note != null) {
+                notes.add(note);
+                setState(() {});
+              }
             },
             child: const Icon(
               Icons.add,
@@ -179,9 +184,9 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
                     note: notes[index],
                     onEditPressed: () async {
                       final NoteModel? note =
-                          await Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const TeacherAuthEditingNotes(),
-                      ));
+                          await Navigator.of(context).pushNamed(
+                        TeacherAuthEditingNotes.id,
+                      );
                       if (note != null) {
                         notes.add(note);
                         setState(() {});

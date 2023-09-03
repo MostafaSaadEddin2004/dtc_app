@@ -63,20 +63,21 @@ Widget customTextField({
       ),
     );
 
-Widget registrationInfoTextField({
-  required TextEditingController controller,
-  required String? Function(String? text) validator,
-  required double radius,
-  required TextInputType? keyboardType,
-  IconData? prefix,
-  int? maxLines
-}) =>
+Widget registrationInfoTextField(
+        {required TextEditingController controller,
+        required String? Function(String? text) validator,
+        required double radius,
+        required TextInputType? keyboardType,
+        Function(String data)? onChanged,
+        IconData? prefix,
+        int? maxLines}) =>
     Container(
       child: TextFormField(
         maxLines: maxLines,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         validator: validator,
+        onChanged: onChanged,
         keyboardType: keyboardType,
         enabled: true,
         cursorColor: GreyColor,
@@ -91,7 +92,8 @@ Widget registrationInfoTextField({
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
               borderSide: const BorderSide(color: Colors.transparent)),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(radius),
             borderSide: const BorderSide(
@@ -101,3 +103,45 @@ Widget registrationInfoTextField({
         ),
       ),
     );
+
+class UploadFileTextFormField extends StatelessWidget {
+  const UploadFileTextFormField(
+      {super.key,
+      this.fileTypeText,
+      required this.controller,
+      required this.onPressedUploadIcon,
+      required this.validator});
+  final String? fileTypeText;
+  final TextEditingController controller;
+  final Function() onPressedUploadIcon;
+  final String Function(String? text) validator;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+        onChanged: (data) {},
+        controller: controller,
+        validator: validator,
+        keyboardType: TextInputType.none,
+        enabled: true,
+        cursorColor: GreyColor,
+        decoration: InputDecoration(
+          alignLabelWithHint: true,
+          suffixIconColor: BlackColor,
+          hintText: 'أنقر على الرمز لتحميل $fileTypeText',
+          hintStyle: const TextStyle(color: GreyColor, fontSize: 14),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color: Colors.transparent)),
+          suffixIcon: IconButton(
+            icon: const Icon(Icons.upload),
+            onPressed: onPressedUploadIcon,
+          ),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(color: GreyColor),
+          ),
+        ));
+  }
+}

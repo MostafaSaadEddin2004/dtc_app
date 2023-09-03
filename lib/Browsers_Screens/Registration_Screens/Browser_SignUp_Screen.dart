@@ -1,5 +1,4 @@
-import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
-
+import 'package:dtc_app/Browsers_Screens/Registration_Screens/browser_profile_image.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
@@ -114,7 +113,7 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        BrowserStartPage.id,
+                        BrowserProfileImage.id,
                         (Route<dynamic> route) => false,
                       );
                     }

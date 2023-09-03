@@ -36,12 +36,12 @@ abstract class DepartmentPostServices with BaseApi {
           'content': content,
           'attachment': attachment,
         });
-    return PostModel.fromJson(jsonDecode(response!.body));
+    return PostModel.fromJson(jsonDecode(response.body));
   }
 
   static Future<PostModel> deleteDepartmentPost({required int id}) async {
     final response =
         await BaseApi.deleteRequest(endpoint: 'post?type=department', id: id);
-    return jsonDecode(response);
+    return jsonDecode(response.body);
   }
 }

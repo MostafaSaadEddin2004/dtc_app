@@ -1,5 +1,6 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
+import 'package:dtc_app/Students_Screens/Registering_Screens/student_profile_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../Components/Buttons.dart';
@@ -112,7 +113,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        AcceptanceQualifications.id,
+                        StudentProfileImage.id,
                         (Route<dynamic> route) => false,
                       );
                     }

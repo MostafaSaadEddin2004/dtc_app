@@ -20,7 +20,7 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -63,12 +63,12 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
                       style: TextStyle(fontSize: 14),
                     ),
                   ),
-                  Tab(
-                    child: Text(
-                      'دوراتي',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
+                  // Tab(
+                  //   child: Text(
+                  //     'دوراتي',
+                  //     style: TextStyle(fontSize: 13),
+                  //   ),
+                  // ),
                 ],
               )),
           body: const TabBarView(
@@ -77,7 +77,7 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
               StudentSavedPage(),
               StudentProfileNotesPage(),
               StudentPrivacyPage(),
-              StudentMyCoursesPage()
+              // StudentMyCoursesPage()
             ],
           )),
     );

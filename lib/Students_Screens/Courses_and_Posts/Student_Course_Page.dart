@@ -38,9 +38,9 @@ class _StudentCoursePageState extends State<StudentCoursePage> {
                       posts[index].likes = count;
                     },
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              const StudentPersonalInformation()));
+                      Navigator.of(context).pushNamed(
+                          StudentPersonalInformation.id,
+                          arguments: posts[index].id);
                     },
                     isFavorite: posts[index].likedByMe,
                     isSaved: posts[index].savedByMe,

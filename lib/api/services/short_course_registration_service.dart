@@ -29,6 +29,7 @@ abstract class ShortCourseRegistration extends BaseApi {
           'is_morning': is_morning,
           'course_id': course_id,
         });
-    return ShortCourseRegistrationModel.fromJson(jsonDecode(response.body));
+    return ShortCourseRegistrationModel.fromJson(
+        jsonDecode(response.body)['data']);
   }
 }

@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../Constants/Colors.dart';
 
-Widget documentsCard({
-  required String title,
-}) =>
-    Container(
+class DocumentCard extends StatelessWidget {
+  const DocumentCard(
+      {super.key,
+      required this.title,
+      required this.onUploadPressed,
+      required this.onShowPressed});
+  final String title;
+  final Function() onUploadPressed;
+  final Function() onShowPressed;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       height: 80,
       margin: const EdgeInsets.symmetric(horizontal: 15),
       padding: const EdgeInsets.only(left: 15, top: 10, right: 5, bottom: 10),
@@ -29,10 +37,40 @@ Widget documentsCard({
           color: GreyColor,
           thickness: 0.5,
         ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.camera_alt_rounded),
-          color: GreyColor,
+        CircleAvatar(
+          maxRadius: 16,
+          backgroundColor: GreyColor,
+          child: CircleAvatar(
+              maxRadius: 15,
+              backgroundColor: WhiteColor,
+              child: GestureDetector(
+                onTap: onShowPressed,
+                child: Icon(
+                  Icons.visibility,
+                  size: 20,
+                  color: GreyColor,
+                ),
+              )),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        CircleAvatar(
+          maxRadius: 16,
+          backgroundColor: GreyColor,
+          child: CircleAvatar(
+              maxRadius: 15,
+              backgroundColor: WhiteColor,
+              child: GestureDetector(
+                onTap: onUploadPressed,
+                child: Icon(
+                  Icons.upload,
+                  size: 20,
+                  color: GreyColor,
+                ),
+              )),
         ),
       ]),
     );
+  }
+}

@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 
 //Browser Controllers
-var browserCourseEducationPlaceController = TextEditingController();
 var browserCourseNationalityController = TextEditingController();
 var browserCourseCurrentLocationController = TextEditingController();
 var browserCourseBirthDateController = TextEditingController();
@@ -26,6 +28,8 @@ var browserPrivacyEditingLocation = TextEditingController();
 String browserNationalityVariable = '';
 String browserSituationVariable = '';
 String browserGenderVariable = '';
+XFile? browserProfileImageFile;
+File? browserProfileImagePath;
 
 //Student Controllers
 var studentEMRGainedMarkController = TextEditingController();
@@ -45,7 +49,6 @@ var studentNewPassword = TextEditingController();
 var studentConfirmPassword = TextEditingController();
 var studentMRMarkController = TextEditingController();
 var movingRequestTextController = TextEditingController();
-var studentEducationPlaceController = TextEditingController();
 var studentCoursePhoneNumberController = TextEditingController();
 var studentCourseNationalityController = TextEditingController();
 var studentCourseCurrentLocationController = TextEditingController();
@@ -55,6 +58,7 @@ var studentSignInPasswordController = TextEditingController();
 var studentSignUpEmailController = TextEditingController();
 var studentSinUpPasswordController = TextEditingController();
 var studentSinUpPhoneController = TextEditingController();
+var studentFullNameController = TextEditingController();
 var studentPrivacyEditingPhone = TextEditingController();
 var studentPrivacyEditingLocation = TextEditingController();
 var studentFatherNameController = TextEditingController();
@@ -87,7 +91,18 @@ String studentGenderVariable = '';
 String certification = '';
 String certificationDate = '';
 String studentNoteCLassificationVariable = '';
+int studentEditingNoteIdVariable = 0;
 String studentEditingNoteCLassificationVariable = '';
+XFile? identifyImage;
+XFile? certificateImage;
+XFile? unCardImage;
+XFile? personalImage;
+XFile? studentProfileImageFile;
+File? identifyImagePath;
+File? certificateImagePath;
+File? unCardImagePath;
+File? personalImagePath;
+File? studentProfileImagePath;
 
 //Teacher Auth Controllers
 var postTextController = TextEditingController();
@@ -150,3 +165,5 @@ String teacherNationalityVariable = '';
 String teacherDepartmentVariable = '';
 String teacherNoteClassificationVariable = '';
 String teacherEditingNoteClassificationVariable = '';
+XFile? teacherProfileImageFile;
+File? teacherProfileImagePath;

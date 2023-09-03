@@ -166,7 +166,7 @@ class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
                       posts[index].likedByMe = isFavorite;
                       posts[index].savedByMe = isSaved;
                       posts[index].likes = count;
-                    },
+                    }, postId: posts[index].id,
                     isFavorite: posts[index].likedByMe,
                     isSaved: posts[index].savedByMe,
                     count: posts[index].likes,

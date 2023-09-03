@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 import '../Constants/Colors.dart';
 import '../Students_Screens/Student_Home_Page.dart';
 import '../Teachers_Auth_Screens/Editing_Posts.dart';
+import '../api/services/public_post_services.dart';
 
 class Change {
   bool isFavorite;
@@ -36,6 +38,7 @@ class DTCPosts extends StatefulWidget {
     this.isSaved = false,
     this.onChange,
     this.count = 0,
+    required this.postId,
   });
 
   final String time;
@@ -44,6 +47,7 @@ class DTCPosts extends StatefulWidget {
   final bool isFavorite;
   final bool isSaved;
   final int count;
+  final int postId;
   final Function(bool isFavorite, bool isSaved, int count)? onChange;
 
   @override
@@ -121,22 +125,61 @@ class _DTCPostsState extends State<DTCPosts> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.postText),
+              child: ReadMoreText(
+                widget.postText,
+                moreStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                lessStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                trimCollapsedText: ' عرض المزيد ',
+                trimExpandedText: ' عرض أقل ',
+                trimLines: 4,
+                trimMode: TrimMode.Line,
+              ),
             ),
             const SizedBox(
               height: 5,
             ),
-            GestureDetector(
-              onTap: () {
-                print(widget.postImage);
-              },
-              child: Container(
-                width: double.infinity,
-                child: widget.postImage == ""
-                    ? const SizedBox()
-                    : Image.network(widget.postImage, fit: BoxFit.cover),
-              ),
-            ),
+            widget.postImage != null
+                ? GestureDetector(
+                    onTap: () {
+                      print(widget.postImage);
+                      showDialog(
+                        barrierDismissible: true,
+                        context: context,
+                        builder: (context) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 40),
+                            child: Center(
+                                child: Stack(children: [
+                              Image.asset(
+                                'assets/images/Course.jpeg',
+                                fit: BoxFit.cover,
+                              ),
+                              Positioned(
+                                  top: 5,
+                                  right: 5,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Icon(
+                                      Icons.close,
+                                      color: BlackColor,
+                                    ),
+                                  ))
+                            ])),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset('assets/images/Course.jpeg',
+                          fit: BoxFit.cover),
+                    ),
+                  )
+                : const SizedBox(),
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Row(
@@ -152,6 +195,8 @@ class _DTCPostsState extends State<DTCPosts> {
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
+                        PublicPostServices.likePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
@@ -167,6 +212,8 @@ class _DTCPostsState extends State<DTCPosts> {
                         isSaved = !isSaved;
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
+                        PublicPostServices.savePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isSaved == false
@@ -278,34 +325,69 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.postText),
+              child: ReadMoreText(
+                widget.postText,
+                moreStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                lessStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                trimCollapsedText: ' عرض المزيد ',
+                trimExpandedText: ' عرض أقل ',
+                trimLines: 4,
+                trimMode: TrimMode.Line,
+              ),
             ),
             const SizedBox(
               height: 5,
             ),
-            GestureDetector(
-              onTap: () {
-                print(widget.postImage);
-              },
-              child: Container(
-                width: double.infinity,
-                child: widget.postImage == ""
-                    ? const SizedBox()
-                    : Image.network(widget.postImage, fit: BoxFit.cover),
-              ),
-            ),
+            widget.postImage != ""
+                ? GestureDetector(
+                    onTap: () {
+                      print(widget.postImage);
+                      showDialog(
+                        barrierDismissible: true,
+                        context: context,
+                        builder: (context) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 40),
+                            child: Center(
+                                child: Stack(children: [
+                              Image.asset(
+                                'assets/images/Course.jpeg',
+                                fit: BoxFit.cover,
+                              ),
+                              Positioned(
+                                  top: 5,
+                                  right: 5,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Icon(
+                                      Icons.close,
+                                      color: BlackColor,
+                                    ),
+                                  ))
+                            ])),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset('assets/images/Course.jpeg',
+                          fit: BoxFit.cover),
+                    ),
+                  )
+                : const SizedBox(),
             Padding(
               padding: const EdgeInsets.only(right: 10, left: 10),
               child: Row(
                 children: [
                   IconButton(
                       onPressed: () {
-                        isFavorite = !isFavorite;
-                        if (isFavorite) {
-                          count++;
-                        } else {
-                          count--;
-                        }
+                        setState(() {});
+
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
@@ -348,17 +430,17 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
 }
 
 class PostDepartmentPosts extends StatefulWidget {
-  const PostDepartmentPosts({
-    super.key,
-    required this.time,
-    required this.depName,
-    required this.postImage,
-    required this.postText,
-    this.isFavorite = false,
-    this.isSaved = false,
-    this.count = 0,
-    this.onChange,
-  });
+  const PostDepartmentPosts(
+      {super.key,
+      required this.time,
+      required this.depName,
+      required this.postImage,
+      required this.postText,
+      this.isFavorite = false,
+      this.isSaved = false,
+      this.count = 0,
+      this.onChange,
+      required this.onPressed});
   final String time;
   final String depName;
   final String postImage;
@@ -367,6 +449,7 @@ class PostDepartmentPosts extends StatefulWidget {
   final bool isSaved;
   final int count;
   final Function(bool isFavorite, bool isSaved, int count)? onChange;
+  final Function() onPressed;
 
   @override
   State<PostDepartmentPosts> createState() => _PostDepartmentPostsState();
@@ -429,98 +512,7 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
                     flex: 1,
                   ),
                   IconButton(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) => Container(
-                            margin: const EdgeInsets.all(15),
-                            child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Row(
-                                    children: [
-                                      CircleAvatar(
-                                        minRadius: 25,
-                                        maxRadius: 25,
-                                        child: Icon(
-                                          Icons.person,
-                                          color: WhiteColor,
-                                          size: 35,
-                                        ),
-                                        backgroundColor: PrimaryColor,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            widget.depName,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16),
-                                          ),
-                                          Text(
-                                            widget.time,
-                                            style:
-                                                const TextStyle(fontSize: 12),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  const Divider(
-                                    color: BlackColor,
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .pushNamed(EditingPostPage.id);
-                                      },
-                                      child: Row(
-                                        children: const [
-                                          Icon(Icons.edit),
-                                          SizedBox(
-                                            width: 15,
-                                          ),
-                                          Text(
-                                            'تعديل المنشور',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                          )
-                                        ],
-                                      )),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Row(
-                                      children: const [
-                                        Icon(Icons.delete),
-                                        SizedBox(
-                                          width: 15,
-                                        ),
-                                        Text('حذف المنشور',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold))
-                                      ],
-                                    ),
-                                  )
-                                ]),
-                          ),
-                        );
-                      },
+                      onPressed: widget.onPressed,
                       icon: const Icon(Icons.more_horiz)),
                 ],
               ),
@@ -536,22 +528,61 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.postText),
+              child: ReadMoreText(
+                widget.postText,
+                moreStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                lessStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                trimCollapsedText: ' عرض المزيد ',
+                trimExpandedText: ' عرض أقل ',
+                trimLines: 4,
+                trimMode: TrimMode.Line,
+              ),
             ),
             const SizedBox(
               height: 5,
             ),
-            GestureDetector(
-              onTap: () {
-                print(widget.postImage);
-              },
-              child: Container(
-                width: double.infinity,
-                child: widget.postImage == ""
-                    ? const SizedBox()
-                    : Image.network(widget.postImage, fit: BoxFit.cover),
-              ),
-            ),
+            widget.postImage != ""
+                ? GestureDetector(
+                    onTap: () {
+                      print(widget.postImage);
+                      showDialog(
+                        barrierDismissible: true,
+                        context: context,
+                        builder: (context) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 40),
+                            child: Center(
+                                child: Stack(children: [
+                              Image.asset(
+                                'assets/images/Course.jpeg',
+                                fit: BoxFit.cover,
+                              ),
+                              Positioned(
+                                  top: 5,
+                                  right: 5,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Icon(
+                                      Icons.close,
+                                      color: BlackColor,
+                                    ),
+                                  ))
+                            ])),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset('assets/images/Course.jpeg',
+                          fit: BoxFit.cover),
+                    ),
+                  )
+                : const SizedBox(),
             Padding(
               padding: const EdgeInsets.only(right: 10, left: 10),
               child: Row(
@@ -706,22 +737,61 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.postText),
+              child: ReadMoreText(
+                widget.postText,
+                moreStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                lessStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                trimCollapsedText: ' عرض المزيد ',
+                trimExpandedText: ' عرض أقل ',
+                trimLines: 4,
+                trimMode: TrimMode.Line,
+              ),
             ),
             const SizedBox(
               height: 5,
             ),
-            GestureDetector(
-              onTap: () {
-                print(widget.postImage);
-              },
-              child: Container(
-                width: double.infinity,
-                child: widget.postImage == ""
-                    ? const SizedBox()
-                    : Image.network(widget.postImage, fit: BoxFit.cover),
-              ),
-            ),
+            widget.postImage != ""
+                ? GestureDetector(
+                    onTap: () {
+                      print(widget.postImage);
+                      showDialog(
+                        barrierDismissible: true,
+                        context: context,
+                        builder: (context) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 40),
+                            child: Center(
+                                child: Stack(children: [
+                              Image.asset(
+                                'assets/images/Course.jpeg',
+                                fit: BoxFit.cover,
+                              ),
+                              Positioned(
+                                  top: 5,
+                                  right: 5,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Icon(
+                                      Icons.close,
+                                      color: BlackColor,
+                                    ),
+                                  ))
+                            ])),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset('assets/images/Course.jpeg',
+                          fit: BoxFit.cover),
+                    ),
+                  )
+                : const SizedBox(),
             Padding(
               padding: const EdgeInsets.only(right: 10, left: 10),
               child: Row(
@@ -904,7 +974,17 @@ class _CoursesPostState extends State<CoursesPost> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.postText),
+              child: ReadMoreText(
+                widget.postText,
+                moreStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                lessStyle:
+                    TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
+                trimCollapsedText: ' عرض المزيد ',
+                trimExpandedText: ' عرض أقل ',
+                trimLines: 4,
+                trimMode: TrimMode.Line,
+              ),
             ),
             const SizedBox(
               height: 5,
@@ -917,7 +997,8 @@ class _CoursesPostState extends State<CoursesPost> {
                 width: double.infinity,
                 child: widget.postImage == ""
                     ? const SizedBox()
-                    : Image.network(widget.postImage, fit: BoxFit.cover),
+                    : Image.asset('assets/images/Course.jpeg',
+                        fit: BoxFit.cover),
               ),
             ),
             Padding(

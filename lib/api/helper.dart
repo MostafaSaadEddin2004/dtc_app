@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
@@ -18,7 +17,7 @@ class BaseApi {
   }
 
   static Future<http.Response> postRequest(
-      {required String endpoint, required dynamic body, String? token}) async {
+      {required String endpoint, dynamic body, String? token}) async {
     final response =
         await http.post(Uri.parse(_url + endpoint), body: body, headers: {
       HttpHeaders.acceptHeader: 'application/json',
@@ -35,13 +34,13 @@ class BaseApi {
     // }
   }
 
-  static Future<http.Response?> putRequest(
+  static Future<http.Response> putRequest(
       {required String endpoint,
       required dynamic body,
       String? token,
       int? id}) async {
-    http.Response response =
-        await http.put(Uri.parse('{$_url$endpoint}/$id'), body: body, headers: {
+    final response = await http
+        .put(Uri.parse('${_url + endpoint}/$id'), body: body, headers: {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader:
           'Bearer 1|eggNXmXHjk7Be60IlXurReiNBVPOg36X98vIptCt',
@@ -51,26 +50,25 @@ class BaseApi {
       return response;
     }
     // else {
-    //   throw Exception(
-    //       'There is a problem with the status code ${response.statusCode} and with the body ${response.body}');
+    throw Exception(
+        'There is a problem with the status code ${response.statusCode} and with the body ${response.body}');
     // }
   }
 
-  static Future<dynamic> deleteRequest(
+  static Future<http.Response> deleteRequest(
       {required String endpoint, String? token, int? id}) async {
-    http.Response response =
+    final response =
         await http.delete(Uri.parse('{$_url$endpoint}/$id'), headers: {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader:
           'Bearer 1|eggNXmXHjk7Be60IlXurReiNBVPOg36X98vIptCt',
     });
     if (response.statusCode >= 200 || response.statusCode < 300) {
-      print(response.body);
-      return response.body;
+      return response;
     }
     // else {
-    //   throw Exception(
-    //       'There is a problem with the status code ${response.statusCode} and with the body ${response.body}');
+    throw Exception(
+        'There is a problem with the status code ${response.statusCode} and with the body ${response.body}');
     // }
   }
 }

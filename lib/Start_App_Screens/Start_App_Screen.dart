@@ -4,16 +4,21 @@ import '../Components/Buttons.dart';
 import '../Constants/Colors.dart';
 import 'SignUp_Type.dart';
 
-class StartAppScreen extends StatelessWidget {
+class StartAppScreen extends StatefulWidget {
   const StartAppScreen({super.key});
 
   static String id = 'StartAppScreen';
 
   @override
+  State<StartAppScreen> createState() => _StartAppScreenState();
+}
+
+class _StartAppScreenState extends State<StartAppScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(left: 15, top: 80, right: 15, bottom: 30),
+        margin: const EdgeInsets.only(left: 15, top: 80, right: 15, bottom: 30),
         child: Column(children: [
           Container(
               margin: EdgeInsets.only(left: 30, right: 30, bottom: 20),

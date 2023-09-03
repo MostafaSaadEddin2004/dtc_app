@@ -26,10 +26,11 @@ class _StudentNotesPageState extends State<StudentNotesPage> {
         floatingActionButton: FloatingActionButton(
             backgroundColor: PrimaryColor,
             onPressed: () async {
-              final NoteModel? note =
-                  await Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const StudentAddingNotes(),
-              ));
+              final NoteModel? note = await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const StudentAddingNotes(),
+                ),
+              );
               if (note != null) {
                 notes.add(note);
                 setState(() {});
@@ -179,16 +180,32 @@ class _StudentNotesPageState extends State<StudentNotesPage> {
               future: NoteServices.getNote(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData || !mounted) return Loading();
-                notes = snapshot.data!;
+                final notes = snapshot.data!;
                 return ListView.builder(
                   itemCount: notes.length,
                   itemBuilder: (context, index) => Note(
                     note: notes[index],
-                    onEditPressed: () {
-                      Navigator.of(context)
-                          .pushNamed(StudentEditingNotes.id,);
+                    onEditPressed: () async {
+                      studentEditingNoteClassification.text =
+                          notes[index].category;
+                      studentEditingNoteText.text = notes[index].description;
+                      studentEditingNoteTitle.text = notes[index].title;
+                      studentEditingNoteIdVariable = notes[index].id;
+                      studentEditingNoteCLassificationVariable = '';
+                      final NoteModel? note =
+                          await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const StudentEditingNotes(),
+                      ));
+                      if (note != null) {
+                        notes.add(note);
+                      }
+                      setState(() {});
                     },
-                    onDeletePressed: () {},
+                    onDeletePressed: () async{
+                      final deleteNote =
+                          await NoteServices.deleteNote(id: notes[index].id);
+                      setState(() {});
+                    },
                     noteTitle: notes[index].title,
                     noteClassification: notes[index].category,
                     noteText: notes[index].description,

@@ -4,6 +4,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/Dialogs.dart';
+import '../Components/TextField.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
 import '../Constants/TextStyle.dart';
@@ -43,47 +44,16 @@ class _AddingPostPageState extends State<AddingPostPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Container(
-                              // decoration: BoxDecoration(
-                              //   color: WhiteColor,
-                              //   borderRadius: BorderRadius.circular(20),
-                              //   boxShadow: const [
-                              //     BoxShadow(
-                              //       color: GreyColor,
-                              //       blurRadius: 2,
-                              //       offset: Offset(2, 2), // Shadow position
-                              //     ),
-                              //   ],
-                              // ),
-                              child: TextFormField(
-                                  maxLines: 6,
-                                  onChanged: (data) {},
-                                  controller: postTextController,
-                                  validator: (text) {},
-                                  keyboardType: TextInputType.text,
-                                  enabled: true,
-                                  cursorColor: GreyColor,
-                                  decoration: InputDecoration(
-                                    alignLabelWithHint: true,
-                                    suffixIconColor: BlackColor,
-                                    floatingLabelStyle: const TextStyle(
-                                      color: BlackColor,
-                                    ),
-                                    hintText: 'أدخل نص المنشور',
-                                    labelStyle: const TextStyle(
-                                        color: GreyColor, fontSize: 16),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                        borderSide: const BorderSide(
-                                            color: Colors.transparent)),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 10),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                      borderSide:
-                                          const BorderSide(color: GreyColor),
-                                    ),
-                                  )),
+                            registrationInfoTextField(
+                              maxLines: 6,
+                              controller: postTextController,
+                              keyboardType: TextInputType.text,
+                              radius: 20,
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'الحقل مطلوب';
+                                }
+                              },
                             ),
                           ],
                         ),
@@ -99,51 +69,13 @@ class _AddingPostPageState extends State<AddingPostPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Container(
-                              // decoration: BoxDecoration(
-                              //   color: WhiteColor,
-                              //   borderRadius: BorderRadius.circular(20),
-                              //   boxShadow: const [
-                              //     BoxShadow(
-                              //       color: GreyColor,
-                              //       blurRadius: 2,
-                              //       offset: Offset(2, 2), // Shadow position
-                              //     ),
-                              //   ],
-                              // ),
-                              child: TextFormField(
-                                  onChanged: (data) {},
-                                  controller: postFileController,
-                                  validator: (text) {},
-                                  keyboardType: TextInputType.none,
-                                  enabled: true,
-                                  cursorColor: GreyColor,
-                                  decoration: InputDecoration(
-                                    alignLabelWithHint: true,
-                                    suffixIconColor: BlackColor,
-                                    floatingLabelStyle: const TextStyle(
-                                      color: BlackColor,
-                                    ),
-                                    hintText:
-                                        'أنقر على الرمز لنحميل صورة او ملف للمنشور',
-                                    labelStyle: const TextStyle(
-                                        color: GreyColor, fontSize: 16),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                        borderSide: const BorderSide(
-                                            color: Colors.transparent)),
-                                    suffixIcon: IconButton(
-                                      icon: const Icon(Icons.upload),
-                                      onPressed: () {},
-                                    ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 10),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                      borderSide:
-                                          const BorderSide(color: GreyColor),
-                                    ),
-                                  )),
+                            UploadFileTextFormField(
+                              controller: postFileController,
+                              fileTypeText: 'صورة او ملف للمنشور',
+                              onPressedUploadIcon: () {},
+                              validator: (text) {
+                                return '';
+                              },
                             ),
                           ],
                         ),
@@ -152,7 +84,7 @@ class _AddingPostPageState extends State<AddingPostPage> {
                         flex: 1,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           nextButton(
                             onTap: () async {
@@ -161,7 +93,8 @@ class _AddingPostPageState extends State<AddingPostPage> {
                                   .postDepartmentPost(
                                       content:
                                           postTextController.text.toString(),
-                                      attachment: postFileController.text.toString());
+                                      attachment:
+                                          postFileController.text.toString());
                               isLoading = false;
                               showDialog(
                                 context: context,

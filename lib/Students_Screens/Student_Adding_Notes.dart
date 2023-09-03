@@ -1,3 +1,5 @@
+import 'package:dtc_app/Components/loaing.dart';
+import 'package:dtc_app/Students_Screens/Student_Editing_Notes.dart';
 import 'package:dtc_app/api/models/note_model.dart';
 import 'package:dtc_app/api/services/note_services.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,8 @@ import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
 import '../Constants/TextStyle.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+
+import '../api/models/note_category_model.dart';
 
 class StudentAddingNotes extends StatefulWidget {
   const StudentAddingNotes({super.key});
@@ -33,431 +37,238 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
             child: SingleChildScrollView(
               child: Container(
                 height: MediaQuery.of(context).size.height - 92,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, top: 30, right: 15),
-                      child: Row(
+                child: FutureBuilder<List<NoteCategoryModel>>(
+                    future: NoteServices.getNoteCateogry(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData || !mounted) return Loading();
+                      final notes = snapshot.data!;
+                      return Column(
                         children: [
-                          Expanded(
-                            child: Column(
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, top: 30, right: 15),
+                            child: Row(
                               children: [
-                                titleText(text: 'التصنيف'),
-                                const SizedBox(
-                                  height: 10,
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      titleText(text: 'التصنيف'),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 50,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5),
+                                        decoration: BoxDecoration(
+                                            color: WhiteColor,
+                                            border: Border.all(
+                                                color: GreyColor, width: 0.5),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  blurRadius: 4,
+                                                  color: GreyColor,
+                                                  offset: Offset(2, 2)),
+                                            ]),
+                                        child: Row(
+                                          children: [
+                                            Text(studentNoteCLassificationVariable ==
+                                                    ''
+                                                ? 'إختر...'
+                                                : studentNoteCLassificationVariable),
+                                            Spacer(
+                                              flex: 1,
+                                            ),
+                                            GestureDetector(
+                                              child: Icon(
+                                                Icons.add_circle_rounded,
+                                                color: PrimaryColor,
+                                              ),
+                                              onTap: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      Container(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 15),
+                                                    decoration: BoxDecoration(
+                                                      color: WhiteColor,
+                                                      border: Border.all(
+                                                          color: GreyColor,
+                                                          width: 0.5),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    margin: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 15,
+                                                        vertical: 200),
+                                                    child: ListView.builder(
+                                                      itemCount: notes.length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        return GestureDetector(
+                                                          onTap: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                            studentNoteClassification
+                                                                .clear();
+                                                            studentNoteCLassificationVariable =
+                                                                notes[index]
+                                                                    .name;
+                                                            setState(() {});
+                                                          },
+                                                          child: Container(
+                                                              height: 50,
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(notes[
+                                                                          index]
+                                                                      .name)
+                                                                ],
+                                                              )),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                registrationDropDownSearch(
-                                    hint: 'إختر',
-                                    items: [],
-                                    onChange: (data) {
-                                      studentNoteCLassificationVariable = data!;
-                                    },
-                                    validator: (data) {})
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      titleText(text: 'التصنيف'),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      registrationInfoTextField(
+                                          controller: studentNoteClassification,
+                                          keyboardType: TextInputType.name,
+                                          radius: 20,
+                                          validator: (text) {},
+                                          onChanged: (data) {
+                                            studentNoteCLassificationVariable =
+                                                '';
+                                            setState(() {});
+                                          }),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, top: 30, right: 15),
                             child: Column(
                               children: [
-                                titleText(text: 'التصنيف'),
+                                titleText(text: 'عنوان الملاحظة'),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 registrationInfoTextField(
-                                  controller: studentNoteClassification,
+                                  controller: studentNoteTitle,
                                   keyboardType: TextInputType.name,
                                   radius: 20,
-                                  validator: (text) {},
+                                  validator: (text) {
+                                    if (text!.isEmpty) {
+                                      return 'الحقل مطلوب';
+                                    }
+                                  },
                                 ),
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, top: 30, right: 15),
-                      child: Column(
-                        children: [
-                          titleText(text: 'عنوان الملاحظة'),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, top: 30, right: 15),
+                            child: Column(
+                              children: [
+                                titleText(text: 'نص الملاحظة'),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                registrationInfoTextField(
+                                  maxLines: 6,
+                                  controller: studentNoteText,
+                                  keyboardType: TextInputType.name,
+                                  radius: 20,
+                                  validator: (text) {
+                                    if (text!.isEmpty) {
+                                      return 'الحقل مطلوب';
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Spacer(
+                            flex: 1,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              nextButton(
+                                  text: 'إضافة',
+                                  onTap: () async {
+                                    if (formKey.currentState!.validate()) {
+                                      isLoading = true;
+                                      final note = await NoteServices.postNote(
+                                          title:
+                                              studentNoteTitle.text.toString(),
+                                          description:
+                                              studentNoteText.text.toString(),
+                                          category_name:
+                                              studentNoteCLassificationVariable !=
+                                                      ''
+                                                  ? studentNoteCLassificationVariable
+                                                  : studentNoteClassification
+                                                      .text
+                                                      .toString());
+                                      isLoading = false;
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => CustomDialog(
+                                            onPressed: () {
+                                              studentNoteTitle.clear();
+                                              studentNoteText.clear();
+                                              studentNoteClassification.clear();
+                                              Navigator.of(context)
+                                                ..pop()
+                                                ..pop(note);
+                                            },
+                                            title: 'إضافة الملاحظة'),
+                                      );
+                                    }
+                                  }),
+                            ],
+                          ),
                           const SizedBox(
-                            height: 10,
-                          ),
-                          registrationInfoTextField(
-                            controller: studentNoteTitle,
-                            keyboardType: TextInputType.name,
-                            radius: 20,
-                            validator: (text) {},
-                          ),
+                            height: 30,
+                          )
                         ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, top: 30, right: 15),
-                      child: Column(
-                        children: [
-                          titleText(text: 'نص الملاحظة'),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          registrationInfoTextField(
-                            maxLines: 6,
-                            controller: studentNoteText,
-                            keyboardType: TextInputType.name,
-                            radius: 20,
-                            validator: (text) {},
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(
-                      flex: 1,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        nextButton(
-                            text: 'إضافة',
-                            onTap: () async {
-                              isLoading = true;
-                              final note = await NoteServices.postNote(
-                                  title: studentNoteTitle.text.toString(),
-                                  description: studentNoteText.text.toString(),
-                                  category_name: studentNoteClassification.text
-                                      .toString());
-                              isLoading = false;
-                              showDialog(
-                                context: context,
-                                builder: (context) => CustomDialog(
-                                    onPressed: () {
-                                      studentNoteTitle.clear();
-                                      studentNoteText.clear();
-                                      studentNoteClassification.clear();
-                                      Navigator.of(context)
-                                        ..pop()
-                                        ..pop(note);
-                                    },
-                                    title: 'إضافة الملاحظة'),
-                              );
-                            }),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    )
-                  ],
-                ),
+                      );
+                    }),
               ),
             ),
           )),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Form(
-//         key: formkey,
-//         child: SingleChildScrollView(
-//           child: Container(
-//             height: MediaQuery.of(context).size.height - 92,
-//             child: Column(
-//               children: [
-//                 Row(
-//                   children: [
-//                     Expanded(
-//                       flex: 2,
-//                       child: Padding(
-//                         padding: const EdgeInsets.all(10.0),
-//                         child: Column(
-//                           children: [
-//                             Row(
-//                               mainAxisAlignment: MainAxisAlignment.start,
-//                               children: const [
-//                                 Text(
-//                                   ' اختيار التصنيف : ',
-//                                   style: TextStyle(
-//                                       fontSize: 18,
-//                                       fontWeight: FontWeight.w400),
-//                                 ),
-//                               ],
-//                             ),
-//                             const SizedBox(
-//                               height: 10,
-//                             ),
-//                             Container(
-//                               height: 49,
-//                               padding: const EdgeInsetsDirectional.only(
-//                                   end: 6, start: 6),
-//                               decoration: BoxDecoration(
-//                                 borderRadius: BorderRadius.circular(6),
-//                                 border: Border.all(
-//                                   color: const Color(0xff333333),
-//                                   width: 0.4,
-//                                 ),
-//                                 boxShadow: [
-//                                   BoxShadow(
-//                                     color: Colors.grey.withOpacity(0.5),
-//                                     offset: const Offset(5.0, 9.0),
-//                                     blurRadius: 3.0,
-//                                   ),
-//                                 ],
-//                                 color: const Color.fromARGB(255, 255, 255, 255),
-//                               ),
-//                               child: DropdownButton(
-//                                 iconSize: 30,
-//                                 isExpanded: true,
-//                                 items: const [
-//                                   DropdownMenuItem(
-//                                     // ignore: sort_child_properties_last
-//                                     child: Text(
-//                                       'التصنيف الاول',
-//                                       style: TextStyle(
-//                                           fontSize: 18,
-//                                           fontWeight: FontWeight.w400),
-//                                     ),
-//                                     value: 'التصنيف الاول',
-//                                   ),
-//                                   DropdownMenuItem(
-//                                     // ignore: sort_child_properties_last
-//                                     child: Text(
-//                                       'التصنيف الثاني',
-//                                       style: TextStyle(
-//                                           fontSize: 18,
-//                                           fontWeight: FontWeight.w400),
-//                                     ),
-//                                     value: 'التصنيف الثاني',
-//                                   ),
-//                                 ],
-//                                 onChanged: (String? val) {
-//                                   setState(() {
-//                                     Selectedgender = val!;
-//                                   });
-//                                 },
-//                                 value: Selectedgender,
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                     const SizedBox(
-//                       width: 20,
-//                     ),
-//                     Expanded(
-//                       flex: 2,
-//                       child: Padding(
-//                         padding: const EdgeInsets.all(10.0),
-//                         child: Column(
-//                           mainAxisAlignment: MainAxisAlignment.start,
-//                           children: [
-//                             Row(
-//                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                               children: const [
-//                                 Text(
-//                                   'اضافة التصنيف : ',
-//                                   style: TextStyle(
-//                                       fontSize: 18,
-//                                       fontWeight: FontWeight.w400),
-//                                 ),
-//                               ],
-//                             ),
-//                             const SizedBox(
-//                               height: 10,
-//                             ),
-//                             Container(
-//                               decoration: BoxDecoration(
-//                                 boxShadow: [
-//                                   BoxShadow(
-//                                     color: Colors.grey.withOpacity(0.5),
-//                                     offset: const Offset(5.0, 9.0),
-//                                     blurRadius: 3.0,
-//                                   ),
-//                                 ],
-//                                 border: Border.all(width: 0.2),
-//                                 borderRadius: BorderRadius.circular(6.0),
-//                                 color: const Color.fromARGB(255, 255, 255, 255),
-//                               ),
-//                               child: TextFormField(
-//                                 validator: (value) {
-//                                   if (value != null) {
-//                                     return 'هذا حقل مطلوب';
-//                                   }
-//                                 },
-//                                 style: const TextStyle(
-//                                   color: Color(0xFF333333),
-//                                 ),
-//                                 controller: emailcontroller,
-//                                 keyboardType: TextInputType.name,
-//                                 decoration: const InputDecoration(
-//                                   hintText: '  ',
-//                                   contentPadding: EdgeInsets.symmetric(
-//                                       vertical: 15, horizontal: 5),
-//                                   border: InputBorder.none,
-//                                 ),
-//                               ),
-//                             )
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                     const SizedBox(
-//                       height: 10,
-//                     ),
-//                   ],
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.all(20.0),
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.start,
-//                     children: [
-//                       Row(
-//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                         children: const [
-//                           Text(
-//                             ' عنوان الملاحظة : ',
-//                             style: TextStyle(
-//                                 fontSize: 18, fontWeight: FontWeight.w400),
-//                           ),
-//                         ],
-//                       ),
-//                       const SizedBox(
-//                         height: 10,
-//                       ),
-//                       Container(
-//                         decoration: BoxDecoration(
-//                           boxShadow: [
-//                             BoxShadow(
-//                               color: Colors.grey.withOpacity(0.5),
-//                               offset: Offset(5.0, 9.0),
-//                               blurRadius: 3.0,
-//                             ),
-//                           ],
-//                           border: Border.all(width: 0.2),
-//                           borderRadius: BorderRadius.circular(6.0),
-//                           color: const Color.fromARGB(255, 255, 255, 255),
-//                         ),
-//                         child: TextFormField(
-//                           validator: (value) {
-//                             if (value != null) {
-//                               return 'هذا حقل مطلوب';
-//                             }
-//                           },
-//                           style: const TextStyle(
-//                             color: Color(0xFF333333),
-//                           ),
-//                           controller: emailcontroller,
-//                           keyboardType: TextInputType.name,
-//                           decoration: const InputDecoration(
-//                             hintText: ' ',
-//                             contentPadding: EdgeInsets.symmetric(
-//                                 vertical: 15, horizontal: 5),
-//                             border: InputBorder.none,
-//                           ),
-//                         ),
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//                 const SizedBox(
-//                   height: 10,
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.all(20.0),
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.start,
-//                     children: [
-//                       Row(
-//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                         children: const [
-//                           Text(
-//                             'نص الملاحظة : ',
-//                             style: TextStyle(
-//                                 fontSize: 18, fontWeight: FontWeight.w400),
-//                           ),
-//                         ],
-//                       ),
-//                       const SizedBox(
-//                         height: 10,
-//                       ),
-//                       Container(
-//                         decoration: BoxDecoration(
-//                           boxShadow: [
-//                             BoxShadow(
-//                               color: Colors.grey.withOpacity(0.5),
-//                               offset: const Offset(5.0, 9.0),
-//                               blurRadius: 3.0,
-//                             ),
-//                           ],
-//                           border: Border.all(width: 0.2),
-//                           borderRadius: BorderRadius.circular(6.0),
-//                           color: const Color.fromARGB(255, 255, 255, 255),
-//                         ),
-//                         child: TextFormField(
-//                           validator: (value) {
-//                             if (value != null) {
-//                               return 'هذا حقل مطلوب';
-//                             }
-//                           },
-//                           style: const TextStyle(
-//                             // height: 50,
-//                             color: Color(0xFF333333),
-//                           ),
-//                           controller: emailcontroller,
-//                           keyboardType: TextInputType.name,
-//                           decoration: const InputDecoration(
-//                             hintText: ' ',
-//                             contentPadding: EdgeInsets.symmetric(
-//                                 vertical: 15, horizontal: 5),
-//                             border: InputBorder.none,
-//                           ),
-//                         ),
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//                 const Spacer(
-//                   flex: 1,
-//                 ),
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.end,
-//                   children: [
-//                     nextButton(text: 'إضافة', onTap: () {}),
-//                   ],
-//                 ),
-//                 const SizedBox(
-//                   height: 30,
-//                 )
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),

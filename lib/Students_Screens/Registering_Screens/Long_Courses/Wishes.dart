@@ -198,7 +198,6 @@ class _WishesPageState extends State<WishesPage> {
                               Navigator.of(context).pop();
                             }),
                       );
-                      setState(() {});
                     }
                   },
                   text: 'التالي'),

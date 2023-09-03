@@ -184,9 +184,7 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
                       posts[index].likes = count;
                     },
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const BrowserPersonalInformation(),
-                      ));
+                      Navigator.of(context).pushNamed(BrowserPersonalInformation.id,arguments: posts[index].id);
                     },
                     isFavorite: posts[index].likedByMe,
                     isSaved: posts[index].savedByMe,

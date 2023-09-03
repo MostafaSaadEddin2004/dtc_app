@@ -1,9 +1,9 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Constants/Controller.dart';
+import 'package:dtc_app/Teachers_Screens/Registration_Screens/teacher_profile_image.dart';
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
-import '../Teacher_Information_Page.dart';
 import 'Teacher_SignIn_Screen.dart';
 
 class TeacherSignUpScreen extends StatefulWidget {
@@ -119,7 +119,7 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        TeacherInformationPage.id,
+                        TeacherProfileImage.id,
                         (Route<dynamic> route) => false,
                       );
                     }

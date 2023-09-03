@@ -12,7 +12,9 @@ class StudentTabBar extends StatefulWidget {
   @override
   State<StudentTabBar> createState() => _StudentTabBarState();
 }
+
 List<Map> posts = [];
+
 class _StudentTabBarState extends State<StudentTabBar> {
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,6 @@ class _StudentTabBarState extends State<StudentTabBar> {
               ],
             ),
             actions: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 alignment: Alignment.center,

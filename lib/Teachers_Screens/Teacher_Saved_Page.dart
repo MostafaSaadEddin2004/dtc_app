@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Components/Posts.dart';
+import '../api/services/public_post_services.dart';
 
 class TeacherSavedPage extends StatefulWidget {
   const TeacherSavedPage({super.key});
@@ -41,7 +42,7 @@ class _TeacherSavedPageState extends State<TeacherSavedPage> {
                 dTCPostChange[index].isFavorite = isFavorite;
                 dTCPostChange[index].isSaved = isSaved;
                 dTCPostChange[index].count = count;
-              },
+              },postId: 1,
               isFavorite: dTCPostChange[index].isFavorite,
               isSaved: dTCPostChange[index].isSaved,
               count: dTCPostChange[index].count,

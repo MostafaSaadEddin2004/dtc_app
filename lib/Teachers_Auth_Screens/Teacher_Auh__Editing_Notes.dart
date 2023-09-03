@@ -41,45 +41,18 @@ class _TeacherAuthEditingNotesState extends State<TeacherAuthEditingNotes> {
                     Padding(
                       padding:
                           const EdgeInsets.only(left: 15, top: 30, right: 15),
-                      child: Row(
+                      child: Column(
                         children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                titleText(text: 'التصنيف'),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                registrationDropDownSearch(
-                                    hint: 'إختر',
-                                    items: [],
-                                    onChange: (data) {},
-                                    validator: (data) {
-                                      teacherAuthEditingNoteCLassificationVariable =
-                                          data!;
-                                    })
-                              ],
-                            ),
-                          ),
+                          titleText(text: 'التصنيف'),
                           const SizedBox(
-                            width: 15,
+                            height: 10,
                           ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                titleText(text: 'التصنيف'),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                registrationInfoTextField(
-                                  controller:
-                                      teacherAuthEditingNoteClassification,
-                                  keyboardType: TextInputType.name,
-                                  radius: 20,
-                                  validator: (text) {},
-                                ),
-                              ],
-                            ),
+                          registrationInfoTextField(
+                            controller:
+                                teacherAuthEditingNoteClassification,
+                            keyboardType: TextInputType.none,
+                            radius: 20,
+                            validator: (text) {},
                           ),
                         ],
                       ),
@@ -116,7 +89,11 @@ class _TeacherAuthEditingNotesState extends State<TeacherAuthEditingNotes> {
                             controller: teacherAuthEditingNoteText,
                             keyboardType: TextInputType.name,
                             radius: 20,
-                            validator: (text) {},
+                            validator: (text) {
+                              if (text!.isEmpty) {
+                                return 'الحقل مطلوب';
+                              }
+                            },
                           ),
                         ],
                       ),
@@ -130,28 +107,32 @@ class _TeacherAuthEditingNotesState extends State<TeacherAuthEditingNotes> {
                         nextButton(
                             text: 'تعديل',
                             onTap: () async {
-                              print('tapped');
-                              isLoading = true;
-                              final note = await NoteServices.putNote(
-                                  title: teacherAuthEditingNoteTitle.text,
-                                  description: teacherAuthEditingNoteText.text,
-                                  category: teacherAuthEditingNoteClassification
-                                      .text);
-                              isLoading = false;
-                              showDialog(
-                                context: context,
-                                builder: (context) => CustomDialog(
-                                    onPressed: () {
-                                      teacherAuthEditingNoteTitle.clear();
-                                      teacherAuthEditingNoteText.clear();
-                                      teacherAuthEditingNoteClassification
-                                          .clear();
-                                      Navigator.of(context)
-                                        ..pop()
-                                        ..pop(note);
-                                    },
-                                    title: 'إضافة الملاحظة'),
-                              );
+                              if (formKey.currentState!.validate()) {
+                                print('tapped');
+                                isLoading = true;
+                                final note = await NoteServices.putNote(
+                                    title: teacherAuthEditingNoteTitle.text,
+                                    description:
+                                        teacherAuthEditingNoteText.text,
+                                    category:
+                                        teacherAuthEditingNoteClassification
+                                            .text);
+                                isLoading = false;
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => CustomDialog(
+                                      onPressed: () {
+                                        teacherAuthEditingNoteTitle.clear();
+                                        teacherAuthEditingNoteText.clear();
+                                        teacherAuthEditingNoteClassification
+                                            .clear();
+                                        Navigator.of(context)
+                                          ..pop()
+                                          ..pop(note);
+                                      },
+                                      title: 'إضافة الملاحظة'),
+                                );
+                              }
                             }),
                       ],
                     ),

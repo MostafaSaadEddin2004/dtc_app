@@ -18,7 +18,7 @@ class CustomDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: Text(
-        'تم تسجيل طلب $title بنجاح',
+        'تم $title بنجاح',
         textAlign: TextAlign.center,
       ),
       icon: const Icon(

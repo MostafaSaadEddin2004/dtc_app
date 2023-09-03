@@ -185,9 +185,9 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
                     note: notes[index],
                     onEditPressed: () async {
                       final NoteModel? note =
-                          await Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const TeacherEditingNotes(),
-                      ));
+                          await Navigator.of(context).pushNamed(
+                        TeacherEditingNotes.id,
+                      );
                       if (note != null) {
                         notes.add(note);
                         setState(() {});

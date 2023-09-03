@@ -6,6 +6,7 @@ import '../../Components/loaing.dart';
 import '../../Constants/Colors.dart';
 import '../../api/services/depatrment_post_services.dart';
 import '../Adding_Posts.dart';
+import '../Editing_Posts.dart';
 
 class TeacherAuthDepartmentPostsPage extends StatefulWidget {
   const TeacherAuthDepartmentPostsPage({super.key});
@@ -25,7 +26,7 @@ class _TeacherAuthDepartmentPostsPageState
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           backgroundColor: PrimaryColor,
-          onPressed: ()  {
+          onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const AddingPostPage(),
             ));
@@ -51,6 +52,96 @@ class _TeacherAuthDepartmentPostsPageState
                       posts[index].likedByMe = isFavorite;
                       posts[index].savedByMe = isSaved;
                       posts[index].likes = count;
+                    },
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) => Container(
+                          margin: const EdgeInsets.all(15),
+                          child:
+                              Column(mainAxisSize: MainAxisSize.min, children: [
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  minRadius: 25,
+                                  maxRadius: 25,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: WhiteColor,
+                                    size: 35,
+                                  ),
+                                  backgroundColor: PrimaryColor,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'اسم القسم',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    ),
+                                    Text(
+                                      posts[index].createdAt,
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            const Divider(
+                              color: BlackColor,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                      EditingPostPage.id,
+                                      arguments: posts[index]);
+                                },
+                                child: Row(
+                                  children: const [
+                                    Icon(Icons.edit),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      'تعديل المنشور',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                )),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: Row(
+                                children: const [
+                                  Icon(Icons.delete),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text('حذف المنشور',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold))
+                                ],
+                              ),
+                            )
+                          ]),
+                        ),
+                      );
                     },
                     isFavorite: posts[index].likedByMe,
                     isSaved: posts[index].savedByMe,

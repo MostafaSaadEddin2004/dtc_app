@@ -23,6 +23,7 @@ class _StudentPersonalInformationState
     extends State<StudentPersonalInformation> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   DateTime? dateTime;
+  late int courseId = ModalRoute.of(context)!.settings.arguments as int;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -269,10 +270,9 @@ class _StudentPersonalInformationState
                           text: 'التالي',
                           onTap: () {
                             //if (formState.currentState!.validate()) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const StudentOtherInformation(),
-                            ));
+                            Navigator.of(context)
+                                .pushNamed(StudentOtherInformation.id,arguments: courseId);
+                            print(courseId);
                             //}
                           }),
                     ],
