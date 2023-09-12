@@ -7,6 +7,7 @@ import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
 import '../../Constants/Controller.dart';
 import 'Long_Courses/Acceptance_Qualifications.dart';
+import 'Student_Name_SignUp_Screen.dart';
 
 class StudentSignUpScreen extends StatefulWidget {
   const StudentSignUpScreen({super.key});
@@ -41,7 +42,6 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                 'مرحباً بكم!',
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
-              
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل الإيميل',
@@ -113,7 +113,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        StudentProfileImage.id,
+                        StudentNameSignUpPage.id,
                         (Route<dynamic> route) => false,
                       );
                     }

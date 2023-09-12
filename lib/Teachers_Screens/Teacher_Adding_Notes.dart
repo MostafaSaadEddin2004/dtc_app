@@ -70,10 +70,10 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                             ]),
                                         child: Row(
                                           children: [
-                                            Text(studentNoteCLassificationVariable ==
+                                            Text(teacherNoteClassificationVariable ==
                                                     ''
                                                 ? 'إختر...'
-                                                : studentNoteCLassificationVariable),
+                                                : teacherNoteClassificationVariable),
                                             Spacer(
                                               flex: 1,
                                             ),
@@ -112,9 +112,9 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                                             Navigator.of(
                                                                     context)
                                                                 .pop();
-                                                            studentNoteClassification
+                                                            teacherNoteClassification
                                                                 .clear();
-                                                            studentNoteCLassificationVariable =
+                                                            teacherNoteClassificationVariable =
                                                                 notes[index]
                                                                     .name;
                                                             setState(() {});
@@ -228,8 +228,12 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                           description:
                                               teacherNoteText.text.toString(),
                                           category_name:
-                                              teacherNoteClassification.text
-                                                  .toString());
+                                              teacherNoteClassificationVariable !=
+                                                      ''
+                                                  ? teacherNoteClassificationVariable
+                                                  : teacherNoteClassification
+                                                      .text
+                                                      .toString());
                                       isLoading = false;
                                       showDialog(
                                         context: context,

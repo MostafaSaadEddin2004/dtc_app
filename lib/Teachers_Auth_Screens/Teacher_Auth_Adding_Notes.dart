@@ -225,8 +225,12 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                                           description: teacherAuthNoteText.text
                                               .toString(),
                                           category_name:
-                                              teacherAuthNoteClassification.text
-                                                  .toString());
+                                              teacherAuthNoteClassificationVariable !=
+                                                      ''
+                                                  ? teacherAuthNoteClassificationVariable
+                                                  : teacherAuthNoteClassification
+                                                      .text
+                                                      .toString());
                                       isLoading = false;
                                       showDialog(
                                         context: context,

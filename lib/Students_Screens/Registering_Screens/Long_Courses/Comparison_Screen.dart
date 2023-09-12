@@ -225,8 +225,8 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                             text: 'التالي',
                             onTap: () {
                               if (certification != '') {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const WishesPage()));
+                                Navigator.of(context).pushNamed(WishesPage.id,
+                                    arguments: selectedCertificateId);
                               } else {
                                 showDialog(
                                   context: context,

@@ -22,8 +22,8 @@ Widget customButton({
           boxShadow: const [
             BoxShadow(
               color: GreyColor,
-              blurRadius: 3,
-              offset: Offset(3, 3), // Shadow position
+              blurRadius: 2,
+              offset: Offset(2, 2), // Shadow position
             ),
           ],
         ),

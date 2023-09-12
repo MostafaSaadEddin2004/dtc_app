@@ -1,4 +1,5 @@
 import 'package:dtc_app/Students_Screens/Registering_Screens/Student_SignUp_Screen.dart';
+import 'package:dtc_app/Students_Screens/Registering_Screens/student_profile_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -123,7 +124,7 @@ class _StudentNameSignUpPageState extends State<StudentNameSignUpPage> {
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const StudentSignUpScreen(),
+                        builder: (context) => const StudentProfileImage(),
                       ));
                     }
                   },

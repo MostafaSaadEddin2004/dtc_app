@@ -4,6 +4,7 @@ import 'package:dtc_app/Teachers_Screens/Registration_Screens/teacher_profile_im
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
+import 'Teacher_Name_SignUp_Screen.dart';
 import 'Teacher_SignIn_Screen.dart';
 
 class TeacherSignUpScreen extends StatefulWidget {
@@ -55,7 +56,7 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                       return 'يرجى التأكد من إدخال @gmail.com';
                     }
                   },
-                  labelText: 'إسم المستخدم',
+                  labelText: 'الإيميل',
                   obscure: false,
                   prefix: Icons.person,
                   keyboardType: TextInputType.emailAddress,
@@ -119,11 +120,11 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        TeacherProfileImage.id,
+                        TeacherNameSignUpPage.id,
                         (Route<dynamic> route) => false,
                       );
                     }
-                  },
+                  },onDoubleTap: (){},
                   backgroundColor: PrimaryColor,
                   fontSize: 24,
                   text: 'التسجيل الآن'),

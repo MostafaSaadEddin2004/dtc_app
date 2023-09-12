@@ -16,6 +16,8 @@ import 'Start_App_Screens/SignUp_Type.dart';
 import 'Start_App_Screens/Start_App_Screen.dart';
 import 'Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
 import 'Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
+import 'Students_Screens/Registering_Screens/Long_Courses/Comparison_Screen.dart';
+import 'Students_Screens/Registering_Screens/Long_Courses/Wishes.dart';
 import 'Students_Screens/Registering_Screens/Short_Courses/Student_Other_Information.dart';
 import 'Students_Screens/Registering_Screens/Short_Courses/Student_Personal_Information.dart';
 import 'Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
@@ -55,7 +57,7 @@ class Main extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
       ],
-      home: const StudentStartPage(),
+      home: const StartAppScreen(),
       routes: {
         SignUpType.id: (context) => const SignUpType(),
         BrowserNameSignUpPage.id: (context) => const BrowserNameSignUpPage(),
@@ -73,6 +75,7 @@ class Main extends StatelessWidget {
         StudentSignUpScreen.id: (context) => const StudentSignUpScreen(),
         StudentSignInScreen.id: (context) => const StudentSignInScreen(),
         StudentProfileImage.id: (context) => const StudentProfileImage(),
+        WishesPage.id: (context) => const WishesPage(),
         StudentEditingNotes.id: (context) => const StudentEditingNotes(),
         StudentPersonalInformation.id: (context) =>
             const StudentPersonalInformation(),

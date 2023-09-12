@@ -1,3 +1,4 @@
+import 'package:dtc_app/Teachers_Screens/Registration_Screens/teacher_profile_image.dart';
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
@@ -121,7 +122,7 @@ class _TeacherNameSignUpPageState extends State<TeacherNameSignUpPage> {
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const TeacherSignUpScreen(),
+                        builder: (context) => const TeacherProfileImage(),
                       ));
                     }
                   },

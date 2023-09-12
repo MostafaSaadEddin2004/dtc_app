@@ -1,3 +1,4 @@
+import 'package:dtc_app/Browsers_Screens/Registration_Screens/browser_profile_image.dart';
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
@@ -121,7 +122,7 @@ class _BrowserNameSignUpPageState extends State<BrowserNameSignUpPage> {
                   onTap: () {
                     if (formState.currentState!.validate()) {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const BrowserSignUpScreen(),
+                        builder: (context) => const BrowserProfileImage(),
                       ));
                     }
                   },
