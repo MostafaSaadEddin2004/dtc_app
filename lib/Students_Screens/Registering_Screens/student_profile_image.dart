@@ -104,7 +104,6 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                               onTap: () async {
                                                 gallery = true;
                                                 camera = false;
-                                                setState(() {});
                                                 studentProfileImageFile =
                                                     await ImagePicker()
                                                         .pickImage(
@@ -113,6 +112,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                                 studentProfileImagePath = File(
                                                     studentProfileImageFile!
                                                         .path);
+                                                this.setState(() {});
                                               },
                                               child: gallery == false
                                                   ? Container(
@@ -183,7 +183,6 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                               onTap: () async {
                                                 gallery = false;
                                                 camera = true;
-                                                setState(() {});
                                                 studentProfileImageFile =
                                                     await ImagePicker()
                                                         .pickImage(
@@ -192,6 +191,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                                 studentProfileImagePath = File(
                                                     studentProfileImageFile!
                                                         .path);
+                                                this.setState(() {});
                                               },
                                               child: camera == false
                                                   ? Container(
@@ -282,26 +282,6 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                     ],
                   ),
                 ),
-                Column(
-                  children: [
-                    const SizedBox(height: 15),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {});
-                      },
-                      child: Icon(
-                        Icons.refresh,
-                        size: 30,
-                        color: BlackColor.withOpacity(0.8),
-                      ),
-                    ),
-                    Text(
-                      'تحديث',
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
                 const Spacer(
                   flex: 1,
                 ),
@@ -312,7 +292,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                         text: 'التالي',
                         onTap: () {
                           isLoading = true;
-                          final postSignUp =  RegistrationService.postRegistration(
+                          final postSignUp = RegistrationService.postRegistration(
                               arFirstName: studentSinUpFirstNameController.text
                                   .toString(),
                               arLastName: studentSinUpLastNameController.text

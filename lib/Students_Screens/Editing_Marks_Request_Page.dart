@@ -142,8 +142,8 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               final editMark =
                                   EditMarkRequestService.postEditMarkRequest(
                                       subject: subjectName,
-                                      mark: studentEMRGainedMarkController.text
-                                          .toString(),
+                                      mark: int.parse(
+                                          studentEMRGainedMarkController.text),
                                       reason: markEditingRequestTextController
                                           .text
                                           .toString(),
