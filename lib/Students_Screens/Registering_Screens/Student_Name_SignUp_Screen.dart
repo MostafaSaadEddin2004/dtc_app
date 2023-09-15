@@ -1,8 +1,5 @@
-import 'package:dtc_app/Students_Screens/Registering_Screens/Student_SignUp_Screen.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/student_profile_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
 import '../../Constants/Colors.dart';
@@ -51,7 +48,7 @@ class _StudentNameSignUpPageState extends State<StudentNameSignUpPage> {
                     } else if (!RegExp(r'^[\u0600-\u06FF\s]+$')
                         .hasMatch(text)) {
                       return 'تأكد من إدخال الإسم باللغة العربية';
-                    }
+                    }return null;
                   },
                   labelText: 'الإسم باللغة العربية',
                   obscure: false,
@@ -71,7 +68,7 @@ class _StudentNameSignUpPageState extends State<StudentNameSignUpPage> {
                     } else if (!RegExp(r'^[\u0600-\u06FF\s]+$')
                         .hasMatch(text)) {
                       return 'تأكد من إدخال النسبة باللغة العربية';
-                    }
+                    }return null;
                   },
                   labelText: 'النسبة باللغة العربية',
                   obscure: false,
@@ -90,7 +87,7 @@ class _StudentNameSignUpPageState extends State<StudentNameSignUpPage> {
                       return 'الإسم يجب أن يكون على الأقل 3 أحرف';
                     } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(text)) {
                       return 'تأكد من إدخال الإسم باللغة الإنكليزية';
-                    }
+                    }return null;
                   },
                   labelText: 'الإسم باللغة الإنكليزية',
                   obscure: false,
@@ -109,7 +106,7 @@ class _StudentNameSignUpPageState extends State<StudentNameSignUpPage> {
                       return 'النسبة يجب أن تكون على الأقل 3 أحرف';
                     } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(text)) {
                       return 'تأكد من إدخال النسبة باللغة الإنكليزية';
-                    }
+                    }return null;
                   },
                   labelText: 'النسبة باللغة الإنكليزية',
                   obscure: false,

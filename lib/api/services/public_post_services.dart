@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:dtc_app/api/models/post_model.dart';
 import '../helper.dart';
-import 'package:http/retry.dart' as http;
 
 abstract class PublicPostServices with BaseApi {
   static Future<List<PostModel>> getPublicPost() async {
@@ -13,13 +11,15 @@ abstract class PublicPostServices with BaseApi {
         .toList();
   }
 
-  static void likePost({String? token, required String id}) async {
+  static void likePost({required String id}) async {
+    // ignore: unused_local_variable
     final response =
-        await BaseApi.postRequest(endpoint: 'post?type=public/$id/like');
+        await BaseApi.postRequest(endpoint: 'post/$id/like');
   }
 
   static void savePost({required String id}) async {
+    // ignore: unused_local_variable
     final response =
-        await BaseApi.postRequest(endpoint: 'post?type=public/$id/save');
+        await BaseApi.postRequest(endpoint: 'post/$id/save');
   }
 }

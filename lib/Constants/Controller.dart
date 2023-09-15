@@ -124,10 +124,21 @@ var teacherAuthPrivacyEditingLocation = TextEditingController();
 var teacherAuthEditingNoteClassification = TextEditingController();
 var teacherAuthEditingNoteTitle = TextEditingController();
 var teacherAuthEditingNoteText = TextEditingController();
+var teacherAuthSignInEmailController = TextEditingController();
+var teacherAuthSignInPasswordController = TextEditingController();
+var teacherAuthSignUpEmailController = TextEditingController();
+var teacherAuthSignUpPasswordController = TextEditingController();
+var teacherAuthSignUpPhoneController = TextEditingController();
+var teacherAuthSinUpFirstNameController = TextEditingController();
+var teacherAuthSinUpLastNameController = TextEditingController();
+var teacherAuthSinUpEnglishFirstNameController = TextEditingController();
+var teacherAuthSinUpEnglishLastNameController = TextEditingController();
 String teacherAuthNationalityVariable = '';
 String teacherAuthDepartmentVariable = '';
 String teacherAuthNoteClassificationVariable = '';
 String teacherAuthEditingNoteCLassificationVariable = '';
+XFile? teacherAuthProfileImageFile;
+File? teacherAuthProfileImagePath;
 
 //Teacher Controllers
 var teacherBirthDateController = TextEditingController();

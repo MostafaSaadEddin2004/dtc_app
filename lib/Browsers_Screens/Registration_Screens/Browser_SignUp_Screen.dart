@@ -1,11 +1,9 @@
-import 'package:dtc_app/Browsers_Screens/Registration_Screens/browser_profile_image.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
 import '../../Constants/Controller.dart';
-import '../../api/services/registration_service.dart';
 import 'Browser_Name_SignUp_Screen.dart';
 import 'Browser_SignIn_Screen.dart';
 
@@ -56,10 +54,10 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                       if (text!.isEmpty) {
                         return 'الإيميل مطلوب';
                       }
-                      if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                      else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                           .hasMatch(text)) {
                         return 'يرجى التأكد من إدخال @gmail.com';
-                      }
+                      }return null;
                     },
                     labelText: 'الإيميل',
                     obscure: false,
@@ -76,7 +74,7 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                      }
+                      }return null;
                     },
                     labelText: 'كلمة المرور',
                     obscure: !secure,
@@ -105,7 +103,7 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                       } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
                           .hasMatch(text)) {
                         return 'الرجاء التأكد من رقم الجوال';
-                      }
+                      }return null;
                     },
                     labelText: 'رقم الجوال',
                     obscure: false,

@@ -1,4 +1,4 @@
-import 'package:dtc_app/Components/loaing.dart';
+import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Personal_Information.dart';
 import 'package:dtc_app/api/services/comparison_service.dart';
 import 'package:flutter/material.dart';

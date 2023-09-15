@@ -39,10 +39,10 @@ abstract class NoteServices extends BaseApi {
     return NoteModel.fromJson(jsonDecode(response.body)['data']);
   }
 
-  static Future<NoteModel> deleteNote({required int id}) async {
+  static Future<void> deleteNote({required int id}) async {
+    // ignore: unused_local_variable
     http.Response response =
         await BaseApi.deleteRequest(endpoint: 'note', id: id);
-    return jsonDecode(response.body);
   }
 
   static Future<List<NoteCategoryModel>> getNoteCateogry() async {

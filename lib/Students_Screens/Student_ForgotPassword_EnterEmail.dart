@@ -37,10 +37,10 @@ class _StudentForgotPasswordEnterEmailState
                       if (text!.isEmpty) {
                         return 'الإيميل مطلوب';
                       }
-                      if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                      else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                           .hasMatch(text)) {
                         return 'يرجى التأكد من إدخال @gmail.com';
-                      }
+                      }return null;
                     },
                     labelText: 'الإيميل',
                     obscure: false,

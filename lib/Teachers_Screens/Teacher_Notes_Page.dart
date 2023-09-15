@@ -1,7 +1,8 @@
 import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notes.dart';
-import '../Components/loaing.dart';
+import '../Components/loading.dart';
 import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/models/note_model.dart';
 import '../api/services/note_services.dart';
@@ -147,7 +148,11 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed(SignUpType.id);
+                  AuthServices.postLogout();
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    SignUpType.id,
+                    (Route<dynamic> route) => false,
+                  );
                 },
                 child: Row(
                   children: const [

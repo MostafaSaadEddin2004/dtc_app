@@ -1,13 +1,12 @@
 import 'dart:io';
 import 'package:dtc_app/Components/Buttons.dart';
 import 'package:dtc_app/Constants/Colors.dart';
-import 'package:dtc_app/Teachers_Screens/Teacher_Information_Page.dart';
+import 'package:dtc_app/Teachers_Screens/Registration_Screens/Teacher_Information_Page.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../Constants/Controller.dart';
-import '../../api/services/registration_service.dart';
 
 class TeacherProfileImage extends StatefulWidget {
   const TeacherProfileImage({super.key});
@@ -101,7 +100,6 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                                             onTap: () async {
                                               gallery = true;
                                               camera = false;
-                                              setState(() {});
                                               teacherProfileImageFile =
                                                   await ImagePicker().pickImage(
                                                       source:
@@ -109,6 +107,8 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                                               teacherProfileImagePath = File(
                                                   teacherProfileImageFile!
                                                       .path);
+                                              this.setState(() {});
+                                              Navigator.of(context).pop();
                                             },
                                             child: gallery == false
                                                 ? Container(
@@ -119,7 +119,7 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                                                             color: GreyColor),
                                                         borderRadius:
                                                             const BorderRadius
-                                                                    .all(
+                                                                .all(
                                                                 Radius.circular(
                                                                     20))),
                                                     child: Column(
@@ -176,7 +176,6 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                                             onTap: () async {
                                               gallery = false;
                                               camera = true;
-                                              setState(() {});
                                               teacherProfileImageFile =
                                                   await ImagePicker().pickImage(
                                                       source:
@@ -184,6 +183,8 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                                               teacherProfileImagePath = File(
                                                   teacherProfileImageFile!
                                                       .path);
+                                              this.setState(() {});
+                                              Navigator.of(context).pop();
                                             },
                                             child: camera == false
                                                 ? Container(
@@ -194,7 +195,7 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                                                             color: GreyColor),
                                                         borderRadius:
                                                             const BorderRadius
-                                                                    .all(
+                                                                .all(
                                                                 Radius.circular(
                                                                     20))),
                                                     child: Column(
@@ -271,26 +272,6 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                   ],
                 ),
               ),
-              Column(
-                children: [
-                  const SizedBox(height: 15),
-                  GestureDetector(
-                    onTap: () {
-                      print('object');
-                      setState(() {});
-                    },
-                    child: Icon(
-                      Icons.refresh,
-                      size: 30,
-                      color: BlackColor.withOpacity(0.8),
-                    ),
-                  ),
-                  Text(
-                    'تحديث',
-                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
               const Spacer(
                 flex: 1,
               ),
@@ -301,7 +282,7 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                       text: 'التالي',
                       onTap: () {
                         isLoading = true;
-                        RegistrationService.postRegistration(
+                        AuthServices.postRegistration(
                             arFirstName:
                                 teacherSinUpFirstNameController.text.toString(),
                             arLastName:

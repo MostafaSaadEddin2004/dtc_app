@@ -1,14 +1,12 @@
 import 'dart:io';
-
 import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
 import 'package:dtc_app/Components/Buttons.dart';
 import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../Constants/Controller.dart';
-import '../../api/services/registration_service.dart';
 
 class BrowserProfileImage extends StatefulWidget {
   const BrowserProfileImage({super.key});
@@ -98,7 +96,6 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                                             onTap: () async {
                                               gallery = true;
                                               camera = false;
-                                              setState(() {});
                                               browserProfileImageFile =
                                                   await ImagePicker().pickImage(
                                                       source:
@@ -106,7 +103,8 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                                               browserProfileImagePath = File(
                                                   browserProfileImageFile!
                                                       .path);
-                                              print(browserProfileImagePath);
+                                              this.setState(() {});
+                                              Navigator.of(context).pop();
                                             },
                                             child: gallery == false
                                                 ? Container(
@@ -174,7 +172,6 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                                             onTap: () async {
                                               gallery = false;
                                               camera = true;
-                                              setState(() {});
                                               browserProfileImageFile =
                                                   await ImagePicker().pickImage(
                                                       source:
@@ -182,6 +179,8 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                                               browserProfileImagePath = File(
                                                   browserProfileImageFile!
                                                       .path);
+                                              this.setState(() {});
+                                              Navigator.of(context).pop();
                                             },
                                             child: camera == false
                                                 ? Container(
@@ -269,25 +268,6 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                   ],
                 ),
               ),
-              Column(
-                children: [
-                  const SizedBox(height: 15),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {});
-                    },
-                    child: Icon(
-                      Icons.refresh,
-                      size: 30,
-                      color: BlackColor.withOpacity(0.8),
-                    ),
-                  ),
-                  Text(
-                    'تحديث',
-                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
               const Spacer(
                 flex: 1,
               ),
@@ -298,7 +278,7 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                       text: 'التالي',
                       onTap: () {
                         isLoading = true;
-                        RegistrationService.postRegistration(
+                        AuthServices.postRegistration(
                             arFirstName:
                                 browserSinUpFirstNameController.text.toString(),
                             arLastName:

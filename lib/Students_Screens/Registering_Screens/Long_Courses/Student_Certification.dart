@@ -1,15 +1,12 @@
-import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Wishes.dart';
 import 'package:flutter/material.dart';
 import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/DropDownSearch.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
-import '../../../Constants/Colors.dart';
 import '../../../Constants/Controller.dart';
 import '../../../Constants/TextStyle.dart';
 import 'Required_Documents.dart';
-import 'package:date_time_picker/date_time_picker.dart';
 
 class StudentCertification extends StatefulWidget {
   const StudentCertification({super.key});
@@ -57,7 +54,7 @@ class _StudentCertificationState extends State<StudentCertification> {
                       } else if (int.parse(text) < 0 ||
                           int.parse(text) > 2700) {
                         return 'العلامة يجب أن تكون بين 0 - 2700';
-                      }
+                      }return null;
                     },
                   )),
               const SizedBox(
@@ -82,7 +79,7 @@ class _StudentCertificationState extends State<StudentCertification> {
                   validator: (data) {
                     if (data!.isEmpty) {
                       return 'الحقل مطلوب';
-                    }
+                    }return null;
                   }),
               const Spacer(
                 flex: 1,

@@ -1,5 +1,5 @@
-import 'package:dtc_app/Components/BottomNavBar.dart';
 import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notifications.dart';
 import '../Start_App_Screens/SignUp_Type.dart';
@@ -20,7 +20,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: PrimaryColor,
-         
         ),
         drawer: Drawer(
           backgroundColor: PrimaryColor,
@@ -135,8 +134,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
+                AuthServices.postLogout();
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
                 },
                 child: Row(
                   children: const [

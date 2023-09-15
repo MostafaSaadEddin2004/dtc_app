@@ -1,17 +1,13 @@
 import 'dart:io';
-
 import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Documents_card.dart';
 import '../../../Components/Label.dart';
-import '../../../Components/TextField.dart';
 import '../../../Constants/Colors.dart';
 import '../../../Constants/Controller.dart';
-import '../../../Constants/TextStyle.dart';
 import '../../Student_Start_Page.dart';
 
 class RequiredDocuments extends StatefulWidget {
@@ -114,6 +110,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                         .pickImage(source: ImageSource.gallery);
                                     identifyImagePath =
                                         File(identifyImage!.path);
+                                    Navigator.of(context).pop();
                                   },
                                   child: gallery == false
                                       ? Container(
@@ -174,6 +171,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                         .pickImage(source: ImageSource.camera);
                                     identifyImagePath =
                                         File(identifyImage!.path);
+                                    Navigator.of(context).pop();
                                   },
                                   child: camera == false
                                       ? Container(
@@ -307,6 +305,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                               source: ImageSource.gallery);
                                       certificateImagePath =
                                           File(certificateImage!.path);
+                                      Navigator.of(context).pop();
                                     },
                                     child: gallery == false
                                         ? Container(
@@ -371,6 +370,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                               source: ImageSource.camera);
                                       certificateImagePath =
                                           File(certificateImage!.path);
+                                      Navigator.of(context).pop();
                                     },
                                     child: camera == false
                                         ? Container(
@@ -503,6 +503,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                           .pickImage(
                                               source: ImageSource.gallery);
                                       unCardImagePath = File(unCardImage!.path);
+                                      Navigator.of(context).pop();
                                     },
                                     child: gallery == false
                                         ? Container(
@@ -566,6 +567,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                           .pickImage(
                                               source: ImageSource.camera);
                                       unCardImagePath = File(unCardImage!.path);
+                                      Navigator.of(context).pop();
                                     },
                                     child: camera == false
                                         ? Container(
@@ -699,6 +701,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                               source: ImageSource.gallery);
                                       personalImagePath =
                                           File(personalImage!.path);
+                                      Navigator.of(context).pop();
                                     },
                                     child: gallery == false
                                         ? Container(
@@ -763,6 +766,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                               source: ImageSource.camera);
                                       personalImagePath =
                                           File(personalImage!.path);
+                                      Navigator.of(context).pop();
                                     },
                                     child: camera == false
                                         ? Container(

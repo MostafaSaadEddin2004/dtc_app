@@ -1,7 +1,8 @@
 import 'package:dtc_app/api/models/post_model.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Components/Posts.dart';
-import '../Components/loaing.dart';
+import '../Components/loading.dart';
 import '../Constants/Colors.dart';
 import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/services/public_post_services.dart';
@@ -14,15 +15,15 @@ class BrowserHomePage extends StatefulWidget {
   @override
   State<BrowserHomePage> createState() => _BrowserHomePageState();
 }
+
 List<Map> posts = [];
+
 class _BrowserHomePageState extends State<BrowserHomePage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: PrimaryColor,
-        
       ),
       drawer: Drawer(
         backgroundColor: PrimaryColor,
@@ -109,6 +110,7 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
             ),
             GestureDetector(
               onTap: () {
+                 AuthServices.postLogout();
                 Navigator.of(context)
                     .pushNamedAndRemoveUntil(SignUpType.id, (route) => false);
               },
@@ -150,7 +152,8 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
                       posts[index].likedByMe = isFavorite;
                       posts[index].savedByMe = isSaved;
                       posts[index].likes = count;
-                    }, postId: posts[index].id,
+                    },
+                    postId: posts[index].id,
                     isFavorite: posts[index].likedByMe,
                     isSaved: posts[index].savedByMe,
                     count: posts[index].likes,

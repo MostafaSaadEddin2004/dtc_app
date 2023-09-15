@@ -1,6 +1,5 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Constants/Controller.dart';
-import 'package:dtc_app/Teachers_Screens/Registration_Screens/teacher_profile_image.dart';
 import 'package:flutter/material.dart';
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
@@ -51,10 +50,10 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                     if (text!.isEmpty) {
                       return 'الإيميل مطلوب';
                     }
-                    if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                    else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                         .hasMatch(text)) {
                       return 'يرجى التأكد من إدخال @gmail.com';
-                    }
+                    }return null;
                   },
                   labelText: 'الإيميل',
                   obscure: false,
@@ -74,7 +73,7 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                       return 'كلمة المرور مطلوبة';
                     } else if (text.length < 8) {
                       return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                    }
+                    }return null;
                   },
                   labelText: 'كلمة المرور',
                   obscure: !secure,
@@ -105,7 +104,7 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                       return 'رقم الجوال مطلوب';
                     } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
                       return 'الرجاء التأكد من رقم الجوال';
-                    }
+                    }return null;
                   },
                   labelText: 'رقم الجوال',
                   obscure: false,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Components/Posts.dart';
-import '../../Components/loaing.dart';
+import '../../Components/loading.dart';
 import '../../api/models/post_model.dart';
 import '../../api/services/depatrment_post_services.dart';
 
@@ -25,8 +25,7 @@ class _TeacherDepartmentPostsPageState
         margin: const EdgeInsets.only(top: 10),
         color: Colors.transparent,
         child: FutureBuilder<List<PostModel>>(
-            future: DepartmentPostServices.getDepartmentPost(
-                'Bearer 1|eggNXmXHjk7Be60IlXurReiNBVPOg36X98vIptCt'),
+            future: DepartmentPostServices.getDepartmentPost(),
             builder: (context, snapshot) {
               if (!snapshot.hasData || !mounted) return Loading();
               final posts = snapshot.data!;

@@ -1,13 +1,9 @@
-import 'package:dtc_app/Components/loaing.dart';
-import 'package:dtc_app/Students_Screens/Student_Editing_Notes.dart';
-import 'package:dtc_app/api/models/note_model.dart';
+import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/api/services/note_services.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/Dialogs.dart';
-import '../Components/DropDownSearch.dart';
 import '../Components/TextField.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
@@ -92,7 +88,7 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                                                   builder: (context) =>
                                                       Container(
                                                     padding: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 15),
                                                     decoration: BoxDecoration(
                                                       color: WhiteColor,
@@ -104,7 +100,7 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                                                               10),
                                                     ),
                                                     margin: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 15,
                                                         vertical: 200),
                                                     child: ListView.builder(
@@ -132,7 +128,9 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                                                                 children: [
                                                                   Text(notes[
                                                                           index]
-                                                                      .name)
+                                                                      .name
+                                                                      .substring(
+                                                                          0, 7))
                                                                 ],
                                                               )),
                                                         );
@@ -162,7 +160,9 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                                           controller: studentNoteClassification,
                                           keyboardType: TextInputType.name,
                                           radius: 20,
-                                          validator: (text) {},
+                                          validator: (text) {
+                                            return null;
+                                          },
                                           onChanged: (data) {
                                             studentNoteCLassificationVariable =
                                                 '';
@@ -191,6 +191,7 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                                     if (text!.isEmpty) {
                                       return 'الحقل مطلوب';
                                     }
+                                    return null;
                                   },
                                 ),
                               ],
@@ -214,6 +215,7 @@ class _StudentAddingNotesState extends State<StudentAddingNotes> {
                                     if (text!.isEmpty) {
                                       return 'الحقل مطلوب';
                                     }
+                                    return null;
                                   },
                                 ),
                               ],

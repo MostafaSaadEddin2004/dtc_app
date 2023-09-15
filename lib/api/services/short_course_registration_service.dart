@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:dtc_app/api/helper.dart';
-import 'package:http/http.dart' as http;
 import '../models/short_course_registration_model.dart';
 
 abstract class ShortCourseRegistration extends BaseApi {

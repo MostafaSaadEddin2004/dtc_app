@@ -67,7 +67,7 @@ class _BrowserPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }
+                                    }return null;
                                   })
                             ],
                           ),
@@ -88,7 +88,7 @@ class _BrowserPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }
+                                    }return null;
                                   })
                             ],
                           ),
@@ -120,7 +120,7 @@ class _BrowserPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'االحقل مطلوب';
-                                    }
+                                    }return null;
                                   }),
                             ],
                           )
@@ -141,7 +141,7 @@ class _BrowserPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'االحقل مطلوب';
-                                    }
+                                    }return null;
                                   }),
                               const SizedBox(
                                 height: 10,
@@ -159,7 +159,7 @@ class _BrowserPersonalInformationState
                                     return 'الحقل مطلوب';
                                   } else if (text.length < 4) {
                                     return 'الحقل يجب أن يكون 4 أحرف أو أكثر';
-                                  }
+                                  }return null;
                                 },
                               ),
                             ],
@@ -185,7 +185,7 @@ class _BrowserPersonalInformationState
                               return 'الحقل مطلوب';
                             } else if (text.length < 3) {
                               return 'الحقل يجب أن يكون 3 أحرف أو أكثر';
-                            }
+                            }return null;
                           },
                         )
                       ],
@@ -209,7 +209,7 @@ class _BrowserPersonalInformationState
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
-                                }
+                                }return null;
                               },
                               keyboardType: TextInputType.none,
                               enabled: true,

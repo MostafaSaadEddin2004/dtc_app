@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import '../Constants/Colors.dart';
 import '../Students_Screens/Student_Home_Page.dart';
-import '../Teachers_Auth_Screens/Editing_Posts.dart';
 import '../api/services/public_post_services.dart';
 
 class Change {
@@ -140,7 +139,7 @@ class _DTCPostsState extends State<DTCPosts> {
             const SizedBox(
               height: 5,
             ),
-            widget.postImage != null
+            widget.postImage != ''
                 ? GestureDetector(
                     onTap: () {
                       print(widget.postImage);
@@ -425,7 +424,7 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
             )
           ],
         ));
-    ;
+    
   }
 }
 
@@ -632,7 +631,7 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
             )
           ],
         ));
-    ;
+    
   }
 }
 
@@ -872,7 +871,7 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
             )
           ],
         ));
-    ;
+    
   }
 }
 
@@ -1057,6 +1056,6 @@ class _CoursesPostState extends State<CoursesPost> {
             ),
           ],
         ));
-    ;
+    
   }
 }

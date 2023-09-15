@@ -36,30 +36,41 @@ class _AddingPostPageState extends State<AddingPostPage> {
                       const SizedBox(
                         height: 30,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 15),
-                        child: Column(
-                          children: [
-                            titleText(text: 'نص المنشور'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            registrationInfoTextField(
-                              maxLines: 6,
-                              controller: postTextController,
-                              keyboardType: TextInputType.text,
-                              radius: 20,
-                              validator: (text) {
-                                if (text!.isEmpty) {
-                                  return 'الحقل مطلوب';
-                                }
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
+                      Container(
+                        alignment: Alignment.topCenter,
+                        margin: const EdgeInsets.only(
+                            left: 60, top: 50, right: 60, bottom: 10),
+                        height: 206,
+                        width: MediaQuery.of(context).size.width,
+                        child: studentProfileImagePath == null
+                            ? Container(
+                                height: 200,
+                                width: 200,
+                                decoration: BoxDecoration(
+                                    color: WhiteColor,
+                                    boxShadow: [BoxShadow(blurRadius: 4)],
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20))),
+                                child: Icon(
+                                  Icons.person,
+                                  color: BlackColor.withOpacity(0.8),
+                                  size: 200,
+                                ),
+                              )
+                            : Container(
+                                padding: const EdgeInsets.all(2),
+                                height: 200,
+                                width: 200,
+                                decoration: BoxDecoration(
+                                    color: WhiteColor,
+                                    boxShadow: [BoxShadow(blurRadius: 4)],
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5))),
+                                child: Image.file(
+                                  studentProfileImagePath!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 15, right: 15),
@@ -80,6 +91,32 @@ class _AddingPostPageState extends State<AddingPostPage> {
                           ],
                         ),
                       ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        child: Column(
+                          children: [
+                            titleText(text: 'نص المنشور'),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            registrationInfoTextField(
+                              maxLines: 6,
+                              controller: postTextController,
+                              keyboardType: TextInputType.text,
+                              radius: 20,
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'الحقل مطلوب';
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
                       const Spacer(
                         flex: 1,
                       ),
@@ -89,12 +126,10 @@ class _AddingPostPageState extends State<AddingPostPage> {
                           nextButton(
                             onTap: () async {
                               isLoading = true;
-                              final post = await DepartmentPostServices
-                                  .postDepartmentPost(
-                                      content:
-                                          postTextController.text.toString(),
-                                      attachment:
-                                          postFileController.text.toString());
+                              await DepartmentPostServices.postDepartmentPost(
+                                  content: postTextController.text.toString(),
+                                  attachment:
+                                      postFileController.text.toString());
                               isLoading = false;
                               showDialog(
                                 context: context,

@@ -1,20 +1,6 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 
-String? RegistrationValidator(
-    {required value,
-    required String fieldName,
-    required int maxLength,
-    required int minLength}) {
-  if (value.isEmpty) {
-    return '$fieldName is required';
-  } else if (value.length < minLength) {
-    return '$fieldName must be $minLength character at least';
-  } else if (value.length > maxLength) {
-    return '$fieldName must be $maxLength character at least';
-  }
-}
-
 Widget customTextField({
   required TextEditingController controller,
   required String? Function(String? text) validator,

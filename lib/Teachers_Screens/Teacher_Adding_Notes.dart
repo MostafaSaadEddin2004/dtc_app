@@ -1,11 +1,10 @@
-import 'package:dtc_app/Components/loaing.dart';
+import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/api/models/note_category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/Dialogs.dart';
-import '../Components/DropDownSearch.dart';
 import '../Components/TextField.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
@@ -158,7 +157,7 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                         controller: teacherNoteClassification,
                                         keyboardType: TextInputType.name,
                                         radius: 20,
-                                        validator: (text) {},
+                                        validator: (text) {return null;},
                                       )
                                     ],
                                   ),
@@ -182,7 +181,7 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                   validator: (text) {
                                     if (text!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }
+                                    }return null;
                                   },
                                 ),
                               ],
@@ -205,7 +204,7 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                   validator: (text) {
                                     if (text!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }
+                                    }return null;
                                   },
                                 ),
                               ],

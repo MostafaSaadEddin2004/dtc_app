@@ -29,7 +29,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
           key: formState,
           child: SingleChildScrollView(
             child: Container(
-              height: height-92,
+              height: height - 92,
               child: Column(
                 children: [
                   const SizedBox(
@@ -65,6 +65,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                   } else if (text.length < 2) {
                                     return 'الحقل يجب أن يكون حرفين على الأقل';
                                   }
+                                  return null;
                                 },
                               )
                             ],
@@ -90,6 +91,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
+                                  return null;
                                 },
                               )
                             ],
@@ -120,6 +122,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
+                                  return null;
                                 },
                               )
                             ],
@@ -145,6 +148,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
+                                  return null;
                                 },
                               )
                             ],
@@ -179,7 +183,11 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           child: TextFormField(
                               onChanged: (data) {},
                               controller: studentBirthPlaceController,
-                              validator: (text) {},
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'الحقل مطلوب';
+                                }return null;
+                              },
                               keyboardType: TextInputType.none,
                               enabled: true,
                               cursorColor: GreyColor,
@@ -245,7 +253,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                     return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }
+                                  }return null;
                                 },
                               )
                             ],
@@ -270,7 +278,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                     return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }
+                                  }return null;
                                 },
                               )
                             ],

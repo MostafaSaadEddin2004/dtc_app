@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/TextField.dart';
@@ -42,7 +39,7 @@ class _BrowserForgotPasswordEnterCodeState
                         return 'الكود مطلوب';
                       } else if (text.length < 6 && text.length > 6) {
                         return 'الكود يجب أن يكون 6 أرقام';
-                      }
+                      }return null;
                     },
                     labelText: 'الكود',
                     obscure: false,

@@ -1,9 +1,8 @@
 import 'package:dtc_app/Components/Dialogs.dart';
+import 'package:dtc_app/Components/showDialogList.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../Components/Buttons.dart';
-import '../Components/DropDownSearch.dart';
 import '../Components/TextField.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
@@ -22,9 +21,12 @@ class EditingMarksRequestPage extends StatefulWidget {
 class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    List teacherData = ['rana', 'mai'];
+    List subjectData = ['python', 'c#'];
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
@@ -51,15 +53,35 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(
-                                  hint: '',
-                                  items: ['Rana', 'Mai'],
-                                  onChange: (data) {
-                                    teacherName = data!;
+                              ShowDialogList(
+                                value:
+                                    teacherName == '' ? 'إختر...' : teacherName,
+                                child: ListView.builder(
+                                  itemCount: teacherData.length,
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        teacherName = teacherData[index];
+                                        Navigator.of(context).pop();
+                                        setState(() {});
+                                      },
+                                      child: SizedBox(
+                                        height: 50,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [Text(teacherData[index])],
+                                        ),
+                                      ),
+                                    );
                                   },
-                                  validator: (data) {})
+                                ),
+                              ),
                             ],
                           ),
+                        ),
+                        const SizedBox(
+                          width: 15,
                         ),
                         Expanded(
                           child: Column(
@@ -68,13 +90,30 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              registrationDropDownSearch(
-                                  hint: '',
-                                  items: ['c#', 'python'],
-                                  onChange: (data) {
-                                    subjectName = data!;
+                              ShowDialogList(
+                                value:
+                                    subjectName == '' ? 'إختر...' : subjectName,
+                                child: ListView.builder(
+                                  itemCount: subjectData.length,
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        subjectName = subjectData[index];
+                                        Navigator.of(context).pop();
+                                        setState(() {});
+                                      },
+                                      child: SizedBox(
+                                        height: 50,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [Text(subjectData[index])],
+                                        ),
+                                      ),
+                                    );
                                   },
-                                  validator: (data) {})
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -101,6 +140,7 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                                 int.parse(text) > 100) {
                               return 'العلامة يجب أن تكون بين 0 - 100';
                             }
+                            return null;
                           },
                         )
                       ],
@@ -123,6 +163,7 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                             if (text!.isEmpty) {
                               return 'الحقل مطلوب';
                             }
+                            return null;
                           },
                         ),
                       ],
@@ -139,18 +180,16 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                           onTap: () {
                             if (formState.currentState!.validate()) {
                               isLoading = true;
-                              final editMark =
-                                  EditMarkRequestService.postEditMarkRequest(
-                                      subject: subjectName,
-                                      mark: int.parse(
-                                          studentEMRGainedMarkController.text),
-                                      reason: markEditingRequestTextController
-                                          .text
-                                          .toString(),
-                                      teacher: teacherName,
-                                      user_id: 1);
+                              EditMarkRequestService.postEditMarkRequest(
+                                  subject: subjectName.toString(),
+                                  mark: studentEMRGainedMarkController.text
+                                      .toString(),
+                                  reason: markEditingRequestTextController.text
+                                      .toString(),
+                                  teacher: teacherName.toString());
                               isLoading = false;
                               showDialog(
+                                barrierDismissible: false,
                                 context: context,
                                 builder: (context) => CustomDialog(
                                     title: 'إرسال طلب تعديل العلامة',

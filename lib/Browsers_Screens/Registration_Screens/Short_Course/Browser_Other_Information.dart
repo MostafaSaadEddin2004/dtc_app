@@ -4,12 +4,10 @@ import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Dialogs.dart';
 import '../../../Components/Label.dart';
-import '../../../Components/TextField.dart';
 import '../../../Constants/Colors.dart';
 import '../../../Constants/Controller.dart';
 import '../../../Constants/TextStyle.dart';
 import '../../../api/services/short_course_registration_service.dart';
-import '../../../canceled_ui/Browser_Required_Documents.dart';
 
 class BrowserOtherInformation extends StatefulWidget {
   const BrowserOtherInformation({super.key});

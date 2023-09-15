@@ -1,6 +1,5 @@
-import 'package:dropdown_search/dropdown_search.dart';
+import 'package:dtc_app/Components/showDialogList.dart';
 import 'package:dtc_app/Constants/Colors.dart';
-import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Personal_Information.dart';
 import 'package:dtc_app/api/models/certificate_type_model.dart';
 import 'package:dtc_app/api/models/comparison_model.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Dialogs.dart';
 import '../../../Components/Label.dart';
-import '../../../Components/loaing.dart';
+import '../../../Components/loading.dart';
 import '../../../Constants/Controller.dart';
 import '../../../api/services/certificate_type_service.dart';
 import '../../../api/services/comparison_service.dart';
@@ -37,7 +36,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
               future: CertificateTypeService.getCertificateType(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData || !mounted) return Loading();
-                final certificateData = snapshot.data;
+                final certificateData = snapshot.data!;
                 return ListView(children: [
                   Column(children: [
                     const SizedBox(
@@ -51,77 +50,29 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      height: 50,
-                      margin: const EdgeInsets.symmetric(horizontal: 15),
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                          color: WhiteColor,
-                          border: Border.all(color: GreyColor, width: 0.5),
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 4,
-                                color: GreyColor,
-                                offset: Offset(2, 2)),
-                          ]),
-                      child: Row(
-                        children: [
-                          Text(certification == ''
-                              ? 'اضغط للإختيار...'
-                              : certification),
-                          Spacer(
-                            flex: 1,
-                          ),
-                          IconButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15),
-                                    decoration: BoxDecoration(
-                                      color: WhiteColor,
-                                      border: Border.all(
-                                          color: GreyColor, width: 0.5),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 200),
-                                    child: ListView.builder(
-                                      itemCount: certificateData!.length,
-                                      itemBuilder: (context, index) {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            certification =
-                                                certificateData[index].name;
-                                            selectedCertificateId =
-                                                certificateData[index].id;
-                                            Navigator.of(context).pop();
-                                            setState(() {});
-                                            print(selectedCertificateId);
-                                          },
-                                          child: Container(
-                                              height: 50,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Text(certificateData[index]
-                                                      .name)
-                                                ],
-                                              )),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                              icon: Icon(
-                                Icons.add_circle_rounded,
-                                color: PrimaryColor,
-                              ))
-                        ],
+                    ShowDialogList(
+                      value: certification == ''
+                          ? 'اضغط للإختيار...'
+                          : certification,
+                      child: ListView.builder(
+                        itemCount: certificateData.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              certification = certificateData[index].name;
+                              selectedCertificateId = certificateData[index].id;
+                              Navigator.of(context).pop();
+                              setState(() {});
+                            },
+                            child: SizedBox(
+                              height: 50,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [Text(certificateData[index].name)],
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(

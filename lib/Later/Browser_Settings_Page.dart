@@ -1,7 +1,5 @@
 import 'package:dtc_app/Constants/Colors.dart';
-import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:flutter/material.dart';
-
 import 'Browser_Language_Page.dart';
 import 'Browser_Notification_Settings_Page.dart';
 

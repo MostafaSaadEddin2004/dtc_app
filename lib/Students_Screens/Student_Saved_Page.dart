@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Components/Posts.dart';
-import '../Components/loaing.dart';
+import '../Components/loading.dart';
 import '../api/models/post_model.dart';
 import '../api/services/public_post_services.dart';
 

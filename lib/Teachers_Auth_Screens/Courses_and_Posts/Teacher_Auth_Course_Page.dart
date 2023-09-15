@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../Components/Posts.dart';
-import '../../Components/loaing.dart';
-import '../../Students_Screens/Registering_Screens/Short_Courses/Student_Personal_Information.dart';
+import '../../Components/loading.dart';
 import '../../api/models/post_model.dart';
 import '../../api/services/course_post_services.dart';
 

@@ -1,7 +1,7 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notes.dart';
-import '../Components/loaing.dart';
+import '../Components/loading.dart';
 import '../api/models/note_model.dart';
 import '../api/services/note_services.dart';
 import 'Student_Adding_Notes.dart';

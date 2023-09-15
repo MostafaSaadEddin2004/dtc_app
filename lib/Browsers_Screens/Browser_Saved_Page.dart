@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../Components/Posts.dart';
-import '../api/services/public_post_services.dart';
 
 class BrowserSavedPage extends StatefulWidget {
   const BrowserSavedPage({super.key});

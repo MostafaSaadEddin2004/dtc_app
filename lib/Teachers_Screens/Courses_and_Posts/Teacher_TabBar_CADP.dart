@@ -1,3 +1,4 @@
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../../Constants/Colors.dart';
 import '../../Start_App_Screens/SignUp_Type.dart';
@@ -138,6 +139,11 @@ class _TeacherTabBarState extends State<TeacherTabBar> {
                 ),
                 GestureDetector(
                   onTap: () {
+                    AuthServices.postLogout();
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      SignUpType.id,
+                      (Route<dynamic> route) => false,
+                    );
                     Navigator.of(context).pushReplacementNamed(SignUpType.id);
                   },
                   child: Row(
@@ -167,6 +173,5 @@ class _TeacherTabBarState extends State<TeacherTabBar> {
             children: [TeacherCoursePage(), TeacherDepartmentPostsPage()],
           )),
     );
-    ;
   }
 }

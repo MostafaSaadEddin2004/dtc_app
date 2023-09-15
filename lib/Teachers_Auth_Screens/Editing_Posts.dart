@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../Components/CustomAppBar.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
@@ -54,7 +51,7 @@ class _EditingPostPageState extends State<EditingPostPage> {
                             maxLines: 6,
                             onChanged: (data) {},
                             controller: editingPostTextController,
-                            validator: (text) {},
+                            
                             keyboardType: TextInputType.text,
                             enabled: true,
                             cursorColor: GreyColor,

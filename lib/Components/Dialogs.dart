@@ -1,7 +1,5 @@
 import 'package:dtc_app/Components/Buttons.dart';
-import '../../Components/TextField.dart';
 import 'package:dtc_app/Constants/Colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomDialog extends StatelessWidget {
@@ -69,7 +67,7 @@ Widget editingPrivacyDialog(
         {required String title,
         required TextEditingController controller,
         required String? Function(String? text) validator,
-        required String? Function(String? text) onChanged,
+        String Function(String? text)? onChanged,
         required VoidCallback onOkPressed,
         required VoidCallback onCancelPressed,
         required TextInputType keyboardType,

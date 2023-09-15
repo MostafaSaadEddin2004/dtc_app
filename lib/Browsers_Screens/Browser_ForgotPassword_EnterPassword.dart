@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/TextField.dart';
 import '../Constants/Controller.dart';
-import '../Constants/TextStyle.dart';
 
 class BrowserForgotPasswordEnterPassword extends StatefulWidget {
   const BrowserForgotPasswordEnterPassword({super.key});
@@ -41,7 +37,7 @@ class _BrowserForgotPasswordEnterPasswordState
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                      }
+                      }return null;
                     },
                     labelText: 'كلمة المرور الجديدة',
                     obscure: !newSecure,
@@ -74,7 +70,7 @@ class _BrowserForgotPasswordEnterPasswordState
                       } else if (browserForgotPasswordConfirmPassword.text !=
                           browserForgotPasswordNewPassword.text) {
                         return 'كلمة المرور غير متطابقة';
-                      }
+                      }return null;
                     },
                     labelText: 'تأكيد كلمة المرور',
                     obscure: !confirmSecure,

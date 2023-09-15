@@ -1,4 +1,3 @@
-import 'package:dtc_app/Browsers_Screens/Browser_Home_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +15,6 @@ import 'Start_App_Screens/SignUp_Type.dart';
 import 'Start_App_Screens/Start_App_Screen.dart';
 import 'Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
 import 'Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
-import 'Students_Screens/Registering_Screens/Long_Courses/Comparison_Screen.dart';
 import 'Students_Screens/Registering_Screens/Long_Courses/Wishes.dart';
 import 'Students_Screens/Registering_Screens/Short_Courses/Student_Other_Information.dart';
 import 'Students_Screens/Registering_Screens/Short_Courses/Student_Personal_Information.dart';
@@ -32,7 +30,7 @@ import 'Teachers_Screens/Registration_Screens/Teacher_Name_SignUp_Screen.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_SignIn_Screen.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';
 import 'Teachers_Screens/Teacher_Editing_Notes.dart';
-import 'Teachers_Screens/Teacher_Information_Page.dart';
+import 'Teachers_Screens/Registration_Screens/Teacher_Information_Page.dart';
 import 'Teachers_Screens/Teacher_Start_Page.dart';
 
 void main() {

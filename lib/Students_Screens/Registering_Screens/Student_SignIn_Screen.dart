@@ -1,13 +1,11 @@
-import 'package:dtc_app/Students_Screens/Student_Home_Page.dart';
 import 'package:dtc_app/Students_Screens/Student_Start_Page.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
 import '../../Constants/Colors.dart';
 import '../../Constants/Controller.dart';
-import '../../api/services/login_service.dart';
 import '../Student_ForgotPassword_EnterEmail.dart';
 import 'Student_SignUp_Screen.dart';
 
@@ -61,7 +59,7 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
                       if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                           .hasMatch(text)) {
                         return 'يرجى التأكد من إدخال @gmail.com';
-                      }
+                      }return null;
                     },
                     labelText: 'الإيميل',
                     obscure: false,
@@ -81,7 +79,7 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن يكون على الأقل 8 أحرف';
-                      }
+                      }return null;
                     },
                     labelText: 'كلمة المرور',
                     obscure: !secure,
@@ -127,7 +125,7 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
                     onTap: () {
                       if (formState.currentState!.validate()) {
                         isLoading = true;
-                        LoginService.postRegistration(
+                        AuthServices.postLogin(
                             email: studentSignInEmailController.text.toString(),
                             password:
                                 studentSignInPasswordController.text.toString(),

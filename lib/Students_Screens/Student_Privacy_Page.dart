@@ -42,12 +42,12 @@ class _StudentPrivacyPageState extends State<StudentPrivacyPage> {
                       context: context,
                       builder: (context) => editingPrivacyDialog(
                           controller: studentPrivacyEditingPhone,
-                          onChanged: (text) {},
                           validator: (text) {
                             if (!RegExp(r'^(\+?963|0)?9\d{8}$')
                                 .hasMatch(text!)) {
                               return 'الرجاء التأكد من رقم الجوال';
                             }
+                            return null;
                           },
                           keyboardType: TextInputType.number,
                           onCancelPressed: () {
@@ -86,11 +86,11 @@ class _StudentPrivacyPageState extends State<StudentPrivacyPage> {
                       context: context,
                       builder: (context) => editingPrivacyDialog(
                           controller: studentPrivacyEditingLocation,
-                          onChanged: (text) {},
                           validator: (text) {
                             if (text!.length < 3) {
                               return 'الموقع يجب أن يكون 3 أحرف على الأقل';
                             }
+                            return null;
                           },
                           keyboardType: TextInputType.name,
                           onCancelPressed: () {

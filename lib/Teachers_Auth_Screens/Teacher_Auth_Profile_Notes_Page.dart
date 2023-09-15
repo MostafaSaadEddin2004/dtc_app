@@ -1,13 +1,11 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
-
 import '../Components/Notes.dart';
-import '../Components/loaing.dart';
+import '../Components/loading.dart';
 import '../api/models/note_model.dart';
 import '../api/services/note_services.dart';
 import 'Teacher_Auh__Editing_Notes.dart';
 import 'Teacher_Auth_Adding_Notes.dart';
-import 'Teacher_Auth_Profile_Page.dart';
 
 class TeacherAuthProfileNotesPage extends StatefulWidget {
   const TeacherAuthProfileNotesPage({super.key});

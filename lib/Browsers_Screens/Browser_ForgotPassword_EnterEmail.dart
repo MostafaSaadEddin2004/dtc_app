@@ -1,9 +1,6 @@
 import 'package:dtc_app/Components/Buttons.dart';
 import 'package:dtc_app/Components/CustomAppBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../Components/TextField.dart';
 import '../Constants/Controller.dart';
 import '../Constants/TextStyle.dart';
@@ -43,7 +40,7 @@ class _BrowserForgotPasswordEnterEmailState
                       if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                           .hasMatch(text)) {
                         return 'يرجى التأكد من إدخال @gmail.com';
-                      }
+                      }return null;
                     },
                     labelText: 'الإيميل',
                     obscure: false,

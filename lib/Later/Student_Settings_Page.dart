@@ -1,8 +1,5 @@
 import 'package:dtc_app/Constants/Colors.dart';
-import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:flutter/material.dart';
-
-import 'Student_Settings_Page.dart';
 
 class StudentSettingsPage extends StatefulWidget {
   const StudentSettingsPage({super.key});

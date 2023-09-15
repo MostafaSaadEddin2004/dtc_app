@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../Browsers_Screens/Registration_Screens/Browser_Name_SignUp_Screen.dart';
 import '../Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
 import '../Components/Buttons.dart';
 import '../Constants/Colors.dart';
-import '../Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
 import '../Students_Screens/Registering_Screens/Student_SignUp_Screen.dart';
-import '../Teachers_Screens/Registration_Screens/Teacher_Name_SignUp_Screen.dart';
 import '../Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';
 
 class SignUpType extends StatefulWidget {
@@ -20,6 +17,7 @@ class SignUpType extends StatefulWidget {
 
 bool selectedBrowser = false;
 bool selectedStudent = false;
+bool selectedTeacherAuth = false;
 bool selectedTeacher = false;
 
 class _SignUpTypeState extends State<SignUpType> {
@@ -36,8 +34,8 @@ class _SignUpTypeState extends State<SignUpType> {
               child: Image.asset('assets/images/DTC_LOGO.png'),
             ),
             const Text(
-              'مرحباً بكم!',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              'إختر نوع تسجيل الدخول',
+              style: TextStyle(fontSize: 24),
             ),
             const SizedBox(
               height: 20,
@@ -46,6 +44,7 @@ class _SignUpTypeState extends State<SignUpType> {
               onTap: () {
                 selectedBrowser = true;
                 selectedStudent = false;
+                selectedTeacherAuth = false;
                 selectedTeacher = false;
                 setState(() {});
               },
@@ -61,7 +60,7 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Icon(
-                            FontAwesomeIcons.scroll,
+                            Icons.person,
                             size: 25,
                             color: GreyColor,
                           ),
@@ -69,7 +68,7 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Text(
-                            'تسجيل الدخول كمتصفح',
+                            'زائر',
                             style: TextStyle(fontSize: 18, color: GreyColor),
                           )
                         ],
@@ -93,7 +92,7 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Icon(
-                            FontAwesomeIcons.scroll,
+                            Icons.person,
                             size: 25,
                             color: WhiteColor,
                           ),
@@ -101,7 +100,7 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Text(
-                            'تسجيل الدخول كمتصفح',
+                            'زائر',
                             style: TextStyle(fontSize: 18, color: WhiteColor),
                           )
                         ],
@@ -115,6 +114,7 @@ class _SignUpTypeState extends State<SignUpType> {
               onTap: () {
                 selectedBrowser = false;
                 selectedStudent = true;
+                selectedTeacherAuth = false;
                 selectedTeacher = false;
                 setState(() {});
               },
@@ -139,7 +139,7 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Text(
-                            'تسجيل الدخول كطالب',
+                            'طالب',
                             style: TextStyle(fontSize: 18, color: GreyColor),
                           )
                         ],
@@ -171,7 +171,7 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Text(
-                            'تسجيل الدخول كطالب',
+                            'طالب',
                             style: TextStyle(fontSize: 18, color: WhiteColor),
                           )
                         ],
@@ -185,10 +185,11 @@ class _SignUpTypeState extends State<SignUpType> {
               onTap: () {
                 selectedBrowser = false;
                 selectedStudent = false;
-                selectedTeacher = true;
+                selectedTeacherAuth = true;
+                selectedTeacher = false;
                 setState(() {});
               },
-              child: selectedTeacher == false
+              child: selectedTeacherAuth == false
                   ? Container(
                       height: 60,
                       decoration: BoxDecoration(
@@ -201,7 +202,7 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Icon(
-                            FontAwesomeIcons.scroll,
+                            FontAwesomeIcons.chalkboardTeacher,
                             size: 25,
                             color: GreyColor,
                           ),
@@ -209,7 +210,7 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Text(
-                            'تسجيل الدخول كأستاذ',
+                            'أستاذ',
                             style: TextStyle(fontSize: 18, color: GreyColor),
                           )
                         ],
@@ -233,7 +234,7 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Icon(
-                            FontAwesomeIcons.scroll,
+                            FontAwesomeIcons.chalkboardTeacher,
                             size: 25,
                             color: WhiteColor,
                           ),
@@ -241,7 +242,78 @@ class _SignUpTypeState extends State<SignUpType> {
                             width: 20,
                           ),
                           Text(
-                            'تسجيل الدخول كأستاذ',
+                            'أستاذ',
+                            style: TextStyle(fontSize: 18, color: WhiteColor),
+                          )
+                        ],
+                      ),
+                    ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                selectedBrowser = false;
+                selectedStudent = false;
+                selectedTeacherAuth = false;
+                selectedTeacher = true;
+                setState(() {});
+              },
+              child: selectedTeacher == false
+                  ? Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(color: GreyColor, width: 1),
+                      ),
+                      child: Row(
+                        children: const [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.chalkboardTeacher,
+                            size: 25,
+                            color: GreyColor,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'رئيس قسم',
+                            style: TextStyle(fontSize: 18, color: GreyColor),
+                          )
+                        ],
+                      ))
+                  : Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: PrimaryColor,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: GreyColor,
+                            blurRadius: 4,
+                            offset: Offset(4, 4), // Shadow position
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: const [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.chalkboardTeacher,
+                            size: 25,
+                            color: WhiteColor,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'رئيس قسم',
                             style: TextStyle(fontSize: 18, color: WhiteColor),
                           )
                         ],

@@ -25,28 +25,31 @@ class _TeacherPrivacyPageState extends State<TeacherPrivacyPage> {
               privacyEditing(
                   icon: Icons.call,
                   label: 'رقم الهاتف',
-                  onPressedIconButton: () {showDialog(
-                        context: context,
-                        builder: (context) => editingPrivacyDialog(
-                            controller: browserPrivacyEditingPhone,
-                            onChanged: (text) {},
-                            validator: (text) {
-                              if (!RegExp(r'^(\+?963|0)?9\d{8}$')
-                                  .hasMatch(text!)) {
-                                return 'الرجاء التأكد من رقم الجوال';
-                              }
-                            },
-                            keyboardType: TextInputType.number,
-                            onCancelPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            onOkPressed: () {
-                              print('not null');
-                            },
-                            prefixIcon: Icons.call,
-                            title: 'رقم الهاتف',
-                            hint: 'أدخل رقم الهاتف'),
-                      );},
+                  onPressedIconButton: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => editingPrivacyDialog(
+                          controller: browserPrivacyEditingPhone,
+                          
+                          validator: (text) {
+                            if (!RegExp(r'^(\+?963|0)?9\d{8}$')
+                                .hasMatch(text!)) {
+                              return 'الرجاء التأكد من رقم الجوال';
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.number,
+                          onCancelPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          onOkPressed: () {
+                            print('not null');
+                          },
+                          prefixIcon: Icons.call,
+                          title: 'رقم الهاتف',
+                          hint: 'أدخل رقم الهاتف'),
+                    );
+                  },
                   value: 'رقم الهاتف'),
               const SizedBox(
                 height: 15,
@@ -67,15 +70,16 @@ class _TeacherPrivacyPageState extends State<TeacherPrivacyPage> {
                   icon: Icons.location_on,
                   label: 'الموقع',
                   onPressedIconButton: () {
-showDialog(
+                    showDialog(
                       context: context,
                       builder: (context) => editingPrivacyDialog(
                           controller: teacherPrivacyEditingLocation,
-                          onChanged: (text) {},
+                          
                           validator: (text) {
                             if (text!.length < 3) {
                               return 'الموقع يجب أن يكون 3 أحرف على الأقل';
                             }
+                            return null;
                           },
                           keyboardType: TextInputType.name,
                           onCancelPressed: () {
@@ -92,7 +96,6 @@ showDialog(
               const SizedBox(
                 height: 15,
               ),
-              
             ],
           ),
         ),

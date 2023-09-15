@@ -1,5 +1,5 @@
 import 'package:dtc_app/Components/Buttons.dart';
-import 'package:dtc_app/api/services/login_service.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../Components/TextField.dart';
@@ -56,10 +56,10 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
                       if (text!.isEmpty) {
                         return 'الإيميل مطلوب';
                       }
-                      if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                      else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                           .hasMatch(text)) {
                         return 'يرجى التأكد من إدخال @gmail.com';
-                      }
+                      }return null;
                     },
                     labelText: 'الإيميل',
                     obscure: false,
@@ -79,7 +79,7 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن يكون على الأقل 8 أحرف';
-                      }
+                      }return null;
                     },
                     labelText: 'كلمة المرور',
                     obscure: !secure,
@@ -125,7 +125,7 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
                     onTap: () {
                       if (formState.currentState!.validate()) {
                         isLoading = true;
-                        LoginService.postRegistration(
+                        AuthServices.postLogin(
                             email: browserSignInEmailController.text.toString(),
                             password:
                                 browserSignInPasswordController.text.toString(),

@@ -1,17 +1,10 @@
-import 'package:dtc_app/api/models/note_category_model.dart';
-import 'package:dtc_app/api/models/note_model.dart';
 import 'package:dtc_app/api/services/note_services.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/Dialogs.dart';
-import '../Components/DropDownSearch.dart';
 import '../Components/TextField.dart';
-import '../Components/loaing.dart';
-import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
 import '../Constants/TextStyle.dart';
 
@@ -53,7 +46,7 @@ class _StudentEditingNotesState extends State<StudentEditingNotes> {
                                 controller: studentEditingNoteClassification,
                                 keyboardType: TextInputType.none,
                                 radius: 20,
-                                validator: (text) {},
+                                validator: (text) {return null;},
                               )
                             ],
                           ),
@@ -75,7 +68,7 @@ class _StudentEditingNotesState extends State<StudentEditingNotes> {
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
-                                }
+                                }return null;
                               },
                             )
                           ],
@@ -98,7 +91,7 @@ class _StudentEditingNotesState extends State<StudentEditingNotes> {
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
-                                }
+                                }return null;
                               },
                             )
                           ],

@@ -1,6 +1,7 @@
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Components/Posts.dart';
-import '../Components/loaing.dart';
+import '../Components/loading.dart';
 import '../Constants/Colors.dart';
 import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/models/post_model.dart';
@@ -15,7 +16,8 @@ class TeacherAuthHomePage extends StatefulWidget {
   @override
   State<TeacherAuthHomePage> createState() => _TeacherAuthHomePageState();
 }
-  List<Map> posts = [];
+
+List<Map> posts = [];
 
 class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
   @override
@@ -126,7 +128,11 @@ class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pushReplacementNamed(SignUpType.id);
+                AuthServices.postLogout();
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  SignUpType.id,
+                  (Route<dynamic> route) => false,
+                );
               },
               child: Row(
                 children: const [
@@ -166,7 +172,8 @@ class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
                       posts[index].likedByMe = isFavorite;
                       posts[index].savedByMe = isSaved;
                       posts[index].likes = count;
-                    }, postId: posts[index].id,
+                    },
+                    postId: posts[index].id,
                     isFavorite: posts[index].likedByMe,
                     isSaved: posts[index].savedByMe,
                     count: posts[index].likes,

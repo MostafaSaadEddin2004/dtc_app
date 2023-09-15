@@ -39,7 +39,7 @@ class _TeacherAuthForgotPasswordEnterCodeState
                         return 'الكود مطلوب';
                       } else if (text.length < 6 && text.length > 6) {
                         return 'الكود يجب أن يكون 6 أرقام';
-                      }
+                      }return null;
                     },
                     labelText: 'الكود',
                     obscure: false,

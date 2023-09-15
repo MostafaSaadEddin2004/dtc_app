@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/TextField.dart';
-import '../../../Constants/Colors.dart';
 import '../../../Constants/Controller.dart';
 import '../../../Constants/TextStyle.dart';
 import 'Student_Certification.dart';
@@ -64,7 +62,7 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                     return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }
+                                  }return null;
                                 },
                               )
                             ],
@@ -89,7 +87,7 @@ class _GuardianInformationState extends State<GuardianInformation> {
                               return 'هذا الحقل مطلوب';
                             } else if (text.length < 3) {
                               return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                            }
+                            }return null;
                           },
                         )
                       ],
@@ -120,7 +118,7 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                         } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
                                             .hasMatch(text)) {
                                           return 'الرجاء التأكد من رقم الجوال';
-                                        }
+                                        }return null;
                                       },
                                     )
                                   ],
@@ -142,7 +140,7 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                   } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
                                       .hasMatch(text)) {
                                     return 'الرجاء التأكد من رقم الجوال';
-                                  }
+                                  }return null;
                                 },
                               ),
                             ],

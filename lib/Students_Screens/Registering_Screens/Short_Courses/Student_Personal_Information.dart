@@ -1,6 +1,5 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
-
 import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/DropDownSearch.dart';
@@ -68,7 +67,7 @@ class _StudentPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }
+                                    }return null;
                                   })
                             ],
                           ),
@@ -89,7 +88,7 @@ class _StudentPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }
+                                    }return null;
                                   })
                             ],
                           ),
@@ -118,7 +117,7 @@ class _StudentPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'االحقل مطلوب';
-                                    }
+                                    }return null;
                                   }),
                             ],
                           )
@@ -139,7 +138,7 @@ class _StudentPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'االحقل مطلوب';
-                                    }
+                                    }return null;
                                   }),
                               const SizedBox(
                                 height: 10,
@@ -159,7 +158,7 @@ class _StudentPersonalInformationState
                                     return 'الحقل يجب أن يكون 4 أحرف أو أكثر';
                                   } else if (text.length > 10) {
                                     return 'الحقل يجب أن يكون 4 أحرف او أكثر';
-                                  }
+                                  }return null;
                                 },
                               ),
                             ],
@@ -185,7 +184,7 @@ class _StudentPersonalInformationState
                               return 'الحقل مطلوب';
                             } else if (text.length < 3) {
                               return 'الحقل يجب أن يكون 3 أحرف أو أكثر';
-                            }
+                            }return null;
                           },
                         )
                       ],
@@ -217,7 +216,7 @@ class _StudentPersonalInformationState
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
-                                }
+                                }return null;
                               },
                               keyboardType: TextInputType.none,
                               enabled: true,

@@ -1,7 +1,8 @@
-import 'package:dtc_app/Components/loaing.dart';
+import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Constants/Controller.dart';
 import 'package:dtc_app/api/models/note_model.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notes.dart';
 import '../Start_App_Screens/SignUp_Type.dart';
@@ -149,7 +150,11 @@ class _StudentNotesPageState extends State<StudentNotesPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed(SignUpType.id);
+                  AuthServices.postLogout();
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    SignUpType.id,
+                    (Route<dynamic> route) => false,
+                  );
                 },
                 child: Row(
                   children: const [
@@ -201,9 +206,8 @@ class _StudentNotesPageState extends State<StudentNotesPage> {
                       }
                       setState(() {});
                     },
-                    onDeletePressed: () async{
-                      final deleteNote =
-                          await NoteServices.deleteNote(id: notes[index].id);
+                    onDeletePressed: () async {
+                      await NoteServices.deleteNote(id: notes[index].id);
                       setState(() {});
                     },
                     noteTitle: notes[index].title,

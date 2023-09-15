@@ -2,12 +2,11 @@ import 'dart:io';
 import 'package:dtc_app/Components/Buttons.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../Constants/Controller.dart';
-import '../../api/services/registration_service.dart';
 
 class StudentProfileImage extends StatefulWidget {
   const StudentProfileImage({super.key});
@@ -113,6 +112,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                                     studentProfileImageFile!
                                                         .path);
                                                 this.setState(() {});
+                                                Navigator.of(context).pop();
                                               },
                                               child: gallery == false
                                                   ? Container(
@@ -123,8 +123,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                                               color: GreyColor),
                                                           borderRadius:
                                                               const BorderRadius
-                                                                      .all(
-                                                                  Radius
+                                                                  .all(Radius
                                                                       .circular(
                                                                           20))),
                                                       child: Column(
@@ -192,6 +191,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                                     studentProfileImageFile!
                                                         .path);
                                                 this.setState(() {});
+                                                Navigator.of(context).pop();
                                               },
                                               child: camera == false
                                                   ? Container(
@@ -202,8 +202,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                                               color: GreyColor),
                                                           borderRadius:
                                                               const BorderRadius
-                                                                      .all(
-                                                                  Radius
+                                                                  .all(Radius
                                                                       .circular(
                                                                           20))),
                                                       child: Column(
@@ -292,7 +291,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                         text: 'التالي',
                         onTap: () {
                           isLoading = true;
-                          final postSignUp = RegistrationService.postRegistration(
+                          AuthServices.postRegistration(
                               arFirstName: studentSinUpFirstNameController.text
                                   .toString(),
                               arLastName: studentSinUpLastNameController.text

@@ -3,14 +3,11 @@ import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:dtc_app/api/services/short_course_registration_service.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../../Components/Buttons.dart';
 import '../../../Components/Dialogs.dart';
 import '../../../Components/Label.dart';
-import '../../../Components/TextField.dart';
 import '../../../Constants/Colors.dart';
 import '../../../Constants/Controller.dart';
-import '../../../canceled_ui/Student_Required_Documents.dart';
 
 class StudentOtherInformation extends StatefulWidget {
   const StudentOtherInformation({super.key});
@@ -176,7 +173,7 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                             if (formState.currentState!.validate()) {
                               print('Tapped');
                               isLoading = true;
-                              final shortCourseRegistration =
+
                                   await ShortCourseRegistration
                                       .postShortCourseRegistration(
                                           address:

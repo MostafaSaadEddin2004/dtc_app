@@ -37,7 +37,7 @@ class _TeacherForgotPasswordEnterPasswordState
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                      }
+                      }return null;
                     },
                     labelText: 'كلمة المرور الجديدة',
                     obscure: !newSecure,
@@ -70,7 +70,7 @@ class _TeacherForgotPasswordEnterPasswordState
                       } else if (teacherForgotPasswordConfirmPassword.text !=
                           teacherForgotPasswordNewPassword.text) {
                         return 'كلمة المرور غير متطابقة';
-                      }
+                      }return null;
                     },
                     labelText: 'تأكيد كلمة المرور',
                     obscure: !confirmSecure,

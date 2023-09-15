@@ -1,12 +1,9 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
-import 'package:dtc_app/Students_Screens/Registering_Screens/student_profile_image.dart';
 import 'package:flutter/material.dart';
-
 import '../../Components/Buttons.dart';
 import '../../Components/TextField.dart';
 import '../../Constants/Controller.dart';
-import 'Long_Courses/Acceptance_Qualifications.dart';
 import 'Student_Name_SignUp_Screen.dart';
 
 class StudentSignUpScreen extends StatefulWidget {
@@ -53,7 +50,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                     if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                         .hasMatch(text)) {
                       return 'يرجى التأكد من إدخال @gmail.com';
-                    }
+                    }return null;
                   },
                   labelText: 'الإيميل',
                   obscure: false,
@@ -70,7 +67,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                       return 'كلمة المرور مطلوبة';
                     } else if (text.length < 8) {
                       return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                    }
+                    }return null;
                   },
                   labelText: 'كلمة المرور',
                   obscure: !secure,
@@ -99,6 +96,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                     } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
                       return 'الرجاء التأكد من رقم الجوال';
                     }
+                    return null;
                   },
                   labelText: 'رقم الجوال',
                   obscure: false,

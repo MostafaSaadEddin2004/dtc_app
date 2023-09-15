@@ -1,11 +1,10 @@
-import 'package:dtc_app/Components/loaing.dart';
+import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/api/models/note_category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/Dialogs.dart';
-import '../Components/DropDownSearch.dart';
 import '../Components/TextField.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
@@ -88,7 +87,7 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                                                   builder: (context) =>
                                                       Container(
                                                     padding: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 15),
                                                     decoration: BoxDecoration(
                                                       color: WhiteColor,
@@ -100,7 +99,7 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                                                               10),
                                                     ),
                                                     margin: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 15,
                                                         vertical: 200),
                                                     child: ListView.builder(
@@ -159,7 +158,9 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                                             teacherAuthNoteClassification,
                                         keyboardType: TextInputType.name,
                                         radius: 20,
-                                        validator: (text) {},
+                                        validator: (text) {
+                                          return null;
+                                        },
                                       )
                                     ],
                                   ),
@@ -180,7 +181,11 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                                   controller: teacherAuthNoteTitle,
                                   keyboardType: TextInputType.name,
                                   radius: 20,
-                                  validator: (text) {},
+                                  validator: (text) {
+                                    if (text!.isEmpty) {
+                                      return 'الحقل مطلوب';
+                                    }return null;
+                                  },
                                 ),
                               ],
                             ),
@@ -202,7 +207,7 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                                   validator: (text) {
                                     if (text!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }
+                                    }return null;
                                   },
                                 ),
                               ],

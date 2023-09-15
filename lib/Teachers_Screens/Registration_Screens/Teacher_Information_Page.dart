@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import '../Components/Buttons.dart';
-import '../Components/CustomAppBar.dart';
-import '../Components/DropDownSearch.dart';
-import '../Components/Label.dart';
-import '../Components/TextField.dart';
-import '../Constants/Colors.dart';
-import '../Constants/Controller.dart';
-import '../Constants/TextStyle.dart';
-import '../Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
-import 'Teacher_Start_Page.dart';
+import '../../Components/Buttons.dart';
+import '../../Components/CustomAppBar.dart';
+import '../../Components/DropDownSearch.dart';
+import '../../Components/Label.dart';
+import '../../Components/TextField.dart';
+import '../../Constants/Colors.dart';
+import '../../Constants/Controller.dart';
+import '../../Constants/TextStyle.dart';
+import '../Teacher_Start_Page.dart';
 
 class TeacherInformationPage extends StatefulWidget {
   const TeacherInformationPage({super.key});
@@ -23,7 +22,6 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
   DateTime? dateTime;
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: CustomAppBar(title: 'معلومات الأستاذ المسؤول الشخصية'),
         body: Form(
@@ -65,6 +63,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
+                                  return null;
                                 },
                               )
                             ],
@@ -90,6 +89,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
+                                  return null;
                                 },
                               )
                             ],
@@ -124,7 +124,12 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                           child: TextFormField(
                               onChanged: (data) {},
                               controller: teacherBirthDateController,
-                              validator: (text) {},
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'الحقل مطلوب';
+                                }
+                                return null;
+                              },
                               keyboardType: TextInputType.none,
                               enabled: true,
                               cursorColor: GreyColor,
@@ -191,6 +196,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
+                                  return null;
                                 },
                               )
                             ],
@@ -216,6 +222,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
                                   }
+                                  return null;
                                 },
                               )
                             ],
@@ -249,6 +256,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                     if (data!.isEmpty) {
                                       return 'االحقل مطلوب';
                                     }
+                                    return null;
                                   }),
                             ],
                           )
@@ -270,6 +278,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                     if (data!.isEmpty) {
                                       return 'االحقل مطلوب';
                                     }
+                                    return null;
                                   }),
                               const SizedBox(
                                 height: 10,
@@ -290,6 +299,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                   } else if (text.length > 10) {
                                     return 'الحقل يجب أن يكون 4 أحرف او أكثر';
                                   }
+                                  return null;
                                 },
                               ),
                             ],
@@ -324,6 +334,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                               if (data!.isEmpty) {
                                 return 'االحقل مطلوب';
                               }
+                              return null;
                             }),
                       ],
                     ),
@@ -335,21 +346,15 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       nextButton(
-                          text: 'إنهاء',
-                          onTap: () {
-                            if (formState.currentState!.validate()) {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      const TeacherStartPage()));
-                            }
-                          },
-                          onDoubleTap: () {
-                            if (formState.currentState!.validate()) {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      const TeacherAuthStartPage()));
-                            }
-                          }),
+                        text: 'إنهاء',
+                        onTap: () {
+                          if (formState.currentState!.validate()) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const TeacherStartPage()));
+                          }
+                        },
+                      ),
                     ],
                   ),
                   const SizedBox(

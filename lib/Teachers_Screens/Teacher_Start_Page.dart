@@ -1,14 +1,8 @@
-import 'package:dtc_app/Components/Posts.dart';
-import 'package:dtc_app/Constants/TextStyle.dart';
 import 'package:flutter/material.dart';
-
 import '../Components/BottomNavBar.dart';
-import '../Constants/Colors.dart';
-import 'Courses_and_Posts/Teacher_Course_Page.dart';
 import 'Courses_and_Posts/Teacher_TabBar_CADP.dart';
 import 'Teacher_Home_Page.dart';
 import 'Teacher_Notes_Page.dart';
-import 'Teacher_Profile_Page.dart';
 import 'Teacher_Notifications_Page.dart';
 
 class TeacherStartPage extends StatefulWidget {
@@ -21,9 +15,7 @@ class TeacherStartPage extends StatefulWidget {
 }
 
 class _TeacherStartPageState extends State<TeacherStartPage> {
-  @override
-  TextEditingController searchController = TextEditingController();
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> formState = GlobalKey<ScaffoldState>();
   int selectedIndex = 0;
 
   List<Widget> pages = const [
@@ -35,7 +27,7 @@ class _TeacherStartPageState extends State<TeacherStartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldKey,
+        key: formState,
         bottomNavigationBar: studentBottomNavBar(
             currentIndex: selectedIndex,
             onTap: (index) {
