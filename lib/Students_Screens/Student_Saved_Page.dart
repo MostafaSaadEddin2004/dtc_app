@@ -1,3 +1,4 @@
+import 'package:dtc_app/api/services/saved_post_service.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/Posts.dart';
@@ -15,15 +16,14 @@ class StudentSavedPage extends StatefulWidget {
 
 class _StudentSavedPageState extends State<StudentSavedPage> {
   List<Map> posts = [];
-
-  @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.only(top: 10),
         color: Colors.transparent,
         child: FutureBuilder<List<PostModel>>(
-            future: PublicPostServices.getPublicPost(),
+            future: SavedPostService.getSavedPost(),
             builder: (context, snapshot) {
               if (!snapshot.hasData || !mounted) return Loading();
               final posts = snapshot.data!;

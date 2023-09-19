@@ -298,6 +298,7 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                                 teacherSignUpPasswordController.text.toString(),
                             phoneNumber:
                                 teacherSignUpPhoneController.text.toString(),
+                            image: teacherProfileImagePath.toString(),
                             role: 'teacher_browser');
                         isLoading = false;
                         print('succesful');

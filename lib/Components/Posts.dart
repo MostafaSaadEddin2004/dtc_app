@@ -235,24 +235,26 @@ class _DTCPostsState extends State<DTCPosts> {
 }
 
 class DepartmentPosts extends StatefulWidget {
-  const DepartmentPosts({
-    super.key,
-    required this.time,
-    required this.postImage,
-    required this.postText,
-    this.isFavorite = false,
-    this.isSaved = false,
-    this.count = 0,
-    this.onChange,
-  });
+  const DepartmentPosts(
+      {super.key,
+      required this.time,
+      required this.postImage,
+      required this.postText,
+      required this.depName,
+      this.isFavorite = false,
+      this.isSaved = false,
+      this.count = 0,
+      this.onChange,
+      required this.postId});
   final String time;
   final String postImage;
   final String postText;
+  final String depName;
   final bool isFavorite;
   final bool isSaved;
   final int count;
   final Function(bool isFavorite, bool isSaved, int count)? onChange;
-
+  final int postId;
   @override
   State<DepartmentPosts> createState() => _DepartmentPostsState();
 }
@@ -299,8 +301,8 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'إسم القسم',
+                      Text(
+                        widget.depName,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
@@ -385,18 +387,24 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        setState(() {});
-
+                        isFavorite = !isFavorite;
+                        if (isFavorite) {
+                          count++;
+                        } else {
+                          count--;
+                        }
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
+                        PublicPostServices.likePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
-                          ? const Icon(
+                          ? Icon(
                               CupertinoIcons.heart,
                             )
-                          : const Icon(
+                          : Icon(
                               CupertinoIcons.heart_fill,
                               color: RedColor,
                             )),
@@ -405,15 +413,16 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
                         isSaved = !isSaved;
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
+                        PublicPostServices.savePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isSaved == false
-                          ? const Icon(
+                          ? Icon(
                               Icons.bookmark_border,
                             )
-                          : const Icon(
+                          : Icon(
                               Icons.bookmark,
-                              color: BlackColor,
                             )),
                   const Spacer(
                     flex: 1,
@@ -424,7 +433,6 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
             )
           ],
         ));
-    
   }
 }
 
@@ -439,7 +447,8 @@ class PostDepartmentPosts extends StatefulWidget {
       this.isSaved = false,
       this.count = 0,
       this.onChange,
-      required this.onPressed});
+      required this.onPressed,
+      required this.postId});
   final String time;
   final String depName;
   final String postImage;
@@ -449,6 +458,7 @@ class PostDepartmentPosts extends StatefulWidget {
   final int count;
   final Function(bool isFavorite, bool isSaved, int count)? onChange;
   final Function() onPressed;
+  final int postId;
 
   @override
   State<PostDepartmentPosts> createState() => _PostDepartmentPostsState();
@@ -597,13 +607,15 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
+                        PublicPostServices.likePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
-                          ? const Icon(
+                          ? Icon(
                               CupertinoIcons.heart,
                             )
-                          : const Icon(
+                          : Icon(
                               CupertinoIcons.heart_fill,
                               color: RedColor,
                             )),
@@ -612,15 +624,16 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
                         isSaved = !isSaved;
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
+                        PublicPostServices.savePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isSaved == false
-                          ? const Icon(
+                          ? Icon(
                               Icons.bookmark_border,
                             )
-                          : const Icon(
+                          : Icon(
                               Icons.bookmark,
-                              color: BlackColor,
                             )),
                   const Spacer(
                     flex: 1,
@@ -631,7 +644,6 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
             )
           ],
         ));
-    
   }
 }
 
@@ -641,20 +653,24 @@ class RegisterCoursesPost extends StatefulWidget {
       required this.time,
       required this.postImage,
       required this.postText,
+      required this.courseName,
       this.isFavorite = false,
       this.isSaved = false,
       this.count = 0,
       this.onChange,
-      required this.onTap});
+      required this.onTap,
+      required this.postId});
 
   final String time;
   final String postImage;
   final String postText;
+  final String courseName;
   final bool isFavorite;
   final bool isSaved;
   final int count;
   final Function(bool isFavorite, bool isSaved, int count)? onChange;
   final void Function() onTap;
+  final int postId;
 
   @override
   State<RegisterCoursesPost> createState() => _RegisterCoursesPostState();
@@ -703,7 +719,7 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'إسم الدورة',
+                        widget.courseName,
                         style: const TextStyle(fontSize: 16),
                       ),
                       Text(
@@ -806,13 +822,15 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
+                        PublicPostServices.likePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
-                          ? const Icon(
+                          ? Icon(
                               CupertinoIcons.heart,
                             )
-                          : const Icon(
+                          : Icon(
                               CupertinoIcons.heart_fill,
                               color: RedColor,
                             )),
@@ -821,23 +839,17 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
                         isSaved = !isSaved;
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
+                        PublicPostServices.savePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isSaved == false
-                          ? const Icon(
+                          ? Icon(
                               Icons.bookmark_border,
                             )
-                          : const Icon(
+                          : Icon(
                               Icons.bookmark,
-                              color: BlackColor,
                             )),
-                  // TextButton(
-                  //   onPressed: () {},
-                  //   child: Text(
-                  //     'Register',
-                  //     style: TextStyle(color: PrimaryColor),
-                  //   ),
-                  // ),
                   const Spacer(
                     flex: 1,
                   ),
@@ -871,27 +883,29 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
             )
           ],
         ));
-    
   }
 }
 
 class CoursesPost extends StatefulWidget {
-  const CoursesPost({
-    super.key,
-    required this.time,
-    required this.postImage,
-    required this.postText,
-    this.isFavorite = false,
-    this.isSaved = false,
-    this.count = 0,
-    this.onChange,
-  });
+  const CoursesPost(
+      {super.key,
+      required this.time,
+      required this.postImage,
+      required this.postText,
+      required this.courseName,
+      this.isFavorite = false,
+      this.isSaved = false,
+      this.count = 0,
+      this.onChange,
+      required this.postId});
   final String time;
   final String postImage;
   final String postText;
+  final String courseName;
   final bool isFavorite;
   final bool isSaved;
   final int count;
+  final int postId;
   final Function(bool isFavorite, bool isSaved, int count)? onChange;
   @override
   State<CoursesPost> createState() => _CoursesPostState();
@@ -938,8 +952,8 @@ class _CoursesPostState extends State<CoursesPost> {
                   ),
                   Column(
                     children: [
-                      const Text(
-                        'إسم الدورة',
+                      Text(
+                        widget.courseName,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
@@ -1015,13 +1029,15 @@ class _CoursesPostState extends State<CoursesPost> {
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
+                        PublicPostServices.likePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
-                          ? const Icon(
+                          ? Icon(
                               CupertinoIcons.heart,
                             )
-                          : const Icon(
+                          : Icon(
                               CupertinoIcons.heart_fill,
                               color: RedColor,
                             )),
@@ -1030,23 +1046,17 @@ class _CoursesPostState extends State<CoursesPost> {
                         isSaved = !isSaved;
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
+                        PublicPostServices.savePost(
+                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isSaved == false
-                          ? const Icon(
+                          ? Icon(
                               Icons.bookmark_border,
                             )
-                          : const Icon(
+                          : Icon(
                               Icons.bookmark,
-                              color: BlackColor,
                             )),
-                  // TextButton(
-                  //   onPressed: () {},
-                  //   child: Text(
-                  //     'Register',
-                  //     style: TextStyle(color: PrimaryColor),
-                  //   ),
-                  // ),
                   const Spacer(
                     flex: 1,
                   ),
@@ -1056,6 +1066,5 @@ class _CoursesPostState extends State<CoursesPost> {
             ),
           ],
         ));
-    
   }
 }

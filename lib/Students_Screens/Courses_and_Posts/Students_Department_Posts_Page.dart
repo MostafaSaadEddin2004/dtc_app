@@ -37,10 +37,12 @@ class _StudentsDepartmentPostsPageState
                       posts[index].savedByMe = isSaved;
                       posts[index].likes = count;
                     },
+                    postId: posts[index].id,
                     isFavorite: posts[index].likedByMe,
                     isSaved: posts[index].savedByMe,
                     count: posts[index].likes,
                     time: posts[index].createdAt.toString(),
+                    depName: posts[index].department_name ?? '',
                     postImage: posts[index].attachment.toString(),
                     postText: posts[index].content),
               );

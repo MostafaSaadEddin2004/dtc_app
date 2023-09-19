@@ -30,17 +30,20 @@ class _TeacherAuthCoursePageState extends State<TeacherAuthCoursePage> {
               return ListView.builder(
                 itemCount: posts.length,
                 itemBuilder: (context, index) => CoursesPost(
-                    onChange: (isFavorite, isSaved, count) {
-                      posts[index].likedByMe = isFavorite;
-                      posts[index].savedByMe = isSaved;
-                      posts[index].likes = count;
-                    },
-                    isFavorite: posts[index].likedByMe,
-                    isSaved: posts[index].savedByMe,
-                    count: posts[index].likes,
-                    time: posts[index].createdAt.toString(),
-                    postImage: posts[index].attachment.toString(),
-                    postText: posts[index].content),
+                  onChange: (isFavorite, isSaved, count) {
+                    posts[index].likedByMe = isFavorite;
+                    posts[index].savedByMe = isSaved;
+                    posts[index].likes = count;
+                  },
+                  postId: posts[index].id,
+                  isFavorite: posts[index].likedByMe,
+                  isSaved: posts[index].savedByMe,
+                  count: posts[index].likes,
+                  time: posts[index].createdAt.toString(),
+                  postImage: posts[index].attachment.toString(),
+                  postText: posts[index].content,
+                  courseName: posts[index].course_name ?? '',
+                ),
               );
             }),
       ),

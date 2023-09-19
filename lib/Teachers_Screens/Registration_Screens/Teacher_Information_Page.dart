@@ -156,7 +156,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                         lastDate: DateTime(2024),
                                         keyboardType: TextInputType.datetime);
                                     teacherBirthDateController.text =
-                                        '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
+                                        '${dateTime?.day}-${dateTime?.month}-${dateTime?.year}';
                                   },
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(

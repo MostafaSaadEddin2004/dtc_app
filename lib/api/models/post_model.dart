@@ -1,9 +1,11 @@
 class PostModel {
-  int id;
-  String content;
-  String attachment;
-  String attachmentType;
-  String createdAt;
+  final int id;
+  final String content;
+  final String attachment;
+  final String? department_name;
+  final String? course_name;
+  final String attachmentType;
+  final String createdAt;
   int likes;
   bool likedByMe;
   int saves;
@@ -13,8 +15,10 @@ class PostModel {
     required this.id,
     required this.content,
     required this.attachment,
-    required this.createdAt,
+    required this.department_name,
+    required this.course_name,
     required this.attachmentType,
+    required this.createdAt,
     required this.likes,
     required this.likedByMe,
     required this.saves,
@@ -27,6 +31,8 @@ class PostModel {
       createdAt: jsonData['created_at'],
       content: jsonData['content'],
       attachment: jsonData['attachment'],
+      department_name: jsonData['department_name'],
+      course_name: jsonData['course_name'],
       attachmentType: jsonData['attachment_type'],
       likes: jsonData['likes'],
       likedByMe: jsonData['liked_by_me'],

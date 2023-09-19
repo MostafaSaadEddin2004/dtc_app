@@ -41,191 +41,190 @@ class _WishesPageState extends State<WishesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'طلب الانتساب'),
-      body: FutureBuilder(
-        future:
-            ComparisonService.getComparison(certificateType_id: certificateId),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData || !mounted) return Loading();
-          final wishData = snapshot.data!;
-          // for (var wish in wishes) {
-          //   wishesList.add(wish.name);
-          // }
-          return SingleChildScrollView(
-              child: Column(children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                labelStyle(text: 'إختر ستة رغبات'),
-              ],
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 10),
-              height: 278,
-              child: ListView.builder(
-                  itemCount:
-                      wishes.where((element) => !element.selected).length,
-                  itemBuilder: (context, index) {
-                    // String key = scientific.keys.elementAt(index);
-                    final wishes = this
-                        .wishes
-                        .where((element) => !element.selected)
-                        .toList();
-                    return Container(
-                      margin: const EdgeInsets.only(
-                          bottom: 10, left: 15, right: 15),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 5),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: GreyColor),
-                          borderRadius: BorderRadius.circular(5),
-                          color: WhiteColor,
-                          boxShadow: const [
-                            BoxShadow(
-                                blurRadius: 2,
-                                color: GreyColor,
-                                offset: Offset(2, 2))
-                          ]),
-                      child: Row(children: [
-                        Text('${wishes[index].name}'),
-                        const Spacer(
-                          flex: 1,
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              if (checkedCount <= 5) {
-                                checkedCount++;
-                                wishes[index].selected = true;
-                                setState(() {});
-                              } else if (checkedCount == 6) {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => warningDialog(
-                                      title: 'إنتباه',
-                                      message:
-                                          'لا يمكن إختيار أكثر من ست رغبات',
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      }),
-                                );
-                                setState(() {});
-                              }
-                            },
-                            icon: const Icon(
-                              Icons.add_circle_rounded,
-                              color: PrimaryColor,
-                              size: 30,
-                            )),
-                      ]),
-                    );
-
-                    // CustomCheckBoxList(
-                    //   onChange: (value) {
-                    //     if (value) {
-                    //       checkedCount++;
-                    //       selectedWishes.add(key);
-                    //       setState(() {});
-                    //     } else {
-                    //       checkedCount--;
-                    //       selectedWishes.remove(key);
-                    //       setState(() {});
-                    //     }
-                    //     print(selectedWishes);
-                    //   },
-                    //   textKey: key,
-                    //   canCheck: checkedCount <= 5,
-                    // );
-                  }),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                labelStyle(text: 'الرغبات المختارة $checkedCount'),
-              ],
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 10),
-              height: 210,
-              child: ListView.builder(
-                  itemCount: wishes.where((element) => element.selected).length,
-                  itemBuilder: (context, index) {
-                    final wishes = this
-                        .wishes
-                        .where((element) => element.selected)
-                        .toList();
-                    return Container(
-                      margin: const EdgeInsets.only(
-                          bottom: 10, left: 15, right: 15),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 5),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: GreyColor),
-                          borderRadius: BorderRadius.circular(5),
-                          color: WhiteColor,
-                          boxShadow: const [
-                            BoxShadow(
-                                blurRadius: 2,
-                                color: GreyColor,
-                                offset: Offset(2, 2))
-                          ]),
-                      child: Row(children: [
-                        Text('${index + 1}-  ${wishes[index].name}'),
-                        const Spacer(
-                          flex: 1,
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              checkedCount--;
-                              wishes[index].selected = false;
+        appBar: CustomAppBar(title: 'طلب الانتساب'),
+        body:
+            // body: FutureBuilder(
+            //   future:
+            //       ComparisonService.getComparison(certificateType_id: certificateId),
+            //   builder: (context, snapshot) {
+            //     if (!snapshot.hasData || !mounted) return Loading();
+            //     final wishData = snapshot.data!;
+            // for (var wish in wishes) {
+            //   wishesList.add(wish.name);
+            // }
+            // return
+            SingleChildScrollView(
+                child: Column(children: [
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            children: [
+              labelStyle(text: 'إختر ستة رغبات'),
+            ],
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            height: 278,
+            child: ListView.builder(
+                itemCount: wishes.where((element) => !element.selected).length,
+                itemBuilder: (context, index) {
+                  // String key = scientific.keys.elementAt(index);
+                  final wishes = this
+                      .wishes
+                      .where((element) => !element.selected)
+                      .toList();
+                  return Container(
+                    margin:
+                        const EdgeInsets.only(bottom: 10, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: GreyColor),
+                        borderRadius: BorderRadius.circular(5),
+                        color: WhiteColor,
+                        boxShadow: const [
+                          BoxShadow(
+                              blurRadius: 2,
+                              color: GreyColor,
+                              offset: Offset(2, 2))
+                        ]),
+                    child: Row(children: [
+                      Text('${wishes[index].name}'),
+                      const Spacer(
+                        flex: 1,
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            if (checkedCount <= 5) {
+                              checkedCount++;
+                              wishes[index].selected = true;
                               setState(() {});
-                            },
-                            icon: const Icon(
-                              Icons.remove_circle_rounded,
-                              color: RedColor,
-                              size: 25,
-                            )),
-                      ]),
-                    );
-                  }),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                nextButton(
-                    onTap: () {
-                      if (checkedCount == 6) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const PersonalInformation()));
-                      } else {
-                        showDialog(
-                          context: context,
-                          builder: (context) => warningDialog(
-                              title: 'إنتباه',
-                              message: 'يجب إختيار ست رغبات أولاً',
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              }),
-                        );
-                      }
-                    },
-                    text: 'التالي'),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-          ]));
-        },
-      ),
-    );
+                            } else if (checkedCount == 6) {
+                              showDialog(
+                                context: context,
+                                builder: (context) => warningDialog(
+                                    title: 'إنتباه',
+                                    message: 'لا يمكن إختيار أكثر من ست رغبات',
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    }),
+                              );
+                              setState(() {});
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.add_circle_rounded,
+                            color: PrimaryColor,
+                            size: 30,
+                          )),
+                    ]),
+                  );
+
+                  // CustomCheckBoxList(
+                  //   onChange: (value) {
+                  //     if (value) {
+                  //       checkedCount++;
+                  //       selectedWishes.add(key);
+                  //       setState(() {});
+                  //     } else {
+                  //       checkedCount--;
+                  //       selectedWishes.remove(key);
+                  //       setState(() {});
+                  //     }
+                  //     print(selectedWishes);
+                  //   },
+                  //   textKey: key,
+                  //   canCheck: checkedCount <= 5,
+                  // );
+                }),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              labelStyle(text: 'الرغبات المختارة $checkedCount'),
+            ],
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            height: 210,
+            child: ListView.builder(
+                itemCount: wishes.where((element) => element.selected).length,
+                itemBuilder: (context, index) {
+                  final wishes =
+                      this.wishes.where((element) => element.selected).toList();
+                  return Container(
+                    margin:
+                        const EdgeInsets.only(bottom: 10, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: GreyColor),
+                        borderRadius: BorderRadius.circular(5),
+                        color: WhiteColor,
+                        boxShadow: const [
+                          BoxShadow(
+                              blurRadius: 2,
+                              color: GreyColor,
+                              offset: Offset(2, 2))
+                        ]),
+                    child: Row(children: [
+                      Text('${index + 1}-  ${wishes[index].name}'),
+                      const Spacer(
+                        flex: 1,
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            checkedCount--;
+                            wishes[index].selected = false;
+                            setState(() {});
+                          },
+                          icon: const Icon(
+                            Icons.remove_circle_rounded,
+                            color: RedColor,
+                            size: 25,
+                          )),
+                    ]),
+                  );
+                }),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              nextButton(
+                  onTap: () {
+                    if (checkedCount == 6) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const PersonalInformation()));
+                    } else {
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) => warningDialog(
+                            title: 'إنتباه',
+                            message: 'يجب إختيار ست رغبات أولاً',
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            }),
+                      );
+                    }
+                  },
+                  text: 'التالي'),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+        ]))
+        //   },
+        // ),
+        );
   }
 }
 

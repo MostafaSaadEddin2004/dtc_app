@@ -1,5 +1,12 @@
+import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
+import 'package:dtc_app/Students_Screens/Student_Start_Page.dart';
+import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
+import 'package:dtc_app/Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
+import 'package:dtc_app/Teachers_Screens/Teacher_Start_Page.dart';
+import 'package:dtc_app/api/firebase_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
 import '../Components/Buttons.dart';
 import '../Constants/Colors.dart';
@@ -21,6 +28,40 @@ bool selectedTeacherAuth = false;
 bool selectedTeacher = false;
 
 class _SignUpTypeState extends State<SignUpType> {
+  // void initState() async {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   FirebaseHelper.init(context);
+  //   FirebaseHelper.createToken().then(print);
+  //   // void checkUser() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final role = await prefs.getString('role');
+  //   final token = await prefs.getString('token');
+  //   if (role == 'student' || token != null) {
+  //     Navigator.of(context).pushNamedAndRemoveUntil(
+  //       StudentStartPage.id,
+  //       (Route<dynamic> route) => false,
+  //     );
+  //   } else if (role == 'teacher' || token != null) {
+  //     Navigator.of(context).pushNamedAndRemoveUntil(
+  //       TeacherAuthStartPage.id,
+  //       (Route<dynamic> route) => false,
+  //     );
+  //   } else if (role == 'teacher_browser' || token != null) {
+  //     Navigator.of(context).pushNamedAndRemoveUntil(
+  //       TeacherStartPage.id,
+  //       (Route<dynamic> route) => false,
+  //     );
+  //   } else if (role == 'student_browser' || token != null) {
+  //     Navigator.of(context).pushNamedAndRemoveUntil(
+  //       BrowserStartPage.id,
+  //       (Route<dynamic> route) => false,
+  //     );
+  //   } else {
+  //     print('We are in the start page');
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,11 +226,11 @@ class _SignUpTypeState extends State<SignUpType> {
               onTap: () {
                 selectedBrowser = false;
                 selectedStudent = false;
-                selectedTeacherAuth = true;
-                selectedTeacher = false;
+                selectedTeacher = true;
+                selectedTeacherAuth = false;
                 setState(() {});
               },
-              child: selectedTeacherAuth == false
+              child: selectedTeacher == false
                   ? Container(
                       height: 60,
                       decoration: BoxDecoration(
@@ -256,11 +297,11 @@ class _SignUpTypeState extends State<SignUpType> {
               onTap: () {
                 selectedBrowser = false;
                 selectedStudent = false;
-                selectedTeacherAuth = false;
-                selectedTeacher = true;
+                selectedTeacher = false;
+                selectedTeacherAuth = true;
                 setState(() {});
               },
-              child: selectedTeacher == false
+              child: selectedTeacherAuth == false
                   ? Container(
                       height: 60,
                       decoration: BoxDecoration(
@@ -339,11 +380,18 @@ class _SignUpTypeState extends State<SignUpType> {
                           StudentSignUpScreen.id,
                           (Route<dynamic> route) => false,
                         );
-                      } else if (selectedTeacher == true) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
                           TeacherSignUpScreen.id,
                           (Route<dynamic> route) => false,
                         );
+                      } else if (selectedTeacherAuth == true) {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          TeacherAuthSignUpScreen.id,
+                          (Route<dynamic> route) => false,
+                        );
+                      } else if (selectedTeacher == true) {
+                      } else {
+                        return null;
                       }
                     }),
               ],

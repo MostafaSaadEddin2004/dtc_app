@@ -115,7 +115,7 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                                                             color: GreyColor),
                                                         borderRadius:
                                                             const BorderRadius
-                                                                    .all(
+                                                                .all(
                                                                 Radius.circular(
                                                                     20))),
                                                     child: Column(
@@ -191,7 +191,7 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                                                             color: GreyColor),
                                                         borderRadius:
                                                             const BorderRadius
-                                                                    .all(
+                                                                .all(
                                                                 Radius.circular(
                                                                     20))),
                                                     child: Column(
@@ -294,6 +294,7 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                                 browserSignUpPasswordController.text.toString(),
                             phoneNumber:
                                 browserSignUpPhoneController.text.toString(),
+                            image: browserProfileImagePath.toString(),
                             role: 'student_browser');
                         isLoading = false;
                         print('succesful');

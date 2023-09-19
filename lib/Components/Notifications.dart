@@ -1,5 +1,6 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 import '../Constants/TextStyle.dart';
 
 Widget notificationsBubble({
@@ -15,16 +16,15 @@ Widget notificationsBubble({
               bottom: BorderSide(width: 0.5, color: BlackColor))),
       child: Row(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 10),
             child: CircleAvatar(
                 minRadius: 30,
                 maxRadius: 30,
                 backgroundColor: PrimaryColor,
-                child: Icon(
-                  Icons.person,
-                  color: WhiteColor,
-                  size: 45,
+                child: Image.asset(
+                  'assets/images/white_logo.png',
+                  fit: BoxFit.cover,
                 )),
           ),
           const SizedBox(
@@ -36,9 +36,17 @@ Widget notificationsBubble({
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  bodyText(text: notificationtext),
-                  const SizedBox(
-                    height: 10,
+                  titleText(text: 'title'),
+                  ReadMoreText(
+                    notificationtext,
+                    moreStyle: TextStyle(
+                        color: PrimaryColor, fontWeight: FontWeight.bold),
+                    lessStyle: TextStyle(
+                        color: PrimaryColor, fontWeight: FontWeight.bold),
+                    trimCollapsedText: ' عرض المزيد ',
+                    trimExpandedText: ' عرض أقل ',
+                    trimLines: 3,
+                    trimMode: TrimMode.Line,
                   ),
                   timeText(text: time),
                 ],

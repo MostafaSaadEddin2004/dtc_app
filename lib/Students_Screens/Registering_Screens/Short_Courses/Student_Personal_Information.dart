@@ -23,6 +23,11 @@ class _StudentPersonalInformationState
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   DateTime? dateTime;
   late int courseId = ModalRoute.of(context)!.settings.arguments as int;
+  int nationalitySelectedIndexVariable = 0;
+
+  String natioality = '';
+  var studentCourseNationalityController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -67,7 +72,8 @@ class _StudentPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   })
                             ],
                           ),
@@ -88,81 +94,14 @@ class _StudentPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   })
                             ],
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: studentNationalityVariable == 'فلسطيني مُسجل' ||
-                            studentNationalityVariable == ''
-                        ? Column(
-                            children: [
-                              titleText(text: 'الجنسية'),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              registrationDropDownSearch(
-                                  hint: '',
-                                  items: ['فلسطيني مُسجل', 'أخرى...'],
-                                  onChange: (data) {
-                                    setState(() {
-                                      studentNationalityVariable = data!;
-                                    });
-                                  },
-                                  validator: (data) {
-                                    if (data!.isEmpty) {
-                                      return 'االحقل مطلوب';
-                                    }return null;
-                                  }),
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              titleText(text: 'الجنسية'),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              registrationDropDownSearch(
-                                  hint: '',
-                                  items: ['فلسطيني مُسجل', 'أخرى...'],
-                                  onChange: (data) {
-                                    setState(() {
-                                      studentNationalityVariable = data!;
-                                    });
-                                  },
-                                  validator: (data) {
-                                    if (data!.isEmpty) {
-                                      return 'االحقل مطلوب';
-                                    }return null;
-                                  }),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              titleText(text: 'الجنسية'),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              registrationInfoTextField(
-                                controller: studentCourseNationalityController,
-                                keyboardType: TextInputType.name,
-                                radius: 20,
-                                validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'الحقل مطلوب';
-                                  } else if (text.length < 10) {
-                                    return 'الحقل يجب أن يكون 4 أحرف أو أكثر';
-                                  } else if (text.length > 10) {
-                                    return 'الحقل يجب أن يكون 4 أحرف او أكثر';
-                                  }return null;
-                                },
-                              ),
-                            ],
-                          ),
                   ),
                   const SizedBox(
                     height: 15,
@@ -184,11 +123,15 @@ class _StudentPersonalInformationState
                               return 'الحقل مطلوب';
                             } else if (text.length < 3) {
                               return 'الحقل يجب أن يكون 3 أحرف أو أكثر';
-                            }return null;
+                            }
+                            return null;
                           },
                         )
                       ],
                     ),
+                  ),
+                  const SizedBox(
+                    height: 15,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
@@ -216,7 +159,8 @@ class _StudentPersonalInformationState
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
-                                }return null;
+                                }
+                                return null;
                               },
                               keyboardType: TextInputType.none,
                               enabled: true,
@@ -244,7 +188,7 @@ class _StudentPersonalInformationState
                                         lastDate: DateTime(2024),
                                         keyboardType: TextInputType.datetime);
                                     studentCourseBirthDateController.text =
-                                        '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
+                                        '${dateTime?.day}-${dateTime?.month}-${dateTime?.year}';
                                   },
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(
@@ -259,6 +203,103 @@ class _StudentPersonalInformationState
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: nationalitySelectedIndexVariable == 2
+                          ? Column(
+                              children: [
+                                Row(
+                                  children: [labelFont(text: 'الجنسية')],
+                                ),
+                                RadioListTile(
+                                    value: 1,
+                                    groupValue:
+                                        nationalitySelectedIndexVariable,
+                                    activeColor: PrimaryColor,
+                                    title: const Text('فلسطيني مُسجل'),
+                                    onChanged: (index) {
+                                      setState(() {
+                                        nationalitySelectedIndexVariable =
+                                            index!;
+                                        studentNationalityVariable =
+                                            'فلسطيني مُسجل';
+                                      });
+                                      print(nationalitySelectedIndexVariable);
+                                    }),
+                                RadioListTile(
+                                    value: 2,
+                                    groupValue:
+                                        nationalitySelectedIndexVariable,
+                                    activeColor: PrimaryColor,
+                                    title: const Text('أخرى'),
+                                    onChanged: (index) {
+                                      setState(() {
+                                        nationalitySelectedIndexVariable =
+                                            index!;
+                                        this.natioality =
+                                            studentCourseNationalityController
+                                                .text;
+                                      });
+                                      print(nationalitySelectedIndexVariable);
+                                    }),
+                                registrationInfoTextField(
+                                  controller:
+                                      studentCourseNationalityController,
+                                  keyboardType: TextInputType.name,
+                                  radius: 20,
+                                  onChanged: (data) {
+                                    studentNationalityVariable = '';
+                                    setState(() {});
+                                  },
+                                  validator: (text) {
+                                    if (text!.isEmpty) {
+                                      return 'الحقل مطلوب';
+                                    } else if (text.length < 4) {
+                                      return 'الحقل يجب أن يكون 4 أحرف أو أكثر';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            )
+                          : Column(
+                              children: [
+                                Row(
+                                  children: [labelFont(text: 'الجنسية')],
+                                ),
+                                RadioListTile(
+                                    value: 1,
+                                    groupValue:
+                                        nationalitySelectedIndexVariable,
+                                    activeColor: PrimaryColor,
+                                    title: const Text('فلسطيني مُسجل'),
+                                    onChanged: (index) {
+                                      setState(() {
+                                        nationalitySelectedIndexVariable =
+                                            index!;
+                                        natioality = 'فلسطيني مُسجل';
+                                      });
+                                    }),
+                                RadioListTile(
+                                    value: 2,
+                                    groupValue:
+                                        nationalitySelectedIndexVariable,
+                                    activeColor: PrimaryColor,
+                                    title: const Text('أُخرى'),
+                                    onChanged: (index) {
+                                      setState(() {
+                                        nationalitySelectedIndexVariable =
+                                            index!;
+                                        natioality =
+                                            studentCourseNationalityController
+                                                .text;
+                                      });
+                                    }),
+                              ],
+                            )),
                   const Spacer(
                     flex: 1,
                   ),
@@ -269,8 +310,12 @@ class _StudentPersonalInformationState
                           text: 'التالي',
                           onTap: () {
                             //if (formState.currentState!.validate()) {
-                            Navigator.of(context)
-                                .pushNamed(StudentOtherInformation.id,arguments: courseId);
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (_) => StudentOtherInformation(
+                                      nationality: natioality,
+                                      courseId: courseId)),
+                            );
                             print(courseId);
                             //}
                           }),

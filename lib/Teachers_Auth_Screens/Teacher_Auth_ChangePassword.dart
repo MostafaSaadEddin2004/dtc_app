@@ -39,7 +39,8 @@ class _TeacherAuthChangePasswordEnterPasswordState
                         return 'كلمة المرور الحالية مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                      }return null;
+                      }
+                      return null;
                     },
                     labelText: 'كلمة المرور الحالية',
                     obscure: !currentSecure,
@@ -69,7 +70,8 @@ class _TeacherAuthChangePasswordEnterPasswordState
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                      }return null;
+                      }
+                      return null;
                     },
                     labelText: 'كلمة المرور الجديدة',
                     obscure: !newSecure,
@@ -102,7 +104,8 @@ class _TeacherAuthChangePasswordEnterPasswordState
                       } else if (teacherAuthConfirmPassword.text !=
                           teacherAuthNewPassword.text) {
                         return 'كلمة المرور غير متطابقة';
-                      }return null;
+                      }
+                      return null;
                     },
                     labelText: 'تأكيد كلمة المرور',
                     obscure: !confirmSecure,
@@ -132,6 +135,7 @@ class _TeacherAuthChangePasswordEnterPasswordState
                       onTap: () {
                         //if (formKey.currentState!.validate()) {
                         showDialog(
+                          barrierDismissible: false,
                           context: context,
                           builder: (context) => CustomDialog(
                               title: 'تعديل كلمة السر',

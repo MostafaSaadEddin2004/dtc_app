@@ -10,8 +10,13 @@ import '../../../Constants/Colors.dart';
 import '../../../Constants/Controller.dart';
 
 class StudentOtherInformation extends StatefulWidget {
-  const StudentOtherInformation({super.key});
+  const StudentOtherInformation(
+      {super.key, required this.nationality, required this.courseId});
   static String id = 'StudentOtherInformation';
+
+  final String nationality;
+
+  final int courseId;
 
   @override
   State<StudentOtherInformation> createState() =>
@@ -24,8 +29,11 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
   int educationSelectedIndex = 1;
   int workSelectedIndex = 1;
   int timeSelectedIndex = 1;
+  int nationalitySelectedIndexVariable = 0;
+  bool isMale = false;
+  bool isMorning = false;
   bool isLoading = false;
-  late int courseId = ModalRoute.of(context)!.settings.arguments as int;
+
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
@@ -171,40 +179,40 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                           text: 'إنهاء',
                           onTap: () async {
                             if (formState.currentState!.validate()) {
-                              print('Tapped');
+                              formState.currentState!.save();
                               isLoading = true;
-
-                                  await ShortCourseRegistration
-                                      .postShortCourseRegistration(
-                                          address:
-                                              studentCourseCurrentLocationController
-                                                  .text,
-                                          date_of_birth:
-                                              studentCourseBirthDateController
-                                                  .text,
-                                          is_male: studentGenderVariable ==
-                                                  'ذكر'
-                                              ? true
-                                              : false,
-                                          is_morning: timeSelectedIndex ==
-                                                  1
-                                              ? true
-                                              : false,
-                                          nationality: studentNationalityVariable ==
-                                                  ''
-                                              ? studentNationalityVariable
-                                              : studentCourseNationalityController
-                                                  .text,
-                                          social_status:
-                                              studentSituationVariable,
-                                          student_type: GetStudentType(
-                                              educationSelectedIndex:
-                                                  educationSelectedIndex),
-                                          work_type: GetWorkType(
-                                              workSelectedIndex:
-                                                  workSelectedIndex),
-                                          course_id: courseId);
+                              getNationalityValue(
+                                  index: nationalitySelectedIndexVariable,
+                                  value: studentNationalityVariable.toString());
+                              getGender(
+                                  studentGenderVariable: studentGenderVariable,
+                                  isMale: isMale);
+                              getCourseTime(
+                                  timeSelectedIndex: timeSelectedIndex,
+                                  isMorning: isMorning);
+                              await ShortCourseRegistration
+                                  .postShortCourseRegistration(
+                                      address:
+                                          studentCourseCurrentLocationController
+                                              .text,
+                                      date_of_birth:
+                                          studentCourseBirthDateController.text,
+                                      is_male: studentGenderVariable ==
+                                              'ذكر'
+                                          ? true
+                                          : false,
+                                      is_morning:
+                                          timeSelectedIndex == 1 ? true : false,
+                                      nationality: widget.nationality,
+                                      social_status: studentSituationVariable,
+                                      student_type: getStudentType(
+                                          educationSelectedIndex:
+                                              educationSelectedIndex),
+                                      work_type: getWorkType(
+                                          workSelectedIndex: workSelectedIndex),
+                                      course_id: widget.courseId);
                               showDialog(
+                                barrierDismissible: false,
                                 context: context,
                                 builder: (context) => CustomDialog(
                                     title: 'الإنتساب للدورة',
@@ -213,9 +221,6 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                                           .clear();
                                       studentCourseBirthDateController.clear();
                                       studentGenderVariable = '';
-                                      studentNationalityVariable = '';
-                                      studentCourseNationalityController
-                                          .clear();
                                       Navigator.of(context)
                                         ..pop()
                                         ..pop()
@@ -237,7 +242,7 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
   }
 }
 
-String GetStudentType({required int educationSelectedIndex}) {
+String getStudentType({required int educationSelectedIndex}) {
   if (educationSelectedIndex == 1) {
     return 'طالب في المعهد';
   } else if (educationSelectedIndex == 2) {
@@ -249,12 +254,36 @@ String GetStudentType({required int educationSelectedIndex}) {
   }
 }
 
-String GetWorkType({required int workSelectedIndex}) {
+String getWorkType({required int workSelectedIndex}) {
   if (workSelectedIndex == 1) {
     return 'أعمال حرة';
   } else if (workSelectedIndex == 2) {
     return 'عمل بدوم جزئي';
   } else {
     return 'عمل بدوام كامل';
+  }
+}
+
+void getGender({required String studentGenderVariable, required bool isMale}) {
+  if (studentGenderVariable == 'ذكر') {
+    isMale = true;
+  } else {
+    isMale = false;
+  }
+}
+
+getCourseTime({required int timeSelectedIndex, required bool isMorning}) {
+  if (timeSelectedIndex == 1) {
+    isMorning = true;
+  } else {
+    isMorning = false;
+  }
+}
+
+void getNationalityValue({required String value, required int index}) {
+  if (index == 1) {
+    studentNationalityVariable = 'فلسطيني مُسجل';
+  } else if (index == 2) {
+    studentNationalityVariable = value;
   }
 }

@@ -49,7 +49,7 @@ var studentConfirmPassword = TextEditingController();
 var studentMRMarkController = TextEditingController();
 var movingRequestTextController = TextEditingController();
 var studentCoursePhoneNumberController = TextEditingController();
-var studentCourseNationalityController = TextEditingController();
+
 var studentCourseCurrentLocationController = TextEditingController();
 var studentCourseBirthDateController = TextEditingController();
 var studentSignInEmailController = TextEditingController();
@@ -92,21 +92,11 @@ String certificationDate = '';
 String studentNoteCLassificationVariable = '';
 int studentEditingNoteIdVariable = 0;
 String studentEditingNoteCLassificationVariable = '';
-XFile? identifyImage;
-XFile? certificateImage;
-XFile? unCardImage;
-XFile? personalImage;
-XFile? studentProfileImageFile;
-File? identifyImagePath;
-File? certificateImagePath;
-File? unCardImagePath;
-File? personalImagePath;
-File? studentProfileImagePath;
+
 
 //Teacher Auth Controllers
 var postTextController = TextEditingController();
 var editingPostTextController = TextEditingController();
-var postFileController = TextEditingController();
 var teacherAuthBirthDateController = TextEditingController();
 var teacherAuthCertificationController = TextEditingController();
 var teacherAuthSpecialtyController = TextEditingController();
@@ -133,7 +123,6 @@ var teacherAuthSinUpFirstNameController = TextEditingController();
 var teacherAuthSinUpLastNameController = TextEditingController();
 var teacherAuthSinUpEnglishFirstNameController = TextEditingController();
 var teacherAuthSinUpEnglishLastNameController = TextEditingController();
-String teacherAuthNationalityVariable = '';
 String teacherAuthDepartmentVariable = '';
 String teacherAuthNoteClassificationVariable = '';
 String teacherAuthEditingNoteCLassificationVariable = '';

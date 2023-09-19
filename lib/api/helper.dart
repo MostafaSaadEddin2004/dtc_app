@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +14,6 @@ class BaseApi {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
-
     return response.body;
   }
 
@@ -21,11 +21,12 @@ class BaseApi {
       {required String endpoint, Map? body}) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
-    body =
-        body?.map((key, value) => MapEntry(key.toString(), value.toString()));
-    final response =
-        await http.post(Uri.parse(_url + endpoint), body: body, headers: {
+    // body =
+    //     body?.map((key, value) => MapEntry(key.toString(), value.toString()));
+    final response = await http
+        .post(Uri.parse(_url + endpoint), body: jsonEncode(body), headers: {
       HttpHeaders.acceptHeader: 'application/json',
+      HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
     if (response.statusCode >= 200 || response.statusCode < 300) {
@@ -62,7 +63,7 @@ class BaseApi {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     final response =
-        await http.delete(Uri.parse('{$_url$endpoint}/$id'), headers: {
+        await http.delete(Uri.parse('$_url$endpoint/$id'), headers: {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });

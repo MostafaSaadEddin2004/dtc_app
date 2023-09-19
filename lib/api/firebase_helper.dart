@@ -103,7 +103,7 @@ abstract class FirebaseHelper {
     return await FirebaseMessaging.instance.getToken().then((value) {
       // ignore: avoid_print
       print(value);
-      return null;
+      return value;
     });
   }
 

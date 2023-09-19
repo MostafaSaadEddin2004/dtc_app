@@ -23,7 +23,14 @@ GlobalKey<FormState> formState = GlobalKey<FormState>();
 class _RequiredDocumentsState extends State<RequiredDocuments> {
   bool gallery = false;
   bool camera = false;
-
+  XFile? identifyImage;
+  XFile? certificateImage;
+  XFile? unCardImage;
+  XFile? personalImage;
+  File? identifyImagePath;
+  File? certificateImagePath;
+  File? unCardImagePath;
+  File? personalImagePath;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -846,6 +853,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                         );
                       } else {
                         showDialog(
+                          barrierDismissible: false,
                           context: context,
                           builder: (context) {
                             return warningDialog(

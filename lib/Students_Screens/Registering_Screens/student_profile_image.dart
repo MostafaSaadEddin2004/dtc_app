@@ -20,6 +20,10 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
   bool gallery = false;
   bool camera = false;
   bool isLoading = false;
+
+  XFile? studentProfileImageFile;
+
+  File? studentProfileImagePath;
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
@@ -308,6 +312,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                   .toString(),
                               phoneNumber:
                                   studentSinUpPhoneController.text.toString(),
+                              image: studentProfileImagePath.toString(),
                               role: 'student');
                           isLoading = false;
                           print('succesful');
@@ -329,28 +334,3 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
     );
   }
 }
-
-// imagePath == null
-//                            CircleAvatar(
-//                               foregroundColor: PrimaryColor,
-//                               backgroundColor: BlackColor,
-//                               radius: MediaQuery.of(context).size.width,
-//                               child: CircleAvatar(
-//                                 backgroundColor: Colors.grey.shade300,
-//                                 radius: MediaQuery.of(context).size.width - 10,
-//                                 child: 
-//                               ),
-//                             )
-//                           : CircleAvatar(
-//                               foregroundColor: PrimaryColor,
-//                               backgroundColor: BlackColor,
-//                               radius: MediaQuery.of(context).size.width,
-//                               child: CircleAvatar(
-//                                 child: Image.file(
-//                                   imagePath!,
-//                                   fit: BoxFit.contain,
-//                                 ),
-//                                 backgroundColor: Colors.grey.shade300,
-//                                 radius: MediaQuery.of(context).size.width - 10,
-//                               ),
-//                             ),

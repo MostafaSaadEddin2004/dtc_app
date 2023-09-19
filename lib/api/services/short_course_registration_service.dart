@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'package:dtc_app/api/helper.dart';
-import '../models/short_course_registration_model.dart';
 
 abstract class ShortCourseRegistration extends BaseApi {
-  static Future<ShortCourseRegistrationModel> postShortCourseRegistration({
+  static Future<void> postShortCourseRegistration({
     required bool is_male,
     required String social_status,
     required String nationality,
@@ -14,6 +12,7 @@ abstract class ShortCourseRegistration extends BaseApi {
     required bool is_morning,
     required int course_id,
   }) async {
+    // ignore: unused_local_variable
     final response = await BaseApi.postRequest(
         endpoint: 'course/$course_id/register',
         body: {
@@ -27,7 +26,5 @@ abstract class ShortCourseRegistration extends BaseApi {
           'is_morning': is_morning,
           'course_id': course_id,
         });
-    return ShortCourseRegistrationModel.fromJson(
-        jsonDecode(response.body)['data']);
   }
 }

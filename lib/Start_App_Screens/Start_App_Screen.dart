@@ -2,6 +2,9 @@ import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
 import 'package:dtc_app/Students_Screens/Student_Start_Page.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
 import 'package:dtc_app/Teachers_Screens/Teacher_Start_Page.dart';
+import 'package:dtc_app/api/firebase_helper.dart';
+import 'package:dtc_app/api/models/auth_models.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Components/Buttons.dart';
@@ -18,40 +21,77 @@ class StartAppScreen extends StatefulWidget {
 }
 
 class _StartAppScreenState extends State<StartAppScreen> {
-  // var token;
-  // var role;
   @override
-  void initState() async{
+  void initState() {
     // TODO: implement initState
     super.initState();
-    // void checkUser() async {
-      final prefs = await SharedPreferences.getInstance();
-      final role = await prefs.getString('role');
-      final token = await prefs.getString('token');
-      if (role == 'student' || token != null) {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          StudentStartPage.id,
-          (Route<dynamic> route) => false,
-        );
-      } else if (role == 'teacher' || token != null) {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          TeacherAuthStartPage.id,
-          (Route<dynamic> route) => false,
-        );
-      } else if (role == 'teacher_browser' || token != null) {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          TeacherStartPage.id,
-          (Route<dynamic> route) => false,
-        );
-      } else if (role == 'student_browser' || token != null) {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          BrowserStartPage.id,
-          (Route<dynamic> route) => false,
-        );
-      } else {
-        print('We are in the start page');
-      }
+    checkUser();
+  }
+
+  void checkUser() async {
+    FirebaseHelper.init(context);
+    final prefs = await SharedPreferences.getInstance();
+    final role = await prefs.getString('role');
+    final token = await prefs.getString('token');
+    if (role == 'student' || token != null) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        StudentStartPage.id,
+        (Route<dynamic> route) => false,
+      );
+    } else if (role == 'teacher' || token != null) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        TeacherAuthStartPage.id,
+        (Route<dynamic> route) => false,
+      );
+    } else if (role == 'teacher_browser' || token != null) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        TeacherStartPage.id,
+        (Route<dynamic> route) => false,
+      );
+    } else if (role == 'student_browser' || token != null) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        BrowserStartPage.id,
+        (Route<dynamic> route) => false,
+      );
+    } else {
+      print('We are in the start page');
     }
+  }
+
+  //  void checkUser({required String token, required String role}) {
+  //   FutureBuilder(
+  //       future: AuthServices.getUserRole(),
+  //       builder: (context, snapshot) {
+  //         final myRole = snapshot.data!;
+  //         if (role == 'student' || token != null) {
+  //           Navigator.of(context).pushNamedAndRemoveUntil(
+  //             StudentStartPage.id,
+  //             (Route<dynamic> route) => false,
+  //           );
+  //           return SizedBox();
+  //         } else if (role == 'teacher' || token != null) {
+  //           Navigator.of(context).pushNamedAndRemoveUntil(
+  //             TeacherAuthStartPage.id,
+  //             (Route<dynamic> route) => false,
+  //           );
+  //           return SizedBox();
+  //         } else if (role == 'teacher_browser' || token != null) {
+  //           Navigator.of(context).pushNamedAndRemoveUntil(
+  //             TeacherStartPage.id,
+  //             (Route<dynamic> route) => false,
+  //           );
+  //           return SizedBox();
+  //         } else if (role == 'student_browser' || token != null) {
+  //           Navigator.of(context).pushNamedAndRemoveUntil(
+  //             BrowserStartPage.id,
+  //             (Route<dynamic> route) => false,
+  //           );
+  //           return SizedBox();
+  //         } else {
+  //           print('We are in the start page');
+  //           return SizedBox();
+  //         }
+  //       });
   // }
 
   @override

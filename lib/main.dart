@@ -1,3 +1,10 @@
+import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Information_Page.dart';
+import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Name_SignUp_Screen.dart';
+import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignIn_Screen.dart';
+import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
+import 'package:dtc_app/api/firebase_helper.dart';
+import 'package:dtc_app/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
@@ -33,7 +40,13 @@ import 'Teachers_Screens/Teacher_Editing_Notes.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_Information_Page.dart';
 import 'Teachers_Screens/Teacher_Start_Page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const Main());
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: PrimaryColor, // navigation bar color
@@ -41,8 +54,14 @@ void main() {
   ));
 }
 
-class Main extends StatelessWidget {
+class Main extends StatefulWidget {
   const Main({super.key});
+
+  @override
+  State<Main> createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -77,11 +96,17 @@ class Main extends StatelessWidget {
         StudentEditingNotes.id: (context) => const StudentEditingNotes(),
         StudentPersonalInformation.id: (context) =>
             const StudentPersonalInformation(),
-        StudentOtherInformation.id: (context) =>
-            const StudentOtherInformation(),
         AcceptanceQualifications.id: (context) =>
             const AcceptanceQualifications(),
         StudentStartPage.id: (context) => const StudentStartPage(),
+        TeacherAuthSignUpScreen.id: (context) =>
+            const TeacherAuthSignUpScreen(),
+        TeacherAuthNameSignUpPage.id: (context) =>
+            const TeacherAuthNameSignUpPage(),
+        TeacherAuthInformationPage.id: (context) =>
+            const TeacherAuthInformationPage(),
+        TeacherAuthSignInScreen.id: (context) =>
+            const TeacherAuthSignInScreen(),
         TeacherAuthStartPage.id: (context) => const TeacherAuthStartPage(),
         TeacherAuthEditingNotes.id: (context) =>
             const TeacherAuthEditingNotes(),

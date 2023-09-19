@@ -197,7 +197,6 @@ class _BrowserOtherInformationState extends State<BrowserOtherInformation> {
                                             workSelectedIndex:
                                                 workSelectedIndex),
                                         course_id: courseId);
-                                print(shortCourseRegistration);
                                 showDialog(
                                   context: context,
                                   builder: (context) => CustomDialog(

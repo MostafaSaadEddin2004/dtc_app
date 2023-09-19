@@ -50,29 +50,33 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    ShowDialogList(
-                      value: certification == ''
-                          ? 'اضغط للإختيار...'
-                          : certification,
-                      child: ListView.builder(
-                        itemCount: certificateData.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              certification = certificateData[index].name;
-                              selectedCertificateId = certificateData[index].id;
-                              Navigator.of(context).pop();
-                              setState(() {});
-                            },
-                            child: SizedBox(
-                              height: 50,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [Text(certificateData[index].name)],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: ShowDialogList(
+                        value: certification == ''
+                            ? 'اضغط للإختيار...'
+                            : certification,
+                        child: ListView.builder(
+                          itemCount: certificateData.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                certification = certificateData[index].name;
+                                selectedCertificateId =
+                                    certificateData[index].id;
+                                Navigator.of(context).pop();
+                                setState(() {});
+                              },
+                              child: SizedBox(
+                                height: 50,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [Text(certificateData[index].name)],
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     ),
                     const SizedBox(
