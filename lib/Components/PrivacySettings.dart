@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 Widget privacyEditing({
   required IconData icon,
   required String label,
-  required String value,
+  String? value,
   required void Function() onPressedIconButton,
 }) =>
     Container(
@@ -24,13 +24,20 @@ Widget privacyEditing({
             const SizedBox(
               width: 10,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                labelFont(text: label),
-                bodyText(text: value),
-              ],
-            ),
+            value == ''
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      labelFont(text: label),
+                    ],
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      labelFont(text: label),
+                      bodyText(text: value!),
+                    ],
+                  ),
             const SizedBox(
               width: 10,
             ),

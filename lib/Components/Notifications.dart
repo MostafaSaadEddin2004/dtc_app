@@ -4,7 +4,8 @@ import 'package:readmore/readmore.dart';
 import '../Constants/TextStyle.dart';
 
 Widget notificationsBubble({
-  required String notificationtext,
+  required String notificationBody,
+  required String notificationTitle,
   required String time,
   required String notificationImage,
 }) =>
@@ -36,9 +37,9 @@ Widget notificationsBubble({
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  titleText(text: 'title'),
+                  titleText(text: notificationTitle),
                   ReadMoreText(
-                    notificationtext,
+                    notificationBody,
                     moreStyle: TextStyle(
                         color: PrimaryColor, fontWeight: FontWeight.bold),
                     lessStyle: TextStyle(

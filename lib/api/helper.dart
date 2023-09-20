@@ -14,6 +14,7 @@ class BaseApi {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
+    print(response.body);
     return response.body;
   }
 
@@ -37,6 +38,30 @@ class BaseApi {
     throw Exception(
         'There is a problem with the status code ${response.statusCode} and with the body ${response.body}');
     // }
+  }
+
+  static Future<http.Response> _makeRequestWithFiles(
+    String endpoint, {
+    required Map<String, File> files,
+    Map<String, Object?>? body,
+  }) async {
+    final request = http.MultipartRequest("POST", Uri.parse('$_url$endpoint'));
+    request.fields
+        .addAll(body!.map((key, value) => MapEntry(key, value.toString())));
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    request.headers.addAll({
+      HttpHeaders.acceptHeader: 'application/json',
+      HttpHeaders.contentTypeHeader: 'multipart/form-data',
+      HttpHeaders.authorizationHeader: 'Bearer $token',
+    });
+    for (final key in files.keys) {
+      request.files
+          .add(await http.MultipartFile.fromPath(key, files[key]!.path));
+    }
+    print(request.files);
+    final response = await request.send();
+    return await http.Response.fromStream(response);
   }
 
   static Future<http.Response> putRequest(

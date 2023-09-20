@@ -42,7 +42,7 @@ class _StudentsDepartmentPostsPageState
                     isSaved: posts[index].savedByMe,
                     count: posts[index].likes,
                     time: posts[index].createdAt.toString(),
-                    depName: posts[index].department_name ?? '',
+                    depName: posts[index].department_name!,
                     postImage: posts[index].attachment.toString(),
                     postText: posts[index].content),
               );

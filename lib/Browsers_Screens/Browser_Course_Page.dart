@@ -208,7 +208,7 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
                   time: posts[index].createdAt.toString(),
                   postImage: posts[index].attachment.toString(),
                   postText: posts[index].content,
-                  courseName: posts[index].course_name ?? '',
+                  courseName: posts[index].course_name!,
                 ),
               );
             }),

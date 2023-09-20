@@ -1,12 +1,6 @@
-import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
-import 'package:dtc_app/Students_Screens/Student_Start_Page.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
-import 'package:dtc_app/Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
-import 'package:dtc_app/Teachers_Screens/Teacher_Start_Page.dart';
-import 'package:dtc_app/api/firebase_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
 import '../Components/Buttons.dart';
 import '../Constants/Colors.dart';

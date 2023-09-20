@@ -100,3 +100,27 @@ class RoleModel {
     return RoleModel(role: jsonData['role']);
   }
 }
+
+class PasswordModel {
+  final String email;
+  final String phone;
+  final String address;
+  final String current_password;
+  final String new_password;
+
+  PasswordModel(
+      {required this.email,
+      required this.phone,
+      required this.address,
+      required this.current_password,
+      required this.new_password});
+
+  factory PasswordModel.fromJson(Map<String, dynamic> jsonData) {
+    return PasswordModel(
+        email: jsonData['email'],
+        phone: jsonData['phone'],
+        address: jsonData['address'],
+        current_password: jsonData['current_password'],
+        new_password: jsonData['new_password']);
+  }
+}

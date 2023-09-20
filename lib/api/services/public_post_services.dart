@@ -23,4 +23,16 @@ abstract class PublicPostServices with BaseApi {
     final response =
         await BaseApi.postRequest(endpoint: 'post/$id/save');
   }
+
+  static void disLikePost({required String id}) async {
+    // ignore: unused_local_variable
+    final response =
+        await BaseApi.postRequest(endpoint: 'post/$id/dislike');
+  }
+
+  static void unSavePost({required String id}) async {
+    // ignore: unused_local_variable
+    final response =
+        await BaseApi.postRequest(endpoint: 'post/$id/unsave');
+  }
 }

@@ -188,14 +188,17 @@ class _DTCPostsState extends State<DTCPosts> {
                         isFavorite = !isFavorite;
                         if (isFavorite) {
                           count++;
+                          PublicPostServices.likePost(
+                              id: widget.postId.toString());
                         } else {
                           count--;
+                          PublicPostServices.disLikePost(
+                              id: widget.postId.toString());
                         }
+
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
-                        PublicPostServices.likePost(
-                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
@@ -209,6 +212,13 @@ class _DTCPostsState extends State<DTCPosts> {
                   IconButton(
                       onPressed: () {
                         isSaved = !isSaved;
+                        if (isSaved) {
+                          PublicPostServices.savePost(
+                              id: widget.postId.toString());
+                        } else {
+                          PublicPostServices.unSavePost(
+                              id: widget.postId.toString());
+                        }
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
                         PublicPostServices.savePost(
@@ -390,14 +400,17 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
                         isFavorite = !isFavorite;
                         if (isFavorite) {
                           count++;
+                          PublicPostServices.likePost(
+                              id: widget.postId.toString());
                         } else {
                           count--;
+                          PublicPostServices.disLikePost(
+                              id: widget.postId.toString());
                         }
+
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
-                        PublicPostServices.likePost(
-                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
@@ -411,6 +424,13 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
                   IconButton(
                       onPressed: () {
                         isSaved = !isSaved;
+                        if (isSaved) {
+                          PublicPostServices.savePost(
+                              id: widget.postId.toString());
+                        } else {
+                          PublicPostServices.unSavePost(
+                              id: widget.postId.toString());
+                        }
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
                         PublicPostServices.savePost(
@@ -601,14 +621,17 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
                         isFavorite = !isFavorite;
                         if (isFavorite) {
                           count++;
+                          PublicPostServices.likePost(
+                              id: widget.postId.toString());
                         } else {
                           count--;
+                          PublicPostServices.disLikePost(
+                              id: widget.postId.toString());
                         }
+
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
-                        PublicPostServices.likePost(
-                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
@@ -622,6 +645,13 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
                   IconButton(
                       onPressed: () {
                         isSaved = !isSaved;
+                        if (isSaved) {
+                          PublicPostServices.savePost(
+                              id: widget.postId.toString());
+                        } else {
+                          PublicPostServices.unSavePost(
+                              id: widget.postId.toString());
+                        }
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
                         PublicPostServices.savePost(
@@ -816,14 +846,17 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
                         isFavorite = !isFavorite;
                         if (isFavorite) {
                           count++;
+                          PublicPostServices.likePost(
+                              id: widget.postId.toString());
                         } else {
                           count--;
+                          PublicPostServices.disLikePost(
+                              id: widget.postId.toString());
                         }
+
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
-                        PublicPostServices.likePost(
-                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
@@ -837,6 +870,13 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
                   IconButton(
                       onPressed: () {
                         isSaved = !isSaved;
+                        if (isSaved) {
+                          PublicPostServices.savePost(
+                              id: widget.postId.toString());
+                        } else {
+                          PublicPostServices.unSavePost(
+                              id: widget.postId.toString());
+                        }
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
                         PublicPostServices.savePost(
@@ -1021,16 +1061,20 @@ class _CoursesPostState extends State<CoursesPost> {
                   IconButton(
                       onPressed: () {
                         isFavorite = !isFavorite;
+
                         if (isFavorite) {
                           count++;
+                          PublicPostServices.likePost(
+                              id: widget.postId.toString());
                         } else {
                           count--;
+                          PublicPostServices.disLikePost(
+                              id: widget.postId.toString());
                         }
+
                         if (widget.onChange != null) {
                           widget.onChange!(isFavorite, isSaved, count);
                         }
-                        PublicPostServices.likePost(
-                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isFavorite == false
@@ -1044,10 +1088,16 @@ class _CoursesPostState extends State<CoursesPost> {
                   IconButton(
                       onPressed: () {
                         isSaved = !isSaved;
+                        if (isSaved) {
+                          PublicPostServices.savePost(
+                              id: widget.postId.toString());
+                        } else {
+                          PublicPostServices.unSavePost(
+                              id: widget.postId.toString());
+                        }
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
-                        PublicPostServices.savePost(
-                            id: widget.postId.toString());
+
                         setState(() {});
                       },
                       icon: isSaved == false

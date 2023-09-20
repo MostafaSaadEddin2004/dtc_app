@@ -1,3 +1,5 @@
+import 'package:dtc_app/Components/loading.dart';
+import 'package:dtc_app/api/services/saved_post_service.dart';
 import 'package:flutter/material.dart';
 import '../Components/Posts.dart';
 
@@ -33,21 +35,30 @@ class _TeacherAuthSavedPageState extends State<TeacherAuthSavedPage> {
       body: Container(
         margin: const EdgeInsets.only(top: 10),
         color: Colors.transparent,
-        child: ListView.builder(
-          itemCount: posts.length,
-          itemBuilder: (context, index) => DTCPosts(
-              onChange: (isFavorite, isSaved, count) {
-                dTCPostChange[index].isFavorite = isFavorite;
-                dTCPostChange[index].isSaved = isSaved;
-                dTCPostChange[index].count = count;
-              }, postId: 1,
-              isFavorite: dTCPostChange[index].isFavorite,
-              isSaved: dTCPostChange[index].isSaved,
-              count: dTCPostChange[index].count,
-              time: posts[index]["Time"].toString(),
-              postImage: posts[index]['Images'].toString(),
-              postText: posts[index]['posttext'].toString()),
-        ),
+        child: FutureBuilder(
+            future: SavedPostService.getSavedPost(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData || !mounted) return Loading();
+              final posts = snapshot.data!;
+              return ListView.builder(
+                  itemCount: posts.length,
+                  itemBuilder: (context, index) =>
+                      posts[index].savedByMe == true
+                          ? DTCPosts(
+                              onChange: (isFavorite, isSaved, count) {
+                                posts[index].likedByMe = isFavorite;
+                                posts[index].savedByMe = isSaved;
+                                posts[index].likes = count;
+                              },
+                              postId: posts[index].id,
+                              isFavorite: posts[index].likedByMe,
+                              isSaved: posts[index].savedByMe,
+                              count: posts[index].likes,
+                              time: posts[index].createdAt,
+                              postImage: posts[index].attachment,
+                              postText: posts[index].content)
+                          : const SizedBox());
+            }),
       ),
     );
   }

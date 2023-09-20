@@ -42,7 +42,7 @@ class _TeacherCoursePageState extends State<TeacherCoursePage> {
                   time: posts[index].createdAt.toString(),
                   postImage: posts[index].attachment.toString(),
                   postText: posts[index].content,
-                  courseName: posts[index].course_name!!,
+                  courseName: posts[index].course_name!,
                 ),
               );
             }),

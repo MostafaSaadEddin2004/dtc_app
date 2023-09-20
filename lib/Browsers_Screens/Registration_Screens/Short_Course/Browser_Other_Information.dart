@@ -170,6 +170,7 @@ class _BrowserOtherInformationState extends State<BrowserOtherInformation> {
                               if (formState.currentState!.validate()) {
                                 print('Tapped');
                                 isLoading = true;
+                                // ignore: unused_local_variable
                                 final shortCourseRegistration = await ShortCourseRegistration
                                     .postShortCourseRegistration(
                                         address:

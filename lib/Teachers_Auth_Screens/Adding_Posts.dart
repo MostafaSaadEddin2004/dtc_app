@@ -499,9 +499,7 @@ class _AddingPostPageState extends State<AddingPostPage> {
                                           );
                                         },
                                       );
-                                    }); const Spacer(
-                              flex: 1,
-                            ),
+                                    });
                               },
                               child: Icon(
                                 Icons.camera_alt,

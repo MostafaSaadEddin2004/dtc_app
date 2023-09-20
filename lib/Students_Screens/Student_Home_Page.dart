@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Components/Posts.dart';

@@ -1,8 +1,8 @@
+import 'package:dtc_app/Start_App_Screens/Splash_Screen_App.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Information_Page.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Name_SignUp_Screen.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignIn_Screen.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
-import 'package:dtc_app/api/firebase_helper.dart';
 import 'package:dtc_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +19,9 @@ import 'Browsers_Screens/Registration_Screens/Short_Course/Browser_Personal_Info
 import 'Browsers_Screens/Registration_Screens/browser_profile_image.dart';
 import 'Constants/Colors.dart';
 import 'Start_App_Screens/SignUp_Type.dart';
-import 'Start_App_Screens/Start_App_Screen.dart';
 import 'Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
 import 'Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
 import 'Students_Screens/Registering_Screens/Long_Courses/Wishes.dart';
-import 'Students_Screens/Registering_Screens/Short_Courses/Student_Other_Information.dart';
 import 'Students_Screens/Registering_Screens/Short_Courses/Student_Personal_Information.dart';
 import 'Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
 import 'Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
@@ -74,7 +72,7 @@ class _MainState extends State<Main> {
         GlobalWidgetsLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
       ],
-      home: const StartAppScreen(),
+      home: const SplashScreen(),
       routes: {
         SignUpType.id: (context) => const SignUpType(),
         BrowserNameSignUpPage.id: (context) => const BrowserNameSignUpPage(),
@@ -92,12 +90,12 @@ class _MainState extends State<Main> {
         StudentSignUpScreen.id: (context) => const StudentSignUpScreen(),
         StudentSignInScreen.id: (context) => const StudentSignInScreen(),
         StudentProfileImage.id: (context) => const StudentProfileImage(),
-        WishesPage.id: (context) => const WishesPage(),
         StudentEditingNotes.id: (context) => const StudentEditingNotes(),
         StudentPersonalInformation.id: (context) =>
             const StudentPersonalInformation(),
         AcceptanceQualifications.id: (context) =>
             const AcceptanceQualifications(),
+        WishesPage.id: (context) => const WishesPage(),
         StudentStartPage.id: (context) => const StudentStartPage(),
         TeacherAuthSignUpScreen.id: (context) =>
             const TeacherAuthSignUpScreen(),
