@@ -9,7 +9,7 @@ import 'Teacher_Auth_Profile_Page.dart';
 
 class TeacherAuthNotificationsPage extends StatefulWidget {
   const TeacherAuthNotificationsPage({super.key});
-  static String id = 'TeacherAuthNotificationsPage';
+  static String id = '/TeacherAuthNotificationsPage';
 
   @override
   State<TeacherAuthNotificationsPage> createState() =>

@@ -11,7 +11,7 @@ import 'Browser_Other_Information.dart';
 
 class BrowserPersonalInformation extends StatefulWidget {
   const BrowserPersonalInformation({super.key});
-  static String id = 'BrowserPersonalInformation';
+  static String id = '/BrowserPersonalInformation';
 
   @override
   State<BrowserPersonalInformation> createState() =>
@@ -67,7 +67,8 @@ class _BrowserPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   })
                             ],
                           ),
@@ -88,7 +89,8 @@ class _BrowserPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   })
                             ],
                           ),
@@ -120,7 +122,8 @@ class _BrowserPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'االحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   }),
                             ],
                           )
@@ -141,7 +144,8 @@ class _BrowserPersonalInformationState
                                   validator: (data) {
                                     if (data!.isEmpty) {
                                       return 'االحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   }),
                               const SizedBox(
                                 height: 10,
@@ -159,7 +163,8 @@ class _BrowserPersonalInformationState
                                     return 'الحقل مطلوب';
                                   } else if (text.length < 4) {
                                     return 'الحقل يجب أن يكون 4 أحرف أو أكثر';
-                                  }return null;
+                                  }
+                                  return null;
                                 },
                               ),
                             ],
@@ -185,7 +190,8 @@ class _BrowserPersonalInformationState
                               return 'الحقل مطلوب';
                             } else if (text.length < 3) {
                               return 'الحقل يجب أن يكون 3 أحرف أو أكثر';
-                            }return null;
+                            }
+                            return null;
                           },
                         )
                       ],
@@ -209,7 +215,8 @@ class _BrowserPersonalInformationState
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
-                                }return null;
+                                }
+                                return null;
                               },
                               keyboardType: TextInputType.none,
                               enabled: true,
@@ -234,10 +241,10 @@ class _BrowserPersonalInformationState
                                         context: context,
                                         initialDate: DateTime.now(),
                                         firstDate: DateTime(2000),
-                                        lastDate: DateTime(2024),
+                                        lastDate: DateTime(2005),
                                         keyboardType: TextInputType.datetime);
                                     browserCourseBirthDateController.text =
-                                        '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
+                                        '${dateTime?.day}-${dateTime?.month}-${dateTime?.year}';
                                   },
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(

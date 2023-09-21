@@ -9,9 +9,10 @@ import '../../../Constants/TextStyle.dart';
 import 'Guardian_Information.dart';
 
 class PersonalInformation extends StatefulWidget {
-  const PersonalInformation({super.key});
+  const PersonalInformation({super.key, required this.specialtyIDs});
 
   static String id = "PersonalInformation";
+  final List<int> specialtyIDs;
 
   @override
   State<PersonalInformation> createState() => _PersonalInformationState();
@@ -182,11 +183,12 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           // ),
                           child: TextFormField(
                               onChanged: (data) {},
-                              controller: studentBirthPlaceController,
+                              controller: studentBirthDateController,
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
-                                }return null;
+                                }
+                                return null;
                               },
                               keyboardType: TextInputType.none,
                               enabled: true,
@@ -213,8 +215,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                         firstDate: DateTime(2000),
                                         lastDate: DateTime(2024),
                                         keyboardType: TextInputType.datetime);
-                                    studentBirthPlaceController.text =
-                                        '${dateTime?.day} / ${dateTime?.month} / ${dateTime?.year}';
+                                    studentBirthDateController.text =
+                                        '${dateTime?.day}-${dateTime?.month}-${dateTime?.year}';
                                   },
                                 ),
                                 contentPadding: const EdgeInsets.symmetric(
@@ -253,7 +255,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                     return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }return null;
+                                  }
+                                  return null;
                                 },
                               )
                             ],
@@ -278,7 +281,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                     return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }return null;
+                                  }
+                                  return null;
                                 },
                               )
                             ],
@@ -298,8 +302,9 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           onTap: () {
                             //if (formState.currentState!.validate()) {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const GuardianInformation()));
+                                builder: (context) => GuardianInformation(
+                                      specialtyIDs: widget.specialtyIDs,
+                                    )));
                             //}
                           }),
                     ],

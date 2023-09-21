@@ -7,7 +7,7 @@ import 'Browser_Notifications_Page.dart';
 class BrowserStartPage extends StatefulWidget {
   const BrowserStartPage({super.key});
 
-  static String id = 'BrowserStartPage';
+  static String id = '/BrowserStartPage';
 
   @override
   State<BrowserStartPage> createState() => _BrowserStartPageState();

@@ -9,8 +9,9 @@ import '../../../Constants/TextStyle.dart';
 import 'Required_Documents.dart';
 
 class StudentCertification extends StatefulWidget {
-  const StudentCertification({super.key});
+  const StudentCertification({super.key, required this.specialtyIDs});
   static String id = "StudentCertification";
+  final List<int> specialtyIDs;
 
   @override
   State<StudentCertification> createState() => _StudentCertificationState();
@@ -54,7 +55,8 @@ class _StudentCertificationState extends State<StudentCertification> {
                       } else if (int.parse(text) < 0 ||
                           int.parse(text) > 2700) {
                         return 'العلامة يجب أن تكون بين 0 - 2700';
-                      }return null;
+                      }
+                      return null;
                     },
                   )),
               const SizedBox(
@@ -79,7 +81,8 @@ class _StudentCertificationState extends State<StudentCertification> {
                   validator: (data) {
                     if (data!.isEmpty) {
                       return 'الحقل مطلوب';
-                    }return null;
+                    }
+                    return null;
                   }),
               const Spacer(
                 flex: 1,
@@ -92,8 +95,9 @@ class _StudentCertificationState extends State<StudentCertification> {
                       onTap: () {
                         if (formState.currentState!.validate()) {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: ((context) =>
-                                  const RequiredDocuments())));
+                              builder: ((context) => RequiredDocuments(
+                                    specialtyIDs: widget.specialtyIDs,
+                                  ))));
                         }
                       }),
                 ],

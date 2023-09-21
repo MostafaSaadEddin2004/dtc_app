@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class StudentNotificationTonePage extends StatefulWidget {
   const StudentNotificationTonePage({super.key});
-  static String id = 'StudentNotificationTonePage';
+  static String id = '/StudentNotificationTonePage';
 
   @override
   State<StudentNotificationTonePage> createState() =>

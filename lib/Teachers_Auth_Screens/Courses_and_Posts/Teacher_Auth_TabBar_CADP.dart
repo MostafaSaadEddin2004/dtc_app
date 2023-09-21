@@ -9,7 +9,7 @@ import 'Teacher_Auth_Department_Posts_Page.dart';
 
 class TeacherAuthTabBar extends StatefulWidget {
   const TeacherAuthTabBar({super.key});
-  static String id = 'TeacherAuthTabBar';
+  static String id = '/TeacherAuthTabBar';
 
   @override
   State<TeacherAuthTabBar> createState() => _TeacherAuthTabBarState();

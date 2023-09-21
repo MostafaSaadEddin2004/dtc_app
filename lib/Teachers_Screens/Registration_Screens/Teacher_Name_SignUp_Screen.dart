@@ -7,7 +7,7 @@ import '../../Constants/Controller.dart';
 
 class TeacherNameSignUpPage extends StatefulWidget {
   const TeacherNameSignUpPage({super.key});
-  static String id = 'TeacherNameSignUpPage';
+  static String id = '/TeacherNameSignUpPage';
 
   @override
   State<TeacherNameSignUpPage> createState() => _TeacherNameSignUpPageState();
@@ -48,7 +48,8 @@ class _TeacherNameSignUpPageState extends State<TeacherNameSignUpPage> {
                     } else if (!RegExp(r'^[\u0600-\u06FF\s]+$')
                         .hasMatch(text)) {
                       return 'تأكد من إدخال الإسم باللغة العربية';
-                    }return null;
+                    }
+                    return null;
                   },
                   labelText: 'الإسم باللغة العربية',
                   obscure: false,
@@ -68,7 +69,8 @@ class _TeacherNameSignUpPageState extends State<TeacherNameSignUpPage> {
                     } else if (!RegExp(r'^[\u0600-\u06FF\s]+$')
                         .hasMatch(text)) {
                       return 'تأكد من إدخال النسبة باللغة العربية';
-                    }return null;
+                    }
+                    return null;
                   },
                   labelText: 'النسبة باللغة العربية',
                   obscure: false,
@@ -87,7 +89,8 @@ class _TeacherNameSignUpPageState extends State<TeacherNameSignUpPage> {
                       return 'الإسم يجب أن يكون على الأقل 3 أحرف';
                     } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(text)) {
                       return 'تأكد من إدخال الإسم باللغة الإنكليزية';
-                    }return null;
+                    }
+                    return null;
                   },
                   labelText: 'الإسم باللغة الإنكليزية',
                   obscure: false,
@@ -106,7 +109,8 @@ class _TeacherNameSignUpPageState extends State<TeacherNameSignUpPage> {
                       return 'النسبة يجب أن تكون على الأقل 3 أحرف';
                     } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(text)) {
                       return 'تأكد من إدخال النسبة باللغة الإنكليزية';
-                    }return null;
+                    }
+                    return null;
                   },
                   labelText: 'النسبة باللغة الإنكليزية',
                   obscure: false,

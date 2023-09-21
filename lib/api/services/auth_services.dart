@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:dtc_app/api/firebase_helper.dart';
 import 'package:dtc_app/api/helper.dart';
 import 'package:dtc_app/api/models/auth_models.dart';
@@ -14,12 +15,14 @@ abstract class AuthServices with BaseApi {
     required String email,
     required String password,
     required String phoneNumber,
-    required String image,
+    required File image,
     required String role,
   }) async {
     final ftoken = await FirebaseHelper.createToken();
     final response =
-        await BaseApi.postRequest(endpoint: 'auth/register', body: {
+        await BaseApi.postWithFiles(endpoint: 'auth/register', files: {
+      'image,': image,
+    }, body: {
       'first_name_ar': arFirstName,
       'last_name_ar': arLastName,
       'first_name_en': enFirstName,
@@ -28,7 +31,6 @@ abstract class AuthServices with BaseApi {
       'password': password,
       'phone': phoneNumber,
       'role': role,
-      'image,': image,
       'fcm_token': ftoken
     });
     if (response.statusCode >= 200 || response.statusCode < 300) {
@@ -41,7 +43,7 @@ abstract class AuthServices with BaseApi {
     }
   }
 
-  static void postLogin({
+  static Future<String?> postLogin({
     required String email,
     required String password,
     required String role,
@@ -53,14 +55,15 @@ abstract class AuthServices with BaseApi {
       'role': role,
       'fcm_token': ftoken,
     });
-    if (response.statusCode >= 200 || response.statusCode < 300) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       responseMessage = jsonDecode(response.body)['errors'];
       final String token = jsonDecode(response.body)['token'] as String;
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', token);
       await prefs.setString('role', role);
+      return null;
     } else {
-      throw Exception('${response.statusCode}  ${response.body}');
+      return jsonDecode(response.body)['message'];
     }
   }
 
@@ -78,12 +81,12 @@ abstract class AuthServices with BaseApi {
   }
 
   static void postChangePassword(
-      {
-       String? email,
-       String? phone,
-       String? address,
-       String? current_password,
-       String? new_password}) {
+      {String? email,
+      String? phone,
+      String? address,
+      String? current_password,
+      String? new_password}) {
+    // ignore: unused_local_variable
     final response = BaseApi.postRequest(endpoint: 'auth/profile', body: {
       'email': email,
       'phone': phone,

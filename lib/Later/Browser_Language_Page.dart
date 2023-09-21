@@ -5,7 +5,7 @@ import '../Constants/TextStyle.dart';
 
 class BrowserLanguagePage extends StatefulWidget {
   const BrowserLanguagePage({super.key});
-  static String id = 'BrowserLanguagePage';
+  static String id = '/BrowserLanguagePage';
 
   @override
   State<BrowserLanguagePage> createState() => _BrowserLanguagePageState();

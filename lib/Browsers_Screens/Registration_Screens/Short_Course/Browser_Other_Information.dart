@@ -11,7 +11,7 @@ import '../../../api/services/short_course_registration_service.dart';
 
 class BrowserOtherInformation extends StatefulWidget {
   const BrowserOtherInformation({super.key});
-  static String id = 'BrowserOtherInformation';
+  static String id = '/BrowserOtherInformation';
 
   @override
   State<BrowserOtherInformation> createState() =>

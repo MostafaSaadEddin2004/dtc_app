@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dtc_app/api/helper.dart';
 
-abstract class AcademicRegistraionService with BaseApi {
+abstract class AcademicRegistrationService with BaseApi {
   static void postAcademicRegistration({
     required String father_name,
     required String mother_name,

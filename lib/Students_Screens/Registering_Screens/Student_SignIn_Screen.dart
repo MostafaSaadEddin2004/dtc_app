@@ -1,3 +1,4 @@
+import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:dtc_app/Students_Screens/Student_Start_Page.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ import 'Student_SignUp_Screen.dart';
 class StudentSignInScreen extends StatefulWidget {
   const StudentSignInScreen({super.key});
 
-  static String id = 'StudentSignInScreen';
+  static String id = '/StudentSignInScreen';
 
   @override
   State<StudentSignInScreen> createState() => _StudentSignInScreenState();
@@ -59,7 +60,8 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
                       if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                           .hasMatch(text)) {
                         return 'يرجى التأكد من إدخال @gmail.com';
-                      }return null;
+                      }
+                      return null;
                     },
                     labelText: 'الإيميل',
                     obscure: false,
@@ -79,7 +81,8 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن يكون على الأقل 8 أحرف';
-                      }return null;
+                      }
+                      return null;
                     },
                     labelText: 'كلمة المرور',
                     obscure: !secure,
@@ -122,18 +125,31 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
                   height: 10,
                 ),
                 customButton(
-                    onTap: () {
+                    onTap: () async {
                       if (formState.currentState!.validate()) {
                         isLoading = true;
-                        AuthServices.postLogin(
+                        final error = await AuthServices.postLogin(
                             email: studentSignInEmailController.text.toString(),
                             password:
                                 studentSignInPasswordController.text.toString(),
                             role: 'student');
                         isLoading = false;
-                        print('succesful');
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            StudentStartPage.id, (route) => false);
+                        if (error == null) {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              StudentStartPage.id, (route) => false);
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return warningDialog(
+                                  title: 'تنبيه',
+                                  message: error.toString(),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  });
+                            },
+                          );
+                        }
                       }
                     },
                     backgroundColor: PrimaryColor,

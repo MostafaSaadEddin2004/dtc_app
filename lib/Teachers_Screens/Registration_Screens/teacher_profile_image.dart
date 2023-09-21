@@ -10,7 +10,7 @@ import '../../Constants/Controller.dart';
 
 class TeacherProfileImage extends StatefulWidget {
   const TeacherProfileImage({super.key});
-  static String id = 'StudentProfileImage';
+  static String id = '/StudentProfileImage';
 
   @override
   State<TeacherProfileImage> createState() => _TeacherProfileImageState();
@@ -298,7 +298,7 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                                 teacherSignUpPasswordController.text.toString(),
                             phoneNumber:
                                 teacherSignUpPhoneController.text.toString(),
-                            image: teacherProfileImagePath.toString(),
+                            image: File(teacherProfileImageFile!.path),
                             role: 'teacher_browser');
                         isLoading = false;
                         print('succesful');

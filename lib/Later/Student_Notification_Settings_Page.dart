@@ -5,7 +5,7 @@ import 'Student_Notification_Tone_Page.dart';
 
 class StudentNotificationSettingsPage extends StatefulWidget {
   const StudentNotificationSettingsPage({super.key});
-  static String id = 'BrowserNotificationSettingsPage';
+  static String id = '/BrowserNotificationSettingsPage';
 
   @override
   State<StudentNotificationSettingsPage> createState() =>

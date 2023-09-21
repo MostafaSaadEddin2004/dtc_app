@@ -4,19 +4,19 @@ import '../../../Components/Buttons.dart';
 import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Label.dart';
 
-class AcceptanceQualifications extends StatefulWidget {
-  const AcceptanceQualifications({super.key});
+class AcceptanceQualification extends StatefulWidget {
+  const AcceptanceQualification({super.key});
 
-  static String id = 'AcceptanceQualifications';
+  static String id = '/AcceptanceQualification';
 
   @override
-  State<AcceptanceQualifications> createState() =>
-      _AcceptanceQualificationsState();
+  State<AcceptanceQualification> createState() =>
+      _AcceptanceQualificationState();
 }
 
 GlobalKey<FormState> formState = GlobalKey<FormState>();
 
-class _AcceptanceQualificationsState extends State<AcceptanceQualifications> {
+class _AcceptanceQualificationState extends State<AcceptanceQualification> {
   @override
   Widget build(BuildContext context) {
     // var certification = ModalRoute.of(context)!.settings.arguments;

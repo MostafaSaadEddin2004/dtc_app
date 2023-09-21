@@ -10,7 +10,7 @@ import '../Constants/TextStyle.dart';
 
 class StudentEditingNotes extends StatefulWidget {
   const StudentEditingNotes({super.key});
-  static String id = 'StudentEditingNotes';
+  static String id = '/StudentEditingNotes';
 
   @override
   State<StudentEditingNotes> createState() => _StudentEditingNotesState();
@@ -46,7 +46,9 @@ class _StudentEditingNotesState extends State<StudentEditingNotes> {
                                 controller: studentEditingNoteClassification,
                                 keyboardType: TextInputType.none,
                                 radius: 20,
-                                validator: (text) {return null;},
+                                validator: (text) {
+                                  return null;
+                                },
                               )
                             ],
                           ),
@@ -68,7 +70,8 @@ class _StudentEditingNotesState extends State<StudentEditingNotes> {
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
-                                }return null;
+                                }
+                                return null;
                               },
                             )
                           ],
@@ -91,7 +94,8 @@ class _StudentEditingNotesState extends State<StudentEditingNotes> {
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'الحقل مطلوب';
-                                }return null;
+                                }
+                                return null;
                               },
                             )
                           ],

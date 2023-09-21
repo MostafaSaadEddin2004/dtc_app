@@ -9,7 +9,7 @@ import 'Students_Department_Posts_Page.dart';
 
 class StudentTabBar extends StatefulWidget {
   const StudentTabBar({super.key});
-  static String id = 'StudentTabBar';
+  static String id = '/StudentTabBar';
 
   @override
   State<StudentTabBar> createState() => _StudentTabBarState();
@@ -48,11 +48,11 @@ class _StudentTabBarState extends State<StudentTabBar> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Text(
-                  'IT / IT',
+                  'تجاري / إدارة مشاريع',
                   style: TextStyle(
                       color: WhiteColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 20),
+                      fontSize: 16),
                 ),
               ),
             ],

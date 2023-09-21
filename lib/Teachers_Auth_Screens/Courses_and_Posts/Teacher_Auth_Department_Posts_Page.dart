@@ -10,7 +10,7 @@ import '../Editing_Posts.dart';
 
 class TeacherAuthDepartmentPostsPage extends StatefulWidget {
   const TeacherAuthDepartmentPostsPage({super.key});
-  static String id = 'TeacherAuthDepartmentPostsPage';
+  static String id = '/TeacherAuthDepartmentPostsPage';
 
   @override
   State<TeacherAuthDepartmentPostsPage> createState() =>

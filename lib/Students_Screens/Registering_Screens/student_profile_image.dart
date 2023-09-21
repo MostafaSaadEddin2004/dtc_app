@@ -10,7 +10,7 @@ import '../../Constants/Controller.dart';
 
 class StudentProfileImage extends StatefulWidget {
   const StudentProfileImage({super.key});
-  static String id = 'StudentProfileImage';
+  static String id = '/StudentProfileImage';
 
   @override
   State<StudentProfileImage> createState() => _StudentProfileImageState();
@@ -279,6 +279,7 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                       ),
                       Text(
                         studentSinUpEnglishFirstNameController.text +
+                            ' ' +
                             studentSinUpEnglishLastNameController.text,
                         style: TextStyle(fontSize: 20),
                       ),
@@ -312,13 +313,12 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                   .toString(),
                               phoneNumber:
                                   studentSinUpPhoneController.text.toString(),
-                              image: studentProfileImagePath.toString(),
+                              image: File(studentProfileImageFile!.path),
                               role: 'student');
                           isLoading = false;
                           print('succesful');
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                            AcceptanceQualifications.id,
-                            (Route<dynamic> route) => false,
+                          Navigator.of(context).popAndPushNamed(
+                            AcceptanceQualification.id,
                           );
                         }),
                   ],

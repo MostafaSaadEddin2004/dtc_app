@@ -5,7 +5,7 @@ import '../Components/Posts.dart';
 
 class BrowserSavedPage extends StatefulWidget {
   const BrowserSavedPage({super.key});
-  static String id = 'BrowserSavedPage';
+  static String id = '/BrowserSavedPage';
 
   @override
   State<BrowserSavedPage> createState() => _BrowserSavedPageState();

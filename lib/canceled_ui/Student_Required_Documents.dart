@@ -8,7 +8,7 @@
 
 // class StudentRequiredDocuments extends StatefulWidget {
 //   const StudentRequiredDocuments({super.key});
-//   static String id = 'StudentRequiredDocuments';
+//   static String id = '/StudentRequiredDocuments';
 
 //   @override
 //   State<StudentRequiredDocuments> createState() =>

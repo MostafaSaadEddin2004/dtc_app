@@ -11,7 +11,7 @@ import 'Student_Profile_Page.dart';
 class StudentHomePage extends StatefulWidget {
   const StudentHomePage({super.key});
 
-  static String id = 'StudentHomePage';
+  static String id = '/StudentHomePage';
 
   @override
   State<StudentHomePage> createState() => _StudentHomePageState();
@@ -35,9 +35,9 @@ class _StudentHomePageState extends State<StudentHomePage> {
               borderRadius: BorderRadius.circular(20),
             ),
             child: const Text(
-              'IT / IT',
+              'تجاري / إدارة مشاريع',
               style: TextStyle(
-                  color: WhiteColor, fontWeight: FontWeight.bold, fontSize: 20),
+                  color: WhiteColor, fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
         ],

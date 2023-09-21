@@ -10,7 +10,7 @@ import 'Teacher_Editing_Notes.dart';
 
 class TeacherProfileNotesPage extends StatefulWidget {
   const TeacherProfileNotesPage({super.key});
-  static String id = 'TeacherProfileNotesPage';
+  static String id = '/TeacherProfileNotesPage';
 
   @override
   State<TeacherProfileNotesPage> createState() =>
@@ -47,8 +47,7 @@ class _TeacherProfileNotesPageState extends State<TeacherProfileNotesPage> {
                   itemBuilder: (context, index) => Note(
                     note: notes[index],
                     onEditPressed: () {
-                      Navigator.of(context)
-                          .pushNamed(TeacherEditingNotes.id);
+                      Navigator.of(context).pushNamed(TeacherEditingNotes.id);
                     },
                     onDeletePressed: () {},
                     noteTitle: notes[index].title,

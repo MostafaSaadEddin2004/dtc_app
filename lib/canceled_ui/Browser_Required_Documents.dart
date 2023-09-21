@@ -10,7 +10,7 @@
 // class BrowserRequiredDocuments extends StatefulWidget {
 //   const BrowserRequiredDocuments({super.key});
 
-//   static String id = 'BrowserRequiredDocuments';
+//   static String id = '/BrowserRequiredDocuments';
 
 //   @override
 //   State<BrowserRequiredDocuments> createState() =>

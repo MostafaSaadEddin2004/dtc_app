@@ -1,3 +1,4 @@
+import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
 import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/Components/showDialogList.dart';
 import 'package:dtc_app/api/services/department_services.dart';
@@ -11,11 +12,10 @@ import '../../Components/TextField.dart';
 import '../../Constants/Colors.dart';
 import '../../Constants/Controller.dart';
 import '../../Constants/TextStyle.dart';
-import '../Teacher_Auth_Start_Page.dart';
 
 class TeacherAuthInformationPage extends StatefulWidget {
   const TeacherAuthInformationPage({super.key});
-  static String id = 'TeacherAuthInformationPage';
+  static String id = '/TeacherAuthInformationPage';
 
   @override
   State<TeacherAuthInformationPage> createState() =>
@@ -176,8 +176,8 @@ class _TeacherAuthInformationPageState
                                             dateTime = await showDatePicker(
                                               context: context,
                                               initialDate: DateTime.now(),
-                                              firstDate: DateTime(2000),
-                                              lastDate: DateTime(2024),
+                                              firstDate: DateTime(1960),
+                                              lastDate: DateTime(2025),
                                             );
                                             teacherAuthBirthDateController
                                                     .text =
@@ -435,7 +435,7 @@ class _TeacherAuthInformationPageState
                                         birth_date:
                                             teacherAuthBirthDateController.text
                                                 .toString(),
-                                        department_id:
+                                        section_id:
                                             teacherAuthDepartmentIDVariable);
 
                                     isLoading = false;
@@ -443,7 +443,7 @@ class _TeacherAuthInformationPageState
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const TeacherAuthStartPage()));
+                                                const BrowserStartPage()));
                                   }
                                 },
                               ),

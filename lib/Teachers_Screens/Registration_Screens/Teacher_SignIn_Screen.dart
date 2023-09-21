@@ -1,4 +1,5 @@
 import 'package:dtc_app/Components/Buttons.dart';
+import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -12,7 +13,7 @@ import 'Teacher_SignUp_Screen.dart';
 class TeacherSignInScreen extends StatefulWidget {
   const TeacherSignInScreen({super.key});
 
-  static String id = 'TeacherSignInScreen';
+  static String id = '/TeacherSignInScreen';
 
   @override
   State<TeacherSignInScreen> createState() => _TeacherSignInScreenState();
@@ -56,11 +57,11 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
                       validator: (text) {
                         if (text!.isEmpty) {
                           return 'الإيميل مطلوب';
-                        }
-                        else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                        } else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                             .hasMatch(text)) {
                           return 'يرجى التأكد من إدخال @gmail.com';
-                        }return null;
+                        }
+                        return null;
                       },
                       labelText: 'إسم المستخدم',
                       obscure: false,
@@ -82,7 +83,8 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
                           return 'كلمة المرور مطلوبة';
                         } else if (text.length < 8) {
                           return 'كلمة المرور يجب أن يكون على الأقل 8 أحرف';
-                        }return null;
+                        }
+                        return null;
                       },
                       labelText: 'كلمة المرور',
                       obscure: !secure,
@@ -125,20 +127,34 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
                   height: 10,
                 ),
                 customButton(
-                    onTap: () {
+                    onTap: () async {
                       if (formState.currentState!.validate()) {
                         isLoading = true;
-                        AuthServices.postLogin(
+                        final error = await AuthServices.postLogin(
                             email: studentSignInEmailController.text.toString(),
                             password:
                                 studentSignInPasswordController.text.toString(),
                             role: 'teacher_browser');
                         isLoading = false;
-                        print('succesful');
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          TeacherNameSignUpPage.id,
-                          (Route<dynamic> route) => false,
-                        );
+                        if (error == null) {
+                          print('Successful');
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            TeacherNameSignUpPage.id,
+                            (Route<dynamic> route) => false,
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return warningDialog(
+                                  title: 'تنبيه',
+                                  message: error.toString(),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  });
+                            },
+                          );
+                        }
                       }
                     },
                     onDoubleTap: () {

@@ -5,7 +5,7 @@ import 'Browser_Notification_Settings_Page.dart';
 
 class BrowserSettingsPage extends StatefulWidget {
   const BrowserSettingsPage({super.key});
-  static String id = 'BrowserSettingsPage';
+  static String id = '/BrowserSettingsPage';
 
   @override
   State<BrowserSettingsPage> createState() => _BrowserSettingsPageState();

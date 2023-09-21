@@ -13,7 +13,7 @@ import 'Registration_Screens/Short_Course/Browser_Personal_Information.dart';
 class BrowserCoursePage extends StatefulWidget {
   const BrowserCoursePage({super.key});
 
-  static String id = 'BrowserCoursePage';
+  static String id = '/BrowserCoursePage';
 
   @override
   State<BrowserCoursePage> createState() => _BrowserCoursePageState();

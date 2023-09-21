@@ -5,7 +5,7 @@ import 'Browser_Privacy_Page.dart';
 
 class BrowserProfilePage extends StatefulWidget {
   const BrowserProfilePage({super.key});
-  static String id = 'BrowserProfilePage';
+  static String id = '/BrowserProfilePage';
 
   @override
   State<BrowserProfilePage> createState() => _BrowserProfilePageState();

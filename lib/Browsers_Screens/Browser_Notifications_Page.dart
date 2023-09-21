@@ -9,7 +9,7 @@ import 'Browser_Profile_Page.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
-  static String id = 'NotificationsPage';
+  static String id = '/NotificationsPage';
 
   @override
   State<NotificationsPage> createState() => _NotificationsPageState();

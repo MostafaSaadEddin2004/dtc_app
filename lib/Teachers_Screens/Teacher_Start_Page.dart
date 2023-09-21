@@ -8,7 +8,7 @@ import 'Teacher_Notifications_Page.dart';
 class TeacherStartPage extends StatefulWidget {
   const TeacherStartPage({super.key});
 
-  static String id = 'TeacherStartPage';
+  static String id = '/TeacherStartPage';
 
   @override
   State<TeacherStartPage> createState() => _TeacherStartPageState();

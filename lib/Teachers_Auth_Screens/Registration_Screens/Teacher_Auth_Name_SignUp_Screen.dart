@@ -7,7 +7,7 @@ import '../../Constants/Controller.dart';
 
 class TeacherAuthNameSignUpPage extends StatefulWidget {
   const TeacherAuthNameSignUpPage({super.key});
-  static String id = 'TeacherAuthNameSignUpPage';
+  static String id = '/TeacherAuthNameSignUpPage';
 
   @override
   State<TeacherAuthNameSignUpPage> createState() =>

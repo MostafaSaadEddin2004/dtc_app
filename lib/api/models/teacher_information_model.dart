@@ -5,7 +5,7 @@ class TeacherInformationModel {
   final String current_location;
   final String permanent_location;
   final String nationality;
-  final String department_id;
+  final String section_id;
 
   TeacherInformationModel(
       {required this.certificate,
@@ -14,7 +14,7 @@ class TeacherInformationModel {
       required this.current_location,
       required this.permanent_location,
       required this.nationality,
-      required this.department_id});
+      required this.section_id});
 
   factory TeacherInformationModel.fromJson(Map<String, dynamic> jsonData) {
     return TeacherInformationModel(
@@ -22,7 +22,7 @@ class TeacherInformationModel {
         specialty: jsonData['specialty'],
         current_location: jsonData['current_location'],
         permanent_location: jsonData['permanent_location'],
-        department_id: jsonData['department_id'],
+        section_id: jsonData['section_id'],
         birth_date: jsonData['birth_date'],
         nationality: jsonData['nationality']);
   }

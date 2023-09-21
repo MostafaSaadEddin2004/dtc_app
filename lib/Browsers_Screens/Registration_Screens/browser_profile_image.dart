@@ -10,7 +10,7 @@ import '../../Constants/Controller.dart';
 
 class BrowserProfileImage extends StatefulWidget {
   const BrowserProfileImage({super.key});
-  static String id = 'BrowserProfileImage';
+  static String id = '/BrowserProfileImage';
 
   @override
   State<BrowserProfileImage> createState() => _BrowserProfileImageState();
@@ -294,7 +294,7 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                                 browserSignUpPasswordController.text.toString(),
                             phoneNumber:
                                 browserSignUpPhoneController.text.toString(),
-                            image: browserProfileImagePath.toString(),
+                            image: File(browserProfileImageFile!.path),
                             role: 'student_browser');
                         isLoading = false;
                         print('succesful');

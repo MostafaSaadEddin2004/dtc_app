@@ -12,7 +12,7 @@ import '../../../Constants/Controller.dart';
 class StudentOtherInformation extends StatefulWidget {
   const StudentOtherInformation(
       {super.key, required this.nationality, required this.courseId});
-  static String id = 'StudentOtherInformation';
+  static String id = '/StudentOtherInformation';
 
   final String nationality;
 
@@ -215,7 +215,7 @@ class _StudentOtherInformationState extends State<StudentOtherInformation> {
                                 barrierDismissible: false,
                                 context: context,
                                 builder: (context) => CustomDialog(
-                                    title: 'الإنتساب للدورة',
+                                    title: 'تسجيل طلب الإنتساب للدورة',
                                     onPressed: () {
                                       studentCourseCurrentLocationController
                                           .clear();

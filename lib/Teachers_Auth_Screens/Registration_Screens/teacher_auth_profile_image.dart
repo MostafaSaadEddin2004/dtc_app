@@ -10,10 +10,11 @@ import '../../Constants/Controller.dart';
 
 class TeacherAuthProfileImage extends StatefulWidget {
   const TeacherAuthProfileImage({super.key});
-  static String id = 'TeacherAuthProfileImage';
+  static String id = '/TeacherAuthProfileImage';
 
   @override
-  State<TeacherAuthProfileImage> createState() => _TeacherAuthProfileImageState();
+  State<TeacherAuthProfileImage> createState() =>
+      _TeacherAuthProfileImageState();
 }
 
 class _TeacherAuthProfileImageState extends State<TeacherAuthProfileImage> {
@@ -283,22 +284,24 @@ class _TeacherAuthProfileImageState extends State<TeacherAuthProfileImage> {
                       onTap: () {
                         isLoading = true;
                         AuthServices.postRegistration(
-                            arFirstName:
-                                teacherAuthSinUpFirstNameController.text.toString(),
-                            arLastName:
-                                teacherAuthSinUpLastNameController.text.toString(),
-                            enFirstName: teacherAuthSinUpEnglishFirstNameController
+                            arFirstName: teacherAuthSinUpFirstNameController
                                 .text
                                 .toString(),
-                            enLastName: teacherAuthSinUpEnglishLastNameController
-                                .text
+                            arLastName: teacherAuthSinUpLastNameController.text
                                 .toString(),
-                            email: teacherAuthSignUpEmailController.text.toString(),
-                            password:
-                                teacherAuthSignUpPasswordController.text.toString(),
-                            phoneNumber:
-                                teacherAuthSignUpPhoneController.text.toString(),
-                                image: teacherAuthProfileImagePath.toString(),
+                            enFirstName:
+                                teacherAuthSinUpEnglishFirstNameController.text
+                                    .toString(),
+                            enLastName:
+                                teacherAuthSinUpEnglishLastNameController.text
+                                    .toString(),
+                            email: teacherAuthSignUpEmailController.text
+                                .toString(),
+                            password: teacherAuthSignUpPasswordController.text
+                                .toString(),
+                            phoneNumber: teacherAuthSignUpPhoneController.text
+                                .toString(),
+                            image: File(teacherAuthProfileImageFile!.path),
                             role: 'teacher');
                         isLoading = false;
                         Navigator.of(context).pushNamedAndRemoveUntil(

@@ -21,7 +21,6 @@ import 'Constants/Colors.dart';
 import 'Start_App_Screens/SignUp_Type.dart';
 import 'Students_Screens/Courses_and_Posts/Student_TabBar_CADP.dart';
 import 'Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
-import 'Students_Screens/Registering_Screens/Long_Courses/Wishes.dart';
 import 'Students_Screens/Registering_Screens/Short_Courses/Student_Personal_Information.dart';
 import 'Students_Screens/Registering_Screens/Student_Name_SignUp_Screen.dart';
 import 'Students_Screens/Registering_Screens/Student_SignIn_Screen.dart';
@@ -85,18 +84,17 @@ class _MainState extends State<Main> {
             const BrowserPersonalInformation(),
         BrowserOtherInformation.id: (context) =>
             const BrowserOtherInformation(),
-        StudentNameSignUpPage.id: (context) => const StudentNameSignUpPage(),
-        StudentTabBar.id: (context) => const StudentTabBar(),
         StudentSignUpScreen.id: (context) => const StudentSignUpScreen(),
         StudentSignInScreen.id: (context) => const StudentSignInScreen(),
+        StudentNameSignUpPage.id: (context) => const StudentNameSignUpPage(),
         StudentProfileImage.id: (context) => const StudentProfileImage(),
+        AcceptanceQualification.id: (context) =>
+            const AcceptanceQualification(),
+        StudentStartPage.id: (context) => const StudentStartPage(),
+        StudentTabBar.id: (context) => const StudentTabBar(),
         StudentEditingNotes.id: (context) => const StudentEditingNotes(),
         StudentPersonalInformation.id: (context) =>
             const StudentPersonalInformation(),
-        AcceptanceQualifications.id: (context) =>
-            const AcceptanceQualifications(),
-        WishesPage.id: (context) => const WishesPage(),
-        StudentStartPage.id: (context) => const StudentStartPage(),
         TeacherAuthSignUpScreen.id: (context) =>
             const TeacherAuthSignUpScreen(),
         TeacherAuthNameSignUpPage.id: (context) =>

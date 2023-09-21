@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class StudentSettingsPage extends StatefulWidget {
   const StudentSettingsPage({super.key});
-  static String id = 'StudentSettingsPage';
+  static String id = '/StudentSettingsPage';
 
   @override
   State<StudentSettingsPage> createState() => _StudentSettingsPageState();

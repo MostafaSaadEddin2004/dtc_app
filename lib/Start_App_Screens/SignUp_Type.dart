@@ -10,7 +10,7 @@ import '../Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';
 class SignUpType extends StatefulWidget {
   const SignUpType({super.key});
 
-  static String id = 'SignUpType';
+  static String id = '/SignUpType';
 
   @override
   State<SignUpType> createState() => _SignUpTypeState();
@@ -374,16 +374,16 @@ class _SignUpTypeState extends State<SignUpType> {
                           StudentSignUpScreen.id,
                           (Route<dynamic> route) => false,
                         );
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          TeacherSignUpScreen.id,
-                          (Route<dynamic> route) => false,
-                        );
                       } else if (selectedTeacherAuth == true) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
                           TeacherAuthSignUpScreen.id,
                           (Route<dynamic> route) => false,
                         );
                       } else if (selectedTeacher == true) {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          TeacherSignUpScreen.id,
+                          (Route<dynamic> route) => false,
+                        );
                       } else {
                         return null;
                       }

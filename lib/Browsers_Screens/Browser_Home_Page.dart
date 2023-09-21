@@ -10,7 +10,7 @@ import 'Browser_Profile_Page.dart';
 
 class BrowserHomePage extends StatefulWidget {
   const BrowserHomePage({super.key});
-  static String id = 'BrowserHomePage';
+  static String id = '/BrowserHomePage';
 
   @override
   State<BrowserHomePage> createState() => _BrowserHomePageState();

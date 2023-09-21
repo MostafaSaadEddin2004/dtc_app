@@ -20,7 +20,7 @@ class MyWidget extends StatelessWidget {
 
 class StudentPrivacyPage extends StatefulWidget {
   const StudentPrivacyPage({super.key});
-  static String id = 'StudentPrivacyPage';
+  static String id = '/StudentPrivacyPage';
 
   @override
   State<StudentPrivacyPage> createState() => _StudentPrivacyPageState();
@@ -67,6 +67,7 @@ class _StudentPrivacyPageState extends State<StudentPrivacyPage> {
                                           phone:
                                               studentPrivacyEditingPhone.text);
                                       Navigator.of(context).pop();
+                                      setState(() {});
                                     },
                                     prefixIcon: Icons.call,
                                     title: 'رقم الهاتف',

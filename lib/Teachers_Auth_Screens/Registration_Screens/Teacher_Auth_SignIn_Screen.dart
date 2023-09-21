@@ -1,4 +1,5 @@
 import 'package:dtc_app/Components/Buttons.dart';
+import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import 'Teacher_Auth_SignUp_Screen.dart';
 class TeacherAuthSignInScreen extends StatefulWidget {
   const TeacherAuthSignInScreen({super.key});
 
-  static String id = 'TeacherAuthSignInScreen';
+  static String id = '/TeacherAuthSignInScreen';
 
   @override
   State<TeacherAuthSignInScreen> createState() =>
@@ -122,22 +123,37 @@ class _TeacherAuthSignInScreenState extends State<TeacherAuthSignInScreen> {
                   height: 10,
                 ),
                 customButton(
-                    onTap: () {
+                    onTap: () async {
                       if (formState.currentState!.validate()) {
                         isLoading = true;
-                        AuthServices.postLogin(
-                            email: teacherAuthSignInEmailController.text.toString(),
-                            password:
-                                teacherAuthSignInPasswordController.text.toString(),
+                        final error = await AuthServices.postLogin(
+                            email: teacherAuthSignInEmailController.text
+                                .toString(),
+                            password: teacherAuthSignInPasswordController.text
+                                .toString(),
                             role: 'teacher');
                         isLoading = false;
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          TeacherAuthStartPage.id,
-                          (Route<dynamic> route) => false,
-                        );
+                        if (error == null) {
+                          print('Successful');
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            TeacherAuthStartPage.id,
+                            (Route<dynamic> route) => false,
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return warningDialog(
+                                  title: 'تنبيه',
+                                  message: error.toString(),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  });
+                            },
+                          );
+                        }
                       }
                     },
-                  
                     backgroundColor: PrimaryColor,
                     fontSize: 24,
                     text: 'تسجيل الدخول'),

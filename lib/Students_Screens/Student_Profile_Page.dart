@@ -1,3 +1,5 @@
+import 'package:dtc_app/Components/loading.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Constants/Colors.dart';
 import 'Student_Profile_Notes_Page.dart';
@@ -6,7 +8,7 @@ import 'Student_Privacy_Page.dart';
 
 class StudentProfilePage extends StatefulWidget {
   const StudentProfilePage({super.key});
-  static String id = 'StudentProfilePage';
+  static String id = '/StudentProfilePage';
 
   @override
   State<StudentProfilePage> createState() => _StudentProfilePageState();
@@ -22,17 +24,30 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
           key: scaffoldKey,
           appBar: AppBar(
               backgroundColor: PrimaryColor,
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                child: CircleAvatar(
-                  backgroundColor: WhiteColor,
-                  child: Icon(
-                    Icons.person,
-                    color: PrimaryColor,
-                  ),
-                ),
-              ),
-              title: const Text('اسم المستخدم'),
+              leading: FutureBuilder(
+                  future: AuthServices.getUserInformation(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData || !mounted) return Loading();
+                    final user = snapshot.data!;
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: CircleAvatar(
+                          backgroundColor: WhiteColor,
+                          child: user.image == null
+                              ? Icon(
+                                  Icons.person,
+                                  color: PrimaryColor,
+                                )
+                              : Image.network(user.image!)),
+                    );
+                  }),
+              title: FutureBuilder(
+                  future: AuthServices.getUserInformation(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData || !mounted) return Loading();
+                    final user = snapshot.data!;
+                    return Text(user.first_name_en + ' ' + user.last_name_en);
+                  }),
               bottom: const TabBar(
                 indicatorColor: WhiteColor,
                 unselectedLabelStyle: TextStyle(fontSize: 15),

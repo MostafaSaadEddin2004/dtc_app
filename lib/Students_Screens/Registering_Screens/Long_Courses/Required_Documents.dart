@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:dtc_app/Components/Dialogs.dart';
+import 'package:dtc_app/Constants/Controller.dart';
+import 'package:dtc_app/api/services/academic_registraion_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../Components/Buttons.dart';
@@ -7,12 +9,12 @@ import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Documents_card.dart';
 import '../../../Components/Label.dart';
 import '../../../Constants/Colors.dart';
-import '../../../Constants/Controller.dart';
 import '../../Student_Start_Page.dart';
 
 class RequiredDocuments extends StatefulWidget {
-  const RequiredDocuments({super.key});
+  const RequiredDocuments({super.key, required this.specialtyIDs});
   static String id = "RequiredDocuments";
+  final List<int> specialtyIDs;
 
   @override
   State<RequiredDocuments> createState() => _RequiredDocumentsState();
@@ -27,10 +29,10 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
   XFile? certificateImage;
   XFile? unCardImage;
   XFile? personalImage;
-  File? identifyImagePath;
-  File? certificateImagePath;
-  File? unCardImagePath;
-  File? personalImagePath;
+  File? identifyImageFile;
+  File? certificateImageFile;
+  File? unCardImageFile;
+  File? personalImageFile;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +54,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
               child: DocumentCard(
                 title: 'صورة عن إخراج القيد أو صورة عن الهوية الشخصية',
                 onShowPressed: () {
-                  if (identifyImagePath != null) {
+                  if (identifyImageFile != null) {
                     showDialog(
                       barrierDismissible: true,
                       context: context,
@@ -61,7 +63,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                           margin: const EdgeInsets.symmetric(horizontal: 40),
                           child: Center(
                               child: Stack(children: [
-                            Image.file(identifyImagePath!),
+                            Image.file(identifyImageFile!),
                             Positioned(
                                 top: 5,
                                 right: 5,
@@ -115,7 +117,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                     });
                                     identifyImage = await ImagePicker()
                                         .pickImage(source: ImageSource.gallery);
-                                    identifyImagePath =
+                                    identifyImageFile =
                                         File(identifyImage!.path);
                                     Navigator.of(context).pop();
                                   },
@@ -176,7 +178,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                     });
                                     identifyImage = await ImagePicker()
                                         .pickImage(source: ImageSource.camera);
-                                    identifyImagePath =
+                                    identifyImageFile =
                                         File(identifyImage!.path);
                                     Navigator.of(context).pop();
                                   },
@@ -244,7 +246,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
               child: DocumentCard(
                   title: 'صورة مصدقة عن الشهادة التي يحملها الطالب',
                   onShowPressed: () {
-                    if (certificateImagePath != null) {
+                    if (certificateImageFile != null) {
                       showDialog(
                         barrierDismissible: true,
                         context: context,
@@ -253,7 +255,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                             margin: const EdgeInsets.symmetric(horizontal: 40),
                             child: Center(
                                 child: Stack(children: [
-                              Image.file(certificateImagePath!),
+                              Image.file(certificateImageFile!),
                               Positioned(
                                   top: 5,
                                   right: 5,
@@ -310,7 +312,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                       certificateImage = await ImagePicker()
                                           .pickImage(
                                               source: ImageSource.gallery);
-                                      certificateImagePath =
+                                      certificateImageFile =
                                           File(certificateImage!.path);
                                       Navigator.of(context).pop();
                                     },
@@ -375,7 +377,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                       certificateImage = await ImagePicker()
                                           .pickImage(
                                               source: ImageSource.camera);
-                                      certificateImagePath =
+                                      certificateImageFile =
                                           File(certificateImage!.path);
                                       Navigator.of(context).pop();
                                     },
@@ -443,7 +445,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
               child: DocumentCard(
                   title: 'صورة عن بطاقة الوكالة',
                   onShowPressed: () {
-                    if (unCardImagePath != null) {
+                    if (unCardImageFile != null) {
                       showDialog(
                         barrierDismissible: true,
                         context: context,
@@ -452,7 +454,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                             margin: const EdgeInsets.symmetric(horizontal: 40),
                             child: Center(
                                 child: Stack(children: [
-                              Image.file(unCardImagePath!),
+                              Image.file(unCardImageFile!),
                               Positioned(
                                   top: 5,
                                   right: 5,
@@ -509,7 +511,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                       unCardImage = await ImagePicker()
                                           .pickImage(
                                               source: ImageSource.gallery);
-                                      unCardImagePath = File(unCardImage!.path);
+                                      unCardImageFile = File(unCardImage!.path);
                                       Navigator.of(context).pop();
                                     },
                                     child: gallery == false
@@ -573,7 +575,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                       unCardImage = await ImagePicker()
                                           .pickImage(
                                               source: ImageSource.camera);
-                                      unCardImagePath = File(unCardImage!.path);
+                                      unCardImageFile = File(unCardImage!.path);
                                       Navigator.of(context).pop();
                                     },
                                     child: camera == false
@@ -640,7 +642,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
               child: DocumentCard(
                   title: 'صورة شخصية',
                   onShowPressed: () {
-                    if (personalImagePath != null) {
+                    if (personalImageFile != null) {
                       showDialog(
                         barrierDismissible: true,
                         context: context,
@@ -649,7 +651,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                             margin: const EdgeInsets.symmetric(horizontal: 40),
                             child: Center(
                                 child: Stack(children: [
-                              Image.file(personalImagePath!),
+                              Image.file(personalImageFile!),
                               Positioned(
                                   top: 5,
                                   right: 5,
@@ -706,7 +708,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                       personalImage = await ImagePicker()
                                           .pickImage(
                                               source: ImageSource.gallery);
-                                      personalImagePath =
+                                      personalImageFile =
                                           File(personalImage!.path);
                                       Navigator.of(context).pop();
                                     },
@@ -771,7 +773,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                                       personalImage = await ImagePicker()
                                           .pickImage(
                                               source: ImageSource.camera);
-                                      personalImagePath =
+                                      personalImageFile =
                                           File(personalImage!.path);
                                       Navigator.of(context).pop();
                                     },
@@ -843,10 +845,30 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                 nextButton(
                     text: 'إنهاء',
                     onTap: () {
-                      if (identifyImagePath != null &&
-                          certificateImagePath != null &&
-                          unCardImagePath != null &&
-                          personalImagePath != null) {
+                      if (identifyImageFile != null &&
+                          certificateImageFile != null &&
+                          unCardImageFile != null &&
+                          personalImageFile != null) {
+                        AcademicRegistrationService.postAcademicRegistration(
+                            father_name: studentFatherNameController.text,
+                            mother_name: studentMotherNameController.text,
+                            date_of_birth: studentBirthDateController.text,
+                            place_of_birth: studentBirthPlaceController.text,
+                            military: studentSoliderController.text,
+                            current_address: studentCurrentController.text,
+                            address: studentPermanentController.text,
+                            name_of_parent: guardianNameController.text,
+                            job_of_parent: guardianWorkController.text,
+                            phone_of_parent: guardianPhoneNumberController.text,
+                            phone_of_mother:
+                                studentMotherPhoneNumberController.text,
+                            avg_mark: studentMarkController.text,
+                            certificate_year: certificationDate,
+                            id_image: identifyImageFile!,
+                            certificate_image: certificateImageFile!,
+                            personal_image: personalImageFile!,
+                            un_image: unCardImageFile!,
+                            department_ids: widget.specialtyIDs);
                         Navigator.of(context).pushNamedAndRemoveUntil(
                           StudentStartPage.id,
                           (Route<dynamic> route) => false,

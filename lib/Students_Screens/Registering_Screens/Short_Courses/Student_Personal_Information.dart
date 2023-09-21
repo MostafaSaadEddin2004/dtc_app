@@ -11,7 +11,7 @@ import 'Student_Other_Information.dart';
 
 class StudentPersonalInformation extends StatefulWidget {
   const StudentPersonalInformation({super.key});
-  static String id = 'StudentPersonalInformation';
+  static String id = '/StudentPersonalInformation';
 
   @override
   State<StudentPersonalInformation> createState() =>
@@ -185,7 +185,7 @@ class _StudentPersonalInformationState
                                         context: context,
                                         initialDate: DateTime.now(),
                                         firstDate: DateTime(2000),
-                                        lastDate: DateTime(2024),
+                                        lastDate: DateTime(2025),
                                         keyboardType: TextInputType.datetime);
                                     studentCourseBirthDateController.text =
                                         '${dateTime?.day}-${dateTime?.month}-${dateTime?.year}';

@@ -6,7 +6,7 @@ import 'Teacher_Auth_Privacy_Page.dart';
 
 class TeacherAuthProfilePage extends StatefulWidget {
   const TeacherAuthProfilePage({super.key});
-  static String id = 'TeacherAuthProfilePage';
+  static String id = '/TeacherAuthProfilePage';
 
   @override
   State<TeacherAuthProfilePage> createState() => _TeacherAuthProfilePageState();

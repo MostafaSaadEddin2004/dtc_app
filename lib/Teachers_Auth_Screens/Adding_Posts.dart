@@ -14,7 +14,7 @@ import '../Constants/TextStyle.dart';
 
 class AddingPostPage extends StatefulWidget {
   const AddingPostPage({super.key});
-  static String id = 'AddingPostPage';
+  static String id = '/AddingPostPage';
 
   @override
   State<AddingPostPage> createState() => _AddingPostPageState();

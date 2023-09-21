@@ -8,14 +8,13 @@ import 'Teacher_Auth_Notifications_Page.dart';
 class TeacherAuthStartPage extends StatefulWidget {
   const TeacherAuthStartPage({super.key});
 
-  static String id = 'TeacherAuthStartPage';
+  static String id = '/TeacherAuthStartPage';
 
   @override
   State<TeacherAuthStartPage> createState() => _TeacherAuthStartPageState();
 }
 
 class _TeacherAuthStartPageState extends State<TeacherAuthStartPage> {
-  
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   int selectedIndex = 0;
 

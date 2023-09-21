@@ -6,7 +6,7 @@ import 'Teacher_Privacy_Page.dart';
 
 class TeacherProfilePage extends StatefulWidget {
   const TeacherProfilePage({super.key});
-  static String id = 'TeacherProfilePage';
+  static String id = '/TeacherProfilePage';
 
   @override
   State<TeacherProfilePage> createState() => _TeacherProfilePageState();
@@ -43,16 +43,22 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                   //   child: Text('Settings'),
                   // ),
                   Tab(
-                    child: Text('المحفوظات',
-                      style: TextStyle(fontSize: 14),),
+                    child: Text(
+                      'المحفوظات',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                   Tab(
-                    child: Text('الملاحظات',
-                      style: TextStyle(fontSize: 14),),
+                    child: Text(
+                      'الملاحظات',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                   Tab(
-                    child: Text('الخصوصية',
-                      style: TextStyle(fontSize: 14),),
+                    child: Text(
+                      'الخصوصية',
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                 ],
               )),

@@ -11,7 +11,7 @@ import '../api/services/edit_mark_request_service.dart';
 
 class EditingMarksRequestPage extends StatefulWidget {
   const EditingMarksRequestPage({super.key});
-  static String id = 'EditingMarksRequestPage';
+  static String id = '/EditingMarksRequestPage';
 
   @override
   State<EditingMarksRequestPage> createState() =>

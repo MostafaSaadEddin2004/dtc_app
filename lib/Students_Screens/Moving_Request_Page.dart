@@ -13,7 +13,7 @@ import '../Constants/TextStyle.dart';
 
 class MovingRequestPage extends StatefulWidget {
   const MovingRequestPage({super.key});
-  static String id = 'MovingRequestPage';
+  static String id = '/MovingRequestPage';
 
   @override
   State<MovingRequestPage> createState() => _MovingRequestPageState();
@@ -28,6 +28,8 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
     bool isLoading = false;
     int selectedDepartmentId = 0;
     int selectedSpecialtyId = 0;
+    String newDepartment = '';
+    String newClass = '';
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
@@ -68,8 +70,7 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                                             return ShowDialogList(
                                               value: newDepartment == ''
                                                   ? 'إختر...'
-                                                  : newDepartment.substring(
-                                                      0, 12),
+                                                  : newDepartment,
                                               child: ListView.builder(
                                                 itemCount:
                                                     departmentData.length,
@@ -131,7 +132,7 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                                             return ShowDialogList(
                                               value: newClass == ''
                                                   ? 'إختر...'
-                                                  : newClass.substring(0, 12),
+                                                  : newClass,
                                               child: ListView.builder(
                                                 itemCount: specialtyData.length,
                                                 itemBuilder: (context, index) {

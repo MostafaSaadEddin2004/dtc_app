@@ -12,7 +12,7 @@ import 'Teacher_Profile_Page.dart';
 
 class TeacherNotesPage extends StatefulWidget {
   const TeacherNotesPage({super.key});
-  static String id = 'TeacherNotesPage';
+  static String id = '/TeacherNotesPage';
 
   @override
   State<TeacherNotesPage> createState() => _TeacherNotesPageState();

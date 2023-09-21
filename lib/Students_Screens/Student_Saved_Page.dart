@@ -6,7 +6,7 @@ import '../api/models/post_model.dart';
 
 class StudentSavedPage extends StatefulWidget {
   const StudentSavedPage({super.key});
-  static String id = 'StudentSavedPage';
+  static String id = '/StudentSavedPage';
 
   @override
   State<StudentSavedPage> createState() => _StudentSavedPageState();
@@ -14,7 +14,7 @@ class StudentSavedPage extends StatefulWidget {
 
 class _StudentSavedPageState extends State<StudentSavedPage> {
   List<Map> posts = [];
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(

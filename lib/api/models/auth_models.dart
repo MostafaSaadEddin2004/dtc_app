@@ -60,6 +60,7 @@ class RegistrationInformationModel {
   final String last_name_en;
   final String last_name_ar;
   final String phone;
+  // final String address;
   final String? image;
   final String? department;
   final String? section;
@@ -71,6 +72,7 @@ class RegistrationInformationModel {
     required this.last_name_en,
     required this.last_name_ar,
     required this.phone,
+    // required this.address,
     required this.image,
     required this.department,
     required this.section,
@@ -84,6 +86,7 @@ class RegistrationInformationModel {
       last_name_en: jsonData['last_name_en'],
       last_name_ar: jsonData['last_name_ar'],
       phone: jsonData['phone'],
+      // address: jsonData['address'],
       image: jsonData['image'],
       department: jsonData['department'],
       section: jsonData['section'],

@@ -13,7 +13,7 @@ import 'Teacher_Auth_Profile_Page.dart';
 
 class TeacherAuthNotesPage extends StatefulWidget {
   const TeacherAuthNotesPage({super.key});
-  static String id = 'TeacherAuthNotesPage';
+  static String id = '/TeacherAuthNotesPage';
 
   @override
   State<TeacherAuthNotesPage> createState() => _TeacherAuthNotesPageState();
@@ -65,136 +65,135 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
           ],
         ),
         drawer: Drawer(
-            backgroundColor: PrimaryColor,
-            child: FutureBuilder(
-                future: AuthServices.getUserInformation(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData || !mounted) return Loading();
-                  final users = snapshot.data!;
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, top: 50, right: 15),
-                    child: Column(children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(builder: (contex) {
-                                return TeacherAuthProfilePage();
-                              }));
-                            },
-                            child: CircleAvatar(
-                                minRadius: 30,
-                                maxRadius: 30,
-                                backgroundColor: WhiteColor,
-                                // ignore: unnecessary_null_comparison
-                                child: users.image.toString() == null
-                                    ? Icon(
-                                        Icons.person,
-                                        color: PrimaryColor,
-                                        size: 45,
-                                      )
-                                    : Image.network(
-                                        users.image.toString(),
-                                        fit: BoxFit.cover,
-                                        height: 30,
-                                        width: 30,
-                                      )),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                users.first_name_en.toString() +
-                                    ' ' +
-                                    users.last_name_en.toString(),
-                                style: TextStyle(
-                                    color: WhiteColor,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                users.email.toString(),
-                                style: TextStyle(
-                                  color: WhiteColor,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Divider(color: WhiteColor, thickness: 2),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.people,
-                              color: WhiteColor,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
+          backgroundColor: PrimaryColor,
+          child: FutureBuilder(
+              future: AuthServices.getUserInformation(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData || !mounted) return Loading();
+                final users = snapshot.data!;
+                return Padding(
+                  padding: const EdgeInsets.only(left: 15, top: 50, right: 15),
+                  child: Column(children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (contex) {
+                              return TeacherAuthProfilePage();
+                            }));
+                          },
+                          child: CircleAvatar(
+                              minRadius: 30,
+                              maxRadius: 30,
+                              backgroundColor: WhiteColor,
+                              // ignore: unnecessary_null_comparison
+                              child: users.image.toString() == null
+                                  ? Icon(
+                                      Icons.person,
+                                      color: PrimaryColor,
+                                      size: 45,
+                                    )
+                                  : Image.network(
+                                      users.image.toString(),
+                                      fit: BoxFit.cover,
+                                      height: 30,
+                                      width: 30,
+                                    )),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          children: [
                             Text(
-                              'دعوة صديق',
+                              users.first_name_en.toString() +
+                                  ' ' +
+                                  users.last_name_en.toString(),
                               style: TextStyle(
                                   color: WhiteColor,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          AuthServices.postLogout();
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                            SignUpType.id,
-                            (Route<dynamic> route) => false,
-                          );
-                        },
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.exit_to_app_rounded,
-                              color: RedColor,
-                              size: 30,
-                            ),
                             SizedBox(
-                              width: 20,
+                              height: 5,
                             ),
                             Text(
-                              'تسجيل الخروج',
+                              users.email.toString(),
                               style: TextStyle(
-                                  color: RedColor,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),
+                                color: WhiteColor,
+                                fontSize: 10,
+                              ),
                             ),
                           ],
-                        ),
-                      )
-                    ]),
-                  );
-                }),
-          ),
-          body: Container(
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(color: WhiteColor, thickness: 2),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Row(
+                        children: const [
+                          Icon(
+                            Icons.people,
+                            color: WhiteColor,
+                            size: 30,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'دعوة صديق',
+                            style: TextStyle(
+                                color: WhiteColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        AuthServices.postLogout();
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          SignUpType.id,
+                          (Route<dynamic> route) => false,
+                        );
+                      },
+                      child: Row(
+                        children: const [
+                          Icon(
+                            Icons.exit_to_app_rounded,
+                            color: RedColor,
+                            size: 30,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'تسجيل الخروج',
+                            style: TextStyle(
+                                color: RedColor,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    )
+                  ]),
+                );
+              }),
+        ),
+        body: Container(
           margin: const EdgeInsets.only(top: 10),
           child: FutureBuilder<List<NoteModel>>(
               future: NoteServices.getNote(),

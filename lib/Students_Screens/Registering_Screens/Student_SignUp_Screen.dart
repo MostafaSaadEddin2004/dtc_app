@@ -9,7 +9,7 @@ import 'Student_Name_SignUp_Screen.dart';
 class StudentSignUpScreen extends StatefulWidget {
   const StudentSignUpScreen({super.key});
 
-  static String id = 'StudentSignUpScreen';
+  static String id = '/StudentSignUpScreen';
 
   @override
   State<StudentSignUpScreen> createState() => _StudentSignUpScreenState();
@@ -50,7 +50,8 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                     if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                         .hasMatch(text)) {
                       return 'يرجى التأكد من إدخال @gmail.com';
-                    }return null;
+                    }
+                    return null;
                   },
                   labelText: 'الإيميل',
                   obscure: false,
@@ -67,7 +68,8 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                       return 'كلمة المرور مطلوبة';
                     } else if (text.length < 8) {
                       return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                    }return null;
+                    }
+                    return null;
                   },
                   labelText: 'كلمة المرور',
                   obscure: !secure,

@@ -7,7 +7,7 @@ import '../../api/services/depatrment_post_services.dart';
 
 class StudentsDepartmentPostsPage extends StatefulWidget {
   const StudentsDepartmentPostsPage({super.key});
-  static String id = 'StudentsDepartmentPostsPage';
+  static String id = '/StudentsDepartmentPostsPage';
 
   @override
   State<StudentsDepartmentPostsPage> createState() =>

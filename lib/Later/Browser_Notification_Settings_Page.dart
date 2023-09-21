@@ -6,7 +6,7 @@ import 'Browser_Notification_Tone_Page.dart';
 
 class BrowserNotificationSettingsPage extends StatefulWidget {
   const BrowserNotificationSettingsPage({super.key});
-  static String id = 'BrowserNotificationSettingsPage';
+  static String id = '/BrowserNotificationSettingsPage';
 
   @override
   State<BrowserNotificationSettingsPage> createState() =>

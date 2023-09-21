@@ -9,7 +9,7 @@ import '../Registering_Screens/Short_Courses/Student_Personal_Information.dart';
 class StudentCoursePage extends StatefulWidget {
   const StudentCoursePage({super.key});
 
-  static String id = 'StudentCoursePage';
+  static String id = '/StudentCoursePage';
 
   @override
   State<StudentCoursePage> createState() => _StudentCoursePageState();

@@ -7,7 +7,7 @@ import '../../api/services/course_post_services.dart';
 class TeacherAuthCoursePage extends StatefulWidget {
   const TeacherAuthCoursePage({super.key});
 
-  static String id = 'TeacherAuthCoursePage';
+  static String id = '/TeacherAuthCoursePage';
 
   @override
   State<TeacherAuthCoursePage> createState() => _TeacherAuthCoursePageState();

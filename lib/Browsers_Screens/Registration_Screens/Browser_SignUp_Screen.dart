@@ -10,7 +10,7 @@ import 'Browser_SignIn_Screen.dart';
 class BrowserSignUpScreen extends StatefulWidget {
   const BrowserSignUpScreen({super.key});
 
-  static String id = 'BrowserSignUpScreen';
+  static String id = '/BrowserSignUpScreen';
 
   @override
   State<BrowserSignUpScreen> createState() => _BrowserSignUpScreenState();
@@ -53,11 +53,11 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'الإيميل مطلوب';
-                      }
-                      else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                      } else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                           .hasMatch(text)) {
                         return 'يرجى التأكد من إدخال @gmail.com';
-                      }return null;
+                      }
+                      return null;
                     },
                     labelText: 'الإيميل',
                     obscure: false,
@@ -74,7 +74,8 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                      }return null;
+                      }
+                      return null;
                     },
                     labelText: 'كلمة المرور',
                     obscure: !secure,
@@ -103,7 +104,8 @@ class _BrowserSignUpScreenState extends State<BrowserSignUpScreen> {
                       } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
                           .hasMatch(text)) {
                         return 'الرجاء التأكد من رقم الجوال';
-                      }return null;
+                      }
+                      return null;
                     },
                     labelText: 'رقم الجوال',
                     obscure: false,

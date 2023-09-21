@@ -6,7 +6,7 @@ import '../Constants/TextStyle.dart';
 
 class EditingPostPage extends StatefulWidget {
   const EditingPostPage({super.key});
-  static String id = 'EditingPostPage';
+  static String id = '/EditingPostPage';
 
   @override
   State<EditingPostPage> createState() => _EditingPostPageState();
@@ -51,7 +51,6 @@ class _EditingPostPageState extends State<EditingPostPage> {
                             maxLines: 6,
                             onChanged: (data) {},
                             controller: editingPostTextController,
-                            
                             keyboardType: TextInputType.text,
                             enabled: true,
                             cursorColor: GreyColor,

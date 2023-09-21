@@ -9,7 +9,7 @@ import 'Teacher_SignIn_Screen.dart';
 class TeacherSignUpScreen extends StatefulWidget {
   const TeacherSignUpScreen({super.key});
 
-  static String id = 'TeacherSignUpScreen';
+  static String id = '/TeacherSignUpScreen';
 
   @override
   State<TeacherSignUpScreen> createState() => _TeacherSignUpScreenState();
@@ -49,11 +49,11 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'الإيميل مطلوب';
-                    }
-                    else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
+                    } else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$')
                         .hasMatch(text)) {
                       return 'يرجى التأكد من إدخال @gmail.com';
-                    }return null;
+                    }
+                    return null;
                   },
                   labelText: 'الإيميل',
                   obscure: false,
@@ -73,7 +73,8 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                       return 'كلمة المرور مطلوبة';
                     } else if (text.length < 8) {
                       return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                    }return null;
+                    }
+                    return null;
                   },
                   labelText: 'كلمة المرور',
                   obscure: !secure,
@@ -104,7 +105,8 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                       return 'رقم الجوال مطلوب';
                     } else if (!RegExp(r'^(\+?963|0)?9\d{8}$').hasMatch(text)) {
                       return 'الرجاء التأكد من رقم الجوال';
-                    }return null;
+                    }
+                    return null;
                   },
                   labelText: 'رقم الجوال',
                   obscure: false,
@@ -123,7 +125,8 @@ class _TeacherSignUpScreenState extends State<TeacherSignUpScreen> {
                         (Route<dynamic> route) => false,
                       );
                     }
-                  },onDoubleTap: (){},
+                  },
+                  onDoubleTap: () {},
                   backgroundColor: PrimaryColor,
                   fontSize: 24,
                   text: 'التسجيل الآن'),

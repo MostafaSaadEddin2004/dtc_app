@@ -1,4 +1,5 @@
 import 'package:dtc_app/Components/Buttons.dart';
+import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -12,7 +13,7 @@ import 'Browser_SignUp_Screen.dart';
 class BrowserSignInScreen extends StatefulWidget {
   const BrowserSignInScreen({super.key});
 
-  static String id = 'BrowserSignInScreen';
+  static String id = '/BrowserSignInScreen';
 
   @override
   State<BrowserSignInScreen> createState() => _BrowserSignInScreenState();
@@ -123,20 +124,32 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
                   height: 10,
                 ),
                 customButton(
-                    onTap: () {
+                    onTap: () async {
                       if (formState.currentState!.validate()) {
                         isLoading = true;
-
-                        AuthServices.postLogin(
+                        final error = await AuthServices.postLogin(
                             email: browserSignInEmailController.text.toString(),
                             password:
                                 browserSignInPasswordController.text.toString(),
                             role: 'student_browser');
-                        print(AuthServices.responseMessage);
                         isLoading = false;
-                        print('succesful');
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            BrowserStartPage.id, (route) => false);
+                        if (error == null) {
+                          print('Succesful');
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              BrowserStartPage.id, (route) => false);
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return warningDialog(
+                                  title: 'تنبيه',
+                                  message: error.toString(),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  });
+                            },
+                          );
+                        }
                       }
                     },
                     backgroundColor: PrimaryColor,

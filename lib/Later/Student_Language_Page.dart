@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class StudentLanguagePage extends StatefulWidget {
   const StudentLanguagePage({super.key});
-  static String id = 'StudentLanguagePage';
+  static String id = '/StudentLanguagePage';
 
   @override
   State<StudentLanguagePage> createState() => _StudentLanguagePageState();

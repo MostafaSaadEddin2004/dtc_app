@@ -8,7 +8,7 @@ import 'Browser_ChangePassword.dart';
 
 class BrowserPrivacyPage extends StatefulWidget {
   const BrowserPrivacyPage({super.key});
-  static String id = 'BrowserPrivacyPage';
+  static String id = '/BrowserPrivacyPage';
 
   @override
   State<BrowserPrivacyPage> createState() => _BrowserPrivacyPageState();
@@ -57,7 +57,7 @@ class _BrowserPrivacyPageState extends State<BrowserPrivacyPage> {
                                         AuthServices.postChangePassword(
                                             phone: studentPrivacyEditingPhone
                                                 .text);
-                                                Navigator.of(context).pop();
+                                        Navigator.of(context).pop();
                                       },
                                       prefixIcon: Icons.call,
                                       title: 'رقم الهاتف',

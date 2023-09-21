@@ -9,7 +9,7 @@ import 'Teacher_Auth_SignIn_Screen.dart';
 class TeacherAuthSignUpScreen extends StatefulWidget {
   const TeacherAuthSignUpScreen({super.key});
 
-  static String id = 'TeacherAuthSignUpScreen';
+  static String id = '/TeacherAuthSignUpScreen';
 
   @override
   State<TeacherAuthSignUpScreen> createState() =>

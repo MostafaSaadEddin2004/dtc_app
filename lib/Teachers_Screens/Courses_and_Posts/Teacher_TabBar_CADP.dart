@@ -9,7 +9,7 @@ import 'Teacher_Department_Posts_Page.dart';
 
 class TeacherTabBar extends StatefulWidget {
   const TeacherTabBar({super.key});
-  static String id = 'TeacherTabBar';
+  static String id = '/TeacherTabBar';
 
   @override
   State<TeacherTabBar> createState() => _TeacherTabBarState();

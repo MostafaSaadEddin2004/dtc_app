@@ -1,5 +1,5 @@
 import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
-import 'package:dtc_app/Start_App_Screens/Start_App_Screen.dart';
+import '../Start_App_Screens/SignUp_Type.dart';
 import 'package:dtc_app/Students_Screens/Student_Start_Page.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
 import 'package:dtc_app/Teachers_Screens/Teacher_Start_Page.dart';
@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       splash: Image.asset('assets/images/DTC_LOGO.png'),
-      nextScreen: const StartAppScreen(),
+      nextScreen: const SignUpType(),
       animationDuration: const Duration(seconds: 2),
       centered: true,
       splashIconSize: 200,

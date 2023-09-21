@@ -5,7 +5,7 @@ import '../Constants/TextStyle.dart';
 
 class BrowserTonePage extends StatefulWidget {
   const BrowserTonePage({super.key});
-  static String id = 'BrowserTonePage';
+  static String id = '/BrowserTonePage';
 
   @override
   State<BrowserTonePage> createState() => _BrowserTonePageState();

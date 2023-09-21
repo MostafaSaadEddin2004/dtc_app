@@ -9,7 +9,7 @@ import 'Student_Profile_Page.dart';
 
 class StudentNotificationsPage extends StatefulWidget {
   const StudentNotificationsPage({super.key});
-  static String id = 'StudentNotificationsPage';
+  static String id = '/StudentNotificationsPage';
 
   @override
   State<StudentNotificationsPage> createState() =>
@@ -25,20 +25,19 @@ class _StudentNotificationsPageState extends State<StudentNotificationsPage> {
           backgroundColor: PrimaryColor,
           actions: [
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               alignment: Alignment.center,
               height: 30,
-              width: 60,
               decoration: BoxDecoration(
                 color: PrimaryColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
-                'IT / IT',
+                'تجاري / إدارة مشاريع',
                 style: TextStyle(
                     color: WhiteColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20),
+                    fontSize: 16),
               ),
             ),
           ],

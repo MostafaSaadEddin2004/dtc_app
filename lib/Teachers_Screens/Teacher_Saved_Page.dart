@@ -5,7 +5,7 @@ import '../Components/Posts.dart';
 
 class TeacherSavedPage extends StatefulWidget {
   const TeacherSavedPage({super.key});
-  static String id = 'TeacherSavedPage';
+  static String id = '/TeacherSavedPage';
 
   @override
   State<TeacherSavedPage> createState() => _TeacherSavedPageState();

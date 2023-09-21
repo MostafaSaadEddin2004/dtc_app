@@ -14,7 +14,6 @@ class BaseApi {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
-    print(response.body);
     return response.body;
   }
 
@@ -30,6 +29,7 @@ class BaseApi {
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
+    print(response.body);
     if (response.statusCode >= 200 || response.statusCode < 300) {
       print(response.body);
       return response;
@@ -40,14 +40,14 @@ class BaseApi {
     // }
   }
 
-  static Future<http.Response> _makeRequestWithFiles(
-    String endpoint, {
+  static Future<http.Response> postWithFiles({
+    required String endpoint,
     required Map<String, File> files,
     Map<String, Object?>? body,
   }) async {
     final request = http.MultipartRequest("POST", Uri.parse('$_url$endpoint'));
-    request.fields
-        .addAll(body!.map((key, value) => MapEntry(key, value.toString())));
+    request.fields.addAll(
+        body?.map((key, value) => MapEntry(key, value.toString())) ?? {});
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     request.headers.addAll({
@@ -61,7 +61,9 @@ class BaseApi {
     }
     print(request.files);
     final response = await request.send();
-    return await http.Response.fromStream(response);
+    final r = await http.Response.fromStream(response);
+    print(r.body);
+    return r;
   }
 
   static Future<http.Response> putRequest(

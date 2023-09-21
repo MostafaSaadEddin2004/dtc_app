@@ -8,7 +8,7 @@ import 'Teacher_ChangePassword.dart';
 
 class TeacherPrivacyPage extends StatefulWidget {
   const TeacherPrivacyPage({super.key});
-  static String id = 'TeacherPrivacyPage';
+  static String id = '/TeacherPrivacyPage';
 
   @override
   State<TeacherPrivacyPage> createState() => _TeacherPrivacyPageState();
@@ -54,7 +54,7 @@ class _TeacherPrivacyPageState extends State<TeacherPrivacyPage> {
                                       AuthServices.postChangePassword(
                                           phone:
                                               studentPrivacyEditingPhone.text);
-                                              Navigator.of(context).pop();
+                                      Navigator.of(context).pop();
                                     },
                                     prefixIcon: Icons.call,
                                     title: 'رقم الهاتف',

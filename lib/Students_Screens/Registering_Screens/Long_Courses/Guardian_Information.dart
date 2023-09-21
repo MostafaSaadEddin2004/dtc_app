@@ -8,8 +8,9 @@ import '../../../Constants/TextStyle.dart';
 import 'Student_Certification.dart';
 
 class GuardianInformation extends StatefulWidget {
-  const GuardianInformation({super.key});
-  static String id = "GuardianInformation0";
+  const GuardianInformation({super.key, required this.specialtyIDs});
+  static String id = "GuardianInformation";
+  final List<int> specialtyIDs;
 
   @override
   State<GuardianInformation> createState() => _GuardianInformationState();
@@ -40,7 +41,6 @@ class _GuardianInformationState extends State<GuardianInformation> {
                   const SizedBox(
                     height: 15,
                   ),
-                  
                   Padding(
                     padding:
                         const EdgeInsets.only(left: 15, top: 15, right: 15),
@@ -62,7 +62,8 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                     return 'هذا الحقل مطلوب';
                                   } else if (text.length < 3) {
                                     return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                                  }return null;
+                                  }
+                                  return null;
                                 },
                               )
                             ],
@@ -73,25 +74,26 @@ class _GuardianInformationState extends State<GuardianInformation> {
                         ),
                         Expanded(
                           child: Column(
-                      children: [
-                        titleText(text: 'عمل ولي الأمر'),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        registrationInfoTextField(
-                          controller: guardianWorkController,
-                          keyboardType: TextInputType.name,
-                          radius: 20,
-                          validator: (text) {
-                            if (text!.isEmpty) {
-                              return 'هذا الحقل مطلوب';
-                            } else if (text.length < 3) {
-                              return 'الحقل يجب أن يكون 3 أحرف على الأقل';
-                            }return null;
-                          },
-                        )
-                      ],
-                    ),
+                            children: [
+                              titleText(text: 'عمل ولي الأمر'),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              registrationInfoTextField(
+                                controller: guardianWorkController,
+                                keyboardType: TextInputType.name,
+                                radius: 20,
+                                validator: (text) {
+                                  if (text!.isEmpty) {
+                                    return 'هذا الحقل مطلوب';
+                                  } else if (text.length < 3) {
+                                    return 'الحقل يجب أن يكون 3 أحرف على الأقل';
+                                  }
+                                  return null;
+                                },
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -103,27 +105,30 @@ class _GuardianInformationState extends State<GuardianInformation> {
                       children: [
                         Expanded(
                           child: Column(
-                                  children: [
-                                    titleText(text: 'رقم ولي الأمر'),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    registrationInfoTextField(
-                                      controller: guardianPhoneNumberController,
-                                      keyboardType: TextInputType.name,
-                                      radius: 20,
-                                      validator: (text) {
-                                        if (text!.isEmpty) {
-                                          return 'رقم الجوال مطلوب';
-                                        } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
-                                            .hasMatch(text)) {
-                                          return 'الرجاء التأكد من رقم الجوال';
-                                        }return null;
-                                      },
-                                    )
-                                  ],
-                                ),
-                        ),const SizedBox(width: 15),Expanded(
+                            children: [
+                              titleText(text: 'رقم ولي الأمر'),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              registrationInfoTextField(
+                                controller: guardianPhoneNumberController,
+                                keyboardType: TextInputType.number,
+                                radius: 20,
+                                validator: (text) {
+                                  if (text!.isEmpty) {
+                                    return 'رقم الجوال مطلوب';
+                                  } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
+                                      .hasMatch(text)) {
+                                    return 'الرجاء التأكد من رقم الجوال';
+                                  }
+                                  return null;
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 15),
+                        Expanded(
                           child: Column(
                             children: [
                               titleText(text: 'رقم الأم'),
@@ -132,7 +137,7 @@ class _GuardianInformationState extends State<GuardianInformation> {
                               ),
                               registrationInfoTextField(
                                 controller: studentMotherPhoneNumberController,
-                                keyboardType: TextInputType.name,
+                                keyboardType: TextInputType.number,
                                 radius: 20,
                                 validator: (text) {
                                   if (text!.isEmpty) {
@@ -140,7 +145,8 @@ class _GuardianInformationState extends State<GuardianInformation> {
                                   } else if (!RegExp(r'^(\+?963|0)?9\d{8}$')
                                       .hasMatch(text)) {
                                     return 'الرجاء التأكد من رقم الجوال';
-                                  }return null;
+                                  }
+                                  return null;
                                 },
                               ),
                             ],
@@ -160,8 +166,8 @@ class _GuardianInformationState extends State<GuardianInformation> {
                           onTap: () {
                             //if (formState.currentState!.validate()) {
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const StudentCertification(),
+                              builder: (context) => StudentCertification(
+                                  specialtyIDs: widget.specialtyIDs),
                             ));
                             //}
                           }),
