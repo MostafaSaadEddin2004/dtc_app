@@ -1,4 +1,5 @@
 import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import '../Start_App_Screens/SignUp_Type.dart';
 import 'package:dtc_app/Students_Screens/Student_Start_Page.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Teacher_Auth_Start_Page.dart';
@@ -25,27 +26,23 @@ class _SplashScreenState extends State<SplashScreen> {
   void checkUser() async {
     FirebaseHelper.init(context);
     final prefs = await SharedPreferences.getInstance();
-    final role = await prefs.getString('role');
     final token = await prefs.getString('token');
-    if (role == 'student' || token != null) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
+    final role = AuthServices.getUserRole();
+    if (role == 'student_browser' || token != null) {
+      Navigator.of(context).popAndPushNamed(
+        BrowserStartPage.id,
+      );
+    } else if (role == 'student' || token != null) {
+      Navigator.of(context).popAndPushNamed(
         StudentStartPage.id,
-        (Route<dynamic> route) => false,
       );
     } else if (role == 'teacher' || token != null) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
+      Navigator.of(context).popAndPushNamed(
         TeacherAuthStartPage.id,
-        (Route<dynamic> route) => false,
       );
     } else if (role == 'teacher_browser' || token != null) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
+      Navigator.of(context).popAndPushNamed(
         TeacherStartPage.id,
-        (Route<dynamic> route) => false,
-      );
-    } else if (role == 'student_browser' || token != null) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        BrowserStartPage.id,
-        (Route<dynamic> route) => false,
       );
     } else {
       print('We are in the start page');

@@ -262,9 +262,9 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 height: 10,
                               ),
                               ShowDialogList(
-                                  value: teacherAuthDepartmentVariable == ''
+                                  value: teacherDepartmentVariable == ''
                                       ? 'اضغط للإختيار...'
-                                      : teacherAuthDepartmentVariable,
+                                      : teacherDepartmentVariable,
                                   child: ListView.builder(
                                     itemCount: departmentData.length,
                                     itemBuilder: (context, index) {

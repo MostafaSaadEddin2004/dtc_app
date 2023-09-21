@@ -79,9 +79,7 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (contex) {
-                              return TeacherAuthProfilePage();
-                            }));
+                                .popAndPushNamed(TeacherAuthProfilePage.id);
                           },
                           child: CircleAvatar(
                               minRadius: 30,

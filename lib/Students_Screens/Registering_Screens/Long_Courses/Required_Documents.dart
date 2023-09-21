@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
 import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:dtc_app/Constants/Controller.dart';
 import 'package:dtc_app/api/services/academic_registraion_service.dart';
@@ -9,7 +10,6 @@ import '../../../Components/CustomAppBar.dart';
 import '../../../Components/Documents_card.dart';
 import '../../../Components/Label.dart';
 import '../../../Constants/Colors.dart';
-import '../../Student_Start_Page.dart';
 
 class RequiredDocuments extends StatefulWidget {
   const RequiredDocuments({super.key, required this.specialtyIDs});
@@ -870,7 +870,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                             un_image: unCardImageFile!,
                             department_ids: widget.specialtyIDs);
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                          StudentStartPage.id,
+                          BrowserStartPage.id,
                           (Route<dynamic> route) => false,
                         );
                       } else {

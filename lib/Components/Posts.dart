@@ -151,8 +151,8 @@ class _DTCPostsState extends State<DTCPosts> {
                             margin: const EdgeInsets.symmetric(horizontal: 40),
                             child: Center(
                                 child: Stack(children: [
-                              Image.asset(
-                                'assets/images/Course.jpeg',
+                              Image.network(
+                                widget.postImage,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -174,8 +174,7 @@ class _DTCPostsState extends State<DTCPosts> {
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset('assets/images/Course.jpeg',
-                          fit: BoxFit.cover),
+                      child: Image.network(widget.postImage, fit: BoxFit.cover),
                     ),
                   )
                 : const SizedBox(),
@@ -221,8 +220,6 @@ class _DTCPostsState extends State<DTCPosts> {
                         }
                         if (widget.onChange != null)
                           widget.onChange!(isFavorite, isSaved, count);
-                        PublicPostServices.savePost(
-                            id: widget.postId.toString());
                         setState(() {});
                       },
                       icon: isSaved == false
@@ -363,8 +360,8 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
                             margin: const EdgeInsets.symmetric(horizontal: 40),
                             child: Center(
                                 child: Stack(children: [
-                              Image.asset(
-                                'assets/images/Course.jpeg',
+                              Image.network(
+                                widget.postImage,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -386,8 +383,10 @@ class _DepartmentPostsState extends State<DepartmentPosts> {
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset('assets/images/Course.jpeg',
-                          fit: BoxFit.cover),
+                      child: Image.network(
+                        widget.postImage,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   )
                 : const SizedBox(),
@@ -584,8 +583,8 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
                             margin: const EdgeInsets.symmetric(horizontal: 40),
                             child: Center(
                                 child: Stack(children: [
-                              Image.asset(
-                                'assets/images/Course.jpeg',
+                              Image.network(
+                                widget.postImage,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -607,8 +606,10 @@ class _PostDepartmentPostsState extends State<PostDepartmentPosts> {
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset('assets/images/Course.jpeg',
-                          fit: BoxFit.cover),
+                      child: Image.network(
+                        widget.postImage,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   )
                 : const SizedBox(),
@@ -809,8 +810,8 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
                             margin: const EdgeInsets.symmetric(horizontal: 40),
                             child: Center(
                                 child: Stack(children: [
-                              Image.asset(
-                                'assets/images/Course.jpeg',
+                              Image.network(
+                                widget.postImage,
                                 fit: BoxFit.cover,
                               ),
                               Positioned(
@@ -832,8 +833,10 @@ class _RegisterCoursesPostState extends State<RegisterCoursesPost> {
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset('assets/images/Course.jpeg',
-                          fit: BoxFit.cover),
+                      child: Image.network(
+                        widget.postImage,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   )
                 : const SizedBox(),
@@ -1047,12 +1050,50 @@ class _CoursesPostState extends State<CoursesPost> {
                 print(widget.postImage);
               },
               child: Container(
-                width: double.infinity,
-                child: widget.postImage == ""
-                    ? const SizedBox()
-                    : Image.asset('assets/images/Course.jpeg',
-                        fit: BoxFit.cover),
-              ),
+                  width: double.infinity,
+                  child: widget.postImage != ''
+                      ? GestureDetector(
+                          onTap: () {
+                            print(widget.postImage);
+                            showDialog(
+                              barrierDismissible: true,
+                              context: context,
+                              builder: (context) {
+                                return Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 40),
+                                  child: Center(
+                                      child: Stack(children: [
+                                    Image.network(
+                                      widget.postImage,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    Positioned(
+                                        top: 5,
+                                        right: 5,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Icon(
+                                            Icons.close,
+                                            color: BlackColor,
+                                          ),
+                                        ))
+                                  ])),
+                                );
+                              },
+                            );
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Image.network(
+                              widget.postImage,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                      : const SizedBox()),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 10, left: 10),

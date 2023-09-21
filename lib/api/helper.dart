@@ -14,6 +14,7 @@ class BaseApi {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
+    print(response.body);
     return response.body;
   }
 

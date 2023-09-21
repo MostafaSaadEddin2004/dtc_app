@@ -58,9 +58,7 @@ class _TeacherNotificationsPageState extends State<TeacherNotificationsPage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (contex) {
-                              return TeacherProfilePage();
-                            }));
+                                .popAndPushNamed(TeacherProfilePage.id);
                           },
                           child: CircleAvatar(
                               minRadius: 30,

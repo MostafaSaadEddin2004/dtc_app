@@ -57,9 +57,7 @@ class _StudentNotificationsPageState extends State<StudentNotificationsPage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (contex) {
-                              return StudentProfilePage();
-                            }));
+                                .popAndPushNamed(StudentProfilePage.id);
                           },
                           child: CircleAvatar(
                               minRadius: 30,

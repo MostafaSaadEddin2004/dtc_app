@@ -73,9 +73,7 @@ class _StudentTabBarState extends State<StudentTabBar> {
                           GestureDetector(
                             onTap: () {
                               Navigator.of(context)
-                                  .push(MaterialPageRoute(builder: (contex) {
-                                return StudentProfilePage();
-                              }));
+                                  .popAndPushNamed(StudentProfilePage.id);
                             },
                             child: CircleAvatar(
                                 minRadius: 30,

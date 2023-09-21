@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthServices with BaseApi {
   static String? responseMessage;
-  static void postRegistration({
+  static Future<String?> postRegistration({
     required String arFirstName,
     required String arLastName,
     required String enFirstName,
@@ -38,8 +38,9 @@ abstract class AuthServices with BaseApi {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', token);
       await prefs.setString('role', role);
+      return null;
     } else {
-      throw Exception('${response.statusCode}  ${response.body}');
+      return jsonDecode(response.body)['errors']['email'][0];
     }
   }
 
@@ -102,11 +103,10 @@ abstract class AuthServices with BaseApi {
     return RegistrationInformationModel.fromJson(jsonDecode(response)['data']);
   }
 
-  static Future<List<RoleModel>> getUserRole() async {
+  static Future<String> getUserRole() async {
     final response = await BaseApi.getRequest(endpoint: 'auth/role');
-
-    return (jsonDecode(response)['data'] as List)
-        .map((json) => RoleModel.fromJson(json))
-        .toList();
+    final role = jsonDecode(response)['role'];
+    print(role);
+    return role;
   }
 }

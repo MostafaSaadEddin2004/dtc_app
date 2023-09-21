@@ -266,6 +266,7 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                     ),
                     Text(
                       teacherSinUpEnglishFirstNameController.text +
+                          ' ' +
                           teacherSinUpEnglishLastNameController.text,
                       style: TextStyle(fontSize: 20),
                     ),

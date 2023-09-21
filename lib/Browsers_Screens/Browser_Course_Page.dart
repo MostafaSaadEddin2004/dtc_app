@@ -42,8 +42,7 @@ class _BrowserCoursePageState extends State<BrowserCoursePage> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (contex) => const BrowserProfilePage()));
+                          Navigator.of(context).popAndPushNamed(BrowserProfilePage.id);
                         },
                         child: CircleAvatar(
                             minRadius: 30,

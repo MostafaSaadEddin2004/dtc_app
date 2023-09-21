@@ -28,16 +28,6 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List list = ['علمي', 'أدبي', 'صناعة', 'فنون نسوية', 'إعدادي'];
-
-    Map<String, dynamic> scientific = {
-      'إدارة الأعمال': 1700,
-      'إدارة المشاريع': 1700,
-      'إدارة التسويق الإلكتروني': 1700,
-      'التصميم الإعلاني': 1700,
-      'مساعد مهندس ديكور': 1700,
-    };
-
     return Scaffold(
         appBar: CustomAppBar(title: 'طلب الانتساب'),
         body: Form(
@@ -67,13 +57,13 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                             ? 'اضغط للإختيار...'
                             : certification,
                         child: ListView.builder(
-                          itemCount: list.length,
+                          itemCount: certificateData.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-                                certification = list[index];
-                                // selectedCertificateId =
-                                //     certificateData[index];
+                                certification = certificateData[index].name;
+                                selectedCertificateId =
+                                    certificateData[index].id;
                                 Navigator.of(context).pop();
                                 setState(() {});
                               },
@@ -81,7 +71,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                                 height: 50,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [Text(list[index])],
+                                  children: [Text(certificateData[index].name)],
                                 ),
                               ),
                             );
@@ -92,79 +82,74 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    // FutureBuilder<List<ComparisonModel>>(
-                    //   future: ComparisonService.getComparison(
-                    //       certificateType_id: selectedCertificateId),
-                    //   builder: (context, snapshot) {
-                    //     if (!snapshot.hasData || !mounted) return Loading();
-                    //     final comparisonData = snapshot.data;
-                    //     Map<String, dynamic> scientific = {
-
-                    // };
-                    // for (var comparison in comparisonData!) {
-                    //   Map<String, dynamic> comp = {
-                    //     comparison.name: comparison.mark
-                    //   };
-                    //   scientific = comp;
-                    // }
-                    // return
-                    certification == 'أدبي'
-                        ? Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Column(children: [
-                              DataTable(
-                                headingRowHeight: 60,
-                                headingTextStyle: const TextStyle(
-                                    color: BlackColor,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                                dataRowHeight: 50,
-                                dataTextStyle: const TextStyle(
-                                    color: BlackColor, fontSize: 12),
-                                border: TableBorder.all(
-                                    color: GreyColor,
-                                    width: 1,
-                                    borderRadius: BorderRadius.circular(10),
-                                    style: BorderStyle.solid),
-                                decoration: BoxDecoration(
-                                  color: WhiteColor,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: GreyColor,
-                                      blurRadius: 2,
-                                      offset: Offset(2, 2), // Shadow position
-                                    ),
-                                  ],
+                    FutureBuilder<List<ComparisonModel>>(
+                      future: ComparisonService.getComparison(
+                          certificateType_id: selectedCertificateId),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData || !mounted) return Loading();
+                        final comparisonData = snapshot.data;
+                        Map<String, dynamic> scientific = {};
+                        for (var comparison in comparisonData!) {
+                          Map<String, dynamic> comp = {
+                            comparison.name: comparison.mark
+                          };
+                          scientific = comp;
+                        }
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Column(children: [
+                            DataTable(
+                              headingRowHeight: 60,
+                              headingTextStyle: const TextStyle(
+                                  color: BlackColor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              dataRowHeight: 50,
+                              dataTextStyle: const TextStyle(
+                                  color: BlackColor, fontSize: 12),
+                              border: TableBorder.all(
+                                  color: GreyColor,
+                                  width: 1,
                                   borderRadius: BorderRadius.circular(10),
-                                ),
-                                columns: const [
-                                  DataColumn(
-                                      label: Text(
-                                    'الاختصاص',
-                                    textAlign: TextAlign.start,
-                                  )),
-                                  DataColumn(
-                                      label: Text('العلامة',
-                                          textAlign: TextAlign.start))
+                                  style: BorderStyle.solid),
+                              decoration: BoxDecoration(
+                                color: WhiteColor,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: GreyColor,
+                                    blurRadius: 2,
+                                    offset: Offset(2, 2), // Shadow position
+                                  ),
                                 ],
-                                rows: scientific.entries.map((entry) {
-                                  return DataRow(
-                                    cells: [
-                                      DataCell(Text(
-                                        entry.key,
-                                        textAlign: TextAlign.start,
-                                      )),
-                                      DataCell(Text(entry.value.toString(),
-                                          textAlign: TextAlign.start)),
-                                    ],
-                                  );
-                                }).toList(),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            ]),
-                          )
-                        : SizedBox(),
-                    //   },
-                    // ),
+                              columns: const [
+                                DataColumn(
+                                    label: Text(
+                                  'الاختصاص',
+                                  textAlign: TextAlign.start,
+                                )),
+                                DataColumn(
+                                    label: Text('العلامة',
+                                        textAlign: TextAlign.start))
+                              ],
+                              rows: scientific.entries.map((entry) {
+                                return DataRow(
+                                  cells: [
+                                    DataCell(Text(
+                                      entry.key,
+                                      textAlign: TextAlign.start,
+                                    )),
+                                    DataCell(Text(entry.value.toString(),
+                                        textAlign: TextAlign.start)),
+                                  ],
+                                );
+                              }).toList(),
+                            ),
+                          ]),
+                        );
+                      },
+                    ),
                     const SizedBox(
                       height: 15,
                     ),

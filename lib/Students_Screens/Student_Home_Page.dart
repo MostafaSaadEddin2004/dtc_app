@@ -57,9 +57,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (contex) {
-                            return StudentProfilePage();
-                          }));
+                              .popAndPushNamed(StudentProfilePage.id);
                         },
                         child: CircleAvatar(
                             minRadius: 30,
@@ -178,8 +176,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
             future: PublicPostServices.getPublicPost(),
             builder: (context, snapshot) {
               if (!snapshot.hasData || !mounted) return Loading();
-              final posts = snapshot.data!
-                ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+              final posts = snapshot.data!;
 
               return ListView.builder(
                 itemCount: posts.length,

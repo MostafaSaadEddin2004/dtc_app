@@ -22,7 +22,6 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
   bool isLoading = false;
 
   XFile? studentProfileImageFile;
-
   File? studentProfileImagePath;
   @override
   Widget build(BuildContext context) {

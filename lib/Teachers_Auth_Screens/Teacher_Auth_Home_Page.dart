@@ -57,9 +57,7 @@ class _TeacherAuthHomePageState extends State<TeacherAuthHomePage> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (contex) =>
-                                  const TeacherAuthProfilePage()));
+                          Navigator.of(context).popAndPushNamed(TeacherAuthProfilePage.id);
                         },
                         child: CircleAvatar(
                             minRadius: 30,
