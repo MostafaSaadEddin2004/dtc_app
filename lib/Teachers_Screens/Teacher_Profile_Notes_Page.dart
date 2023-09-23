@@ -1,4 +1,5 @@
 import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/Constants/Controller.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/Notes.dart';
@@ -46,10 +47,27 @@ class _TeacherProfileNotesPageState extends State<TeacherProfileNotesPage> {
                   itemCount: notes.length,
                   itemBuilder: (context, index) => Note(
                     note: notes[index],
-                    onEditPressed: () {
-                      Navigator.of(context).pushNamed(TeacherEditingNotes.id);
+                    onEditPressed: () async {
+                      teacherEditingNoteClassification.text =
+                          notes[index].category;
+                      teacherAuthEditingNoteText.text =
+                          notes[index].description;
+                      teacherEditingNoteTitle.text = notes[index].title;
+                      teacherEditingNoteIdVariable = notes[index].id;
+                      teacherEditingNoteClassificationVariable = '';
+                      final NoteModel? note =
+                          await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const TeacherEditingNotes(),
+                      ));
+                      if (note != null) {
+                        notes.add(note);
+                      }
+                      setState(() {});
                     },
-                    onDeletePressed: () {},
+                    onDeletePressed: () async {
+                      await NoteServices.deleteNote(id: notes[index].id);
+                      setState(() {});
+                    },
                     noteTitle: notes[index].title,
                     noteClassification: notes[index].category,
                     noteText: notes[index].description,

@@ -26,20 +26,28 @@ class _StudentHomePageState extends State<StudentHomePage> {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         actions: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            alignment: Alignment.center,
-            height: 30,
-            decoration: BoxDecoration(
-              color: PrimaryColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Text(
-              'تجاري / إدارة مشاريع',
-              style: TextStyle(
-                  color: WhiteColor, fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
+         FutureBuilder(
+                  future: AuthServices.getUserInformation(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData || !mounted) return Loading();
+                    final user = snapshot.data!;
+                    return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      alignment: Alignment.center,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: PrimaryColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Text(
+                        'dep',
+                        style: TextStyle(
+                            color: WhiteColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    );
+                  }),
         ],
       ),
       drawer: Drawer(
@@ -177,7 +185,6 @@ class _StudentHomePageState extends State<StudentHomePage> {
             builder: (context, snapshot) {
               if (!snapshot.hasData || !mounted) return Loading();
               final posts = snapshot.data!;
-
               return ListView.builder(
                 itemCount: posts.length,
                 itemBuilder: (context, index) => DTCPosts(

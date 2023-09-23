@@ -11,8 +11,10 @@ import '../../../Constants/Colors.dart';
 class WishesPage extends StatefulWidget {
   const WishesPage({
     super.key,
+    required this.certificateId,
   });
   static String id = '/WishesPage';
+  final int certificateId;
 
   @override
   State<WishesPage> createState() => _WishesPageState();
@@ -20,7 +22,6 @@ class WishesPage extends StatefulWidget {
 
 class _WishesPageState extends State<WishesPage> {
   int checkedCount = 0;
-  late int certificateId = ModalRoute.of(context)!.settings.arguments as int;
   List<String> wishesList = [
     'مساعد صيدلي',
     'فني مخبر طبي',
@@ -45,14 +46,11 @@ class _WishesPageState extends State<WishesPage> {
     return Scaffold(
       appBar: CustomAppBar(title: 'طلب الانتساب'),
       body: FutureBuilder(
-        future:
-            ComparisonService.getComparison(certificateType_id: certificateId),
+        future: ComparisonService.getComparison(
+            certificateType_id: widget.certificateId),
         builder: (context, snapshot) {
           if (!snapshot.hasData || !mounted) return Loading();
           final wishData = snapshot.data!;
-          for (var wish in wishes) {
-            wishesList.add(wish.name);
-          }
           return SingleChildScrollView(
               child: Column(children: [
             const SizedBox(
@@ -67,13 +65,8 @@ class _WishesPageState extends State<WishesPage> {
               margin: const EdgeInsets.only(top: 10),
               height: 278,
               child: ListView.builder(
-                  itemCount:
-                      wishes.where((element) => !element.selected).length,
+                  itemCount: wishData.length,
                   itemBuilder: (context, index) {
-                    final wishes = this
-                        .wishes
-                        .where((element) => !element.selected)
-                        .toList();
                     return Container(
                       margin: const EdgeInsets.only(
                           bottom: 10, left: 15, right: 15),
@@ -104,6 +97,7 @@ class _WishesPageState extends State<WishesPage> {
                                 setState(() {});
                               } else if (checkedCount == 6) {
                                 showDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (context) => warningDialog(
                                       title: 'إنتباه',

@@ -39,7 +39,7 @@ abstract class FirebaseHelper {
 
       flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
-            android: AndroidInitializationSettings('@drawable/logo'),
+            android: AndroidInitializationSettings('@drawable/logo_notificartion'),
             iOS: DarwinInitializationSettings()),
         // ignore: avoid_print
         onDidReceiveNotificationResponse: (details) => print(details.payload),

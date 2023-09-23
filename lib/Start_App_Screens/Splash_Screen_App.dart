@@ -27,25 +27,26 @@ class _SplashScreenState extends State<SplashScreen> {
     FirebaseHelper.init(context);
     final prefs = await SharedPreferences.getInstance();
     final token = await prefs.getString('token');
-    final role = AuthServices.getUserRole();
-    if (role == 'student_browser' || token != null) {
+    final role = await AuthServices.getUserRole();
+    if (role == 'student_browser' && token != null) {
       Navigator.of(context).popAndPushNamed(
         BrowserStartPage.id,
       );
-    } else if (role == 'student' || token != null) {
+    } else if (role == 'student' && token != null) {
       Navigator.of(context).popAndPushNamed(
         StudentStartPage.id,
       );
-    } else if (role == 'teacher' || token != null) {
+    } else if (role == 'teacher' && token != null) {
       Navigator.of(context).popAndPushNamed(
         TeacherAuthStartPage.id,
       );
-    } else if (role == 'teacher_browser' || token != null) {
+    } else if (role == 'teacher_browser' && token != null) {
       Navigator.of(context).popAndPushNamed(
         TeacherStartPage.id,
       );
     } else {
       print('We are in the start page');
+      return null;
     }
   }
 

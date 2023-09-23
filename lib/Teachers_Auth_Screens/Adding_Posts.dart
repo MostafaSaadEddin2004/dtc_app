@@ -1,16 +1,18 @@
 import 'dart:io';
 
 import 'package:dtc_app/api/services/depatrment_post_services.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:open_file/open_file.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
 import '../Components/Dialogs.dart';
 import '../Components/TextField.dart';
 import '../Constants/Colors.dart';
 import '../Constants/Controller.dart';
-import '../Constants/TextStyle.dart';
 
 class AddingPostPage extends StatefulWidget {
   const AddingPostPage({super.key});
@@ -23,10 +25,11 @@ class AddingPostPage extends StatefulWidget {
 class _AddingPostPageState extends State<AddingPostPage> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isLoading = false;
-  bool gallery = false;
-  bool camera = false;
-  XFile? postImage;
+  bool isThereFile = false;
+  XFile? postImageFile;
   File? postImagePath;
+  File? postFilePath;
+  FilePickerResult? postFile;
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
@@ -36,503 +39,179 @@ class _AddingPostPageState extends State<AddingPostPage> {
         body: Form(
             key: formKey,
             child: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                   height: MediaQuery.of(context).size.height - 92,
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 30,
+                      registrationInfoTextField(
+                        maxLines: 6,
+                        controller: postTextController,
+                        keyboardType: TextInputType.text,
+                        radius: 0,
+                        validator: (text) {
+                          return null;
+                        },
                       ),
                       Container(
-                        alignment: Alignment.topCenter,
-                        margin: const EdgeInsets.only(
-                            left: 60, top: 50, right: 60, bottom: 10),
-                        height: 206,
-                        width: MediaQuery.of(context).size.width,
-                        child: postImagePath == null
-                            ? Container(
-                                height: 200,
-                                width: 200,
-                                decoration: BoxDecoration(
-                                    color: WhiteColor,
-                                    boxShadow: [BoxShadow(blurRadius: 4)],
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(5))),
-                                child: Icon(
-                                  Icons.person,
-                                  color: BlackColor.withOpacity(0.8),
-                                  size: 200,
-                                ),
-                              )
-                            : Container(
-                                padding: const EdgeInsets.all(2),
-                                height: 200,
-                                width: 200,
-                                decoration: BoxDecoration(
-                                    color: WhiteColor,
-                                    boxShadow: [BoxShadow(blurRadius: 4)],
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(5))),
-                                child: Image.file(
-                                  postImagePath!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                camera = false;
-                                gallery = false;
-                                setState(() {});
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return StatefulBuilder(
-                                        builder: (context, setState) {
-                                          return Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 40),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                // GestureDetector(
-                                                //   child: Icon(Icons.close)),
-                                                // const SizedBox(
-                                                //   height: 20,
-                                                // ),
-                                                Row(children: [
-                                                  const Spacer(
-                                                    flex: 1,
+                          alignment: Alignment.topCenter,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: const BoxDecoration(
+                            color: WhiteColor,
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 2,
+                                  offset: Offset(1, 1),
+                                  color: GreyColor)
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              postImagePath != null || postFile != null
+                                  ? Container(
+                                      height: 200,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: const BoxDecoration(
+                                        color: WhiteColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              blurRadius: 2,
+                                              offset: Offset(1, 1),
+                                              color: GreyColor)
+                                        ],
+                                      ),
+                                      child: postImagePath == null
+                                          ? GestureDetector(
+                                              onTap: () {
+                                                //  OpenFile.open(
+                                                //     postFilePath.toString());
+                                              },
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    FontAwesomeIcons.file,
+                                                    color:
+                                                        BlackColor.withOpacity(
+                                                            0.6),
+                                                    size: 80,
                                                   ),
-                                                  GestureDetector(
-                                                    onTap: () async {
-                                                      gallery = true;
-                                                      camera = false;
-                                                      teacherAuthProfileImageFile =
-                                                          await ImagePicker()
-                                                              .pickImage(
-                                                                  source: ImageSource
-                                                                      .gallery);
-                                                      teacherAuthProfileImagePath =
-                                                          File(
-                                                              teacherAuthProfileImageFile!
-                                                                  .path);
-                                                      this.setState(() {});
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: gallery == false
-                                                        ? Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color:
-                                                                        GreyColor),
-                                                                borderRadius:
-                                                                    const BorderRadius
-                                                                        .all(
-                                                                        Radius.circular(
-                                                                            20))),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: const [
-                                                                Icon(
-                                                                  Icons
-                                                                      .picture_in_picture_alt,
-                                                                  size: 50,
-                                                                ),
-                                                                Text('المعرض')
-                                                              ],
-                                                            ),
-                                                          )
-                                                        : Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: const BoxDecoration(
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(postFile!
+                                                      .files.first.name)
+                                                ],
+                                              ),
+                                            )
+                                          : GestureDetector(
+                                              onTap: () {
+                                                showDialog(
+                                                  barrierDismissible: true,
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Container(
+                                                      margin: const EdgeInsets
+                                                          .symmetric(
+                                                          horizontal: 40),
+                                                      child: Center(
+                                                          child:
+                                                              Stack(children: [
+                                                        Image.file(
+                                                          postImagePath!,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                        Positioned(
+                                                            top: 5,
+                                                            right: 5,
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () {
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
+                                                              },
+                                                              child: Icon(
+                                                                Icons.close,
                                                                 color:
-                                                                    PrimaryColor,
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: const [
-                                                                Icon(
-                                                                    Icons
-                                                                        .picture_in_picture_alt,
-                                                                    size: 50,
-                                                                    color:
-                                                                        WhiteColor),
-                                                                Text(
-                                                                  'المعرض',
-                                                                  style: TextStyle(
-                                                                      color:
-                                                                          WhiteColor),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                  ),
-                                                  const Spacer(
-                                                    flex: 1,
-                                                  ),
-                                                  GestureDetector(
-                                                    onTap: () async {
-                                                      gallery = false;
-                                                      camera = true;
-                                                      teacherAuthProfileImageFile =
-                                                          await ImagePicker()
-                                                              .pickImage(
-                                                                  source:
-                                                                      ImageSource
-                                                                          .camera);
-                                                      teacherAuthProfileImagePath =
-                                                          File(
-                                                              teacherAuthProfileImageFile!
-                                                                  .path);
-                                                      this.setState(() {});
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: camera == false
-                                                        ? Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color:
-                                                                        GreyColor),
-                                                                borderRadius:
-                                                                    const BorderRadius
-                                                                        .all(
-                                                                        Radius.circular(
-                                                                            20))),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: const [
-                                                                Icon(
-                                                                  Icons
-                                                                      .camera_alt,
-                                                                  size: 50,
-                                                                ),
-                                                                Text(
-                                                                  'الكاميرا',
-                                                                )
-                                                              ],
-                                                            ),
-                                                          )
-                                                        : Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: const BoxDecoration(
-                                                                color:
-                                                                    PrimaryColor,
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: const [
-                                                                Icon(
-                                                                    Icons
-                                                                        .camera_alt,
-                                                                    size: 50,
-                                                                    color:
-                                                                        WhiteColor),
-                                                                Text(
-                                                                  'الكاميرا',
-                                                                  style: TextStyle(
-                                                                      color:
-                                                                          WhiteColor),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                  ),
-                                                  const Spacer(
-                                                    flex: 1,
-                                                  ),
-                                                ]),
-                                              ],
+                                                                    BlackColor,
+                                                              ),
+                                                            ))
+                                                      ])),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: Image.file(
+                                                postImagePath!,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
-                                          );
-                                        },
-                                      );
-                                    });
-                              },
-                              child: Icon(
-                                Icons.camera_alt,
-                                size: 40,
-                                color: BlackColor.withOpacity(0.8),
+                                    )
+                                  : const SizedBox(),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 5),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () async {
+                                        postFile = await FilePicker.platform
+                                            .pickFiles(allowMultiple: false);
+                                        postFilePath =
+                                            File(postFile!.files.first.path!);
+                                        postImagePath = null;
+                                        this.setState(() {});
+                                      },
+                                      child: Icon(
+                                        FontAwesomeIcons.fileCirclePlus,
+                                        size: 25,
+                                        color: BlackColor.withOpacity(0.7),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        postImageFile = await ImagePicker()
+                                            .pickImage(
+                                                source: ImageSource.gallery);
+                                        postImagePath =
+                                            File(postImageFile!.path);
+                                        this.setState(() {});
+                                      },
+                                      child: Icon(
+                                        FontAwesomeIcons.image,
+                                        size: 30,
+                                        color: BlackColor.withOpacity(0.7),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        postImageFile = await ImagePicker()
+                                            .pickImage(
+                                                source: ImageSource.camera);
+                                        postImagePath =
+                                            File(postImageFile!.path);
+                                        this.setState(() {});
+                                      },
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        size: 35,
+                                        color: BlackColor.withOpacity(0.6),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            const Spacer(
-                              flex: 1,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                camera = false;
-                                gallery = false;
-                                setState(() {});
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return StatefulBuilder(
-                                        builder: (context, setState) {
-                                          return Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 40),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                // GestureDetector(
-                                                //   child: Icon(Icons.close)),
-                                                // const SizedBox(
-                                                //   height: 20,
-                                                // ),
-                                                Row(children: [
-                                                  const Spacer(
-                                                    flex: 1,
-                                                  ),
-                                                  GestureDetector(
-                                                    onTap: () async {
-                                                      gallery = true;
-                                                      camera = false;
-                                                      teacherAuthProfileImageFile =
-                                                          await ImagePicker()
-                                                              .pickImage(
-                                                                  source: ImageSource
-                                                                      .gallery);
-                                                      teacherAuthProfileImagePath =
-                                                          File(
-                                                              teacherAuthProfileImageFile!
-                                                                  .path);
-                                                      this.setState(() {});
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: gallery == false
-                                                        ? Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color:
-                                                                        GreyColor),
-                                                                borderRadius:
-                                                                    const BorderRadius
-                                                                        .all(
-                                                                        Radius.circular(
-                                                                            20))),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: const [
-                                                                Icon(
-                                                                  Icons
-                                                                      .picture_in_picture_alt,
-                                                                  size: 50,
-                                                                ),
-                                                                Text('المعرض')
-                                                              ],
-                                                            ),
-                                                          )
-                                                        : Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: const BoxDecoration(
-                                                                color:
-                                                                    PrimaryColor,
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: const [
-                                                                Icon(
-                                                                    Icons
-                                                                        .picture_in_picture_alt,
-                                                                    size: 50,
-                                                                    color:
-                                                                        WhiteColor),
-                                                                Text(
-                                                                  'المعرض',
-                                                                  style: TextStyle(
-                                                                      color:
-                                                                          WhiteColor),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                  ),
-                                                  const Spacer(
-                                                    flex: 1,
-                                                  ),
-                                                  GestureDetector(
-                                                    onTap: () async {
-                                                      gallery = false;
-                                                      camera = true;
-                                                      teacherAuthProfileImageFile =
-                                                          await ImagePicker()
-                                                              .pickImage(
-                                                                  source:
-                                                                      ImageSource
-                                                                          .camera);
-                                                      teacherAuthProfileImagePath =
-                                                          File(
-                                                              teacherAuthProfileImageFile!
-                                                                  .path);
-                                                      this.setState(() {});
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: camera == false
-                                                        ? Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color:
-                                                                        GreyColor),
-                                                                borderRadius:
-                                                                    const BorderRadius
-                                                                        .all(
-                                                                        Radius.circular(
-                                                                            20))),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: const [
-                                                                Icon(
-                                                                  Icons
-                                                                      .camera_alt,
-                                                                  size: 50,
-                                                                ),
-                                                                Text(
-                                                                  'الكاميرا',
-                                                                )
-                                                              ],
-                                                            ),
-                                                          )
-                                                        : Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: const BoxDecoration(
-                                                                color:
-                                                                    PrimaryColor,
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: const [
-                                                                Icon(
-                                                                    Icons
-                                                                        .camera_alt,
-                                                                    size: 50,
-                                                                    color:
-                                                                        WhiteColor),
-                                                                Text(
-                                                                  'الكاميرا',
-                                                                  style: TextStyle(
-                                                                      color:
-                                                                          WhiteColor),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                  ),
-                                                  const Spacer(
-                                                    flex: 1,
-                                                  ),
-                                                ]),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    });
-                              },
-                              child: Icon(
-                                Icons.camera_alt,
-                                size: 40,
-                                color: BlackColor.withOpacity(0.8),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 15),
-                        child: Column(
-                          children: [
-                            titleText(text: 'نص المنشور'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            registrationInfoTextField(
-                              maxLines: 6,
-                              controller: postTextController,
-                              keyboardType: TextInputType.text,
-                              radius: 20,
-                              validator: (text) {
-                                if (text!.isEmpty) {
-                                  return 'الحقل مطلوب';
-                                }
-                                return null;
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
+                            ],
+                          )),
                       const Spacer(
                         flex: 1,
                       ),
@@ -540,11 +219,13 @@ class _AddingPostPageState extends State<AddingPostPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           nextButton(
-                            onTap: () async {
+                            onTap: () {
                               isLoading = true;
-                              await DepartmentPostServices.postDepartmentPost(
+                              DepartmentPostServices.postDepartmentPost(
                                   content: postTextController.text.toString(),
-                                  attachment: postImagePath.toString());
+                                  attachment: postImagePath != null
+                                      ? postImagePath!
+                                      : postFilePath!);
                               isLoading = false;
                               showDialog(
                                 context: context,
@@ -555,7 +236,7 @@ class _AddingPostPageState extends State<AddingPostPage> {
                                         ..pop()
                                         ..pop();
                                     },
-                                    title: 'إضافة الملاحظة'),
+                                    title: 'إضافة المنشور'),
                               );
                             },
                             text: 'إضافة',

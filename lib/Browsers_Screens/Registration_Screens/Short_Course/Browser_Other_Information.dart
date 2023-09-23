@@ -199,6 +199,7 @@ class _BrowserOtherInformationState extends State<BrowserOtherInformation> {
                                                 workSelectedIndex),
                                         course_id: courseId);
                                 showDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (context) => CustomDialog(
                                       title: 'الإنتساب للدورة',

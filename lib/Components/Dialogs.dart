@@ -72,7 +72,7 @@ Widget editingPrivacyDialog(
         required VoidCallback onCancelPressed,
         required TextInputType keyboardType,
         required IconData prefixIcon,
-        Key? key,
+        required Key key,
         String? hint}) =>
     AlertDialog(
       title: Text(title),

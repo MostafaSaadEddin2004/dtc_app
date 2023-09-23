@@ -26,21 +26,28 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         actions: [
-          Container(
-            padding: const EdgeInsets.only(left: 10),
-            alignment: Alignment.center,
-            height: 30,
-            width: 40,
-            decoration: BoxDecoration(
-              color: PrimaryColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Text(
-              'IT',
-              style: TextStyle(
-                  color: WhiteColor, fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
+        FutureBuilder(
+                  future: AuthServices.getUserInformation(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData || !mounted) return Loading();
+                    final user = snapshot.data!;
+                    return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      alignment: Alignment.center,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: PrimaryColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Text(
+                        'dep',
+                        style: TextStyle(
+                            color: WhiteColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    );
+                  }),
         ],
       ),
       drawer: Drawer(

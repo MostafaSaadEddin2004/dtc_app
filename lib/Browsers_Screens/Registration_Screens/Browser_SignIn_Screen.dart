@@ -134,11 +134,11 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
                             role: 'student_browser');
                         isLoading = false;
                         if (error == null) {
-                          print('Succesful');
                           Navigator.of(context).pushNamedAndRemoveUntil(
                               BrowserStartPage.id, (route) => false);
                         } else {
                           showDialog(
+                            barrierDismissible: false,
                             context: context,
                             builder: (context) {
                               return warningDialog(

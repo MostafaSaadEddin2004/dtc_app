@@ -91,7 +91,6 @@ String studentNoteCLassificationVariable = '';
 int studentEditingNoteIdVariable = 0;
 String studentEditingNoteCLassificationVariable = '';
 
-
 //Teacher Auth Controllers
 var postTextController = TextEditingController();
 var editingPostTextController = TextEditingController();
@@ -124,8 +123,7 @@ var teacherAuthSinUpEnglishLastNameController = TextEditingController();
 String teacherAuthDepartmentVariable = '';
 String teacherAuthNoteClassificationVariable = '';
 String teacherAuthEditingNoteCLassificationVariable = '';
-XFile? teacherAuthProfileImageFile;
-File? teacherAuthProfileImagePath;
+int teacherAuthEditingNoteIdVariable = 0;
 
 //Teacher Controllers
 var teacherBirthDateController = TextEditingController();
@@ -161,5 +159,6 @@ var teacherEditingNoteText = TextEditingController();
 
 String teacherNoteClassificationVariable = '';
 String teacherEditingNoteClassificationVariable = '';
+int teacherEditingNoteIdVariable = 0;
 XFile? teacherProfileImageFile;
 File? teacherProfileImagePath;

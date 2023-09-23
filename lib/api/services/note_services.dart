@@ -26,12 +26,11 @@ abstract class NoteServices extends BaseApi {
   }
 
   static Future<NoteModel> putNote(
-      {String? token,
-      String? title,
+      {String? title,
       String? description,
       String? category,
-      int? id}) async {
-    final response = await BaseApi.putRequest(endpoint: 'note', id: id!, body: {
+      required int id}) async {
+    final response = await BaseApi.putRequest(endpoint: 'note', id: id, body: {
       'title': title!,
       'description': description!,
       'category': category!

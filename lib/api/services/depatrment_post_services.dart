@@ -1,25 +1,26 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:dtc_app/api/models/post_model.dart';
 import '../helper.dart';
 
 abstract class DepartmentPostServices with BaseApi {
   static Future<List<PostModel>> getDepartmentPost() async {
-    final body = await BaseApi.getRequest(
-        endpoint: 'post?type=department');
+    final body = await BaseApi.getRequest(endpoint: 'post?type=department');
 
     return (jsonDecode(body)["data"] as List)
         .map((e) => PostModel.fromJson(e))
         .toList();
   }
 
-  static Future<PostModel> postDepartmentPost(
-      {String? token, String? content, String? attachment}) async {
+  static void postDepartmentPost(
+      {required String content, required File attachment}) async {
     final response =
-        await BaseApi.postRequest(endpoint: 'post?type=department', body: {
-      'content': content,
+        await BaseApi.postWithFiles(endpoint: 'post?type=department', files: {
       'attachment': attachment,
+    }, body: {
+      'content': content,
     });
-    return PostModel.fromJson(jsonDecode(response.body));
+    print('${jsonDecode(response.body)} ${response.statusCode}');
   }
 
   static Future<PostModel> putDepartmentPost({

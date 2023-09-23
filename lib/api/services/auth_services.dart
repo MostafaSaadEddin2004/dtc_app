@@ -81,20 +81,24 @@ abstract class AuthServices with BaseApi {
     }
   }
 
-  static void postChangePassword(
+  static Future<String?> postEditProfile(
       {String? email,
       String? phone,
       String? address,
       String? current_password,
-      String? new_password}) {
-    // ignore: unused_local_variable
-    final response = BaseApi.postRequest(endpoint: 'auth/profile', body: {
+      String? new_password}) async {
+    final response = await BaseApi.postRequest(endpoint: 'auth/profile', body: {
       'email': email,
       'phone': phone,
       'address': address,
       'current_password': current_password,
       'new_password': new_password,
     });
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      return 'Password changed successfully';
+    } else {
+      return jsonDecode(response.body)['message'];
+    }
   }
 
   static Future<RegistrationInformationModel> getUserInformation() async {
@@ -103,7 +107,7 @@ abstract class AuthServices with BaseApi {
     return RegistrationInformationModel.fromJson(jsonDecode(response)['data']);
   }
 
-  static Future<String> getUserRole() async {
+  static Future<String?> getUserRole() async {
     final response = await BaseApi.getRequest(endpoint: 'auth/role');
     final role = jsonDecode(response)['role'];
     print(role);

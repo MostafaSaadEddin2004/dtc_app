@@ -34,7 +34,7 @@ class _TeacherAuthInformationPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(title: 'معلومات الأستاذ المسؤول الشخصية'),
+        appBar: CustomAppBar(title: 'معلومات رئيس القسم الشخصية'),
         body: Form(
           key: formState,
           child: ModalProgressHUD(

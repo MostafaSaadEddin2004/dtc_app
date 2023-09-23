@@ -1,4 +1,5 @@
 import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/Constants/Controller.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Components/Notes.dart';
@@ -44,23 +45,28 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
         appBar: AppBar(
           backgroundColor: PrimaryColor,
           actions: [
-            Container(
-              margin: const EdgeInsets.only(left: 10, right: 10),
-              alignment: Alignment.center,
-              height: 30,
-              width: 60,
-              decoration: BoxDecoration(
-                color: PrimaryColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Text(
-                'IT',
-                style: TextStyle(
-                    color: WhiteColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
-              ),
-            ),
+           FutureBuilder(
+                  future: AuthServices.getUserInformation(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData || !mounted) return Loading();
+                    final user = snapshot.data!;
+                    return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      alignment: Alignment.center,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: PrimaryColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Text(
+                        'dep',
+                        style: TextStyle(
+                            color: WhiteColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    );
+                  }),
           ],
         ),
         drawer: Drawer(
@@ -201,17 +207,27 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
                   itemCount: notes.length,
                   itemBuilder: (context, index) => Note(
                     note: notes[index],
-                    onEditPressed: () async {
+                     onEditPressed: () async {
+                      teacherEditingNoteClassification.text =
+                          notes[index].category;
+                      teacherAuthEditingNoteText.text =
+                          notes[index].description;
+                      teacherEditingNoteTitle.text = notes[index].title;
+                      teacherEditingNoteIdVariable = notes[index].id;
+                      teacherEditingNoteClassificationVariable = '';
                       final NoteModel? note =
-                          await Navigator.of(context).pushNamed(
-                        TeacherEditingNotes.id,
-                      );
+                          await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const TeacherEditingNotes(),
+                      ));
                       if (note != null) {
                         notes.add(note);
-                        setState(() {});
                       }
+                      setState(() {});
                     },
-                    onDeletePressed: () {},
+                      onDeletePressed: () async {
+                      await NoteServices.deleteNote(id: notes[index].id);
+                      setState(() {});
+                    },
                     noteTitle: notes[index].title,
                     noteClassification: notes[index].category,
                     noteText: notes[index].description,

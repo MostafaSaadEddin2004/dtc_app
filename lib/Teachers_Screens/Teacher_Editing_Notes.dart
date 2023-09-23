@@ -118,9 +118,11 @@ class _TeacherEditingNotesState extends State<TeacherEditingNotes> {
                                     title: teacherEditingNoteTitle.text,
                                     description: teacherEditingNoteText.text,
                                     category:
-                                        teacherEditingNoteClassification.text);
+                                        teacherEditingNoteClassification.text,
+                                    id: teacherEditingNoteIdVariable);
                                 isLoading = false;
                                 showDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (context) => CustomDialog(
                                       onPressed: () {
@@ -132,7 +134,7 @@ class _TeacherEditingNotesState extends State<TeacherEditingNotes> {
                                           ..pop()
                                           ..pop(note);
                                       },
-                                      title: 'إضافة الملاحظة'),
+                                      title: 'تعديل الملاحظة'),
                                 );
                               }
                             }),

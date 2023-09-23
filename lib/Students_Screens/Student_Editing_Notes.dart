@@ -129,6 +129,7 @@ class _StudentEditingNotesState extends State<StudentEditingNotes> {
                                       id: studentEditingNoteIdVariable);
                                   isLoading = false;
                                   showDialog(
+                                    barrierDismissible: false,
                                     context: context,
                                     builder: (context) => CustomDialog(
                                         onPressed: () {

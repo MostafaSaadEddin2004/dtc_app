@@ -47,3 +47,46 @@ PreferredSizeWidget coursePageAppBar({required String title}) => AppBar(
       backgroundColor: PrimaryColor,
       title: Text(title),
     );
+
+class BottomAppBar extends StatelessWidget {
+  const BottomAppBar({super.key, required this.text, required this.wantBottom});
+  final Widget text;
+  final bool wantBottom;
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: PrimaryColor,
+      bottom: wantBottom == true
+          ? const TabBar(
+              indicatorColor: WhiteColor,
+              unselectedLabelStyle: TextStyle(fontSize: 16),
+              labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              tabs: [
+                Tab(
+                  child: Text('الدورات'),
+                ),
+                Tab(
+                  child: Text('منشورات القسم'),
+                ),
+              ],
+            )
+          : null,
+      actions: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          alignment: Alignment.center,
+          height: 30,
+          decoration: BoxDecoration(
+            color: PrimaryColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+            text.toString(),
+            style: TextStyle(
+                color: WhiteColor, fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        )
+      ],
+    );
+  }
+}

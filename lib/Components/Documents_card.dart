@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../Constants/Colors.dart';
 
@@ -64,7 +65,7 @@ class DocumentCard extends StatelessWidget {
               child: GestureDetector(
                 onTap: onUploadPressed,
                 child: Icon(
-                  Icons.upload,
+                  FontAwesomeIcons.image,
                   size: 20,
                   color: GreyColor,
                 ),

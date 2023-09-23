@@ -141,23 +141,40 @@ class _StudentChangePasswordEnterPasswordState
                   children: [
                     nextButton(
                         text: 'التالي',
-                        onTap: () {
+                        onTap: () async {
                           if (formKey.currentState!.validate()) {
-                            isLoading = true;
-                            AuthServices.postChangePassword(
+                            final error = await AuthServices.postEditProfile(
                                 current_password: studentCurrentPassword.text,
-                                new_password: studentConfirmPassword.text);
-                            showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (context) => CustomDialog(
-                                  title: 'تعديل كلمة السر',
-                                  onPressed: () {
-                                    Navigator.of(context)
-                                      ..pop()
-                                      ..pop();
-                                  }),
-                            );
+                                new_password: studentNewPassword.text);
+                            if (error == null) {
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) => CustomDialog(
+                                    title: 'تعديل كلمة السر',
+                                    onPressed: () {
+                                      studentCurrentPassword.clear();
+                                      studentNewPassword.clear();
+                                      studentConfirmPassword.clear();
+                                      Navigator.of(context)
+                                        ..pop()
+                                        ..pop();
+                                    }),
+                              );
+                            } else {
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) {
+                                  return warningDialog(
+                                      title: 'تنبيه',
+                                      message: error.toString(),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      });
+                                },
+                              );
+                            }
                           }
                         }),
                   ],

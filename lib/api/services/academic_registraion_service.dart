@@ -25,7 +25,12 @@ abstract class AcademicRegistrationService with BaseApi {
   }) async {
     // ignore: unused_local_variable
     final response =
-        await BaseApi.postRequest(endpoint: 'academic-registration', body: {
+        await BaseApi.postWithFiles(endpoint: 'academic-registration', files: {
+      'id_image': id_image,
+      'certificate_image': certificate_image,
+      'personal_image': personal_image,
+      'un_image': un_image,
+    }, body: {
       'father_name': father_name,
       'mother_name': mother_name,
       'date_of_birth': date_of_birth,
@@ -39,10 +44,6 @@ abstract class AcademicRegistrationService with BaseApi {
       'phone_of_mother': phone_of_mother,
       'avg_mark': avg_mark,
       'certificate_year': certificate_year,
-      'id_image': id_image,
-      'certificate_image': certificate_image,
-      'personal_image': personal_image,
-      'un_image': un_image,
       'department_ids': department_ids
     });
   }

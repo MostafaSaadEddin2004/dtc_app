@@ -1,7 +1,7 @@
 class ComparisonModel {
   final int id;
   final String name;
-  final int mark;
+  final int? mark;
 
   ComparisonModel({
     required this.id,

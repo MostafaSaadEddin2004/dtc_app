@@ -4,6 +4,7 @@ import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Information_Page.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../Constants/Controller.dart';
@@ -21,6 +22,8 @@ class _TeacherAuthProfileImageState extends State<TeacherAuthProfileImage> {
   bool gallery = false;
   bool camera = false;
   bool isLoading = false;
+  XFile? teacherAuthProfileImageFile;
+  File? teacherAuthProfileImagePath;
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
@@ -257,7 +260,7 @@ class _TeacherAuthProfileImageState extends State<TeacherAuthProfileImage> {
                             });
                       },
                       child: Icon(
-                        Icons.camera_alt,
+                        FontAwesomeIcons.image,
                         size: 40,
                         color: BlackColor.withOpacity(0.8),
                       ),

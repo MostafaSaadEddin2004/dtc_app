@@ -1,4 +1,5 @@
 import 'package:dtc_app/Components/Dialogs.dart';
+import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Components/Buttons.dart';
 import '../Components/CustomAppBar.dart';
@@ -132,20 +133,41 @@ class _TeacherAuthChangePasswordEnterPasswordState
                 children: [
                   nextButton(
                       text: 'التالي',
-                      onTap: () {
-                        //if (formKey.currentState!.validate()) {
-                        showDialog(
-                          barrierDismissible: false,
-                          context: context,
-                          builder: (context) => CustomDialog(
-                              title: 'تعديل كلمة السر',
-                              onPressed: () {
-                                Navigator.of(context)
-                                  ..pop()
-                                  ..pop();
-                              }),
-                        );
-                        //}
+                      onTap: () async {
+                        if (formKey.currentState!.validate()) {
+                          final error = await AuthServices.postEditProfile(
+                              current_password: teacherAuthCurrentPassword.text,
+                              new_password: teacherAuthNewPassword.text);
+                          if (error == null) {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) => CustomDialog(
+                                  title: 'تعديل كلمة السر',
+                                  onPressed: () {
+                                    teacherAuthCurrentPassword.clear();
+                                    teacherAuthNewPassword.clear();
+                                    teacherAuthConfirmPassword.clear();
+                                    Navigator.of(context)
+                                      ..pop()
+                                      ..pop();
+                                  }),
+                            );
+                          } else {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                return warningDialog(
+                                    title: 'تنبيه',
+                                    message: error.toString(),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    });
+                              },
+                            );
+                          }
+                        }
                       }),
                 ],
               )

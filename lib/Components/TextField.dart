@@ -7,16 +7,18 @@ Widget customTextField({
   String? labelText,
   String? hint,
   bool? obscure,
+  int? maxLine,
   required double radius,
   required double padding,
   TextInputType? keyboardType,
   IconData? prefix,
   IconButton? suffix,
-  required void Function(String data) onChanged,
+  void Function(String data)? onChanged,
 }) =>
     Container(
       margin: const EdgeInsetsDirectional.symmetric(vertical: 5),
       child: TextFormField(
+        // maxLines: obscure != true ? null : maxLine,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         onChanged: onChanged,
         controller: controller,
@@ -49,14 +51,15 @@ Widget customTextField({
       ),
     );
 
-Widget registrationInfoTextField(
-        {required TextEditingController controller,
-        required String? Function(String? text) validator,
-        required double radius,
-        required TextInputType? keyboardType,
-        Function(String data)? onChanged,
-        IconData? prefix,
-        int? maxLines}) =>
+Widget registrationInfoTextField({
+  required TextEditingController controller,
+  required String? Function(String? text) validator,
+  required double radius,
+  required TextInputType? keyboardType,
+  Function(String data)? onChanged,
+  IconData? prefix,
+  int? maxLines,
+}) =>
     Container(
       child: TextFormField(
         maxLines: maxLines,
@@ -73,8 +76,7 @@ Widget registrationInfoTextField(
           //   color: BlackColor,
           // ),
           hintText: 'أكتب هنا...',
-          // label: Text(label!),
-          // labelStyle: const TextStyle(color: GreyColor, fontSize: 16),
+
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
               borderSide: const BorderSide(color: Colors.transparent)),

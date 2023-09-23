@@ -24,18 +24,18 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
         Navigator.of(context).popAndPushNamed(StudentStartPage.id);
         return true;
       },
-      child: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-            key: scaffoldKey,
-            appBar: AppBar(
-                backgroundColor: PrimaryColor,
-                leading: FutureBuilder(
-                    future: AuthServices.getUserInformation(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData || !mounted) return Loading();
-                      final user = snapshot.data!;
-                      return Padding(
+      child: FutureBuilder(
+          future: AuthServices.getUserInformation(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData || !mounted) return Loading();
+            final user = snapshot.data!;
+            return DefaultTabController(
+              length: 3,
+              child: Scaffold(
+                  key: scaffoldKey,
+                  appBar: AppBar(
+                      backgroundColor: PrimaryColor,
+                      leading: Padding(
                         padding: const EdgeInsets.only(left: 15, right: 15),
                         child: CircleAvatar(
                             backgroundColor: WhiteColor,
@@ -45,60 +45,54 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
                                     color: PrimaryColor,
                                   )
                                 : Image.network(user.image!)),
-                      );
-                    }),
-                title: FutureBuilder(
-                    future: AuthServices.getUserInformation(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData || !mounted) return Loading();
-                      final user = snapshot.data!;
-                      return Text(user.first_name_en + ' ' + user.last_name_en);
-                    }),
-                bottom: const TabBar(
-                  indicatorColor: WhiteColor,
-                  unselectedLabelStyle: TextStyle(fontSize: 15),
-                  labelStyle:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                  tabs: [
-                    // Tab(
-                    //   child: Text('Settings'),
-                    // ),
-                    Tab(
-                      child: Text(
-                        'المحفوظات',
-                        style: TextStyle(fontSize: 14),
                       ),
-                    ),
-                    Tab(
-                      child: Text(
-                        'الملاحظات',
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        'الخصوصية',
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ),
-                    // Tab(
-                    //   child: Text(
-                    //     'دوراتي',
-                    //     style: TextStyle(fontSize: 13),
-                    //   ),
-                    // ),
-                  ],
-                )),
-            body: const TabBarView(
-              children: [
-                // BrowserSettingsPage(),
-                StudentSavedPage(),
-                StudentProfileNotesPage(),
-                StudentPrivacyPage(),
-                // StudentMyCoursesPage()
-              ],
-            )),
-      ),
+                      title: Text(user.first_name_en + ' ' + user.last_name_en),
+                      bottom: const TabBar(
+                        indicatorColor: WhiteColor,
+                        unselectedLabelStyle: TextStyle(fontSize: 15),
+                        labelStyle: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                        tabs: [
+                          // Tab(
+                          //   child: Text('Settings'),
+                          // ),
+                          Tab(
+                            child: Text(
+                              'المحفوظات',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                          Tab(
+                            child: Text(
+                              'الملاحظات',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                          Tab(
+                            child: Text(
+                              'الخصوصية',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                          // Tab(
+                          //   child: Text(
+                          //     'دوراتي',
+                          //     style: TextStyle(fontSize: 13),
+                          //   ),
+                          // ),
+                        ],
+                      )),
+                  body: const TabBarView(
+                    children: [
+                      // BrowserSettingsPage(),
+                      StudentSavedPage(),
+                      StudentProfileNotesPage(),
+                      StudentPrivacyPage(),
+                      // StudentMyCoursesPage()
+                    ],
+                  )),
+            );
+          }),
     );
   }
 }

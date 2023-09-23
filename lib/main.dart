@@ -1,8 +1,12 @@
+import 'package:dtc_app/Browsers_Screens/Browser_Profile_Page.dart';
 import 'package:dtc_app/Start_App_Screens/Splash_Screen_App.dart';
+import 'package:dtc_app/Students_Screens/Student_Profile_Page.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Information_Page.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_Name_SignUp_Screen.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignIn_Screen.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
+import 'package:dtc_app/Teachers_Auth_Screens/Teacher_Auth_Profile_Page.dart';
+import 'package:dtc_app/Teachers_Screens/Teacher_Profile_Page.dart';
 import 'package:dtc_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -79,6 +83,7 @@ class _MainState extends State<Main> {
         BrowserSignUpScreen.id: (context) => const BrowserSignUpScreen(),
         BrowserProfileImage.id: (context) => const BrowserProfileImage(),
         BrowserStartPage.id: (context) => const BrowserStartPage(),
+        BrowserProfilePage.id: (context) => const BrowserProfilePage(),
         BrowserCoursePage.id: (context) => const BrowserCoursePage(),
         BrowserPersonalInformation.id: (context) =>
             const BrowserPersonalInformation(),
@@ -91,6 +96,7 @@ class _MainState extends State<Main> {
         AcceptanceQualification.id: (context) =>
             const AcceptanceQualification(),
         StudentStartPage.id: (context) => const StudentStartPage(),
+        StudentProfilePage.id: (context) => const StudentProfilePage(),
         StudentTabBar.id: (context) => const StudentTabBar(),
         StudentEditingNotes.id: (context) => const StudentEditingNotes(),
         StudentPersonalInformation.id: (context) =>
@@ -104,6 +110,7 @@ class _MainState extends State<Main> {
         TeacherAuthSignInScreen.id: (context) =>
             const TeacherAuthSignInScreen(),
         TeacherAuthStartPage.id: (context) => const TeacherAuthStartPage(),
+        TeacherAuthProfilePage.id: (context) => const TeacherAuthProfilePage(),
         TeacherAuthEditingNotes.id: (context) =>
             const TeacherAuthEditingNotes(),
         EditingPostPage.id: (context) => const EditingPostPage(),
@@ -112,6 +119,7 @@ class _MainState extends State<Main> {
         TeacherSignInScreen.id: (context) => const TeacherSignInScreen(),
         TeacherInformationPage.id: (context) => const TeacherInformationPage(),
         TeacherStartPage.id: (context) => const TeacherStartPage(),
+        TeacherProfilePage.id: (context) => const TeacherProfilePage(),
         TeacherEditingNotes.id: (context) => const TeacherEditingNotes(),
       },
     );
