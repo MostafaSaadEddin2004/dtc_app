@@ -1,10 +1,14 @@
 import 'package:dtc_app/Constants/Colors.dart';
+import 'package:dtc_app/blocs/cubit/drop_down/drop_down_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShowDialogList extends StatefulWidget {
-  const ShowDialogList({super.key, required this.value, required this.child});
+  const ShowDialogList(
+      {super.key, required this.value, required this.child, this.cubit});
   final String value;
   final Widget child;
+  final DropDownCubit? cubit;
 
   @override
   State<ShowDialogList> createState() => _ShowDialogListState();
@@ -34,16 +38,19 @@ class _ShowDialogListState extends State<ShowDialogList> {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (context) => Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      decoration: BoxDecoration(
-                        color: WhiteColor,
-                        border: Border.all(color: GreyColor, width: 0.5),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 200),
-                      child: widget.child),
+                  builder: (context) => BlocProvider.value(
+                    value: widget.cubit!,
+                    child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: WhiteColor,
+                          border: Border.all(color: GreyColor, width: 0.5),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 200),
+                        child: widget.child),
+                  ),
                 );
               },
               icon: Icon(

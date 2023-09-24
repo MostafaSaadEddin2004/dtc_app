@@ -76,7 +76,6 @@ var studentSinUpFirstNameController = TextEditingController();
 var studentSinUpLastNameController = TextEditingController();
 var studentSinUpEnglishFirstNameController = TextEditingController();
 var studentSinUpEnglishLastNameController = TextEditingController();
-var studentMarkController = TextEditingController();
 String departmentName = '';
 String className = '';
 String teacherName = '';

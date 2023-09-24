@@ -50,6 +50,7 @@ class BaseApi {
     final request = http.MultipartRequest("POST", Uri.parse('$_url$endpoint'));
     request.fields.addAll(
         body?.map((key, value) => MapEntry(key, value.toString())) ?? {});
+    print(request.fields);
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     request.headers.addAll({
@@ -69,7 +70,7 @@ class BaseApi {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return r;
     } else {
-      throw Exception('${r.body} ${r.statusCode}');
+      throw Exception('${jsonDecode(r.body)} ${r.statusCode}');
     }
   }
 

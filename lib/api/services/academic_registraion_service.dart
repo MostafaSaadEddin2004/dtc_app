@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dtc_app/api/helper.dart';
@@ -44,7 +45,8 @@ abstract class AcademicRegistrationService with BaseApi {
       'phone_of_mother': phone_of_mother,
       'avg_mark': avg_mark,
       'certificate_year': certificate_year,
-      'department_ids': department_ids
+      'department_ids': jsonEncode(department_ids),
     });
+    print(jsonDecode(response.body));
   }
 }

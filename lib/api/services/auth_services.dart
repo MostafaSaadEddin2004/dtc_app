@@ -86,13 +86,17 @@ abstract class AuthServices with BaseApi {
       String? phone,
       String? address,
       String? current_password,
-      String? new_password}) async {
+      String? new_password,
+      String? new_password_confirmation
+      
+      }) async {
     final response = await BaseApi.postRequest(endpoint: 'auth/profile', body: {
       'email': email,
       'phone': phone,
       'address': address,
       'current_password': current_password,
       'new_password': new_password,
+      'new_password_confirmation': new_password_confirmation,
     });
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return 'Password changed successfully';

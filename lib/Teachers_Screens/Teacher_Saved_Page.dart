@@ -42,9 +42,7 @@ class _TeacherSavedPageState extends State<TeacherSavedPage> {
               final posts = snapshot.data!;
               return ListView.builder(
                   itemCount: posts.length,
-                  itemBuilder: (context, index) =>
-                      posts[index].savedByMe == true
-                          ? DTCPosts(
+                  itemBuilder: (context, index) => DTCPosts(
                               onChange: (isFavorite, isSaved, count) {
                                 posts[index].likedByMe = isFavorite;
                                 posts[index].savedByMe = isSaved;
@@ -57,7 +55,7 @@ class _TeacherSavedPageState extends State<TeacherSavedPage> {
                               time: posts[index].createdAt,
                               postImage: posts[index].attachment,
                               postText: posts[index].content)
-                          : const SizedBox());
+                          );
             }),
       ),
     );

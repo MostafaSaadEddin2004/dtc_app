@@ -33,6 +33,8 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
   File? certificateImageFile;
   File? unCardImageFile;
   File? personalImageFile;
+  var studentMarkController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -862,7 +864,7 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                             phone_of_parent: guardianPhoneNumberController.text,
                             phone_of_mother:
                                 studentMotherPhoneNumberController.text,
-                            avg_mark: studentMarkController.text,
+                            avg_mark: studentTotalDegreesController.text,
                             certificate_year: certificationDate,
                             id_image: identifyImageFile!,
                             certificate_image: certificateImageFile!,

@@ -28,8 +28,7 @@ class _StudentSavedPageState extends State<StudentSavedPage> {
               return ListView.builder(
                   itemCount: posts.length,
                   itemBuilder: (context, index) =>
-                      posts[index].savedByMe == true
-                          ? DTCPosts(
+                      DTCPosts(
                               onChange: (isFavorite, isSaved, count) {
                                 posts[index].likedByMe = isFavorite;
                                 posts[index].savedByMe = isSaved;
@@ -42,7 +41,7 @@ class _StudentSavedPageState extends State<StudentSavedPage> {
                               time: posts[index].createdAt.toString(),
                               postImage: posts[index].attachment.toString(),
                               postText: posts[index].content)
-                          : SizedBox());
+                         );
             }),
       ),
     );
