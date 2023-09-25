@@ -2,7 +2,11 @@ import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
 import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/Components/showDialogList.dart';
 import 'package:dtc_app/api/services/department_services.dart';
+import 'package:dtc_app/api/services/teacher_information_services.dart';
+import 'package:dtc_app/blocs/drop_down_&_select_department/cubit/drop_down_and_select_department_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../Components/Buttons.dart';
 import '../../Components/CustomAppBar.dart';
 import '../../Components/Label.dart';
@@ -24,19 +28,28 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
   DateTime? dateTime;
   String teacherDepartmentVariable = '';
   String teacherNationalityVariable = '';
-  int teacherDepartmentIDVariable = 0;
+  int teacherDepartmentIDVariable = 1;
   int nationalitySelectedIndex = 0;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: CustomAppBar(title: 'معلومات الأستاذ الشخصية'),
-        body: Form(
-          key: formState,
-          child: FutureBuilder(
-              future: DepartmentServices.getDepartment(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData || !mounted) return Loading();
-                final departmentData = snapshot.data!;
+    return BlocProvider(
+      create: (context) => DropDownAndSelectDepartmentCubit()
+        ..fetchData(certificateType_id: teacherDepartmentIDVariable),
+      child: ModalProgressHUD(
+        inAsyncCall: isLoading,
+        child: Scaffold(
+            appBar: CustomAppBar(title: 'معلومات الأستاذ الشخصية'),
+            body: Form(
+              key: formState,
+              child: Builder(builder: (context) {
+                final state = BlocProvider.of<DropDownAndSelectDepartmentCubit>(
+                        context,
+                        listen: true)
+                    .state;
+                if (state is! DropDownAndSelectDepartmentFetched)
+                  return Loading();
+                final departmentData = state.data;
                 return SingleChildScrollView(
                   child: Container(
                     child: Column(
@@ -261,6 +274,9 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                 height: 10,
                               ),
                               ShowDialogList(
+                                  cubit: BlocProvider.of<
+                                          DropDownAndSelectDepartmentCubit>(
+                                      context),
                                   value: teacherDepartmentVariable == ''
                                       ? 'اضغط للإختيار...'
                                       : teacherDepartmentVariable,
@@ -383,6 +399,35 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                               text: 'إنهاء',
                               onTap: () {
                                 if (formState.currentState!.validate()) {
+                                  isLoading = true;
+                                  getNationalityValue(
+                                      index: nationalitySelectedIndex,
+                                      value: teacherNationalityVariable
+                                          .toString());
+                                  TeacherInformationServices.postTeacherInformation(
+                                      nationality: teacherNationalityVariable,
+                                      specialty: teacherSpecialtyController.text
+                                          .toString(),
+                                      certificate:
+                                          teacherCertificationController.text
+                                              .toString(),
+                                      current_location:
+                                          teacherCurrentLocationController.text
+                                              .toString(),
+                                      permanent_location:
+                                          teacherPermanentLocationController
+                                              .text
+                                              .toString(),
+                                      birth_date: teacherBirthDateController
+                                          .text
+                                          .toString(),
+                                      section_id: teacherDepartmentIDVariable);
+                                  isLoading = false;
+                                  teacherSpecialtyController.clear();
+                                  teacherCertificationController.clear();
+                                  teacherCurrentLocationController.clear();
+                                  teacherPermanentLocationController.clear();
+                                  teacherBirthDateController.clear();
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
                                           const BrowserStartPage()));
@@ -399,6 +444,17 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                   ),
                 );
               }),
-        ));
+            )),
+      ),
+    );
+  }
+
+  void getNationalityValue({required String value, required int index}) {
+    if (index == 1) {
+      teacherNationalityVariable = 'فلسطيني مُسجل';
+    } else if (index == 2) {
+      teacherNationalityVariable =
+          teacherAuthNationalityController.text.toString();
+    }
   }
 }

@@ -134,6 +134,8 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
                             role: 'student_browser');
                         isLoading = false;
                         if (error == null) {
+                          browserSignInEmailController.clear();
+                          browserSignInPasswordController.clear();
                           Navigator.of(context).pushNamedAndRemoveUntil(
                               BrowserStartPage.id, (route) => false);
                         } else {

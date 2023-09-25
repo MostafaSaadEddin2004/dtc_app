@@ -104,8 +104,10 @@ class _BrowserForgotPasswordEnterPasswordState
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
                           final error = await AuthServices.postEditProfile(
-                              current_password: teacherCurrentPassword.text,
-                              new_password: teacherNewPassword.text);
+                              new_password:
+                                  browserForgotPasswordNewPassword.text,
+                              new_password_confirmation:
+                                  browserForgotPasswordConfirmPassword.text);
                           if (error == null) {
                             showDialog(
                               barrierDismissible: false,
@@ -113,10 +115,13 @@ class _BrowserForgotPasswordEnterPasswordState
                               builder: (context) => CustomDialog(
                                   title: 'تعديل كلمة السر',
                                   onPressed: () {
-                                    teacherCurrentPassword.clear();
-                                    teacherNewPassword.clear();
-                                    teacherConfirmPassword.clear();
+                                    browserForgotPasswordEmailController
+                                        .clear();
+                                    browserForgotPasswordCodeController.clear();
+                                    browserForgotPasswordNewPassword.clear();
+                                    browserForgotPasswordConfirmPassword.clear();
                                     Navigator.of(context)
+                                      ..pop()
                                       ..pop()
                                       ..pop();
                                   }),

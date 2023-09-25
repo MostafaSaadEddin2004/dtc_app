@@ -304,6 +304,13 @@ class _TeacherProfileImageState extends State<TeacherProfileImage> {
                             role: 'teacher_browser');
                         isLoading = false;
                         print('succesful');
+                          teacherSinUpFirstNameController.clear();
+                          teacherSinUpLastNameController.clear();
+                          teacherSinUpEnglishFirstNameController.clear();
+                          teacherSinUpEnglishLastNameController.clear();
+                          teacherSignUpEmailController.clear();
+                          teacherSignUpPasswordController.clear();
+                          teacherSignUpPhoneController.clear();
                         Navigator.of(context).pushNamedAndRemoveUntil(
                           TeacherInformationPage.id,
                           (Route<dynamic> route) => false,

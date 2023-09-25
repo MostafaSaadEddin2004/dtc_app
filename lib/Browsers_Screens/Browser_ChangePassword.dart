@@ -137,7 +137,9 @@ class _BrowserChangePasswordEnterPasswordState
                         if (formKey.currentState!.validate()) {
                           final error = await AuthServices.postEditProfile(
                               current_password: browserCurrentPassword.text,
-                              new_password: browserNewPassword.text);
+                              new_password: browserNewPassword.text,
+                              new_password_confirmation:
+                                  browserConfirmPassword.text);
                           if (error == null) {
                             showDialog(
                               barrierDismissible: false,

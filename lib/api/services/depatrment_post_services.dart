@@ -14,8 +14,7 @@ abstract class DepartmentPostServices with BaseApi {
 
   static void postDepartmentPost(
       {required String content, required File attachment}) async {
-    final response =
-        await BaseApi.postWithFiles(endpoint: 'post?type=department', files: {
+    final response = await BaseApi.postWithFiles(endpoint: 'post', files: {
       'attachment': attachment,
     }, body: {
       'content': content,

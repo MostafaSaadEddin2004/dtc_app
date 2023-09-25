@@ -33,7 +33,7 @@ class _TeacherAuthForgotPasswordEnterPasswordState
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أدخل كلمة المرور الجديدة',
-                    controller: browserForgotPasswordNewPassword,
+                    controller: teacherAuthForgotPasswordNewPassword,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'كلمة المرور مطلوبة';
@@ -64,14 +64,14 @@ class _TeacherAuthForgotPasswordEnterPasswordState
                 child: customTextField(
                     onChanged: (data) {},
                     hint: 'أكد كلمة المرور الجديدة',
-                    controller: browserForgotPasswordConfirmPassword,
+                    controller: teacherAuthForgotPasswordConfirmPassword,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return 'كلمة المرور مطلوبة';
                       } else if (text.length < 8) {
                         return 'كلمة المرور يجب أن تكون على الأقل 8 أحرف';
-                      } else if (browserForgotPasswordConfirmPassword.text !=
-                          browserForgotPasswordNewPassword.text) {
+                      } else if (teacherAuthForgotPasswordConfirmPassword.text !=
+                          teacherAuthForgotPasswordNewPassword.text) {
                         return 'كلمة المرور غير متطابقة';
                       }
                       return null;
@@ -104,8 +104,9 @@ class _TeacherAuthForgotPasswordEnterPasswordState
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
                           final error = await AuthServices.postEditProfile(
-                              current_password: teacherCurrentPassword.text,
-                              new_password: teacherNewPassword.text);
+                              new_password: teacherAuthForgotPasswordNewPassword.text,
+                              new_password_confirmation:
+                                  teacherAuthForgotPasswordConfirmPassword.text);
                           if (error == null) {
                             showDialog(
                               barrierDismissible: false,
@@ -113,9 +114,11 @@ class _TeacherAuthForgotPasswordEnterPasswordState
                               builder: (context) => CustomDialog(
                                   title: 'تعديل كلمة السر',
                                   onPressed: () {
-                                    teacherCurrentPassword.clear();
-                                    teacherNewPassword.clear();
-                                    teacherConfirmPassword.clear();
+                                    teacherAuthForgotPasswordEmailController
+                                        .clear();
+                                    teacherAuthForgotPasswordCodeController.clear();
+                                    teacherAuthForgotPasswordNewPassword.clear();
+                                    teacherAuthForgotPasswordConfirmPassword.clear();
                                     Navigator.of(context)
                                       ..pop()
                                       ..pop();

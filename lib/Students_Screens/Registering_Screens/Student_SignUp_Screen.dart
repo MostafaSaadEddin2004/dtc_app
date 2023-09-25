@@ -62,7 +62,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
               customTextField(
                   onChanged: (data) {},
                   hint: 'أدخل كلمة المرور',
-                  controller: studentSinUpPasswordController,
+                  controller: studentSignUpPasswordController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'كلمة المرور مطلوبة';
@@ -91,7 +91,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                   onChanged: (data) {},
                   //suffixtext: '+963',
                   hint: 'أدخل رقم الجوال',
-                  controller: studentSinUpPhoneController,
+                  controller: studentSignUpPhoneController,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'رقم الجوال مطلوب';

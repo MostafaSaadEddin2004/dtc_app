@@ -138,6 +138,8 @@ class _TeacherSignInScreenState extends State<TeacherSignInScreen> {
                         isLoading = false;
                         if (error == null) {
                           print('Successful');
+                          teacherSignInEmailController.clear();
+                          teacherSignInPasswordController.clear();
                           Navigator.of(context).pushNamedAndRemoveUntil(
                             TeacherNameSignUpPage.id,
                             (Route<dynamic> route) => false,

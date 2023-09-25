@@ -227,6 +227,7 @@ class _AddingPostPageState extends State<AddingPostPage> {
                                       ? postImagePath!
                                       : postFilePath!);
                               isLoading = false;
+                              postTextController.clear();
                               showDialog(
                                 context: context,
                                 builder: (context) => CustomDialog(

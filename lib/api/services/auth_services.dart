@@ -6,7 +6,7 @@ import 'package:dtc_app/api/models/auth_models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthServices with BaseApi {
-  static String? responseMessage;
+
   static Future<String?> postRegistration({
     required String arFirstName,
     required String arLastName,
@@ -57,7 +57,6 @@ abstract class AuthServices with BaseApi {
       'fcm_token': ftoken,
     });
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      responseMessage = jsonDecode(response.body)['errors'];
       final String token = jsonDecode(response.body)['token'] as String;
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', token);

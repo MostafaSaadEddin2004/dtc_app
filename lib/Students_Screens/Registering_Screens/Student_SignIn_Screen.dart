@@ -135,6 +135,8 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
                             role: 'student');
                         isLoading = false;
                         if (error == null) {
+                          studentSignInEmailController.clear();
+                          studentSignInPasswordController.clear();
                           Navigator.of(context).pushNamedAndRemoveUntil(
                               StudentStartPage.id, (route) => false);
                         } else {

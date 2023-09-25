@@ -135,6 +135,8 @@ class _TeacherAuthSignInScreenState extends State<TeacherAuthSignInScreen> {
                         isLoading = false;
                         if (error == null) {
                           print('Successful');
+                          teacherAuthSignInEmailController.clear();
+                          teacherAuthSignInPasswordController.clear();
                           Navigator.of(context).pushNamedAndRemoveUntil(
                             TeacherAuthStartPage.id,
                             (Route<dynamic> route) => false,

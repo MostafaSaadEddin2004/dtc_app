@@ -307,7 +307,13 @@ class _TeacherAuthProfileImageState extends State<TeacherAuthProfileImage> {
                             image: File(teacherAuthProfileImageFile!.path),
                             role: 'teacher');
                         isLoading = false;
-                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          teacherAuthSinUpFirstNameController.clear();
+                          teacherAuthSinUpLastNameController.clear();
+                          teacherAuthSinUpEnglishFirstNameController.clear();
+                          teacherAuthSinUpEnglishLastNameController.clear();
+                          teacherAuthSignUpEmailController.clear();
+                          teacherAuthSignUpPasswordController.clear();
+                          teacherAuthSignUpPhoneController.clear();                        Navigator.of(context).pushNamedAndRemoveUntil(
                           TeacherAuthInformationPage.id,
                           (Route<dynamic> route) => false,
                         );

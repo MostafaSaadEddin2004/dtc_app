@@ -144,7 +144,7 @@ class _StudentChangePasswordEnterPasswordState
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
                             final error = await AuthServices.postEditProfile(
-                                current_password: studentCurrentPassword.text,
+                              current_password: studentCurrentPassword.text,
                                 new_password: studentNewPassword.text,
                                 new_password_confirmation:
                                     studentConfirmPassword.text);

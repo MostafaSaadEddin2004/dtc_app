@@ -309,14 +309,21 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                                   .toString(),
                               email:
                                   studentSignUpEmailController.text.toString(),
-                              password: studentSinUpPasswordController.text
+                              password: studentSignUpPasswordController.text
                                   .toString(),
                               phoneNumber:
-                                  studentSinUpPhoneController.text.toString(),
+                                  studentSignUpPhoneController.text.toString(),
                               image: File(studentProfileImageFile!.path),
                               role: 'student');
                           isLoading = false;
                           print('succesful');
+                          studentSinUpFirstNameController.clear();
+                          studentSinUpLastNameController.clear();
+                          studentSinUpEnglishFirstNameController.clear();
+                          studentSinUpEnglishLastNameController.clear();
+                          studentSignUpEmailController.clear();
+                          studentSignUpPasswordController.clear();
+                          studentSignUpPhoneController.clear();
                           Navigator.of(context).popAndPushNamed(
                             AcceptanceQualification.id,
                           );

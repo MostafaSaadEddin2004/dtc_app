@@ -8,7 +8,7 @@ class ShowDialogList extends StatefulWidget {
       {super.key, required this.value, required this.child, this.cubit});
   final String value;
   final Widget child;
-  final DropDownCubit? cubit;
+  final Cubit? cubit;
 
   @override
   State<ShowDialogList> createState() => _ShowDialogListState();

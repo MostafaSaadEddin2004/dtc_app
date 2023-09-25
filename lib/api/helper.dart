@@ -14,7 +14,7 @@ class BaseApi {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
-    // print(response.body);
+    print(response.body);
     return response.body;
   }
 
@@ -33,7 +33,7 @@ class BaseApi {
     // print(response.body);
     print(response.body);
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      // print(response.body);
+      print(response.body);
       return response;
     }
     // else {
@@ -55,7 +55,7 @@ class BaseApi {
     final token = prefs.getString('token');
     request.headers.addAll({
       HttpHeaders.acceptHeader: 'application/json',
-      HttpHeaders.contentTypeHeader: 'multipart/form-data',
+      HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
     for (final key in files.keys) {
@@ -66,7 +66,7 @@ class BaseApi {
     final response = await request.send();
     final r = await http.Response.fromStream(response);
     print(r.body);
-    // print(r.body);
+    print(r.body);
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return r;
     } else {
@@ -84,7 +84,7 @@ class BaseApi {
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      // print(response.body);
+      print(response.body);
       return response;
     }
     // else {

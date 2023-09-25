@@ -137,7 +137,9 @@ class _TeacherChangePasswordEnterPasswordState
                         if (formKey.currentState!.validate()) {
                           final error = await AuthServices.postEditProfile(
                               current_password: teacherCurrentPassword.text,
-                              new_password: teacherNewPassword.text);
+                              new_password: teacherNewPassword.text,
+                              new_password_confirmation:
+                                  teacherConfirmPassword.text);
                           if (error == null) {
                             showDialog(
                               barrierDismissible: false,

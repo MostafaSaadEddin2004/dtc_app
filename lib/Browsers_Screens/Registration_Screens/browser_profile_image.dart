@@ -303,6 +303,13 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                           BrowserStartPage.id,
                           (Route<dynamic> route) => false,
                         );
+                        browserSinUpFirstNameController.clear();
+                        browserSinUpLastNameController.clear();
+                        browserSinUpEnglishFirstNameController.clear();
+                        browserSinUpEnglishLastNameController.clear();
+                        browserSignUpEmailController.clear();
+                        browserSignUpPasswordController.clear();
+                        browserSignUpPhoneController.clear();
                       }),
                 ],
               ),
