@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:dtc_app/api/helper.dart';
+import 'package:dtc_app/api/models/teacher_information_model.dart';
 
 abstract class TeacherInformationServices with BaseApi {
   static void postTeacherInformation({
@@ -20,5 +22,12 @@ abstract class TeacherInformationServices with BaseApi {
       'section_id': section_id,
     });
     print(response.statusCode);
+  }
+
+  static Future<List<TeacherModel>> getTeaches() async {
+    final response = await BaseApi.getRequest(endpoint: 'teachers');
+    return (jsonDecode(response)['data'] as List)
+        .map((json) => TeacherModel.fromJson(json))
+        .toList();
   }
 }

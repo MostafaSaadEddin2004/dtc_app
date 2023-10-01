@@ -15,6 +15,7 @@ class BaseApi {
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
     print(response.body);
+    print(response.statusCode);
     return response.body;
   }
 
@@ -55,7 +56,7 @@ class BaseApi {
     final token = prefs.getString('token');
     request.headers.addAll({
       HttpHeaders.acceptHeader: 'application/json',
-      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.contentTypeHeader: 'application/x-www-form-urlencoded',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
     for (final key in files.keys) {

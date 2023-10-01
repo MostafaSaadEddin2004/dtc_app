@@ -79,6 +79,7 @@ var studentSinUpEnglishLastNameController = TextEditingController();
 String departmentName = '';
 String className = '';
 String teacherName = '';
+int teacherId = 0;
 String subjectName = '';
 
 String studentNationalityVariable = '';

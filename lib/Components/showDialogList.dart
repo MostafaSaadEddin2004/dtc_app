@@ -1,5 +1,5 @@
 import 'package:dtc_app/Constants/Colors.dart';
-import 'package:dtc_app/blocs/cubit/drop_down/drop_down_cubit.dart';
+import 'package:dtc_app/blocs/drop_down/drop_down_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,7 +39,7 @@ class _ShowDialogListState extends State<ShowDialogList> {
                 showDialog(
                   context: context,
                   builder: (context) => BlocProvider.value(
-                    value: widget.cubit!,
+                    value: widget.cubit ?? DropDownCubit(),
                     child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         decoration: BoxDecoration(

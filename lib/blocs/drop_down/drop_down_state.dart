@@ -8,7 +8,6 @@ class DropDownInitial extends DropDownState {}
 class DropDownLoading extends DropDownState {}
 
 class DropDownFetched extends DropDownState {
-  final List<ComparisonModel> data;
-
-  DropDownFetched({required this.data});
+  final List<CertificateTypeModel> certificateData;
+  DropDownFetched({required this.certificateData});
 }

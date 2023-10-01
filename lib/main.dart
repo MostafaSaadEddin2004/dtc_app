@@ -40,10 +40,20 @@ import 'Teachers_Screens/Registration_Screens/Teacher_SignUp_Screen.dart';
 import 'Teachers_Screens/Teacher_Editing_Notes.dart';
 import 'Teachers_Screens/Registration_Screens/Teacher_Information_Page.dart';
 import 'Teachers_Screens/Teacher_Start_Page.dart';
+import 'dart:io';
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    var client = super.createHttpClient(context);
+    client.connectionTimeout = Duration(seconds: 30);
+    return client;
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  HttpOverrides.global = MyHttpOverrides();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

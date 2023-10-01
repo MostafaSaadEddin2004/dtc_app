@@ -912,10 +912,10 @@ class _RequiredDocumentsState extends State<RequiredDocuments> {
                           guardianPhoneNumberController.clear();
                           studentMotherPhoneNumberController.clear();
                           studentTotalDegreesController.clear();
-                          // Navigator.of(context).pushNamedAndRemoveUntil(
-                          //   BrowserStartPage.id,
-                          //   (Route<dynamic> route) => false,
-                          // );
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            BrowserStartPage.id,
+                            (Route<dynamic> route) => false,
+                          );
                         } else {
                           showDialog(
                             barrierDismissible: false,

@@ -1,12 +1,8 @@
 import 'package:dtc_app/api/models/post_model.dart';
-import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import '../Components/Posts.dart';
 import '../Components/loading.dart';
-import '../Constants/Colors.dart';
-import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/services/public_post_services.dart';
-import 'Browser_Profile_Page.dart';
 
 class BrowserHomePage extends StatefulWidget {
   const BrowserHomePage({super.key});

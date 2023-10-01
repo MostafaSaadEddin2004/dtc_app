@@ -27,3 +27,14 @@ class TeacherInformationModel {
         nationality: jsonData['nationality']);
   }
 }
+
+class TeacherModel {
+  final int id;
+  final String name;
+
+  TeacherModel({required this.id, required this.name});
+
+  factory TeacherModel.fromJson(Map<String, dynamic> jsonData) {
+    return TeacherModel(id: jsonData['id'], name: jsonData['name']);
+  }
+}

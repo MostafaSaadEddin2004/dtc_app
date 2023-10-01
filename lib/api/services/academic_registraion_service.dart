@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dtc_app/api/helper.dart';
+import 'package:dtc_app/api/models/academic_registration_model.dart';
 
 abstract class AcademicRegistrationService with BaseApi {
   static void postAcademicRegistration({
@@ -25,6 +26,10 @@ abstract class AcademicRegistrationService with BaseApi {
     required List<int> department_ids,
   }) async {
     // ignore: unused_local_variable
+    Map<String, int> departmentIds = {};
+    for (int i = 0; i < department_ids.length; i++) {
+      departmentIds["department_ids[$i]"] = department_ids[i];
+    }
     final response =
         await BaseApi.postWithFiles(endpoint: 'academic-registration', files: {
       'id_image': id_image,
@@ -45,8 +50,19 @@ abstract class AcademicRegistrationService with BaseApi {
       'phone_of_mother': phone_of_mother,
       'avg_mark': avg_mark,
       'certificate_year': certificate_year,
-      'department_ids': jsonEncode(department_ids),
+      ...departmentIds.map((key, value) => MapEntry(key.toString(), value))
     });
-    print(jsonDecode(response.body));
+
+    // print(jsonDecode(response.body));
+  }
+
+  static Future<List<AcademicRegistrationStartAtModel>>
+      getAcademicRegistrationStartAt() async {
+    final response =
+        await BaseApi.getRequest(endpoint: 'registration_start_at');
+
+    return (jsonDecode(response)['data'] as List)
+        .map((json) => AcademicRegistrationStartAtModel.fromJson(json))
+        .toList();
   }
 }

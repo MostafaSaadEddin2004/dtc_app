@@ -1,9 +1,8 @@
 import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
 import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/Components/showDialogList.dart';
-import 'package:dtc_app/api/services/department_services.dart';
 import 'package:dtc_app/api/services/teacher_information_services.dart';
-import 'package:dtc_app/blocs/drop_down_&_select_department/cubit/drop_down_and_select_department_cubit.dart';
+import 'package:dtc_app/blocs/drop_down_&_select_department/drop_down_and_select_department_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -34,8 +33,8 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DropDownAndSelectDepartmentCubit()
-        ..fetchData(certificateType_id: teacherDepartmentIDVariable),
+      create: (context) =>
+          DropDownAndSelectDepartmentCubit()..fetchDepartmentData(),
       child: ModalProgressHUD(
         inAsyncCall: isLoading,
         child: Scaffold(
@@ -49,7 +48,7 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                     .state;
                 if (state is! DropDownAndSelectDepartmentFetched)
                   return Loading();
-                final departmentData = state.data;
+                final departmentData = state.departmentData;
                 return SingleChildScrollView(
                   child: Container(
                     child: Column(

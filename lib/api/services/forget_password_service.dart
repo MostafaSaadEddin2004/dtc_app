@@ -4,9 +4,9 @@ import 'package:dtc_app/api/firebase_helper.dart';
 import 'package:dtc_app/api/helper.dart';
 
 abstract class ForgetPasswordService with BaseApi {
-  static void postEmail({required String email}) async {
+  static void postEmail({required String email})  {
     // ignore: unused_local_variable
-    final response = await BaseApi.postRequest(
+    final response = BaseApi.postRequest(
         endpoint: 'auth/tokenForResetPassword', body: {'email': email});
   }
 

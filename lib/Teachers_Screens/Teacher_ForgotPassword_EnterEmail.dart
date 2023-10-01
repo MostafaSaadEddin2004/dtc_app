@@ -31,7 +31,7 @@ class _TeacherForgotPasswordEnterEmailState
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 30),
               child: Column(children: [
-                titleText(text: 'أدخل إيميل لإستلام كود لتغيير كلمة المرور'),
+                titleText(text: 'أدخل بريدك الإلكتروني لاستلام رمز التحقق'),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: customTextField(

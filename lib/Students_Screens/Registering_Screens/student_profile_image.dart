@@ -324,8 +324,9 @@ class _StudentProfileImageState extends State<StudentProfileImage> {
                           studentSignUpEmailController.clear();
                           studentSignUpPasswordController.clear();
                           studentSignUpPhoneController.clear();
-                          Navigator.of(context).popAndPushNamed(
+                          Navigator.of(context).pushNamedAndRemoveUntil(
                             AcceptanceQualification.id,
+                            (Route<dynamic> route) => false,
                           );
                         }),
                   ],

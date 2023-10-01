@@ -31,7 +31,7 @@ class _BrowserForgotPasswordEnterEmailState
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 30),
               child: Column(children: [
-                titleText(text: 'أدخل إيميل لإستلام كود لتغيير كلمة المرور'),
+                titleText(text: 'أدخل بريدك الإلكتروني لاستلام رمز التحقق'),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: customTextField(
@@ -67,8 +67,8 @@ class _BrowserForgotPasswordEnterEmailState
                           if (formKey.currentState!.validate()) {
                             isLoading = true;
                             ForgetPasswordService.postEmail(
-                                email:
-                                    browserForgotPasswordEmailController.text,);
+                              email: browserForgotPasswordEmailController.text,
+                            );
                             isLoading = false;
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>

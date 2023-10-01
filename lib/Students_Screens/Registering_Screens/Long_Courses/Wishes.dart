@@ -1,8 +1,7 @@
 import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Personal_Information.dart';
 import 'package:dtc_app/api/services/comparison_service.dart';
-import 'package:dtc_app/blocs/cubit/drop_down/drop_down_cubit.dart';
-import 'package:dtc_app/blocs/cubit/select_wish/cubit/select_wish_cubit.dart';
+import 'package:dtc_app/blocs/select_wish/cubit/select_wish_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Components/Buttons.dart';

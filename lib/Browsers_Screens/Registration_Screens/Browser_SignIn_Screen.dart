@@ -1,3 +1,4 @@
+import 'package:dtc_app/Browsers_Screens/Browser_ForgotPassword_EnterEmail.dart';
 import 'package:dtc_app/Components/Buttons.dart';
 import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
@@ -6,7 +7,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../Components/TextField.dart';
 import '../../Constants/Colors.dart';
 import '../../Constants/Controller.dart';
-import '../../Teachers_Screens/Teacher_ChangePassword.dart';
 import '../Browser_Start_Page.dart';
 import 'Browser_SignUp_Screen.dart';
 
@@ -108,7 +108,7 @@ class _BrowserSignInScreenState extends State<BrowserSignInScreen> {
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
-                                const TeacherChangePasswordEnterPassword(),
+                                const BrowserForgotPasswordEnterEmail(),
                           ));
                         },
                         child: const Text(

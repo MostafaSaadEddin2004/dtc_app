@@ -125,7 +125,7 @@ class _DTCPostsState extends State<DTCPosts> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ReadMoreText(
-                widget.postText,
+                widget.postText, 
                 moreStyle:
                     TextStyle(color: PrimaryColor, fontWeight: FontWeight.bold),
                 lessStyle:

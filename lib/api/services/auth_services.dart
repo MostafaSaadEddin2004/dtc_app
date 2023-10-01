@@ -1,12 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'dart:io';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:dtc_app/api/firebase_helper.dart';
 import 'package:dtc_app/api/helper.dart';
 import 'package:dtc_app/api/models/auth_models.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthServices with BaseApi {
-
   static Future<String?> postRegistration({
     required String arFirstName,
     required String arLastName,
@@ -21,7 +23,7 @@ abstract class AuthServices with BaseApi {
     final ftoken = await FirebaseHelper.createToken();
     final response =
         await BaseApi.postWithFiles(endpoint: 'auth/register', files: {
-      'image,': image,
+      'image': image,
     }, body: {
       'first_name_ar': arFirstName,
       'last_name_ar': arLastName,
@@ -86,9 +88,7 @@ abstract class AuthServices with BaseApi {
       String? address,
       String? current_password,
       String? new_password,
-      String? new_password_confirmation
-      
-      }) async {
+      String? new_password_confirmation}) async {
     final response = await BaseApi.postRequest(endpoint: 'auth/profile', body: {
       'email': email,
       'phone': phone,
@@ -110,10 +110,35 @@ abstract class AuthServices with BaseApi {
     return RegistrationInformationModel.fromJson(jsonDecode(response)['data']);
   }
 
-  static Future<String?> getUserRole() async {
+  static Future<Role> getUserRole() async {
     final response = await BaseApi.getRequest(endpoint: 'auth/role');
-    final role = jsonDecode(response)['role'];
-    print(role);
+    final role = Role.fromJson(response);
     return role;
   }
+}
+
+class Role {
+  final String name;
+  final bool isRegistrationFinished;
+
+  Role({required this.name, required this.isRegistrationFinished});
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'isRegistrationFinished': isRegistrationFinished,
+    };
+  }
+
+  factory Role.fromMap(Map<String, dynamic> map) {
+    return Role(
+      name: map['role'] as String,
+      isRegistrationFinished: map['is_registration_finished'] as bool,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Role.fromJson(String source) =>
+      Role.fromMap(json.decode(source) as Map<String, dynamic>);
 }

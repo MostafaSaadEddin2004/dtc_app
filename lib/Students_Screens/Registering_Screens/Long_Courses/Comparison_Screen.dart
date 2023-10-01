@@ -1,6 +1,7 @@
 import 'package:dtc_app/Components/showDialogList.dart';
 import 'package:dtc_app/Constants/Colors.dart';
-import 'package:dtc_app/blocs/cubit/drop_down/drop_down_cubit.dart';
+import 'package:dtc_app/api/services/comparison_service.dart';
+import 'package:dtc_app/blocs/drop_down/drop_down_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Components/Buttons.dart';
@@ -9,7 +10,6 @@ import '../../../Components/Dialogs.dart';
 import '../../../Components/Label.dart';
 import '../../../Components/loading.dart';
 import '../../../Constants/Controller.dart';
-import '../../../api/services/certificate_type_service.dart';
 import 'Wishes.dart';
 
 class ComparisonScreen extends StatefulWidget {
@@ -27,22 +27,19 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => DropDownCubit(),
+        create: (context) => DropDownCubit()..fetchData(),
         child: Scaffold(
             appBar: CustomAppBar(title: 'طلب الانتساب'),
-            body: FutureBuilder(
-              future: CertificateTypeService.getCertificateType(),
-              builder: (context, snapshot) {
+            body: Builder(
+              builder: (context) {
                 final state =
                     BlocProvider.of<DropDownCubit>(context, listen: true).state;
-                if (state is DropDownLoading || !snapshot.hasData) {
+                if (state is! DropDownFetched) {
                   return Loading();
                 }
-                final certificate = snapshot.data!;
-                final certificateData =
-                    state is! DropDownFetched ? [] : state.data;
-                selectedCertificateId =
-                    certificateData.isEmpty ? 1 : certificateData.first.id;
+                final certificateData = state.certificateData;
+                // selectedCertificateId =
+                //     certificateData.isEmpty ? 1 : certificateData.first.id;
                 return Form(
                     key: formState,
                     child: ListView(children: [
@@ -60,54 +57,50 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Builder(builder: (context) {
-                            return ShowDialogList(
-                              cubit: BlocProvider.of(context),
-                              value: certification == ''
-                                  ? 'اضغط للإختيار...'
-                                  : certification,
-                              child: ListView.builder(
-                                itemCount: certificate.length,
-                                itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      BlocProvider.of<DropDownCubit>(context)
-                                          .fetchData(
-                                              certificateType_id:
-                                                  certificate[index].id);
-                                      certification = certificate[index].name;
-
-                                      Navigator.of(context).pop();
-                                      setState(() {});
-                                    },
-                                    child: SizedBox(
-                                      height: 50,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text(certificate[index].name)
-                                        ],
-                                      ),
+                          child: ShowDialogList(
+                            cubit: BlocProvider.of<DropDownCubit>(context),
+                            value: certification == ''
+                                ? 'اضغط للإختيار...'
+                                : certification,
+                            child: ListView.builder(
+                              itemCount: certificateData.length,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    certification = certificateData[index].name;
+                                    selectedCertificateId =
+                                        certificateData[index].id;
+                                    Navigator.of(context).pop();
+                                    setState(() {});
+                                  },
+                                  child: SizedBox(
+                                    height: 50,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(certificateData[index].name)
+                                      ],
                                     ),
-                                  );
-                                },
-                              ),
-                            );
-                          }),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           height: 15,
                         ),
-                        Builder(
-                          builder: (context) {
+                        FutureBuilder(
+                          future: ComparisonService.getComparison(
+                              certificateType_id: selectedCertificateId),
+                          builder: (context, snapshot) {
                             if (!snapshot.hasData || !mounted) return Loading();
-                            Map<String, dynamic> scientific = {};
+                            final comparisonData = snapshot.data!;
                             Map<String, dynamic> comp = {};
-                            for (var comparison in certificateData) {
+                            for (var comparison in comparisonData) {
                               comp[comparison.name] = comparison.mark;
                             }
-                            scientific = comp;
                             return Container(
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 15),
@@ -147,7 +140,7 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                                         label: Text('العلامة',
                                             textAlign: TextAlign.start))
                                   ],
-                                  rows: scientific.entries.map((entry) {
+                                  rows: comp.entries.map((entry) {
                                     return DataRow(
                                       cells: [
                                         DataCell(Text(
@@ -179,10 +172,10 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: Text(
                             """
-              يخضع المتقدمون على دورتي التصميم الإعلاني والديكور لامتحان قبول عملي وذلك لتحديد مستوى قدراتهم الفنية وسيتم إرسال رسالة لكم بموعد الإمتحان.
-              يرجى إحضار مايلي:
-              1- الهوية الشخصية
-              2- قلم رصاص، ممحاة، مسطرة، ألوان خشبية.
+يخضع المتقدمون على دورتي التصميم الإعلاني والديكور لامتحان قبول عملي وذلك لتحديد مستوى قدراتهم الفنية وسيتم إرسال رسالة لكم بموعد الإمتحان.
+يرجى إحضار مايلي:
+1- الهوية الشخصية
+02- قلم رصاص، ممحاة، مسطرة، ألوان خشبية.
                                                 """,
                             style: TextStyle(fontSize: 16),
                           ),

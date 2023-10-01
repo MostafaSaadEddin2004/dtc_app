@@ -1,13 +1,8 @@
-import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:flutter/material.dart';
-
 import '../Components/Posts.dart';
 import '../Components/loading.dart';
-import '../Constants/Colors.dart';
-import '../Start_App_Screens/SignUp_Type.dart';
 import '../api/models/post_model.dart';
 import '../api/services/course_post_services.dart';
-import 'Browser_Profile_Page.dart';
 import 'Registration_Screens/Short_Course/Browser_Personal_Information.dart';
 
 class BrowserCoursePage extends StatefulWidget {
