@@ -69,7 +69,7 @@ class _TeacherAuthProfileNotesPageState
                       }
                       setState(() {});
                     },
-                      onDeletePressed: () async {
+                    onDeletePressed: () async {
                       await NoteServices.deleteNote(id: notes[index].id);
                       setState(() {});
                     },

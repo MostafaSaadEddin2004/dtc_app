@@ -291,7 +291,6 @@ class _TeacherAuthInformationPageState
                                               departmentData[index].name;
                                           teacherAuthDepartmentIDVariable =
                                               departmentData[index].id;
-
                                           Navigator.of(context).pop();
                                           setState(() {});
                                         },

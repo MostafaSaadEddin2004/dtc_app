@@ -1,6 +1,7 @@
 import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/Components/showDialogList.dart';
+import 'package:dtc_app/api/services/subject_service.dart';
 import 'package:dtc_app/blocs/select_teacher/select_teacher_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,11 +25,11 @@ class EditingMarksRequestPage extends StatefulWidget {
 class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   bool isLoading = false;
-
+  String subjectName = '';
+  int subjectId = 0;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    List subjectData = ['python', 'c#'];
     return BlocProvider(
       create: (context) => SelectTeacherCubit()..fetchData(),
       child: ModalProgressHUD(
@@ -107,33 +108,44 @@ class _EditingMarksRequestPageState extends State<EditingMarksRequestPage> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  ShowDialogList(
-                                    value: subjectName == ''
-                                        ? 'إختر...'
-                                        : subjectName,
-                                    child: ListView.builder(
-                                      itemCount: subjectData.length,
-                                      itemBuilder: (context, index) {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            subjectName = subjectData[index];
-                                            Navigator.of(context).pop();
-                                            setState(() {});
-                                          },
-                                          child: SizedBox(
-                                            height: 50,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(subjectData[index])
-                                              ],
-                                            ),
+                                  FutureBuilder(
+                                      future: SubjectService.getSubjects(),
+                                      builder: (context, snapshot) {
+                                        if (!snapshot.hasData || !mounted)
+                                          return Loading();
+                                        final subjectData = snapshot.data!;
+                                        return ShowDialogList(
+                                          value: subjectName == ''
+                                              ? 'إختر...'
+                                              : subjectName,
+                                          child: ListView.builder(
+                                            itemCount: subjectData.length,
+                                            itemBuilder: (context, index) {
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  subjectName =
+                                                      subjectData[index].name;
+                                                  subjectId =
+                                                      subjectData[index].id;
+                                                  Navigator.of(context).pop();
+                                                  setState(() {});
+                                                },
+                                                child: SizedBox(
+                                                  height: 50,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(subjectData[index]
+                                                          .name)
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            },
                                           ),
                                         );
-                                      },
-                                    ),
-                                  ),
+                                      }),
                                 ],
                               ),
                             ),

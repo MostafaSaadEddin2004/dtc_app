@@ -1,4 +1,6 @@
+import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:dtc_app/Teachers_Auth_Screens/Registration_Screens/Teacher_Auth_SignUp_Screen.dart';
+import 'package:dtc_app/api/services/academic_registraion_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../Browsers_Screens/Registration_Screens/Browser_SignUp_Screen.dart';
@@ -22,40 +24,6 @@ bool selectedTeacherAuth = false;
 bool selectedTeacher = false;
 
 class _SignUpTypeState extends State<SignUpType> {
-  // void initState() async {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   FirebaseHelper.init(context);
-  //   FirebaseHelper.createToken().then(print);
-  //   // void checkUser() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final role = await prefs.getString('role');
-  //   final token = await prefs.getString('token');
-  //   if (role == 'student' || token != null) {
-  //     Navigator.of(context).pushNamedAndRemoveUntil(
-  //       StudentStartPage.id,
-  //       (Route<dynamic> route) => false,
-  //     );
-  //   } else if (role == 'teacher' || token != null) {
-  //     Navigator.of(context).pushNamedAndRemoveUntil(
-  //       TeacherAuthStartPage.id,
-  //       (Route<dynamic> route) => false,
-  //     );
-  //   } else if (role == 'teacher_browser' || token != null) {
-  //     Navigator.of(context).pushNamedAndRemoveUntil(
-  //       TeacherStartPage.id,
-  //       (Route<dynamic> route) => false,
-  //     );
-  //   } else if (role == 'student_browser' || token != null) {
-  //     Navigator.of(context).pushNamedAndRemoveUntil(
-  //       BrowserStartPage.id,
-  //       (Route<dynamic> route) => false,
-  //     );
-  //   } else {
-  //     print('We are in the start page');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,12 +114,29 @@ class _SignUpTypeState extends State<SignUpType> {
               height: 20,
             ),
             GestureDetector(
-              onTap: () {
-                selectedBrowser = false;
-                selectedStudent = true;
-                selectedTeacherAuth = false;
-                selectedTeacher = false;
-                setState(() {});
+              onTap: () async {
+                int? statusCode;
+                await AcademicRegistrationService.getAcademicRegistrationIsOpen(
+                  getStatus: (statusCodeF) => statusCode = statusCodeF,
+                );
+                if (statusCode! >= 200 && statusCode! < 300) {
+                  print(statusCode);
+                  selectedBrowser = false;
+                  selectedStudent = true;
+                  selectedTeacherAuth = false;
+                  selectedTeacher = false;
+                  setState(() {});
+                } else {
+                  showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: ((context) => warningDialog(
+                          title: 'إنتباه',
+                          message: 'عذراً، لقد إنتهى وقت التسجيل على المفاضلة',
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          })));
+                }
               },
               child: selectedStudent == false
                   ? Container(

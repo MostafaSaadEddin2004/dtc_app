@@ -184,7 +184,8 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                                   validator: (text) {
                                     if (text!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   },
                                 ),
                               ],
@@ -207,7 +208,8 @@ class _TeacherAuthAddingNotesState extends State<TeacherAuthAddingNotes> {
                                   validator: (text) {
                                     if (text!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   },
                                 ),
                               ],

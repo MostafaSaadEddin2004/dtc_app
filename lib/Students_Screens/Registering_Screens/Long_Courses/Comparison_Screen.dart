@@ -95,7 +95,9 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                           future: ComparisonService.getComparison(
                               certificateType_id: selectedCertificateId),
                           builder: (context, snapshot) {
-                            if (!snapshot.hasData || !mounted) return Loading();
+                            if (!snapshot.hasData || !mounted)
+                              return Container(
+                                  color: WhiteColor, child: Loading());
                             final comparisonData = snapshot.data!;
                             Map<String, dynamic> comp = {};
                             for (var comparison in comparisonData) {

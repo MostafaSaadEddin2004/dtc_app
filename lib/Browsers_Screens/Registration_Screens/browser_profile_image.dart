@@ -263,6 +263,7 @@ class _BrowserProfileImageState extends State<BrowserProfileImage> {
                     ),
                     Text(
                       browserSinUpEnglishFirstNameController.text +
+                          ' ' +
                           browserSinUpEnglishLastNameController.text,
                       style: TextStyle(fontSize: 20),
                     ),

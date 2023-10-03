@@ -63,14 +63,4 @@ class AcademicRegistrationModel {
   }
 }
 
-class AcademicRegistrationStartAtModel {
-  final String registration_start_at;
 
-  AcademicRegistrationStartAtModel({required this.registration_start_at});
-
-  factory AcademicRegistrationStartAtModel.fromJson(
-      Map<String, dynamic> jsonData) {
-    return AcademicRegistrationStartAtModel(
-        registration_start_at: jsonData['registration_start_at']);
-  }
-}

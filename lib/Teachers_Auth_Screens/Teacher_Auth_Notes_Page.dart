@@ -1,7 +1,9 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Constants/Controller.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
+import 'package:dtc_app/blocs/get_user_information/get_user_information_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../Components/Notes.dart';
 import '../Components/loading.dart';
@@ -24,34 +26,39 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
   List notes = [];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            backgroundColor: PrimaryColor,
-            onPressed: () async {
-              final NoteModel? note =
-                  await Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const TeacherAuthAddingNotes(),
-              ));
-              if (note != null) {
-                notes.add(note);
-                setState(() {});
-              }
-            },
-            child: const Icon(
-              Icons.add,
-              size: 40,
-              color: WhiteColor,
-            )),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        appBar: AppBar(
-          backgroundColor: PrimaryColor,
-          actions: [
-            FutureBuilder(
-                future: AuthServices.getUserInformation(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData || !mounted) return Loading();
-                  final user = snapshot.data!;
-                  return Container(
+    return BlocProvider(
+      create: (context) => GetUserInformationCubit()..fetchData(),
+      child: Builder(builder: (context) {
+        final state =
+            BlocProvider.of<GetUserInformationCubit>(context, listen: true)
+                .state;
+        if (state is! GetUserInformationFetched) return Loading();
+        final userData = state.userData;
+        {
+          return Scaffold(
+              floatingActionButton: FloatingActionButton(
+                  backgroundColor: PrimaryColor,
+                  onPressed: () async {
+                    final NoteModel? note =
+                        await Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const TeacherAuthAddingNotes(),
+                    ));
+                    if (note != null) {
+                      notes.add(note);
+                      setState(() {});
+                    }
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    size: 40,
+                    color: WhiteColor,
+                  )),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.endFloat,
+              appBar: AppBar(
+                backgroundColor: PrimaryColor,
+                actions: [
+                  Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     alignment: Alignment.center,
                     height: 30,
@@ -59,182 +66,171 @@ class _TeacherAuthNotesPageState extends State<TeacherAuthNotesPage> {
                       color: PrimaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Text(
-                      'dep',
+                    child: Text(
+                      '${userData.section}',
                       style: TextStyle(
                           color: WhiteColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 16),
                     ),
-                  );
-                }),
-          ],
-        ),
-        drawer: Drawer(
-          backgroundColor: PrimaryColor,
-          child: FutureBuilder(
-              future: AuthServices.getUserInformation(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData || !mounted) return Loading();
-                final users = snapshot.data!;
-                return Padding(
-                  padding: const EdgeInsets.only(left: 15, top: 50, right: 15),
-                  child: Column(children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context)
-                                .popAndPushNamed(TeacherAuthProfilePage.id);
-                          },
-                          child: CircleAvatar(
-                              minRadius: 30,
-                              maxRadius: 30,
+                  )
+                ],
+              ),
+              drawer: Drawer(
+                  backgroundColor: PrimaryColor,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, top: 50, right: 15),
+                    child: Column(children: [
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .popAndPushNamed(TeacherAuthProfilePage.id);
+                            },
+                            child: CircleAvatar(
+                              radius: 30,
                               backgroundColor: WhiteColor,
-                              // ignore: unnecessary_null_comparison
-                              child: users.image.toString() == null
-                                  ? Icon(
-                                      Icons.person,
-                                      color: PrimaryColor,
-                                      size: 45,
-                                    )
-                                  : Image.network(
-                                      users.image.toString(),
-                                      fit: BoxFit.cover,
-                                      height: 30,
-                                      width: 30,
-                                    )),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          children: [
+                              backgroundImage: NetworkImage(
+                                  userData.image != null
+                                      ? userData.image!
+                                      : 'assets/images/person.png'),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                userData.first_name_en.toString() +
+                                    ' ' +
+                                    userData.last_name_en.toString(),
+                                style: TextStyle(
+                                    color: WhiteColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                userData.email.toString(),
+                                style: TextStyle(
+                                  color: WhiteColor,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Divider(color: WhiteColor, thickness: 2),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.people,
+                              color: WhiteColor,
+                              size: 30,
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
                             Text(
-                              users.first_name_en.toString() +
-                                  ' ' +
-                                  users.last_name_en.toString(),
+                              'دعوة صديق',
                               style: TextStyle(
                                   color: WhiteColor,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          AuthServices.postLogout();
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            SignUpType.id,
+                            (Route<dynamic> route) => false,
+                          );
+                        },
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.exit_to_app_rounded,
+                              color: RedColor,
+                              size: 30,
+                            ),
                             SizedBox(
-                              height: 5,
+                              width: 20,
                             ),
                             Text(
-                              users.email.toString(),
+                              'تسجيل الخروج',
                               style: TextStyle(
-                                color: WhiteColor,
-                                fontSize: 10,
-                              ),
+                                  color: RedColor,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ],
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Divider(color: WhiteColor, thickness: 2),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.people,
-                            color: WhiteColor,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            'دعوة صديق',
-                            style: TextStyle(
-                                color: WhiteColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        AuthServices.postLogout();
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          SignUpType.id,
-                          (Route<dynamic> route) => false,
-                        );
-                      },
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.exit_to_app_rounded,
-                            color: RedColor,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            'تسجيل الخروج',
-                            style: TextStyle(
-                                color: RedColor,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    )
-                  ]),
-                );
-              }),
-        ),
-        body: Container(
-          margin: const EdgeInsets.only(top: 10),
-          child: FutureBuilder<List<NoteModel>>(
-              future: NoteServices.getNote(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData || !mounted) return Loading();
-                notes = snapshot.data!;
-                return ListView.builder(
-                  itemCount: notes.length,
-                  itemBuilder: (context, index) => Note(
-                    note: notes[index],
-                    onEditPressed: () async {
-                      teacherAuthEditingNoteClassification.text =
-                          notes[index].category;
-                      teacherAuthEditingNoteText.text =
-                          notes[index].description;
-                      teacherAuthEditingNoteTitle.text = notes[index].title;
-                      teacherAuthEditingNoteIdVariable = notes[index].id;
-                      teacherAuthEditingNoteCLassificationVariable = '';
-                      final NoteModel? note =
-                          await Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const TeacherAuthEditingNotes(),
-                      ));
-                      if (note != null) {
-                        notes.add(note);
-                      }
-                      setState(() {});
-                    },
-                    onDeletePressed: () async {
-                      await NoteServices.deleteNote(id: notes[index].id);
-                      setState(() {});
-                    },
-                    noteTitle: notes[index].title,
-                    noteClassification: notes[index].category,
-                    noteText: notes[index].description,
-                  ),
-                );
-              }),
-        ));
+                        ),
+                      )
+                    ]),
+                  )),
+              body: Container(
+                margin: const EdgeInsets.only(top: 10),
+                child: FutureBuilder<List<NoteModel>>(
+                    future: NoteServices.getNote(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData || !mounted) return Loading();
+                      notes = snapshot.data!;
+                      return ListView.builder(
+                        itemCount: notes.length,
+                        itemBuilder: (context, index) => Note(
+                          note: notes[index],
+                          onEditPressed: () async {
+                            teacherAuthEditingNoteClassification.text =
+                                notes[index].category;
+                            teacherAuthEditingNoteText.text =
+                                notes[index].description;
+                            teacherAuthEditingNoteTitle.text =
+                                notes[index].title;
+                            teacherAuthEditingNoteIdVariable = notes[index].id;
+                            teacherAuthEditingNoteCLassificationVariable = '';
+                            final NoteModel? note = await Navigator.of(context)
+                                .push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const TeacherAuthEditingNotes(),
+                            ));
+                            if (note != null) {
+                              notes.add(note);
+                            }
+                            setState(() {});
+                          },
+                          onDeletePressed: () async {
+                            await NoteServices.deleteNote(id: notes[index].id);
+                            setState(() {});
+                          },
+                          noteTitle: notes[index].title,
+                          noteClassification: notes[index].category,
+                          noteText: notes[index].description,
+                        ),
+                      );
+                    }),
+              ));
+        }
+      }),
+    );
   }
 }

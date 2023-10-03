@@ -1,9 +1,14 @@
 import 'package:dtc_app/Browsers_Screens/Browser_Profile_Page.dart';
+import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Start_App_Screens/SignUp_Type.dart';
+import 'package:dtc_app/Students_Screens/Registering_Screens/Long_Courses/Acceptance_Qualifications.dart';
+import 'package:dtc_app/api/services/academic_registraion_service.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
+import 'package:dtc_app/blocs/get_user_information/get_user_information_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Components/BottomNavBar.dart';
 import 'Browser_Course_Page.dart';
 import 'Browser_Home_Page.dart';
@@ -30,17 +35,20 @@ class _BrowserStartPageState extends State<BrowserStartPage> {
   ];
 
   Widget build(BuildContext context) {
-    return Scaffold(
-        key: scaffoldKey,
-        appBar: AppBar(backgroundColor: PrimaryColor),
-        drawer: Drawer(
-          backgroundColor: PrimaryColor,
-          child: FutureBuilder(
-              future: AuthServices.getUserInformation(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData || !mounted) return Loading();
-                final users = snapshot.data!;
-                return Padding(
+    return BlocProvider(
+      create: (context) => GetUserInformationCubit()..fetchData(),
+      child: Builder(builder: (context) {
+        final state =
+            BlocProvider.of<GetUserInformationCubit>(context, listen: true)
+                .state;
+        if (state is! GetUserInformationFetched) return Loading();
+        final userData = state.userData;
+        return Scaffold(
+            key: scaffoldKey,
+            appBar: AppBar(backgroundColor: PrimaryColor),
+            drawer: Drawer(
+                backgroundColor: PrimaryColor,
+                child: Padding(
                   padding: const EdgeInsets.only(left: 15, top: 50, right: 15),
                   child: Column(children: [
                     Row(
@@ -51,22 +59,12 @@ class _BrowserStartPageState extends State<BrowserStartPage> {
                                 .popAndPushNamed(BrowserProfilePage.id);
                           },
                           child: CircleAvatar(
-                              minRadius: 30,
-                              maxRadius: 30,
-                              backgroundColor: WhiteColor,
-                              // ignore: unnecessary_null_comparison
-                              child: users.image.toString() == null
-                                  ? Icon(
-                                      Icons.person,
-                                      color: PrimaryColor,
-                                      size: 45,
-                                    )
-                                  : Image.network(
-                                      users.image.toString(),
-                                      fit: BoxFit.cover,
-                                      height: 30,
-                                      width: 30,
-                                    )),
+                            radius: 30,
+                            backgroundColor: WhiteColor,
+                            backgroundImage: NetworkImage(userData.image != null
+                                ? userData.image!
+                                : 'assets/images/person.png'),
+                          ),
                         ),
                         const SizedBox(
                           width: 20,
@@ -74,9 +72,9 @@ class _BrowserStartPageState extends State<BrowserStartPage> {
                         Column(
                           children: [
                             Text(
-                              users.first_name_en.toString() +
+                              userData.first_name_en.toString() +
                                   ' ' +
-                                  users.last_name_en.toString(),
+                                  userData.last_name_en.toString(),
                               style: TextStyle(
                                   color: WhiteColor,
                                   fontSize: 20,
@@ -86,7 +84,7 @@ class _BrowserStartPageState extends State<BrowserStartPage> {
                               height: 5,
                             ),
                             Text(
-                              users.email.toString(),
+                              userData.email.toString(),
                               style: TextStyle(
                                 color: WhiteColor,
                                 fontSize: 10,
@@ -129,7 +127,28 @@ class _BrowserStartPageState extends State<BrowserStartPage> {
                       height: 15,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () async {
+                        int? statusCode;
+                        await AcademicRegistrationService
+                            .getAcademicRegistrationIsOpen(
+                          getStatus: (statusCodeF) => statusCode = statusCodeF,
+                        );
+                        if (statusCode! >= 200 && statusCode! < 300) {
+                          Navigator.of(context)
+                              .pushReplacementNamed(AcceptanceQualification.id);
+                        } else {
+                          showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: ((context) => warningDialog(
+                                  title: 'إنتباه',
+                                  message:
+                                      'عذراً، لقد إنتهى وقت التسجيل على المفاضلة.',
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  })));
+                        }
+                      },
                       child: Row(
                         children: const [
                           Icon(
@@ -156,9 +175,8 @@ class _BrowserStartPageState extends State<BrowserStartPage> {
                     GestureDetector(
                       onTap: () {
                         AuthServices.postLogout();
-                        Navigator.of(context).pushNamedAndRemoveUntil(
+                        Navigator.of(context).pushReplacementNamed(
                           SignUpType.id,
-                          (Route<dynamic> route) => route.settings.name == 'ooo',
                         );
                       },
                       child: Row(
@@ -182,17 +200,17 @@ class _BrowserStartPageState extends State<BrowserStartPage> {
                       ),
                     )
                   ]),
-                );
-              }),
-        ),
-        bottomNavigationBar: browserBottomNavBar(
-            currentIndex: selectedIndex,
-            onTap: (index) {
-              setState(() {
-                selectedIndex = index;
-              });
-            }),
-        body: Pages.elementAt(selectedIndex));
+                )),
+            bottomNavigationBar: browserBottomNavBar(
+                currentIndex: selectedIndex,
+                onTap: (index) {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                }),
+            body: Pages.elementAt(selectedIndex));
+      }),
+    );
   }
 }
 

@@ -1,7 +1,9 @@
 import 'package:dtc_app/Constants/Colors.dart';
 import 'package:dtc_app/Constants/Controller.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
+import 'package:dtc_app/blocs/get_user_information/get_user_information_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Components/Notes.dart';
 import '../Components/loading.dart';
 import '../Start_App_Screens/SignUp_Type.dart';
@@ -23,60 +25,57 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
   List notes = [];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            backgroundColor: PrimaryColor,
-            onPressed: () async {
-              final NoteModel? note =
-                  await Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const TeacherAddingNotes(),
-              ));
-              if (note != null) {
-                notes.add(note);
-                setState(() {});
-              }
-            },
-            child: const Icon(
-              Icons.add,
-              size: 40,
-              color: WhiteColor,
-            )),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        appBar: AppBar(
-          backgroundColor: PrimaryColor,
-          actions: [
-           FutureBuilder(
-                  future: AuthServices.getUserInformation(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData || !mounted) return Loading();
-                    final user = snapshot.data!;
-                    return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      alignment: Alignment.center,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: PrimaryColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Text(
-                        'dep',
-                        style: TextStyle(
-                            color: WhiteColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ),
-                    );
-                  }),
-          ],
-        ),
-        drawer: Drawer(
-          backgroundColor: PrimaryColor,
-          child: FutureBuilder(
-              future: AuthServices.getUserInformation(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData || !mounted) return Loading();
-                final users = snapshot.data!;
-                return Padding(
+    return BlocProvider(
+      create: (context) => GetUserInformationCubit()..fetchData(),
+      child: Builder(builder: (context) {
+        final state =
+            BlocProvider.of<GetUserInformationCubit>(context, listen: true)
+                .state;
+        if (state is! GetUserInformationFetched) return Loading();
+        final userData = state.userData;
+        return Scaffold(
+            floatingActionButton: FloatingActionButton(
+                backgroundColor: PrimaryColor,
+                onPressed: () async {
+                  final NoteModel? note =
+                      await Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const TeacherAddingNotes(),
+                  ));
+                  if (note != null) {
+                    notes.add(note);
+                    setState(() {});
+                  }
+                },
+                child: const Icon(
+                  Icons.add,
+                  size: 40,
+                  color: WhiteColor,
+                )),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            appBar: AppBar(
+              backgroundColor: PrimaryColor,
+              actions: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  alignment: Alignment.center,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: PrimaryColor,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    '${userData.section}',
+                    style: TextStyle(
+                        color: WhiteColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ),
+                )
+              ],
+            ),
+            drawer: Drawer(
+                backgroundColor: PrimaryColor,
+                child: Padding(
                   padding: const EdgeInsets.only(left: 15, top: 50, right: 15),
                   child: Column(children: [
                     Row(
@@ -87,22 +86,12 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
                                 .popAndPushNamed(TeacherProfilePage.id);
                           },
                           child: CircleAvatar(
-                              minRadius: 30,
-                              maxRadius: 30,
-                              backgroundColor: WhiteColor,
-                              // ignore: unnecessary_null_comparison
-                              child: users.image.toString() == null
-                                  ? Icon(
-                                      Icons.person,
-                                      color: PrimaryColor,
-                                      size: 45,
-                                    )
-                                  : Image.network(
-                                      users.image.toString(),
-                                      fit: BoxFit.cover,
-                                      height: 30,
-                                      width: 30,
-                                    )),
+                            radius: 30,
+                            backgroundColor: WhiteColor,
+                            backgroundImage: NetworkImage(userData.image != null
+                                ? userData.image!
+                                : 'assets/images/person.png'),
+                          ),
                         ),
                         const SizedBox(
                           width: 20,
@@ -110,9 +99,9 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
                         Column(
                           children: [
                             Text(
-                              users.first_name_en.toString() +
+                              userData.first_name_en.toString() +
                                   ' ' +
-                                  users.last_name_en.toString(),
+                                  userData.last_name_en.toString(),
                               style: TextStyle(
                                   color: WhiteColor,
                                   fontSize: 20,
@@ -122,7 +111,7 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
                               height: 5,
                             ),
                             Text(
-                              users.email.toString(),
+                              userData.email.toString(),
                               style: TextStyle(
                                 color: WhiteColor,
                                 fontSize: 10,
@@ -193,47 +182,47 @@ class _TeacherNotesPageState extends State<TeacherNotesPage> {
                       ),
                     )
                   ]),
-                );
-              }),
-        ),
-        body: Container(
-          margin: const EdgeInsets.only(top: 10),
-          child: FutureBuilder<List<NoteModel>>(
-              future: NoteServices.getNote(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData || !mounted) return Loading();
-                notes = snapshot.data!;
-                return ListView.builder(
-                  itemCount: notes.length,
-                  itemBuilder: (context, index) => Note(
-                    note: notes[index],
-                     onEditPressed: () async {
-                      teacherEditingNoteClassification.text =
-                          notes[index].category;
-                      teacherAuthEditingNoteText.text =
-                          notes[index].description;
-                      teacherEditingNoteTitle.text = notes[index].title;
-                      teacherEditingNoteIdVariable = notes[index].id;
-                      teacherEditingNoteClassificationVariable = '';
-                      final NoteModel? note =
-                          await Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const TeacherEditingNotes(),
-                      ));
-                      if (note != null) {
-                        notes.add(note);
-                      }
-                      setState(() {});
-                    },
-                      onDeletePressed: () async {
-                      await NoteServices.deleteNote(id: notes[index].id);
-                      setState(() {});
-                    },
-                    noteTitle: notes[index].title,
-                    noteClassification: notes[index].category,
-                    noteText: notes[index].description,
-                  ),
-                );
-              }),
-        ));
+                )),
+            body: Container(
+              margin: const EdgeInsets.only(top: 10),
+              child: FutureBuilder<List<NoteModel>>(
+                  future: NoteServices.getNote(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData || !mounted) return Loading();
+                    notes = snapshot.data!;
+                    return ListView.builder(
+                      itemCount: notes.length,
+                      itemBuilder: (context, index) => Note(
+                        note: notes[index],
+                        onEditPressed: () async {
+                          teacherEditingNoteClassification.text =
+                              notes[index].category;
+                          teacherAuthEditingNoteText.text =
+                              notes[index].description;
+                          teacherEditingNoteTitle.text = notes[index].title;
+                          teacherEditingNoteIdVariable = notes[index].id;
+                          teacherEditingNoteClassificationVariable = '';
+                          final NoteModel? note = await Navigator.of(context)
+                              .push(MaterialPageRoute(
+                            builder: (context) => const TeacherEditingNotes(),
+                          ));
+                          if (note != null) {
+                            notes.add(note);
+                          }
+                          setState(() {});
+                        },
+                        onDeletePressed: () async {
+                          await NoteServices.deleteNote(id: notes[index].id);
+                          setState(() {});
+                        },
+                        noteTitle: notes[index].title,
+                        noteClassification: notes[index].category,
+                        noteText: notes[index].description,
+                      ),
+                    );
+                  }),
+            ));
+      }),
+    );
   }
 }

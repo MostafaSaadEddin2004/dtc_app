@@ -1,6 +1,8 @@
 import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/api/services/auth_services.dart';
+import 'package:dtc_app/blocs/get_user_information/get_user_information_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Constants/Colors.dart';
 import '../../Start_App_Screens/SignUp_Type.dart';
 import '../Teacher_Auth_Profile_Page.dart';
@@ -20,55 +22,53 @@ class _TeacherAuthTabBarState extends State<TeacherAuthTabBar> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: PrimaryColor,
-            bottom: const TabBar(
-              indicatorColor: WhiteColor,
-              unselectedLabelStyle: TextStyle(fontSize: 16),
-              labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              tabs: [
-                Tab(
-                  child: Text('الدورات'),
+      child: BlocProvider(
+        create: (context) => GetUserInformationCubit()..fetchData(),
+        child: Builder(builder: (context) {
+          final state =
+              BlocProvider.of<GetUserInformationCubit>(context, listen: true)
+                  .state;
+          if (state is! GetUserInformationFetched) return Loading();
+          final userData = state.userData;
+          return Scaffold(
+              appBar: AppBar(
+                backgroundColor: PrimaryColor,
+                bottom: const TabBar(
+                  indicatorColor: WhiteColor,
+                  unselectedLabelStyle: TextStyle(fontSize: 16),
+                  labelStyle:
+                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  tabs: [
+                    Tab(
+                      child: Text('الدورات'),
+                    ),
+                    Tab(
+                      child: Text('منشورات القسم'),
+                    ),
+                  ],
                 ),
-                Tab(
-                  child: Text('منشورات القسم'),
-                ),
-              ],
-            ),
-            actions: [
-              FutureBuilder(
-                  future: AuthServices.getUserInformation(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData || !mounted) return Loading();
-                    final user = snapshot.data!;
-                    return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      alignment: Alignment.center,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: PrimaryColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Text(
-                        'dep',
-                        style: TextStyle(
-                            color: WhiteColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ),
-                    );
-                  }),
-            ],
-          ),
-          drawer: Drawer(
-            backgroundColor: PrimaryColor,
-            child: FutureBuilder(
-                future: AuthServices.getUserInformation(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData || !mounted) return Loading();
-                  final users = snapshot.data!;
-                  return Padding(
+                actions: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    alignment: Alignment.center,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: PrimaryColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      '${userData.section}',
+                      style: TextStyle(
+                          color: WhiteColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  )
+                ],
+              ),
+              drawer: Drawer(
+                  backgroundColor: PrimaryColor,
+                  child: Padding(
                     padding:
                         const EdgeInsets.only(left: 15, top: 50, right: 15),
                     child: Column(children: [
@@ -80,22 +80,13 @@ class _TeacherAuthTabBarState extends State<TeacherAuthTabBar> {
                                   .popAndPushNamed(TeacherAuthProfilePage.id);
                             },
                             child: CircleAvatar(
-                                minRadius: 30,
-                                maxRadius: 30,
-                                backgroundColor: WhiteColor,
-                                // ignore: unnecessary_null_comparison
-                                child: users.image.toString() == null
-                                    ? Icon(
-                                        Icons.person,
-                                        color: PrimaryColor,
-                                        size: 45,
-                                      )
-                                    : Image.network(
-                                        users.image.toString(),
-                                        fit: BoxFit.cover,
-                                        height: 30,
-                                        width: 30,
-                                      )),
+                              radius: 30,
+                              backgroundColor: WhiteColor,
+                              backgroundImage: NetworkImage(
+                                  userData.image != null
+                                      ? userData.image!
+                                      : 'assets/images/person.png'),
+                            ),
                           ),
                           const SizedBox(
                             width: 20,
@@ -103,9 +94,9 @@ class _TeacherAuthTabBarState extends State<TeacherAuthTabBar> {
                           Column(
                             children: [
                               Text(
-                                users.first_name_en.toString() +
+                                userData.first_name_en.toString() +
                                     ' ' +
-                                    users.last_name_en.toString(),
+                                    userData.last_name_en.toString(),
                                 style: TextStyle(
                                     color: WhiteColor,
                                     fontSize: 20,
@@ -115,7 +106,7 @@ class _TeacherAuthTabBarState extends State<TeacherAuthTabBar> {
                                 height: 5,
                               ),
                               Text(
-                                users.email.toString(),
+                                userData.email.toString(),
                                 style: TextStyle(
                                   color: WhiteColor,
                                   fontSize: 10,
@@ -186,15 +177,15 @@ class _TeacherAuthTabBarState extends State<TeacherAuthTabBar> {
                         ),
                       )
                     ]),
-                  );
-                }),
-          ),
-          body: TabBarView(
-            children: [
-              TeacherAuthCoursePage(),
-              TeacherAuthDepartmentPostsPage()
-            ],
-          )),
+                  )),
+              body: TabBarView(
+                children: [
+                  TeacherAuthCoursePage(),
+                  TeacherAuthDepartmentPostsPage()
+                ],
+              ));
+        }),
+      ),
     );
   }
 }

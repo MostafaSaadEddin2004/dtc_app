@@ -87,7 +87,7 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                                   builder: (context) =>
                                                       Container(
                                                     padding: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 15),
                                                     decoration: BoxDecoration(
                                                       color: WhiteColor,
@@ -99,7 +99,7 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                                               10),
                                                     ),
                                                     margin: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 15,
                                                         vertical: 200),
                                                     child: ListView.builder(
@@ -157,7 +157,9 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                         controller: teacherNoteClassification,
                                         keyboardType: TextInputType.name,
                                         radius: 20,
-                                        validator: (text) {return null;},
+                                        validator: (text) {
+                                          return null;
+                                        },
                                       )
                                     ],
                                   ),
@@ -181,7 +183,8 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                   validator: (text) {
                                     if (text!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   },
                                 ),
                               ],
@@ -204,7 +207,8 @@ class _TeacherAddingNotesState extends State<TeacherAddingNotes> {
                                   validator: (text) {
                                     if (text!.isEmpty) {
                                       return 'الحقل مطلوب';
-                                    }return null;
+                                    }
+                                    return null;
                                   },
                                 ),
                               ],

@@ -1,8 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
-
 import 'package:dtc_app/api/helper.dart';
-import 'package:dtc_app/api/models/academic_registration_model.dart';
 
 abstract class AcademicRegistrationService with BaseApi {
   static void postAcademicRegistration({
@@ -30,7 +27,7 @@ abstract class AcademicRegistrationService with BaseApi {
     for (int i = 0; i < department_ids.length; i++) {
       departmentIds["department_ids[$i]"] = department_ids[i];
     }
-    final response =
+
         await BaseApi.postWithFiles(endpoint: 'academic-registration', files: {
       'id_image': id_image,
       'certificate_image': certificate_image,
@@ -56,13 +53,12 @@ abstract class AcademicRegistrationService with BaseApi {
     // print(jsonDecode(response.body));
   }
 
-  static Future<List<AcademicRegistrationStartAtModel>>
-      getAcademicRegistrationStartAt() async {
-    final response =
-        await BaseApi.getRequest(endpoint: 'registration_start_at');
-
-    return (jsonDecode(response)['data'] as List)
-        .map((json) => AcademicRegistrationStartAtModel.fromJson(json))
-        .toList();
+  static Future<void> getAcademicRegistrationIsOpen(
+      {void Function(int statusCodeF)? getStatus}) async {
+    await BaseApi.getRequest(
+        onSuccess: (statusCode) {
+          getStatus!.call(statusCode);
+        },
+        endpoint: 'academic-registration/is-open');
   }
 }

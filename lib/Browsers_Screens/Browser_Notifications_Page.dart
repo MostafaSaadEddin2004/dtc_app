@@ -16,7 +16,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
         body: FutureBuilder(
             future: NotificationService.getNotifications(),
             builder: (context, snapshot) {

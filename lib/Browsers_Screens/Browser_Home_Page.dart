@@ -18,7 +18,6 @@ class _BrowserHomePageState extends State<BrowserHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Container(
         margin: const EdgeInsets.only(top: 10),
         color: Colors.transparent,

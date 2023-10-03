@@ -1,6 +1,5 @@
 import 'package:dtc_app/Browsers_Screens/Browser_Start_Page.dart';
 import 'package:dtc_app/Components/loading.dart';
-import 'package:dtc_app/api/services/auth_services.dart';
 import 'package:dtc_app/blocs/get_user_information/get_user_information_cubit.dart';
 import 'package:flutter/material.dart';
 import '../Constants/Colors.dart';
@@ -20,7 +19,7 @@ class _BrowserProfilePageState extends State<BrowserProfilePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetUserInformationCubit(),
+      create: (context) => GetUserInformationCubit()..fetchData(),
       child: WillPopScope(
           onWillPop: () async {
             Navigator.of(context).popAndPushNamed(BrowserStartPage.id);
@@ -31,21 +30,21 @@ class _BrowserProfilePageState extends State<BrowserProfilePage> {
             child: Builder(builder: (context) {
               final state =
                   BlocProvider.of<GetUserInformationCubit>(context).state;
+              print(state);
               if (state is! GetUserInformationFetched) return Loading();
               final userData = state.userData;
               return Scaffold(
                   appBar: AppBar(
                       backgroundColor: PrimaryColor,
                       leading: Padding(
-                          padding: const EdgeInsets.only(left: 15, right: 15),
-                          child: CircleAvatar(
-                              backgroundColor: WhiteColor,
-                              child: userData.image == null
-                                  ? Icon(
-                                      Icons.person,
-                                      color: PrimaryColor,
-                                    )
-                                  : Image.network(userData.image!))),
+                        padding: const EdgeInsets.only(right: 15),
+                        child: CircleAvatar(
+                          backgroundColor: WhiteColor,
+                          backgroundImage: NetworkImage(userData.image != null
+                              ? userData.image!
+                              : 'assets/images/person.png'),
+                        ),
+                      ),
                       title: Text(
                           userData.first_name_en + ' ' + userData.last_name_en),
                       bottom: const TabBar(

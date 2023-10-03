@@ -26,8 +26,8 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    int selectedDepartmentId = 1;
-    int selectedSpecialtyId = 1;
+    int selectedDepartmentId = 0;
+    int selectedSpecialtyId = 0;
     String newDepartment = '';
     String newClass = '';
     return BlocProvider(
@@ -74,10 +74,12 @@ class _MovingRequestPageState extends State<MovingRequestPage> {
                                           DepartmentServices.getDepartment(),
                                       builder: (context, snapshot) {
                                         if (!snapshot.hasData || !mounted)
-                                          return Loading();
+                                          return Container(
+                                              color: WhiteColor,
+                                              child: Loading());
                                         final departmentData = snapshot.data!;
                                         return ShowDialogList(
-                                          value: newDepartment.isEmpty
+                                          value: newDepartment == ''
                                               ? 'إختر...'
                                               : newDepartment,
                                           child: ListView.builder(

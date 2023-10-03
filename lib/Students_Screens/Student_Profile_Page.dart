@@ -1,7 +1,8 @@
 import 'package:dtc_app/Components/loading.dart';
 import 'package:dtc_app/Students_Screens/Student_Start_Page.dart';
-import 'package:dtc_app/api/services/auth_services.dart';
+import 'package:dtc_app/blocs/get_user_information/get_user_information_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Constants/Colors.dart';
 import 'Student_Profile_Notes_Page.dart';
 import 'Student_Saved_Page.dart';
@@ -20,33 +21,35 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        Navigator.of(context).popAndPushNamed(StudentStartPage.id);
-        return true;
-      },
-      child: FutureBuilder(
-          future: AuthServices.getUserInformation(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData || !mounted) return Loading();
-            final user = snapshot.data!;
-            return DefaultTabController(
-              length: 3,
-              child: Scaffold(
+        onWillPop: () async {
+          Navigator.of(context).popAndPushNamed(StudentStartPage.id);
+          return true;
+        },
+        child: DefaultTabController(
+          length: 3,
+          child: BlocProvider(
+            create: (context) => GetUserInformationCubit()..fetchData(),
+            child: Builder(builder: (context) {
+              final state = BlocProvider.of<GetUserInformationCubit>(context,
+                      listen: true)
+                  .state;
+              if (state is! GetUserInformationFetched) return Loading();
+              final userData = state.userData;
+              return Scaffold(
                   key: scaffoldKey,
                   appBar: AppBar(
                       backgroundColor: PrimaryColor,
                       leading: Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        padding: const EdgeInsets.only(right: 15),
                         child: CircleAvatar(
-                            backgroundColor: WhiteColor,
-                            child: user.image == null
-                                ? Icon(
-                                    Icons.person,
-                                    color: PrimaryColor,
-                                  )
-                                : Image.network(user.image!)),
+                          backgroundColor: WhiteColor,
+                          backgroundImage: NetworkImage(userData.image != null
+                              ? userData.image!
+                              : 'assets/images/person.png'),
+                        ),
                       ),
-                      title: Text(user.first_name_en + ' ' + user.last_name_en),
+                      title: Text(
+                          userData.first_name_en + ' ' + userData.last_name_en),
                       bottom: const TabBar(
                         indicatorColor: WhiteColor,
                         unselectedLabelStyle: TextStyle(fontSize: 15),
@@ -90,9 +93,9 @@ class _StudentProfilePageState extends State<StudentProfilePage> {
                       StudentPrivacyPage(),
                       // StudentMyCoursesPage()
                     ],
-                  )),
-            );
-          }),
-    );
+                  ));
+            }),
+          ),
+        ));
   }
 }
