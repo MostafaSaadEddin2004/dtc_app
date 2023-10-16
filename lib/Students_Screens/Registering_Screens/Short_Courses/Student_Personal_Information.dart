@@ -183,9 +183,9 @@ class _StudentPersonalInformationState
                                   onPressed: () async {
                                     dateTime = await showDatePicker(
                                         context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(2000),
-                                        lastDate: DateTime(2025),
+                                        initialDate: DateTime(1988),
+                                        firstDate: DateTime(1988),
+                                        lastDate: DateTime(2007),
                                         keyboardType: TextInputType.datetime);
                                     studentCourseBirthDateController.text =
                                         '${dateTime?.day}-${dateTime?.month}-${dateTime?.year}';

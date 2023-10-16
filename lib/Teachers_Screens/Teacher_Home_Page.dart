@@ -107,31 +107,6 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                   ),
                   const Divider(color: WhiteColor, thickness: 2),
                   const SizedBox(
-                    height: 10,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.people,
-                          color: WhiteColor,
-                          size: 30,
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          'دعوة صديق',
-                          style: TextStyle(
-                              color: WhiteColor,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
                     height: 15,
                   ),
                   GestureDetector(

@@ -177,9 +177,9 @@ class _TeacherInformationPageState extends State<TeacherInformationPage> {
                                         onPressed: () async {
                                           dateTime = await showDatePicker(
                                               context: context,
-                                              initialDate: DateTime.now(),
+                                              initialDate: DateTime(1960),
                                               firstDate: DateTime(1960),
-                                              lastDate: DateTime(2025),
+                                              lastDate: DateTime(1998),
                                               keyboardType:
                                                   TextInputType.datetime);
                                           teacherBirthDateController.text =

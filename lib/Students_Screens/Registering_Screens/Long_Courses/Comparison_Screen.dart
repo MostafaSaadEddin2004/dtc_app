@@ -24,6 +24,7 @@ class ComparisonScreen extends StatefulWidget {
 class _ComparisonScreenState extends State<ComparisonScreen> {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   int selectedCertificateId = 1;
+  String selectedCertificateName = '';
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -70,6 +71,8 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                                     certification = certificateData[index].name;
                                     selectedCertificateId =
                                         certificateData[index].id;
+                                    selectedCertificateName =
+                                        certificateData[index].name;
                                     Navigator.of(context).pop();
                                     setState(() {});
                                   },
@@ -192,7 +195,9 @@ class _ComparisonScreenState extends State<ComparisonScreen> {
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
                                       builder: (context) => WishesPage(
-                                          certificateId: selectedCertificateId),
+                                          certificateId: selectedCertificateId,
+                                          certificateName:
+                                              selectedCertificateName),
                                     ));
                                   } else {
                                     showDialog(

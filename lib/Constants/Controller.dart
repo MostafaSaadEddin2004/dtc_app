@@ -80,8 +80,6 @@ String departmentName = '';
 String className = '';
 String teacherName = '';
 int teacherId = 0;
-
-
 String studentNationalityVariable = '';
 String studentSituationVariable = '';
 String studentGenderVariable = '';

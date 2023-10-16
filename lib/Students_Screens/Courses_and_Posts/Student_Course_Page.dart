@@ -1,3 +1,4 @@
+import 'package:dtc_app/Components/Dialogs.dart';
 import 'package:flutter/material.dart';
 
 import '../../Components/Posts.dart';
@@ -33,9 +34,22 @@ class _StudentCoursePageState extends State<StudentCoursePage> {
                 itemCount: posts.length,
                 itemBuilder: (context, index) => RegisterCoursesPost(
                   onTap: () {
-                    Navigator.of(context).pushNamed(
-                        StudentPersonalInformation.id,
-                        arguments: posts[index].id);
+                    if (posts[index].is_open == true) {
+                      Navigator.of(context).pushNamed(
+                          StudentPersonalInformation.id,
+                          arguments: posts[index].id);
+                    } else {
+                      showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (context) => warningDialog(
+                              title: 'تنبيه',
+                              message:
+                                  'عذراً، لقد إنتهى وقت التسجيل على هذه الدورة.',
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              }));
+                    }
                   },
                   onChange: (isFavorite, isSaved, count) {
                     posts[index].likedByMe = isFavorite;

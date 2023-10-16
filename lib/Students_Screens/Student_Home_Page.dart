@@ -44,7 +44,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
                   color: PrimaryColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child:  Text(
+                child: Text(
                   '${userData.department} / ${userData.section}',
                   style: TextStyle(
                       color: WhiteColor,
@@ -106,31 +106,6 @@ class _StudentHomePageState extends State<StudentHomePage> {
                     height: 10,
                   ),
                   const Divider(color: WhiteColor, thickness: 2),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.people,
-                          color: WhiteColor,
-                          size: 30,
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          'دعوة صديق',
-                          style: TextStyle(
-                              color: WhiteColor,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
                   const SizedBox(
                     height: 15,
                   ),

@@ -10,6 +10,7 @@ class PostModel {
   bool likedByMe;
   int saves;
   bool savedByMe;
+  bool is_open;
 
   PostModel({
     required this.id,
@@ -23,6 +24,7 @@ class PostModel {
     required this.likedByMe,
     required this.saves,
     required this.savedByMe,
+    required this.is_open,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> jsonData) {
@@ -38,6 +40,7 @@ class PostModel {
       likedByMe: jsonData['liked_by_me'],
       saves: jsonData['saves'],
       savedByMe: jsonData['saved_by_me'],
+      is_open: jsonData['is_open'],
     );
   }
 }
