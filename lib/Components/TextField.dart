@@ -18,7 +18,6 @@ Widget customTextField({
     Container(
       margin: const EdgeInsetsDirectional.symmetric(vertical: 5),
       child: TextFormField(
-        // maxLines: obscure != true ? null : maxLine,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         onChanged: onChanged,
         controller: controller,

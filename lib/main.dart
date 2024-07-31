@@ -46,7 +46,7 @@ class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     var client = super.createHttpClient(context);
-    client.connectionTimeout = Duration(seconds: 30);
+    client.connectionTimeout = const Duration(seconds: 30);
     return client;
   }
 }
